@@ -1,5 +1,6 @@
 import logo from './logo.svg';
-import './App.css';
+import './CSS/Main.css';
+
 import Manager from './Manager';
 import { BrowserRouter } from 'react-router-dom';
 

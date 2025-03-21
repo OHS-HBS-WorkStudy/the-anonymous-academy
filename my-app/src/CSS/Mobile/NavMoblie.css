@@ -1,0 +1,44 @@
+@media only screen and (max-width: 480px) {
+    .sidebar {
+      display: none !important;
+      overflow: hidden;
+      padding: 0;
+      transition: width 0.3s ease-in-out;
+    }
+  
+    .navigator.menu-open .sidebar {
+      width: 200px !important; 
+      display: flex !important;
+    }
+  
+    .navigator.menu-open {
+      margin-left: 160px !important;
+    }
+  
+    .circle-link {
+      padding-left: 5px !important;
+    }
+  
+    .navigator.menu-open .circle-link {
+      padding-left: 10px !important;
+    }
+  
+    .navigator.menu-open .circle-link svg {
+      margin-right: 3px !important;
+    }
+  
+    .nav-toggle {
+      margin-left: -4px !important;
+    }
+  
+    .circle-link:hover,
+    .circle-link:hover svg,
+    .circle-link:hover .icon-gear,
+    .circle-link:hover .icon-home,
+    .circle-link:hover .icon-pencil {
+      animation: none !important;
+      transform: none !important;
+      background-color: inherit !important;
+    }
+  }
+  

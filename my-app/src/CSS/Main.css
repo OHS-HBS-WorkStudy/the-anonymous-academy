@@ -1,0 +1,118 @@
+@import url('./Navigator.css');
+
+
+:root {
+    --color-background: hsl(0, 0%, 98%); /* Very light gray for the main background */
+    --color-surface: hsl(0, 0%, 100%); /* Pure white for surfaces like cards */
+    --color-primary: hsl(220, 50%, 50%); /* Modern medium blue */
+    --color-primary-accent: hsl(220, 55%, 65%); /* Light blue for highlights or hover effects */
+    --color-secondary: hsl(45, 60%, 50%); /* Classic gold for accents */
+    --color-secondary-accent: hsl(45, 65%, 40%); /* Rich gold for deeper emphasis */
+    --color-black-gold: hsl(45, 35%, 15%); /* Deep, muted black gold for bold contrasts */
+    --color-black-gold-light: hsl(45, 30%, 25%); /* Slightly lighter black gold for secondary elements */
+    --color-text-primary: hsl(220, 15%, 20%); /* Dark slate blue for main text */
+    --color-text-secondary: hsl(220, 10%, 40%); /* Medium gray-blue for secondary text */
+    --color-text-accent: var(--color-black-gold); /* Black gold for special text like headers */
+    --color-border: hsl(0, 0%, 85%); /* Light gray for separation */
+    --color-shadow: hsla(0, 0%, 0%, 0.1); /* Soft black shadow for depth */
+    --color-text-tertiary: black; /* Black for text on light backgrounds */
+    --color-text-white: white; /* White for text on dark backgrounds */
+    --color-text-black: #333; 
+  
+    --alt-background-color: #f7f7f7;
+  
+    --login-and-sign-color: linear-gradient(45deg, #e6e6fa, #add8e6);
+  
+  --clr-primary-a0: #cca633;
+  --clr-primary-a10: #d3af4c;
+  --clr-primary-a20: #dab963;
+  --clr-primary-a30: #e1c37a;
+  --clr-primary-a40: #e7cc90;
+  --clr-primary-a50: #edd6a6;
+  
+  --clr-surface-a0: #406abf;
+  --clr-surface-a10: #5a79c6;
+  --clr-surface-a20: #7189ce;
+  --clr-surface-a30: #8799d5;
+  --clr-surface-a40: #9ba9dc;
+  --clr-surface-a50: #afbae3;
+  
+  
+  --clr-surface-tonal-a0: #5b6fb3;
+  --clr-surface-tonal-a10: #6e7ebb;
+  --clr-surface-tonal-a20: #818dc4;
+  --clr-surface-tonal-a30: #939ccc;
+  --clr-surface-tonal-a40: #a5acd5;
+  --clr-surface-tonal-a50: #b7bcdd;
+  
+  --link-color: #cca633;
+  
+  
+  --color-input-background: hsl(220, 15%, 90%); /* Soft light gray-blue */
+  
+  
+  --newThread-button: #406abf;
+  --newThread-button-hover: #5a79c6;
+  }
+  
+  .dark {
+    --color-background: #1e1e1e; /* Deep muted purple-gray */
+    --color-primary: hsl(270, 25%, 18%); /* Dark lavender-gray */
+    --color-primary-accent: hsla(270, 40%, 25%, 0.8); /* Slightly transparent dark purple */
+    --color-secondary: hsl(270, 20%, 22%); /* Muted dark gray with purple */
+    --color-secondary-accent: hsl(270, 25%, 30%); /* Slightly lighter muted purple */
+    --color-tertiary: hsl(270, 15%, 10%); /* Nearly black with subtle purple */
+    --color-accent: hsl(270, 20%, 50%);; /* Slightly vibrant purple for accents */
+    --color-text-primary: hsl(0, 0%, 92%); /* Soft white for readability */
+    --color-text-secondary: hsl(0, 0%, 70%); /* Light gray for secondary text */
+    --color-text-tertiary: hsl(0, 0%, 100%); /* White  */
+    --color-text-white: white; /* White for text on dark backgrounds */
+    --color-text-black: #333; 
+    --color-input-background: #3f3f3f;
+  
+    --alt-background-color: #1e1e1e
+    ;
+  
+    /** Dark theme primary colors */
+  --clr-primary-a0: #4d3960;
+  --clr-primary-a10: #5f4d70;
+  --clr-primary-a20: #726181;
+  --clr-primary-a30: #857692;
+  --clr-primary-a40: #988ba4;
+  --clr-primary-a50: #aca1b5;
+  
+  /** Dark theme surface colors */
+  --clr-surface-a0: #121212;
+  --clr-surface-a10: #282828;
+  --clr-surface-a20: #3f3f3f;
+  --clr-surface-a30: #575757;
+  --clr-surface-a40: #717171;
+  --clr-surface-a50: #8b8b8b;
+  
+  /** Dark theme tonal surface colors */
+  --clr-surface-tonal-a0: #18161a;
+  --clr-surface-tonal-a10: #2d2b2f;
+  --clr-surface-tonal-a20: #444245;
+  --clr-surface-tonal-a30: #5b5a5d;
+  --clr-surface-tonal-a40: #747376;
+  --clr-surface-tonal-a50: #8f8d90;
+  
+  --newThread-button: #6C58CE;
+  --newThread-button-hover: #5438a5;
+  
+  --link-color: white;
+  --login-and-sign-color: linear-gradient(45deg, #9C6DD5, #7A4F9A, #B47BD9);
+  }
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.offset {
+    margin-top: 60px;
+    margin-left: 60px;
+}

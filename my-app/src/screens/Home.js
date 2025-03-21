@@ -1,6 +1,6 @@
 export default function Home() {
     return(
-        <div>
+        <div className="offset">
             <h1>Home</h1>
             <p>This is the Home page.</p>
         </div>
