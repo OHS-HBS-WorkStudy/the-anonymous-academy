@@ -1,5 +1,7 @@
 # The Anonymous Academy
 
+## Get Started
+
 ### Install React and React DOM
 ```
  npm install react react-dom
@@ -13,4 +15,10 @@
 ### Install DOMPurify for sanitizing HTML input
 ```
  npm install dompurify
+```
+
+### Open the application
+```
+ cd the-app
+ npm start
 ```
