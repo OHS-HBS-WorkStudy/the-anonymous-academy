@@ -17,6 +17,6 @@
 
 ### Open the application
 ```
- cd the-app
+ cd my-app
  npm start
 ```
