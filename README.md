@@ -1,7 +1,5 @@
 # The Anonymous Academy
 
-## Get Started
-
 ### Install React and React DOM
 ```
  npm install react react-dom
