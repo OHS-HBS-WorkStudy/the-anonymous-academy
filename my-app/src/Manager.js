@@ -6,7 +6,9 @@ import Account from './screens/Account.js';
 import Login from './screens/Login.js';
 import SignUp from './screens/SignUp.js';
 import Thread from './screens/Thread.js';
+import NewThread from './screens/NewThread.js';
 import Navigator from './modules/Navigator.js';
+
 
 export default function Manager() {
   return (
@@ -17,7 +19,7 @@ export default function Manager() {
       <Route path="/account" element={<Account />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
-      
+      <Route path="/newthread" element={<NewThread />} />
       <Route path="/thread/:threadId" element={<Thread />} />
     </Routes>
     </>

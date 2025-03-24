@@ -145,8 +145,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-  
+    align-items: flex-start;
+    width: 250px;
+    border: 1px solid black;
   }
   
   .navigator.menu-open .menu-items {
@@ -156,7 +157,7 @@
   
   .sidebar-link {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center; 
     padding: 10px;
     cursor: pointer;
@@ -190,15 +191,33 @@
     transform: scale(1);
   }
   
-  .sidebar-link svg {
-    flex-shrink: 0;
-    width: 24px;
-    height: 24px;
-    fill: var(--clr-primary-a50);
-    margin: 0 auto;
-    transition: margin-right 0.3s ease-in-out, transform 0.3s ease-in-out;
-    transform: scale(1.1);
-  }
+.sidebar-link .icon-container {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent; 
+  border-radius: 50%;
+  padding: 5px; 
+  height: 50%;
+  transition: background-color 0.3s ease-in-out; 
+}
+
+.sidebar-link svg {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  fill: var(--clr-primary-a50);
+  margin: 0 auto;
+  transition: margin-right 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transform: scale(1);
+
+}
+
+.sidebar-link .active-link svg {
+  fill: white; 
+  transform: scale(1.1);
+}
+
   
   .sidebar-link span  {
     font-size: 16px;
@@ -210,28 +229,27 @@
   
   .sidebar:hover .sidebar-link,
   .navigator.menu-open .sidebar-link {
-    padding-left: 20px; 
+    animation: addPadding .25 ease;
+  }
+
+  @keyframes addPadding {
+    0% {
+      padding-left: 0px; 
+    }
+    100% {
+      padding-left: 20px; 
+    }
   }
   
-  .sidebar .sidebar-link svg,
-  .navigator.sidebar-link svg {
-    margin-right: 10px; 
-  }
-  
-  sidebar-link:hover {
+  .sidebar-link:hover {
     background-color: #3e4b55; 
     transform: scale(1.1); 
   }
-  
-  .sidebar-link:hover svg {
-    fill: var(--clr-primary-a50);
-  }
-  
+
   .navigator.menu-open .sidebar-link {
     display: inline-flex;
     align-items: flex-start; 
     justify-content: flex-start;
-    
     padding: 8px 15px;
     margin: auto;
   }
