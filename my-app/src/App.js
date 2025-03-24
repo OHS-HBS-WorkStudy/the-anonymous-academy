@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './CSS/Main.css';
 
 import Manager from './Manager';

@@ -1,5 +1,6 @@
 @import url('./Navigator.css');
 @import url('./Sign&Login.css');
+@import url('./Home.css');
 
 :root {
     --color-background: hsl(0, 0%, 98%); /* Very light gray for the main background */

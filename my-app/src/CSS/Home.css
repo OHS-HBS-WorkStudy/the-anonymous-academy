@@ -1,0 +1,1078 @@
+/* Home Styling */
+.Home {
+    background-color: var(--color-background);
+    display: flex;
+    flex-direction: column; 
+    width: 100vw;
+    height: fit-content;
+    min-height: 100vh;
+    min-width: 992px;
+    margin-top: 10px;
+    gap: 20px;
+    padding-bottom: 15px;
+
+    overflow-x: auto; 
+    padding-bottom: 10px;
+}
+
+/* Layout wrapper styling */
+.layout-wrapper {
+    padding-bottom: -1px;
+    box-sizing: border-box;
+    background-color: var(--color-background);
+    display: flex;
+    flex-direction: row; 
+    width: 100vw;
+    min-width: 100%; 
+}
+
+/* Layout content styling */
+.layout-content {
+    width: 20px;
+}
+
+/* Grid header styling */
+.grid-header {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: left;
+    align-items: center;
+    margin-left: 140px;
+    margin-right: 100px;
+    width: 100%;
+    max-width: calc(100vw - 155px); 
+    gap: 20px;
+    padding: 10px 20px;
+    background-color: var(--color-secondary);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 0px;
+    flex-wrap: nowrap;
+}
+
+@media (max-width: 992px) {
+    .grid-header {
+      max-width: 835px;
+    }
+}
+
+/* Grid header open state */
+.grid-header.open {
+    border-radius: 10px 10px 0px 0px;
+    transition: border-radius 0.3s ease-in-out;
+}
+
+/* Filter button styling */
+.filter-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: var(--color-secondary-accent);
+    color: var(--color-text-primary);  
+    font-size: 1rem;
+    font-weight: bold;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.filter-button svg {
+    margin-right: 8px; 
+    fill: currentColor; 
+}
+
+.filter-button:focus {
+    outline: none;  
+    border-color: var(--color-primary);  
+}
+
+.filter-button:active {
+    background-color:  var(--color-primary);  
+    color: white; 
+    border-color:  var(--color-primary);  
+}
+
+.filter-button:hover {
+    background-color: rgba(0, 0, 255, 0.1); 
+    border-color:  var(--color-primary); 
+}
+
+.filter-button:focus-visible {
+    outline: 2px solid  var(--color-primary); 
+}
+
+/* Dropdown content styling */
+.dropdown-content {
+    max-height: 0;               
+    overflow: hidden;             
+    display: grid;              
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;                   
+    margin-left: 140px;          
+    margin-right: 100px;         
+    border-radius: 0px 0px 10px 10px;
+    background-color: var(--color-secondary);
+    transform: translateY(50%);  
+    transition: max-height 0.3s ease-out, transform 0.3s ease-out, opacity 0.3s ease-out; 
+}
+
+.dropdown-content.open {
+    position: relative;
+    width: fit-content;
+    flex: 1 1 auto;
+    max-height: 500px;  
+    min-height: fit-content;
+    width: 100%;
+    max-width: calc(100vw - 155px);  
+    padding: 10px;
+    min-width: 835px;
+    overflow: visible;          
+    color: var(--color-text-tertiary);
+    z-index: 10;
+    transform: translateY(0);   
+    opacity: 1;                  
+}
+
+
+
+/* Dropdown column styling */
+.dropdown-content.open .dropdown.col1,
+.dropdown-content.open .dropdown.col2,
+.dropdown-content.open .dropdown.col3 {
+    margin-bottom: 10px;
+    justify-content: center;
+    opacity: 1;   
+    transition: opacity 0.1s ease-out; 
+}
+
+.dropdown.col1,
+.dropdown.col2,
+.dropdown.col3 {
+    margin-bottom: 10px;
+    justify-content: center;
+    opacity: 0;  
+    transition: opacity 0.1s ease-out;  
+}
+
+.dropdown label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+#customtag {
+    padding: 8px 12px;
+    border-radius: 6px;
+    width: 200px;
+    border: 1px solid gray;
+}
+
+/* Grid header dropdown styling */
+.grid-header .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+
+.grid-header .dropdown select {
+    padding: 8px 12px;
+    border: 1px solid var(--color-primary-accent);
+    border-radius: 6px;
+    background-color: var(--color-secondary-accent);
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    cursor: pointer;
+    appearance: none;
+}
+
+.grid-header .dropdown select:focus {
+    outline: none;
+    border-color: var(--color-accent);
+}
+
+.grid-header .title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--color-text-primary);
+}
+
+/* Thread page styling */
+.thread-page {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-left: auto;
+    gap: 20px;
+}
+
+.thread-page button {
+    background-color: var(--color-secondary-accent);
+    color: var(--color-text-primary);
+    font-size: 1.2rem;
+    padding: 10px 15px;
+    border: 1px solid var(--color-primary-accent);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.thread-page button:hover {
+    background-color: var(--color-accent);
+    transform: scale(1.1);
+}
+
+.thread-page button:disabled {
+    background-color: var(--color-secondary);
+    color: var(--color-text-secondary);
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Dropdown column 2 styling */
+.dropdown.col2 {
+    display: flex; 
+    align-items: center; 
+}
+
+.dropdown .left {
+    flex: 1; 
+    text-align: left; 
+    padding: 10px;
+    border-right: 1px solid var(--color-text-tertiary); 
+}
+
+.dropdown .right {
+    flex: 1; 
+    text-align: left; 
+    padding: 10px; 
+}
+
+.dropdown.col1   {
+    display: flex; 
+    align-items: center; 
+}
+
+
+
+.dropdown.col3 {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown .single {
+    flex: 1;
+    text-align: left;
+}
+
+.dropdown h3 {
+    color: var(--color-text-tertiary);
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+/* Dropdown radio button styling */
+.dropdown input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: absolute;
+    opacity: 0;
+}
+
+.dropdown label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+}
+
+.dropdown label::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    border: 2px solid #ccc;
+    border-radius: 20%;
+    background-color: white;
+}
+
+.dropdown input[type="radio"]:checked + label::before {
+    background-color: #2196F3;
+    border-color: #2196F3;
+}
+
+.dropdown input[type="radio"]:checked + label::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 5px; 
+    transform: translateY(-50%) rotate(45deg);
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    z-index: 1;
+}
+
+/* Container styling */
+.container2 {
+    display: flex;
+}
+
+/* Grid container styling */
+.grid-container {
+    position: relative;
+    display: flex;  
+    flex-direction: column; 
+    justify-content: flex-start;
+    gap: 0.5px;
+    width: 100%;
+    max-width: calc(100% - 1fr); 
+    margin-top: 10px;
+    top: 0;
+    right: 5px;
+    margin-left: 40px;
+
+    box-sizing: border-box;
+    max-height: none;
+    min-height: 100%;
+    background-color: var(--color-secondary);
+    border-radius: 10px;
+    overflow: auto;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+/* Grid item styling */
+.grid-item {
+    min-width: 850px;
+    max-width: 100vw;
+    width: 100%; 
+    height: auto;
+    max-height: fit-content;
+    background: linear-gradient(
+      135deg,
+      var(--color-secondary) 0%,
+      var(--color-secondary-accent) 50%,
+      var(--color-accent) 100%
+    );
+    text-align: left;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    padding-bottom: 8px;
+}
+
+/* Thread list end styling */
+.thread-list-end {
+    text-align: center;
+    font-size: 1em;
+    color: #999;
+    margin-top: 20px;
+}
+
+/* Grid item first and last child styling */
+.grid-item:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.grid-item:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* Grid item hover effect */
+.grid-item:hover {
+    transform: scale(1.01);
+    background-color: var(--color-tertiary); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); 
+}
+
+/* Grid item content styling */
+.grid-item-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+    width: calc(100% - 60px);
+    color: var(--color-primary-accent); 
+    box-sizing: border-box;
+    overflow: hidden;
+    height: auto;
+}
+
+/* Grid item title styling */
+.grid-item-title {
+    color: var(--color-text-primary);
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); 
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+/* Grid item description styling */
+.grid-item-desc {
+    margin-left: 20px;
+    font-size:  16px;
+    color: var(--color-text-secondary); 
+    line-height: 1.5;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+    height: auto;
+    text-shadow: 0.5px 0.5px 2px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .grid-item {
+      padding: 10px; 
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); 
+      font-size: 0.9rem; 
+    }
+
+    .grid-item-content {
+      margin-left: 10px; 
+      width: auto; 
+    }
+
+    .grid-item-title {
+      font-size: clamp(14px, 20px, 3vw); 
+    }
+
+    .grid-item-desc {
+      font-size: clamp(10px, 16px, 2vw); 
+    }
+
+    .vote-counter {
+      display: flex;
+      align-items: start; 
+      justify-content: start; 
+    }
+
+    .vote-counter p {
+      font-size: 10px;
+    }
+}
+
+/* Grid item tags container styling */
+/* Styling for the horizontal scrollbar */
+.grid-item-tags-container {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    border-radius: 12px;
+    padding: 6px 8px;
+    gap: 8px;
+    min-height: 40px;
+    max-width: 100vw;
+    box-sizing: border-box;
+    transition: box-shadow 0.3s ease;
+    overflow-x: auto;  /* Enable horizontal scrolling */
+}
+
+/* Grid item tags styling */
+.grid-item-tags {
+    background-color: #e0e0e0;
+    padding: 8px 14px;
+    border-radius: 20px;
+    transform: scale(0.95);
+    cursor: pointer;
+    max-width: fit-content;
+    font-size: 0.9rem;
+    color: var(--clr-surface-tonal-a10);
+    font-weight: 500;
+    transition: background-color 0.8s ease, transform 0.6s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Hover effect for tags */
+.grid-item-tags:hover {
+    background-color: #f0a500;
+    transform: scale(1.00);
+}
+
+/* Custom scrollbar styling */
+.grid-item-tags-container::-webkit-scrollbar {
+    height: 4px;  /* Set the height of the horizontal scrollbar */
+}
+
+.grid-item-tags-container::-webkit-scrollbar-track {
+    background: #f0f0f0;  /* Set the track color */
+    border-radius: 10px;  /* Optional: round the corners of the track */
+}
+
+.grid-item-tags-container::-webkit-scrollbar-thumb {
+    background-color: #7E4B8D;  /* Purple color for the thumb */
+    border-radius: 10px;  /* Round the thumb */
+    border: 2px solid #f0f0f0;  /* Optional: add a border for contrast */
+}
+
+.grid-item-tags-container::-webkit-scrollbar-thumb:hover {
+    background-color: #6A3C7D;  /* Darker purple when hovering over the thumb */
+}
+
+/* Firefox scrollbar styling */
+.grid-item-tags-container {
+    scrollbar-width: thin;  /* Set scrollbar to be thin in Firefox */
+    scrollbar-color: #7E4B8D #f0f0f0;  /* Purple thumb and light track for Firefox */
+}
+/* Left info styling */
+.left-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: right; 
+    justify-content: space-evenly;
+    transform: translateY(5px);
+    transform: scale(0.99);
+}
+
+/* Date display styling */
+.date-display {
+    display: flex;
+    font-size: 16px; 
+    color: var(--color-text-primary); 
+    line-height: 1.5;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+    font-weight: bold;
+    height: auto;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.vote-container,
+.replies-container {
+    display: flex;
+    align-items: center; 
+    text-align: center;
+    gap: 0px; 
+
+}
+
+.vote-container .vote-text,
+.replies-container .replies-text {
+    color: var(--color-text-primary) !important;
+    font-weight: bold;
+    padding: 0px 5px; 
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1); 
+}
+
+/* Vote counter styling */
+.vote-counter,
+.replies-counter {
+    display: flex;
+    align-items: center; 
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white; 
+    border: 1px solid lightgray;  
+    border-radius: 5px; 
+    padding: 2.5px 5px; 
+    font-size: 15px; 
+    font-weight: bold; 
+    width: fit-content;
+}
+/* Bento box container styling */
+.bento-box {
+    margin-left: 140px;
+    margin-right: 70px;
+    height: 570px;
+    padding: 1em;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1em;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: calc(100vw - 200px); 
+}
+
+/* Left column styling */
+.col-left {
+    flex: 1 0 auto;
+    min-width: 500px;
+    border-radius: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 60%; 
+}
+
+/* Row container styling */
+.col-row {
+    overflow: hidden;
+    max-height: 100%;
+}
+
+/* First row styling */
+.col-row.row1 {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-secondary-accent), var(--color-secondary));
+}
+
+/* First row hover effect */
+.col-row.row1:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Thread visited and created container styling */
+.threadvisted,
+.threadcreated {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    background: transparent;
+}
+
+/* Hide scrollbar for second row */
+.col-row.row2::-webkit-scrollbar {
+    display: none;
+}
+
+/* Thread visited and created title styling */
+.threadvisted h1,
+.threadcreated h1 {
+    padding-bottom: 8px;
+    margin-top: -8px;
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--color-text-primary);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Thread visited and created content styling */
+.threadcreated-content,
+.threadvisted-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    gap: 8px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Credibility content styling */
+.cred-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 8px;
+    padding-bottom: 60px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Thread visited and created paragraph styling */
+.threadvisted-content p,
+.threadcreated-content p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; 
+    -webkit-box-orient: vertical;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: normal; 
+    width: 100%;
+    margin: 0;
+    padding: 8px 10px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.2));
+    color: var(--color-text-primary);
+    font-size: 14px;
+    text-align: left;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+/* Thread visited and created paragraph hover effect */
+.threadvisted-content p:hover,
+.threadcreated-content p:hover {
+    transform: scale(1.01);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.4));
+}
+
+/* Arrow icon for thread visited and created paragraph */
+.threadvisted-content p::after,
+.threadcreated-content p::after {
+    content: '→';
+    font-size: 18px;
+    color: var(--color-secondary-accent);
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+/* Arrow icon hover effect */
+.threadvisted-content p:hover::after,
+.threadcreated-content p:hover:after {
+    transform: translateX(3px);
+}
+
+/* Responsive styling for thread visited and created paragraph */
+@media (max-width: 600px) {
+    .threadvisted-content p {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+}
+
+/* Second row styling */
+.col-row.row2 {
+    background: linear-gradient(to right, var(--color-primary), var(--color-primary-accent));
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    overflow: scroll;
+}
+
+/* Second row hover effect */
+.col-row.row2:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Right column styling */
+.col-right {
+    flex: 0 0 auto;
+    border-radius: 2em;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    max-width: 40vw;
+}
+
+/* Row container styling */
+.col-row {
+    flex: 1; 
+    border-radius: 16px;
+    padding: 0.5em; 
+    border-radius: 2em;
+}
+
+/* Top row styling */
+.col-row.top {
+    background: linear-gradient(135deg, #FF5F6D, #FFC371);
+}
+
+/* Bottom row styling */
+.col-row.bottom {
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+/* Bottom row first child styling */
+.col-row.bottom.row1 {
+    flex: 1 1 auto;
+    width: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, var(--clr-surface-a30), var(--clr-surface-a50));
+}
+
+/* Credibility container styling */
+.credibility {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    padding: 0.5em;
+    flex: 1 1 auto;
+}
+
+/* Credibility content styling */
+.cred-content {
+    flex: 1 1 auto;
+}
+
+/* Credibility score styling */
+.cred-score {
+    height: 100%;
+}
+
+/* Rating display styling */
+.rating-display {
+    color: white;
+    margin-top: 35px;
+}
+
+.rating-display-mini {
+    margin-top: 80px;
+}
+/* Thread trending container styling */
+.threadtrending {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.5em;
+}
+
+/* Top row hover effect */
+
+
+/* Fire animation styling */
+h1.fire {
+    font-size: 27.5px; 
+    font-weight: bold;
+    color: #fff;
+    animation: flicker 2s infinite;
+}
+
+/* Thread trending title styling */
+.threadtrending h1 {
+    font-size: 27.5px; 
+    font-weight: bold;
+}
+
+/* Flicker animation keyframes */
+@keyframes flicker {
+    0%, 
+    100% { 
+        text-shadow: 
+            0 -1px 3px #fff,
+            0 -2px 6px #FF3, 
+            0 -6px 12px #F90, 
+            0 -10px 20px #C33; 
+    }
+    50% { 
+        text-shadow: 
+            0 -2px 6px #fff, 
+            0 -4px 12px #FF3, 
+            0 -8px 16px #F90, 
+            0 -12px 24px #C33; 
+    }
+}
+
+/* Thread trending content styling */
+.threadtrending-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+    gap: 6px; 
+    width: 100%;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    max-height: 180px; 
+}
+
+/* Thread trending content paragraph styling */
+.threadtrending-content p {
+    font-size: 20px; 
+    font-weight: 500;
+    padding: 4px; 
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+
+/* Thread trending content paragraph hover effect */
+.threadtrending-content p:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+
+@media only screen and (max-width: 480px) {
+    .grid-container {
+        width: 85% !important;
+    }
+
+    .bento-box {
+        transform: scale(0.80) !important;
+    }
+}
+
+/* Hide scrollbar for second row */
+.col-row.row2::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+}
+
+
+
+@media (max-width: 992px) {
+    .grid-header {
+      max-width: 835px;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-item {
+      padding: 10px; 
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); 
+      font-size: 0.9rem; 
+    }
+
+    .grid-item-content {
+      margin-left: 10px; 
+      width: auto; 
+    }
+
+    .grid-item-title {
+      font-size: clamp(14px, 20px, 3vw); 
+    }
+
+    .grid-item-desc {
+      font-size: clamp(10px, 16px, 2vw); 
+    }
+
+    .vote-counter {
+      display: flex;
+      align-items: start; 
+      justify-content: start; 
+    }
+
+    .vote-counter p {
+      font-size: 10px;
+    }
+}
+
+/* @media (max-width: 600px) {
+    .threadvisted-content p {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+    .threadvisted h1,
+    .threadcreated h1 {
+        font-size: 20px;
+    }
+    .fire {
+        font-size: 16px;
+    }
+    .threadtrending-content p {
+        font-size: 10px;
+    }
+} */
+
+@media only screen and (max-width: 480px) {
+    .grid-container {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        overflow: hidden;
+    }
+    .grid-item{
+        min-width: 100vw;
+    }
+
+    .bento-box {
+        flex-direction: column;
+        height: auto;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-left: 10px;
+        padding-right: 10px;
+        transform: scale(0.97) !important;
+        
+        transform: translateX(0px) !important;
+        padding: 10px !important;
+    }
+
+    .col-left {
+        width: 100vw;
+        min-width: 100vw;
+        min-height: 200px;
+        border-radius: 0;
+        transform: scale(0.95);
+    }
+
+    .col-right {
+        width: 100vw;
+        max-width: none;
+        min-height: 100px;
+        border-radius: 0;
+        transform: scale(0.95) !important;
+    }
+    .grid-header{
+        margin-left: 0;
+        margin-right: 0;
+        min-width: 100vw;
+        border-radius: 0;
+        max-width: 100vw;
+    }
+    .dropdown-content.open{
+        margin-left: 0;
+        margin-right: 0;
+
+        max-width: 90vw;
+        overflow: scroll;
+    }
+    .dropdown-content {
+        margin-left: 0;
+        margin-right: 0;
+
+        max-width: 100vw;
+        overflow: auto;
+    }
+    .Home{
+        margin-left: 0;
+        min-width: 100vw;
+    }
+    .grid-header {
+        column-gap: 5px;
+        gap: 5px;
+
+    }
+
+    .filter-button {
+        transform: scale(0.9);
+    }
+
+    .Home .title {
+        transform: scale(0.8);
+    }
+
+    .grid-item-tags-container {
+        transform: scale(0.75);
+        gap: 3px;
+        border-radius: 20px;
+    }
+}

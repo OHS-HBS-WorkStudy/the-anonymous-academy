@@ -38,7 +38,7 @@ export default function Login() {
                             transition: 'transform 0.3s ease',
                         }}
                         >
-                        <img src={loginpic} alt='Community Picture' />
+                        <img src={loginpic} alt='Community' />
                         </div>
                     </div>
 
