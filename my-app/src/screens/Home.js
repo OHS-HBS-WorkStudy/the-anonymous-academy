@@ -8,7 +8,14 @@ export default function Home() {
    const mockUp = [
         { threadId: 1, threadTitle: "Why is math hard",  threadDescr: "I don't know what to do with this please" },
         { threadId: 2, threadTitle: "English why", threadDescr: "I don't know what to do with this please" },
-        { threadId: 3, threadTitle: "Why am I stupid theory", threadDescr: "I don't know what to do with this please" }
+        { threadId: 3, threadTitle: "Why am I stupid theory", threadDescr: "I don't know what to do with this please" },
+        { threadId: 4, threadTitle: "Why is math hard",  threadDescr: "I don't know what to do with this please" },
+        { threadId: 5, threadTitle: "English why", threadDescr: "I don't know what to do with this please" },
+        { threadId: 6, threadTitle: "Why am I stupid theory", threadDescr: "I don't know what to do with this please" },
+        { threadId: 7, threadTitle: "Why is math hard",  threadDescr: "I don't know what to do with this please" },
+        { threadId: 8, threadTitle: "English why", threadDescr: "I don't know what to do with this please" },
+        { threadId: 9, threadTitle: "Why am I stupid theory", threadDescr: "I don't know what to do with this please" },
+        { threadId: 10, threadTitle: "Why am I stupid theory", threadDescr: "I don't know what to do with this please" },
     ];
 
 
@@ -25,7 +32,7 @@ export default function Home() {
 
 
                             <div className="container2">
-                                <div className="grid-container">
+                                <div className="thread-list-container">
                                     {mockUp.map(thread => (
                                         <div key={thread.threadId}>
                                             <Threads thread={thread}/>
