@@ -1,6 +1,6 @@
 import { useState} from 'react';
 import useNavigation from '../modules/useNavigation';
-
+import signuppic from '../img/signpic.png';
 export default function SignUp() {
     const {toGoLogin} = useNavigation();
     const [activeButton, setActiveButton] = useState("student");
@@ -15,12 +15,13 @@ export default function SignUp() {
 
     return(
         <div className="offset">
-             <div className="Sign">
-                <div className="container">
-                    <div class="split right">
+             <div className="Sign-page">
+                <div className='parent-container'>
+                <div className="split">
+                    <div className="split right">
                             <div className="center">
                             <div className='content'>
-                            {/* <img src={signpic} alt="signpic" className="signpic"/> */}
+                            <img src={signuppic} alt="signpic" className="signpic"/>
                             </div>  
                         </div>
                     </div>
@@ -54,8 +55,8 @@ export default function SignUp() {
                                 </button>
                             </div>
                             
-                            <div class="button-group-container">
-                            <div class="button-group">
+                            <div className="button-group-container">
+                            <div className="button-group">
                             <button
                                             className={`button-group-btn ${
                                             activeButton === "student" ? "active" : ""
@@ -83,7 +84,7 @@ export default function SignUp() {
                             </div>
                         </div>
 
-                            <button className="buttonn" >Sign Up</button>
+                            <button className="submit-button" type="submit">Sign Up</button>
                             <div className="border-line">
                             <span>Or</span>
                         </div>
@@ -95,6 +96,7 @@ export default function SignUp() {
                         </div>
 
                     </div>
+                </div>
                 </div>
                 </div>
             </div>
