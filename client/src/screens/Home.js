@@ -6,7 +6,7 @@ export default function Home() {
 
 
    const mockUp = [
-        { threadId: 1, threadTitle: "Why is math hard",  threadDescr: "I don't know what to do with this please" },
+        { threadId: 1, threadTitle: "Why is math hard Why is math hard Why is math hard Why is math hard Why is math hard Why is math hard Why is math hard Why is math hard Why is math hard Why is math hard",  threadDescr: "I don't know what to do with this please I don't know what to do with this please I don't know what to do with this please I don't know what to do with this please I don't know what to do with this please I don't know what to do with this please I don't know what to do with this please I don't know what to do with this please I don't know what to do with this please I don't know what to do with this please I don't know what to do with this please I don't know what to do with this please I don't know what to do with this please I don't know what to do with this please I don't know what to do with this please I don't know what to do with this please I don't know what to do with this please" },
         { threadId: 2, threadTitle: "English why", threadDescr: "I don't know what to do with this please" },
         { threadId: 3, threadTitle: "Why am I stupid theory", threadDescr: "I don't know what to do with this please" },
         { threadId: 4, threadTitle: "Why is math hard",  threadDescr: "I don't know what to do with this please" },

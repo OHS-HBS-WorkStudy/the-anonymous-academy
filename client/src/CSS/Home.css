@@ -319,17 +319,15 @@
     z-index: 1;
 }
 
-/* Container styling */
 .container2 {
     display: flex;
 }
 
-/* List container styling */
 .thread-list-container {
     display: flex;
-    flex-direction: column;  
-    width: calc(100% - 40px);
-    transform: translateX(-30px);
+    flex-direction: column;
+    width: 100%;
+    /* transform: translateX(-30px); */
     margin-top: 10px;
     padding: 0 20px;
     box-sizing: border-box;
@@ -340,118 +338,154 @@
     margin-right: auto;
 }
 
+.text-content {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 100%; 
+    box-sizing: border-box;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.grid-item-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.3;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 100%; 
+    box-sizing: border-box; 
+}
+
+.grid-item-desc {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    height: auto;
+}
+
 .grid-item {
-    width: 100%;  
-    min-width: 320px;  
-    max-width: 1440px;  
-    background-color: #fff; 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    width: 100%;
+    min-width: 320px;
+    max-width: 1440px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 12px;
     cursor: pointer;
     display: flex;
-    flex-direction: row;  
-    gap: 10px; 
+    flex-direction: column;
+    gap: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
     overflow: hidden;
-    border: 1px solid #e0e0e0;  
-    margin: 0 auto;  
-    align-items: flex-start; 
+    border: 1px solid #e0e0e0;
+    margin: 0 auto;
+    align-items: flex-start;
 }
 
 .grid-item:hover {
-    transform: translateY(-1.5px);  
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);  
-    background-color: #f9f9f9;  
+    transform: translateY(-1.5px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    background-color: #f9f9f9;
+}
+
+.user-header {
+    display: flex;
+    align-items: center;
+    gap: 6px; 
+    margin-bottom: 6px; 
+}
+
+.user-avatar {
+    width: 24px; 
+    height: 24px; 
+    border-radius: 50%;
+    background-color: #ddd;
+}
+
+.username {
+    font-size: 13px; 
+    font-weight: 600;
+}
+
+.date-display {
+    font-size: 11px;
+    color: #777;
+    font-weight: normal;
+}
+
+.content-row {
+    display: flex;
+    gap: 12px; 
+    width: 100%;
 }
 
 .left-info {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    align-items: flex-start; /* Left-align the items */
+    gap: 6px; 
+    align-items: flex-start;
     justify-content: flex-start;
     flex-shrink: 0;
+    width: fit-content;
 }
 
-/* Date display styling */
-.date-display {
-    font-size: 14px;
-    color: #777;
-    font-weight: 600;
-}
-
-/* Vote and replies container */
 .vote-container,
-.replies-container {
+.replies-container,
+.views-container {
     display: flex;
-    gap: 8px;
+    gap: 6px; 
     align-items: center;
     color: #444;
+    font-size: 12px; 
 }
 
-/* Vote/reply counter styling */
 .vote-counter,
-.replies-counter {
+.replies-counter,
+.views-counter {
     background-color: #eee;
     color: #333;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 14px;
+    padding: 4px 8px; 
+    border-radius: 4px; 
+    font-size: 12px; 
     font-weight: 600;
 }
 
-/* Thread title */
-.grid-item-title {
-    font-size: 20px;
-    font-weight: 600;
-    color: #333;
-    line-height: 1.4;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    flex: 1;
+.vote-counter {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
 }
-
-/* Thread description */
-.grid-item-desc {
-    font-size: 16px;
-    color: #555;
-    line-height: 1.6;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    height: auto;
-}
-
-.grid-item-content {
-    transform: translateY(-4px);
-}
-
+    
 .grid-item-tags-container {
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
-    border-radius: 12px;
-    padding: 6px 8px;
-    gap: 8px;
-    min-height: 40px;
+    border-radius: 8px; 
+    padding: 4px 6px; 
+    gap: 4px; 
+    min-height: 28px; 
     max-width: 100vw;
     box-sizing: border-box;
     transition: box-shadow 0.3s ease;
-    overflow-x: auto;  /* Enable horizontal scrolling */
+    overflow-x: auto;
 }
 
-/* Grid item tags styling */
 .grid-item-tags {
     background-color: #e0e0e0;
-    padding: 8px 14px;
-    border-radius: 20px;
-    transform: scale(0.95);
+    padding: 6px 10px; 
+    border-radius: 16px;
+    transform: scale(0.9); 
     cursor: pointer;
     max-width: fit-content;
-    font-size: 0.9rem;
+    font-size: 0.8rem; 
     color: var(--clr-surface-tonal-a10);
     font-weight: 500;
     transition: background-color 0.8s ease, transform 0.6s ease;
@@ -465,61 +499,75 @@
     transform: scale(1.00);
 }
 
-/* Custom scrollbar styling */
 .grid-item-tags-container::-webkit-scrollbar {
-    height: 4px;  /* Set the height of the horizontal scrollbar */
+    height: 4px;  
 }
 
 .grid-item-tags-container::-webkit-scrollbar-track {
-    background: #f0f0f0;  /* Set the track color */
-    border-radius: 10px;  /* Optional: round the corners of the track */
+    background: #f0f0f0; 
+    border-radius: 10px;  
 }
 
 .grid-item-tags-container::-webkit-scrollbar-thumb {
-    background-color: #7E4B8D;  /* Purple color for the thumb */
-    border-radius: 10px;  /* Round the thumb */
-    border: 2px solid #f0f0f0;  /* Optional: add a border for contrast */
+    background-color: #7E4B8D;  
+    border-radius: 10px;  
+    border: 2px solid #f0f0f0;  
 }
 
 .grid-item-tags-container::-webkit-scrollbar-thumb:hover {
-    background-color: #6A3C7D;  /* Darker purple when hovering over the thumb */
+    background-color: #6A3C7D;  
 }
 
 /* Firefox scrollbar styling */
 .grid-item-tags-container {
-    scrollbar-width: thin;  /* Set scrollbar to be thin in Firefox */
-    scrollbar-color: #7E4B8D #f0f0f0;  /* Purple thumb and light track for Firefox */
+    scrollbar-width: thin;  
+    scrollbar-color: #7E4B8D #f0f0f0;  
 }
 
 @media (max-width: 768px) {
     .grid-item {
-      padding: 10px; 
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); 
-      font-size: 0.9rem; 
-    }
-
-    .grid-item-content {
-      margin-left: 10px; 
-      width: auto; 
+        padding: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        font-size: 0.9rem;
     }
 
     .grid-item-title {
-      font-size: clamp(14px, 20px, 3vw); 
+        font-size: clamp(16px, 20px, 4vw); 
+        line-height: 1.2; 
     }
 
     .grid-item-desc {
-      font-size: clamp(10px, 16px, 2vw); 
+        font-size: clamp(12px, 14px, 3vw);
+        line-height: 1.4; 
+        -webkit-line-clamp: 3; 
     }
 
-    .vote-counter {
-      display: flex;
-      align-items: start; 
-      justify-content: start; 
+    .date-display {
+        font-size: 10px; 
     }
 
-    .vote-counter p {
-      font-size: 10px;
+    .content-row {
+        flex-direction: column; 
+        gap: 8px; 
+    }
+
+    .left-info {
+        flex-direction: row; 
+        gap: 8px; 
+        width: 100%; 
+    }
+
+    .vote-container,
+    .replies-container,
+    .views-container {
+        font-size: 10px; 
+    }
+
+    .vote-counter,
+    .replies-counter,
+    .views-counter {
+        padding: 3px 6px; 
+        font-size: 10px; 
     }
 }
-
 @import url('./BentoBox.css');
