@@ -3,8 +3,9 @@ import useNavigation from '../modules/useNavigation.js';
 export default function Threads({thread}) {
     const { goToThread } = useNavigation();
 
+
     return (
-        <div className="grid-item" onClick={() => goToThread(thread.threadId)}>
+        <div className="grid-item" onClick={() => goToThread(thread.thread_id)}>
             <div className="user-header">
                 <div className="user-avatar"></div>
                 <p className="username">Anonymous Student</p>
@@ -37,11 +38,11 @@ export default function Threads({thread}) {
 
                 <div className="text-content">
                     <div className="grid-item-title">
-                        {thread.threadTitle}
+                        {thread.thread_name}
                     </div>
             
                     <div className="grid-item-desc">
-                        {thread.threadDescr}
+                        {thread.thread_contents}
                     </div>
                     <div className="grid-item-tags-container">
                         <div className='grid-item-tags'>
