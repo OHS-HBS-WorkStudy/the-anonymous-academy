@@ -5,7 +5,7 @@
  npm install react react-dom
 ```
 
-### for now install react 18 to work with react-quill
+### For now, Install React 18 to work with React Quill
 ```
  npm install react@18 react-dom@18
 ```
@@ -27,6 +27,6 @@
 
 ### Open the application
 ```
- cd my-app
+ cd client
  npm start
 ```
