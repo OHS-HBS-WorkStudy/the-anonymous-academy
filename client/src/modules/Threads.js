@@ -3,6 +3,15 @@ import useNavigation from '../modules/useNavigation.js';
 export default function Threads({thread}) {
     const { goToThread } = useNavigation();
 
+    function getTags() {
+        let tags = thread.tags;
+        if (tags.length === 0 || tags.length === null) {
+            return "#No Tags";
+        } else {
+            return tags;
+        }
+    }
+
 
     return (
         <div className="grid-item" onClick={() => goToThread(thread.thread_id)}>
@@ -46,7 +55,7 @@ export default function Threads({thread}) {
                     </div>
                     <div className="grid-item-tags-container">
                         <div className='grid-item-tags'>
-                            <p>#NoTags</p>
+                        {getTags()}
                         </div>
                     </div>
                 </div>
