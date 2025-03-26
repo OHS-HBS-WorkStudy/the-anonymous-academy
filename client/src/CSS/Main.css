@@ -3,6 +3,8 @@
 @import url('./Home.css');
 @import url('./CreateThread.css');
 @import url('./Thread.css');
+@import url('./Account.css');
+@import url('./Overlay.css');
 
 :root {
     --color-background: hsl(0, 0%, 98%); /* Very light gray for the main background */

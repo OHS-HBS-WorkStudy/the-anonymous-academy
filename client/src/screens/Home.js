@@ -1,4 +1,4 @@
-// import useNavigation from '../modules/useNavigation.js';
+// Other modules components imports
 import BentoBox from '../modules/BentoBox.js';
 import Threads from '../modules/Threads.js';
 import ThreadFilter from '../modules/ThreadFilter.js';

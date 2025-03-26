@@ -1,3 +1,4 @@
+// Library declaration imports
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import DOMPurify from "dompurify";

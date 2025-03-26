@@ -1,13 +1,13 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* Modern sans-serif */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'Fira Code', 'JetBrains Mono', 'Courier New', monospace; /* Modern monospace */
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap');
+
