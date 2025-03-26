@@ -1,9 +1,12 @@
+// Library declaration imports
 import React, { useState, useRef, useContext } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import DOMPurify from 'dompurify';
+
+// Other modules components imports
 import useNavigation from "./useNavigation";
-import AddTags from "./AddTags"; // Import the AddTags component
+import AddTags from "./AddTags";
 
 export default function CreateThread() {
   const [ThreadTitle, setThreadTitle] = useState("");
@@ -80,15 +83,14 @@ export default function CreateThread() {
         thread = [];
       }
   
-      let newId = undefined;
+      let newId = null;
   
       if (JSON.parse(sessionStorage.getItem("data")) === null || JSON.parse(sessionStorage.getItem("data")).length === 0) {
         newId = 0;
       } else {
         newId = JSON.parse(sessionStorage.getItem("data")).length + 1;
       }
-  
-      // Generate and format the timestamp
+
       const now = new Date();
       const options = {
         month: 'long',
