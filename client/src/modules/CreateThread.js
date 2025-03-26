@@ -1,5 +1,5 @@
 // Library declaration imports
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect} from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import DOMPurify from 'dompurify';
@@ -20,6 +20,23 @@ export default function CreateThread() {
   const maxDescLength = 10000;
 
   const quillRef = useRef(null);
+
+  useEffect(() => {
+    const savedTitle = sessionStorage.getItem("threadTitle");
+    const savedContents = sessionStorage.getItem("threadContents");
+
+    if (savedTitle) {
+      setThreadTitle(savedTitle);
+    }
+    if (savedContents) {
+      setThreadContents(savedContents);
+    }
+  }, [setThreadTitle, setThreadContents]);
+
+  useEffect(() => {
+    sessionStorage.setItem("threadTitle", ThreadTitle);
+    sessionStorage.setItem("threadContents", ThreadContents);
+  }, [ThreadTitle, ThreadContents]);
 
   const getPlainText = (htmlContent) => {
     const tempDiv = document.createElement("div");
@@ -132,7 +149,11 @@ export default function CreateThread() {
 
         setIsLoading(false);
         goToThread(data.thread_id);
+
+        //Clear data
         setTags([]);
+        setThreadTitle([]);
+        setThreadContents([]);
     }, 3000);
 };
 
