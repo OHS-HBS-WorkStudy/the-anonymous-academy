@@ -4,7 +4,7 @@ import loginpic from '../img/loginpic.png';
 
 export default function Login() {
 
-    const {goToSignUp} = useNavigation();
+    const {goToSignUp, goToHome} = useNavigation();
 
     const [passwordVisible, setPasswordVisible] = useState(false);
     const togglePasswordVisibility = () => {
@@ -20,6 +20,30 @@ export default function Login() {
       setPosition({ x, y });
     };
 
+    function loginUser() {
+        let usersGet = sessionStorage.getItem("user");
+        let users = usersGet ? JSON.parse(usersGet) : [];
+    
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+    
+        let foundUser = false;
+        for (let i = 0; i < users.length; i++) {
+            if (email === users[i].email && password === users[i].password) {
+                foundUser = true;
+                users[i].login = true;
+                sessionStorage.setItem("user", JSON.stringify(users)); 
+                sessionStorage.setItem("currentUserEmail", users[i].email);
+                break;
+            }
+        }
+    
+        if (foundUser) {
+            goToHome();
+        } else {
+            alert("Login Unsuccessful");
+        }
+    }
 
     return(
         <div className="offset">
@@ -63,7 +87,7 @@ export default function Login() {
                             {passwordVisible ? "Hide" : "Show"}
                         </button>
                         </div>
-                        <button className="submit-button" type="submit">
+                        <button className="submit-button" type="submit" onClick={loginUser}>
                         Login
                         </button>
                         <div className="border-line">

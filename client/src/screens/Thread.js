@@ -23,7 +23,7 @@ export default function Thread() {
                 <div className="thread-top">
                         <div className="submitted-content-title" dangerouslySetInnerHTML={{ __html: sanitizedTitle }} />
                         <div className="thread-top-stats">
-                            <p>Created By: Student</p>
+                            <p>Created By: Anonymous {thread.account}</p>
                             <p>Creation Date: {thread.created_at}</p>
                             <p>Viewed: 0</p>
                         </div>

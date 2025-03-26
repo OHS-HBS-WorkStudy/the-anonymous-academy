@@ -1,5 +1,5 @@
 // Library declaration imports
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import DOMPurify from 'dompurify';
@@ -73,56 +73,68 @@ export default function CreateThread() {
   const submitThread = (e) => {
     e.preventDefault();
     setIsLoading(true);
-  
+
     setTimeout(() => {
-      const sanitizedTitle = DOMPurify.sanitize(ThreadTitle);
-      const sanitizedContents = DOMPurify.sanitize(ThreadContents);
-  
-      let thread = JSON.parse(sessionStorage.getItem("data")) || [];
-      if (!Array.isArray(thread)) {
-        thread = [];
-      }
-  
-      let newId = null;
-  
-      if (JSON.parse(sessionStorage.getItem("data")) === null || JSON.parse(sessionStorage.getItem("data")).length === 0) {
-        newId = 0;
-      } else {
-        newId = JSON.parse(sessionStorage.getItem("data")).length + 1;
-      }
+        const sanitizedTitle = DOMPurify.sanitize(ThreadTitle);
+        const sanitizedContents = DOMPurify.sanitize(ThreadContents);
 
-      const now = new Date();
-      const options = {
-        month: 'long',
-        day: 'numeric',
-        year: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: true,
-      };
-      const formattedTime = now.toLocaleDateString('en-US', options);
-  
-      let data = {
-        thread_name: sanitizedTitle,
-        thread_contents: sanitizedContents,
-        thread_id: newId,
-        tags: tags,
-        created_at: formattedTime,
-      };
-  
-      console.log(data);
-  
-      thread.push(data);
-      sessionStorage.setItem("data", JSON.stringify(thread));
-  
-      sessionStorage.setItem("tags", JSON.stringify(tags));
+        let thread = JSON.parse(sessionStorage.getItem("data")) || [];
+        if (!Array.isArray(thread)) {
+            thread = [];
+        }
 
-  
-      setIsLoading(false);
-      goToThread(data.thread_id);
-      setTags([]);
+        let users = JSON.parse(sessionStorage.getItem("user")) || [];
+        if (!Array.isArray(users)) {
+            users = [];
+        }
+
+        const currentUserEmail = sessionStorage.getItem("currentUserEmail");
+        let currentUser = null;
+
+        if (currentUserEmail && users.length > 0) {
+            currentUser = users.find((user) => user.email === currentUserEmail);
+        }
+
+        let newId = null;
+
+        if (JSON.parse(sessionStorage.getItem("data")) === null || JSON.parse(sessionStorage.getItem("data")).length === 0) {
+            newId = 0;
+        } else {
+            newId = JSON.parse(sessionStorage.getItem("data")).length + 1;
+        }
+
+        const now = new Date();
+        const options = {
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true,
+        };
+        const formattedTime = now.toLocaleDateString('en-US', options);
+
+        let data = {
+            thread_name: sanitizedTitle,
+            thread_contents: sanitizedContents,
+            thread_id: newId,
+            tags: tags,
+            created_at: formattedTime,
+            account: currentUser ? currentUser.account_type : "", 
+        };
+
+        console.log(data);
+
+        thread.push(data);
+        sessionStorage.setItem("data", JSON.stringify(thread));
+
+        sessionStorage.setItem("tags", JSON.stringify(tags));
+
+        setIsLoading(false);
+        goToThread(data.thread_id);
+        setTags([]);
     }, 3000);
-  };
+};
 
   return (
     <>
