@@ -9,14 +9,17 @@ import Thread from './screens/Thread.js';
 import NewThread from './screens/NewThread.js';
 import Navigator from './modules/Navigator.js';
 
-
 export default function Manager() {
   return (
     <>
     <Navigator />
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/account" element={<Account />} />
+
+      <Route path="/account/stats" element={<Account />} />
+      <Route path="/account/activity" element={<Account />} />
+
+
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/newthread" element={<NewThread />} />

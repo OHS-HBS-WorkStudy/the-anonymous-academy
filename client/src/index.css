@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  font-family: 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* Modern sans-serif */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: 'Fira Code', 'JetBrains Mono', 'Courier New', monospace; /* Modern monospace */
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap');
+

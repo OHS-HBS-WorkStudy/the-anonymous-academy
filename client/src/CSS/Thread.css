@@ -1,0 +1,528 @@
+/* Container for the thread, centers content and applies background and padding */
+.thread {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: fit-content;
+    background-color: var(--clr-surface-a10);
+    transition: height 0.3s ease;
+    min-width: 300px;
+    padding-bottom: 20px;
+  }
+  
+  /* Main container for the thread page, sets layout and background */
+  .threadpage {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding-right: 40px;
+    background-color: var(--clr-surface-a10);
+  }
+  
+  /* Content area within the thread page */
+  #thread-content {
+    margin-left: 40px;
+    width: 100%;
+    padding-right: 30px;
+    flex-grow: 1;
+  }
+  
+  /* Top section of the thread, applies layout and border */
+  .thread-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 97%;
+    border-bottom: 1px solid var(--color-text-white);
+    margin-left: 40px;
+  }
+  
+  /* Title of the submitted content, applies text styling */
+  .submitted-content-title {
+    font-size: 2em;
+    line-height: 1.05;
+    color: var(--color-text-white);
+    margin-bottom: 12px;
+    font-weight: bold;
+    text-align: left;
+    word-break: break-word;
+    white-space: normal;
+    padding: 20px;
+    padding-bottom: 10px;
+    width: 100%;
+  }
+  
+  /* Adjusts padding for the title within the thread */
+  .thread .submitted-content-title {
+    padding-left: 0;
+  }
+  
+  /* Layout for thread statistics */
+  .thread-top-stats {
+    display: inline-flex;
+    gap: 30px;
+  }
+  
+  /* Styling for h2 elements within the thread page */
+  .threadpage h3,
+  .threadpage h2 {
+    color: var(--color-text-white) !important;
+  }
+  
+  /* Container for content, uses grid layout */
+  .content-container {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    justify-content: left;
+    align-items: left;
+    margin-left: 40px;
+    padding-bottom: 20px;
+  }
+  
+  /* Description of the submitted content, applies text styling */
+  .submitted-content-desc {
+    margin-left: 10px;
+    padding-top: 1.5px;
+    color: var(--color-text-white);
+    font-size: 1.01rem;
+    line-height: 1.6;
+    margin-top: 12px;
+    word-break: break-word;
+    text-align: left;
+  }
+  
+  /* Vote box container, applies layout and styling */
+  .vote-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: fit-content;
+    border-radius: 12px;
+    margin-top: 20px;
+    transition: top 0.3s ease;
+  }
+  
+  /* Animation for vote box when thread is in play state */
+  .thread.play .vote-box {
+    animation: fadeIn 1.5s ease-out;
+  }
+  
+  /* Styling for up-vote and down-vote buttons */
+  .vote-box .up-vote,
+  .vote-box .down-vote {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 50%;
+    transition: transform 0.3s ease, background 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), inset 0 -1px 3px rgba(255, 255, 255, 0.4);
+  }
+  
+  /* Styling for SVG icons within vote buttons */
+  .up-vote svg,
+  .down-vote svg {
+    fill: white;
+  }
+  
+  /* Hover effect for vote buttons */
+  .vote-box .up-vote:hover,
+  .vote-box .down-vote:hover {
+    background: linear-gradient(145deg, var(--clr-surface-a0), var(--color-background));
+    transform: scale(1.05);
+  }
+  
+  /* Styling for vote number text */
+  .vote-box .vote-number {
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    color: var(--color-text-white);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Container for reply section, applies layout and styling */
+  .reply-section {
+    width: 97%;
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 5px;
+    box-shadow: 0;
+  }
+  
+  /* Adjusts border for reply section */
+  .thread-top.reply {
+    border-bottom: 0 !important;
+    border-top: 1px solid var(--color-border);
+    width: 94%;
+    padding-top: 10px;
+  }
+  
+  /* Container for reply list, applies layout and background */
+  .reply-list {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--clr-surface-a10);
+    width: 100%;
+    height: fit-content;
+    align-items: left;
+    justify-content: flex-start;
+    color: #fff;
+    box-sizing: border-box;
+    position: absolute;
+    scroll-behavior: smooth;
+    padding: 10px;
+  }
+  
+  .repliesNon {
+    margin-left: 40px;
+  }
+  
+  /* Content area within the reply section */
+  #reply-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-items: start;
+    padding: 60px;
+    background-color: var(--color-accent);
+    color: #333;
+    border-radius: 12px;
+    max-width: 1200px;
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  /* Animation for reply section when thread is in play state */
+  .thread.play .reply-section {
+    animation: downUp 1.5s;
+  }
+  
+  /* Header for reply section, applies layout and styling */
+  .reply-header {
+    border-bottom: 1px solid var(--color-border);
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    width: 100%;
+  }
+  
+  /* Styling for h2 elements within the reply header */
+  .reply-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+  }
+  
+  /* Container for reply list content, applies layout and padding */
+  .reply-list-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+    gap: 12px;
+    padding: 100px;
+  }
+  
+  /* Styling for reply title */
+  .reply-title h3 {
+    font-size: 1.8rem;
+    line-height: 1.4;
+    color: var(--color-text-primary);
+    margin-bottom: 12px;
+    font-weight: bold;
+    text-align: left;
+    word-break: break-word;
+    white-space: normal;
+  }
+  
+  /* Styling for reply description */
+  .reply-desc p {
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-top: 12px;
+    word-break: break-word;
+    text-align: left;
+  }
+  
+  /* Animation for downUp effect */
+  @keyframes downUp {
+    0% {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+  
+  /* Adjusts layout and styling for reply header */
+  .reply-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  
+  /* Styling for h2 elements within the reply header */
+  .reply-header h2 {
+    color: var(--color-text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  /* Container for reply input, applies layout and styling */
+  .reply-container {
+    min-width: 100%;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 50px;
+  }
+  
+  /* Styling for reply input */
+  .reply-input {
+    min-width: 100%;
+  }
+  
+  /* Styling for Quill editor container */
+  .reply-container .ql-container {
+    width: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  
+  /* Styling for Quill toolbar */
+  .reply-container .ql-toolbar.ql-snow {
+    border-radius: 5px !important;
+    margin-bottom: 10px !important;
+    color: white !important;
+  }
+  
+  /* Transition effect for Quill toolbar buttons */
+  .reply-container .ql-formats button {
+    transition: transform 0.3s ease;
+  }
+  
+  /* Hover effect for Quill toolbar buttons */
+  .reply-container .ql-formats button:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+  }
+  
+  /* Styling for Quill toolbar */
+  .reply-container .ql-toolbar.ql-snow {
+    background-color: var(--clr-primary-a10) !important;
+    border: 0 !important;
+    border-radius: 5px !important;
+    margin-bottom: 10px !important;
+  }
+  
+  /* Layout for Quill toolbar formats */
+  .reply-container .ql-toolbar.ql-snow .ql-formats {
+    display: inline-flex !important;
+    flex-wrap: nowrap !important;
+  }
+  
+  /* Styling for Quill editor */
+  .reply-container .ql-editor {
+    width: 100%;
+    min-height: 170px;
+    font-size: 1rem;
+    color: white;
+    padding: 8px;
+    box-sizing: border-box;
+    resize: vertical;
+    border: 1.1px dashed #e0e0e062 !important;
+    border-radius: 8px !important;
+    background-color: var(--clr-surface-a50) !important;
+  }
+  
+  /* Container for reply list */
+  .Replylist {
+    width: 97%;
+    margin-left: -15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding-left: 0;
+  }
+  
+  /* Layout for top section of reply list */
+  .ReplylistTop {
+    display: flex;
+    margin-left: 50px;
+    padding-bottom: 20px;
+  }
+  
+  .reply.submitted-content-desc {
+    width: 97%;
+  }
+  
+  /* Media query for small screens, adjusts padding and font size */
+  @media (max-width: 768px) {
+    .reply-section {
+      padding: 16px;
+    }
+  
+    .reply-header h2 {
+      font-size: 1.25rem;
+    }
+  
+    .reply-container .ql-editor {
+      min-height: 100px;
+    }
+  }
+  
+  /* Styling for send button */
+  .reply-container .btn-send {
+    padding: 10px 20px;
+    background-color: var(--clr-primary-a30) !important;
+    color: #fff !important;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  /* Hover effect for send button */
+  .reply-container .btn-send:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Active state for send button */
+  .btn-send:active {
+    transform: translateY(0);
+  }
+  
+  /* Media query for small screens, adjusts layout and font size */
+  @media (max-width: 768px) {
+    .reply-container {
+      gap: 5px;
+    }
+  
+    .ql-editor {
+      font-size: 0.875rem;
+    }
+  
+    .btn-send {
+      font-size: 0.875rem;
+      padding: 8px 16px;
+    }
+  }
+  
+  /* Media query for extra small screens, adjusts padding */
+  @media (max-width: 480px) {
+    .ql-editor {
+      padding: 8px;
+    }
+  
+    .btn-send {
+      padding: 8px 14px;
+    }
+  }
+  
+  /* Animation for fadeIn effect */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Text alignment classes for Quill editor */
+  .submitted-content-desc .ql-align-center {
+    text-align: center;
+  }
+  
+  .submitted-content-desc .ql-align-right {
+    text-align: right;
+  }
+  
+  .submitted-content-desc .ql-align-justify {
+    text-align: justify;
+  }
+  
+  /* Indentation classes for Quill editor */
+  .submitted-content-desc .ql-indent-1 {
+    margin-left: 20px;
+  }
+  
+  .submitted-content-desc .ql-indent-2 {
+    margin-left: 40px;
+  }
+  
+  .submitted-content-desc .ql-indent-3 {
+    margin-left: 60px;
+  }
+  
+  .submitted-content-desc .ql-indent-4 {
+    margin-left: 80px;
+  }
+  
+  .submitted-content-desc .ql-indent-5 {
+    margin-left: 100px;
+  }
+  
+  .submitted-content-desc .ql-indent-6 {
+    margin-left: 120px;
+  }
+  
+  .submitted-content-desc .ql-indent-7 {
+    margin-left: 140px;
+  }
+  
+  .submitted-content-desc .ql-indent-8 {
+    margin-left: 160px;
+  }
+  
+  /* Border for submitted content title */
+  .submitted-content-title {
+    border-bottom: black;
+  }
+  
+  /* Animation for submitted content title and description when thread is in play state */
+  .thread.play .submitted-content-title,
+  .thread.play .submitted-content-desc {
+    animation: fadeIn 1.5s ease-out;
+  }
+  
+  /* Text wrapping for submitted content description */
+  .submitted-content-desc {
+    white-space: wrap;
+  }
+  
+  /* Styling for unordered lists within submitted content description */
+  .submitted-content-desc ul {
+    padding-left: 20px;
+    margin: 0;
+  }
+  
+  /* Styling for list items within submitted content description */
+  .submitted-content-desc li {
+    list-style-position: inside;
+    margin: 5px 0;
+  }

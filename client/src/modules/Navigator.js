@@ -1,6 +1,8 @@
 import React, {useRef, useState} from 'react';
 import useNavigation from './useNavigation.js';
 
+// import AppLogo from '../img/AppLogo.png';
+
 export default function Navigator() {
   const { goToHome, goToAccount, goToLogin, goToSignUp, goToNewThread, isActive } = useNavigation();
   const timeoutRef = useRef(null); 
@@ -60,6 +62,8 @@ export default function Navigator() {
                   </svg>
                 </div>
               </button>
+
+              {/* <img className="appLogo" src={AppLogo} alt='Community' onClick={goToHome} /> */}
 
             <h1 className="title" onClick={goToHome}>
               Anonymous Academy
@@ -135,10 +139,10 @@ export default function Navigator() {
                   {(isHovered || isExpanded) && (<h1>New Thread</h1>)}
               </button>
             </div>
-            <div className={`sidebar-link ${isActive('/account') ? 'active-link' : ''}`} 
+            <div className={`sidebar-link ${isActive('/account/stats') ? 'active-link' : ''}`} 
                 onClick={goToAccount}>
               <button 
-                className={`sidebar-btn ${isActive('/account') ? 'active-link' : ''}`}
+                className={`sidebar-btn ${isActive('/account/stats') ? 'active-link' : ''}`}
               >
                 <div className="icon-container">
                     <i>
