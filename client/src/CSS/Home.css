@@ -8,10 +8,9 @@
     min-height: 100vh;
     min-width: 992px;
     margin-top: 10px;
+
     gap: 20px;
     padding-bottom: 15px;
-
-    overflow-x: auto; 
     padding-bottom: 10px;
 }
 
@@ -49,11 +48,6 @@
     flex-wrap: nowrap;
 }
 
-@media (max-width: 992px) {
-    .grid-header {
-      max-width: 835px;
-    }
-}
 
 /* Grid header open state */
 .grid-header.open {
@@ -572,3 +566,4 @@
     }
 }
 @import url('./BentoBox.css');
+@import url('./Media/HomeMedia.css');

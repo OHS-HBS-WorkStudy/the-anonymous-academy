@@ -1,0 +1,165 @@
+
+@media only screen and (min-width: 2561px) {
+    .bento-box{
+        height: 700px;
+        gap: 1em;
+    }
+
+    .grid-header {
+        max-width: calc(90% - 100px) !important;
+    }
+
+
+    .col-left {
+        max-width: 1800px !important;
+        border: 1px solid yellow;
+    }
+
+    .col-right {
+        max-width: 800px !important;
+    }
+}
+
+@media only screen and (min-width: 1441px) and (max-width: 2560px) {
+    .bento-box {
+        height: 600px;
+        gap: 0.8em;
+    }
+
+    .grid-header {
+        max-width: calc(90% - 100px) !important;
+    }
+
+    .col-left {
+        max-width: 1400px !important;
+        border: 1px solid gray;
+    }
+
+    .col-right {
+        max-width: 668px !important;
+    }
+}
+
+
+@media only screen and (max-width: 1440px) {
+    .bento-box {
+        gap: 0.7em;
+        height: 550px;
+        transform: scale(0.97);
+    }
+    .grid-header {
+        max-width: calc(90% - 100px) !important;
+    }
+
+    .col-left {
+        max-width: 1000px !important;
+        border: 1px solid purple;
+    }
+
+    .col-right {
+        max-width: 500px !important;
+    }
+}
+
+@media only screen and (max-width: 1250px) {
+    .bento-box {
+        gap: 0.6em;
+        height: 460px;
+        transform: scale(0.97);
+    }
+
+    .grid-header {
+        max-width: calc(90% - 100px) !important;
+    }
+
+
+    .col-left {
+        max-width: 700px !important;
+        border: 1px solid green;
+    }
+
+    .col-right {
+        max-width: 400px !important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .bento-box {
+        height: auto; 
+        flex-direction: column;
+        gap: 1em; 
+        justify-content: center; 
+    }
+
+    .limiter {
+        margin-left: 0px;
+    }
+
+    .grid-header {
+        max-width: calc(90% - 100px) !important;
+    }
+
+    .col-left {
+        max-width: 70% !important;
+        border: 1px solid orange;
+        height: 210px;
+    }
+
+    .col-right {
+        max-width: 40% !important;
+    }
+
+    .threadvisted,
+    .threadcreated {
+        padding: 5px;
+    }
+
+    .threadvisted h1,
+    .threadcreated h1 {
+    padding-bottom: 4px;
+    margin-top: -4px;
+    font-size: 18px;
+}
+
+.threadcreated-content,
+.threadvisted-content {
+    width: 100%;
+    gap: 4px;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.threadvisted-content p,
+.threadcreated-content p {
+    width: 100%;
+    padding: 2px 5px;
+    font-size: 12px;
+}
+
+}
+
+@media only screen and (max-width: 480px) {
+    .bento-box,
+    .grid-header {
+        max-width: 100%; 
+        height: auto; 
+        flex-wrap: nowrap;
+        gap: 1em; 
+        padding: 1em; 
+        justify-content: left; 
+        transform: scale(1.06);
+    }
+
+    .limiter {
+        margin-left: 0px;
+    }
+
+    .col-left {
+        max-width: 60% !important;
+        border: 1px solid orange;
+    }
+
+    .col-right {
+        max-width: 40% !important;
+    }
+}
