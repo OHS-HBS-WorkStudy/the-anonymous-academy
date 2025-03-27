@@ -5,6 +5,11 @@
  npm install react react-dom
 ```
 
+### For now, Install React 18 to work with React Quill
+```
+ npm install react@18 react-dom@18
+```
+
 ### Install React Router for navigation
 ```
  npm install react-router-dom
@@ -15,8 +20,13 @@
  npm install dompurify
 ```
 
+### Install React Quill for input
+```
+ npm install react-quill
+```
+
 ### Open the application
 ```
- cd my-app
+ cd client
  npm start
 ```

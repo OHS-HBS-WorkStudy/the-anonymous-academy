@@ -1,5 +1,10 @@
 @import url('./Navigator.css');
 @import url('./Sign&Login.css');
+@import url('./Home.css');
+@import url('./CreateThread.css');
+@import url('./Thread.css');
+@import url('./Account.css');
+@import url('./Overlay.css');
 
 :root {
     --color-background: hsl(0, 0%, 98%); /* Very light gray for the main background */
@@ -29,6 +34,9 @@
   --clr-primary-a30: #e1c37a;
   --clr-primary-a40: #e7cc90;
   --clr-primary-a50: #edd6a6;
+
+  --color-primary-a60: #f39c12; 
+  --color-primary-dark-a60: #e67e22;  
   
   --clr-surface-a0: #406abf;
   --clr-surface-a10: #5a79c6;

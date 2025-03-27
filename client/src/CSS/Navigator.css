@@ -50,10 +50,19 @@
     gap: 10px;
     flex-wrap: nowrap;
   }
+
+  .appLogo{
+    width: 65px;
+    height: 65px;
+  }
   
   .title {
-    display: flex;
-    text-wrap:  nowrap;
+    font-size: clamp(1.5rem, 5vw, 1.6rem);
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
   }
   
   .nav-toggle {
@@ -67,7 +76,6 @@
     border: 1px solid var(--clr-surface-a30);
     border-radius: 5px;
   }
-  
   
   .nav-toggle-open,
   .nav-toggle-close {

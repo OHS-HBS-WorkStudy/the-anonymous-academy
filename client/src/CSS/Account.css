@@ -1,0 +1,393 @@
+  
+  .account-page {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas: 
+      "account-top"
+      "content"
+      "account-pages";
+    min-height: 100vh; 
+    width: auto;
+    padding: 20px;
+    color: var(--color-text-tertiary);
+    background-color: var(--color-primary);
+  }
+  
+  .account-page:root {
+    background-color: var(--clr-surface-a20);
+  }
+  
+  .account-page.dark-mode {
+    background-color: var(--color-background) !important;
+  }
+  
+  .account-page {
+    /* Grid layout for the account page */
+    grid-template-areas:
+      "account-top account-top"
+      "account-pages account-pages"
+      "content content"; 
+  }
+  
+  .account-page h2 {
+    /* Styles for h2 inside the account page */
+    color: var(--color-background);
+  }
+  
+  .account-top { 
+    /* Styles for the top section of the account page */
+    grid-area: account-top;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: var(--clr-primary-a10);
+    border-bottom: 1px solid var(--clr-primary-a10);
+  }
+  
+  .account-content {  
+    /* Grid layout for the content section of the account page */
+    grid-area: content;
+    display: grid;
+    padding-top: 30px;
+    grid-template-columns: 2fr 1fr; 
+    grid-template-rows: repeat(3, 1fr); 
+    gap: 20px;
+  }
+  
+  .account-pages {
+    /* Inline-flex container for account pages */
+    display: inline-flex;
+    gap: 10px;
+    flex-direction: row;
+  }
+  
+  .activity h2,
+  .stats h2 {
+    padding-bottom: 2px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--color-background);
+  }
+  
+  .my-trending,
+  .my-trending-comments,
+  .my-recent-tags,
+  .account-info,
+  .achievements,
+  .my-notifications,
+  .site-customizations,
+  .my-stats,
+  .my-user-stats {
+    /* Styles for various sections inside the account page */
+    background-color: var(--clr-primary-a10);
+    color: var(--color-background);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: wrap; 
+    text-wrap: wrap;
+    word-wrap: break-word;
+  }
+  
+  .my-trending { grid-area: 1 / 1; }
+  .my-trending-comments { grid-area: 2 / 1; }
+  .my-recent-tags { grid-area: 3 / 1; }
+  .account-info { grid-area: 1 / 1; }
+  .achievements { grid-area: 2 / 1; }
+  .my-notifications { grid-area: 3 / 1; }
+  .my-stats { grid-area: 4 / 1; }
+  .site-customizations { grid-area: 2 / 2;}
+  .my-user-stats {grid-area: 1 / 2;}
+  
+  .dark-mode-toggle {
+    /* Styles for the dark mode toggle button */
+    background-color: black; 
+    border: 2px solid #fff; 
+    color: #fff; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: all 0.3s ease; 
+  }
+  
+  .dark-mode-toggle:hover {
+    /* Hover effect for the dark mode toggle button */
+    background-color: #fff;
+    color: #333; 
+  }
+  
+  .dark-mode-toggle:focus {
+    /* Focus effect for the dark mode toggle button */
+    outline: none; 
+  }
+  
+  .switch {
+    /* Styles for the switch container */
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input {
+    /* Hide the switch input */
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    /* Styles for the slider */
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color:  var(--color-primary);
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 34px;
+  }
+  
+  .slider:before {
+    /* Styles for the slider knob */
+    position: absolute;
+    content: '';
+    height: 28px;
+    width: 28px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--clr-primary-a10);
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    /* Styles for the slider when checked */
+    background-color: var(--color-primary);
+  }
+  
+  input:checked + .slider:before {
+    /* Styles for the slider knob when checked */
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+    background-color: var(--clr-primary-a10);
+  }
+  
+  input:focus + .slider {
+    /* Focus effect for the slider */
+    box-shadow: 0 0 1px #2196f3;
+  }
+  
+  .account-page {
+    /* Grid layout for the account page */
+    grid-template-areas:
+      "account-top account-top"
+      "account-pages account-pages"
+      "content content"; 
+  }
+  
+  .user-details h4 {
+    /* Margin for h4 inside user details */
+    margin-bottom: 10px;
+  }
+  
+  .my-user-stats {
+    /* Grid layout for user stats */
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: auto 1fr 1fr; 
+    gap: 10px;
+  }
+  
+  .my-user-stats h2 {
+    /* Styles for h2 inside user stats */
+    grid-column: 1 / 3; 
+  }
+  
+  .user-stats {
+    /* Styles for individual user stats */
+    border: 1px solid var(--color-background) !important;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .user-stats h3 {
+    font-weight: bold;
+    color: var(--color-background);
+  }
+  
+  @media (max-width: 768px) {
+    .account-content {
+      display: block;
+      padding-top: 0;
+    }
+  
+    .my-user-stats{
+      display: block; 
+      gap: 10px; 
+    }
+  
+    .my-user-stats .user-stats {
+      margin-bottom: 15px;
+      padding: 15px; 
+      border: 1px solid #ccc;
+    }
+  
+    .my-user-stats h2 {
+      margin-bottom: 10px; 
+    }
+  
+    .account-info,
+    .my-trending {
+      margin-top: 30px;
+    }
+  
+    .account-info, .achievements, .my-notifications, .site-customizations, .my-user-stats,
+    .my-trending, .my-trending-comments, .my-recent-tags {
+      padding: 15px;
+      margin-bottom: 20px; 
+    }
+
+    .account-pages {
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+      }
+  
+    .account-pages h3 {
+      margin: 5px 0;
+    }
+  }
+
+  @media only screen and (max-width: 530px) {
+    .account-pages {
+        flex-direction: column;
+        gap: 2px;
+      }
+  }
+
+  
+  .account-pages h3 {
+    /* Styles for h3 inside account pages */
+    cursor: pointer; 
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: var(--clr-primary-a10);
+    transition: background-color 0.3s ease; 
+  }
+  
+  .account-pages h3:hover {
+    /* Hover effect for h3 inside account pages */
+    background-color: var(--clr-primary-a50); 
+  }
+  
+  .account-pages h3.active {
+    /* Styles for active h3 inside account pages */
+    background-color: var(--clr-primary-a10);
+    color: var(--color-background);
+    font-weight: bold;
+  }
+  
+  .my-notifications ul {
+    /* Styles for the notifications list */
+    list-style: none;
+    padding: 0;
+  }
+  
+  .my-notifications li {
+    /* Margin for individual notifications */
+    margin-bottom: 10px;
+  }
+  
+  h2 {
+    /* Styles for h2 elements */
+    color: #333; 
+    padding-bottom: 10px;
+  }
+  
+  h3 {
+    /* Styles for h3 elements */
+    color: #666; 
+  }
+  
+  a {
+    /* Styles for anchor elements */
+    color: #007bff; 
+    text-decoration: none; 
+  }
+  
+  a:hover {
+    /* Hover effect for anchor elements */
+    text-decoration: underline;
+  }
+  
+  .achievement-list {
+    /* Flex container for achievements */
+    display: flex;
+    gap: 10px;
+  }
+  
+  .achievement {
+    /* Styles for individual achievements */
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .achievement-icon {
+    /* Margin for achievement icons */
+    margin-right: 10px;
+  }
+  
+  
+  .login-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: var(--color-secondary-accent);
+    color: var(--color-text-white);  
+    font-size: 1rem;
+    font-weight: bold;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .login-button svg {
+    margin-right: 8px; 
+    fill: currentColor; 
+  }
+  
+  .login-button:focus {
+    outline: none;  
+    border-color: var(--color-primary);  
+  }
+  
+  .login-button:active {
+    background-color:  var(--color-primary);  
+    color: white; 
+    border-color:  var(--color-primary);  
+  }
+  
+  .login-button:hover {
+    background-color: rgba(0, 0, 255, 0.1); 
+    border-color:  var(--color-primary); 
+  }
+  
+  .login-button:focus-visible {
+    outline: 2px solid  var(--color-primary); 
+  }
