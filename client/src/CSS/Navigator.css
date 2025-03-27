@@ -50,9 +50,14 @@
     gap: 10px;
     flex-wrap: nowrap;
   }
+
+  .appLogo{
+    width: 65px;
+    height: 65px;
+  }
   
   .title {
-    font-size: clamp(1.5rem, 5vw, 3rem);
+    font-size: clamp(1.5rem, 5vw, 1.6rem);
     font-weight: bold;
     white-space: nowrap;
     overflow: hidden;

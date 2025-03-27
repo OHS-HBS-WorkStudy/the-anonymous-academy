@@ -13,6 +13,7 @@ export default function CreateThread() {
   const [ThreadContents, setThreadContents] = useState("");
   const [tags, setTags] = useState(JSON.parse(sessionStorage.getItem("tags")) || []);
   const [isLoading, setIsLoading] = useState(false);
+  const [ruleAgreement, setruleAgreement] = useState(false);
 
   const { goToThread } = useNavigation();
 
@@ -88,6 +89,11 @@ export default function CreateThread() {
   };
 
   const submitThread = (e) => {
+    if (!ruleAgreement) {
+      alert("Please agree to the guidelines before submitting.");
+      return;
+    } 
+
     e.preventDefault();
     setIsLoading(true);
 
@@ -157,56 +163,94 @@ export default function CreateThread() {
     }, 3000);
 };
 
-  return (
-    <>
-      <div className="NewThread">
-        <div className="center">
-          <div className="fill">
-            <label htmlFor="questionTitle" className="threadDir">
-              <h1>Question Title</h1>
+return (
+  <>
+    <div className="NewThread">
+      <div className="center">
+        <div className="threadRules">
+            <h2>Thread Creation Guidelines</h2>
+            <p>
+              You <b>must</b> adhere to the following strict guidelines when creating a new thread:
+            </p>
+            <ul>
+              <li>
+                <strong>Respectful Communication:</strong> Absolutely no personal attacks, insults, or harassment. Treat all users with the utmost respect. Any deviation will result in immediate moderation.
+              </li>
+              <li>
+                <strong>No Swearing or Foul Language:</strong> Profanity or offensive language is strictly forbidden. Any instance will lead to thread removal and potential account action.
+              </li>
+              <li>
+                <strong>Zero Tolerance for Bullying:</strong> Bullying, intimidation, or any harmful behavior will not be tolerated under any circumstances.
+              </li>
+              <li>
+                <strong>Strict Topic Adherence:</strong> Threads must remain strictly on topic. Off-topic posts will be removed.
+              </li>
+              <li>
+                <strong>Constructive Contributions Only:</strong> Only helpful and constructive questions and information are permitted.
+              </li>
+              <li>
+                <strong>No Spam or Self-Promotion:</strong> Avoid posting irrelevant links, advertisements, or excessive self-promotional content.
+              </li>
+            </ul>
+            <p>
+              By creating a thread, you <b>explicitly agree</b> to these strict guidelines. Failure to comply will result in immediate moderation actions, including thread removal and potential account suspension.
+            </p>
+            <label className="rule-checkbox">
+              <input
+                type="checkbox"
+                checked={ruleAgreement}
+                onChange={(e) => setruleAgreement(e.target.checked)}
+              />
+              <b> I have read and agree to the thread creation guidelines.</b>
             </label>
           </div>
 
-          <div className="input-container text-box ql-container">
-            <input
-              id="questionTitle"
-              className="input-container"
-              placeholder="Enter Question Title"
-              value={ThreadTitle}
-              onChange={(e) => handleChange(e.target.value, setThreadTitle, maxTitleLength)}
-            />
-            <div className="charCounter">{getPlainText(ThreadTitle).length}/{maxTitleLength} characters</div>
-          </div>
+        <div className="fill">
+          <label htmlFor="questionTitle" className="threadDir">
+            <h1>Question Title</h1>
+          </label>
+        </div>
 
-          <div className="fill">
-            <label htmlFor="questionDesc" className="threadDir">
-              <h1>Question Description</h1>
-            </label>
-          </div>
+        <div className="input-container text-box ql-container">
+          <input
+            id="questionTitle"
+            className="input-container"
+            placeholder="Enter Question Title"
+            value={ThreadTitle}
+            onChange={(e) => handleChange(e.target.value, setThreadTitle, maxTitleLength)}
+          />
+          <div className="charCounter">{getPlainText(ThreadTitle).length}/{maxTitleLength} characters</div>
+        </div>
 
-          <div className="input-container text-box ql-container">
-            <ReactQuill
-              id="questionDesc"
-              ref={quillRef}
-              style={editorStyle}
-              value={ThreadContents}
-              onChange={(value) => handleQuillChange(value, setThreadContents, maxDescLength, quillRef)}
-              modules={modules}
-            />
-            <div className="charCounter">{getPlainText(ThreadContents).length}/{maxDescLength} characters</div>
-          </div>
+        <div className="fill">
+          <label htmlFor="questionDesc" className="threadDir">
+            <h1>Question Description</h1>
+          </label>
+        </div>
 
-          <AddTags tags={tags} setTags={setTags} /> 
+        <div className="input-container text-box ql-container">
+          <ReactQuill
+            id="questionDesc"
+            ref={quillRef}
+            style={editorStyle}
+            value={ThreadContents}
+            onChange={(value) => handleQuillChange(value, setThreadContents, maxDescLength, quillRef)}
+            modules={modules}
+          />
+          <div className="charCounter">{getPlainText(ThreadContents).length}/{maxDescLength} characters</div>
+        </div>
 
-          <div className="loadButton container">
-            <div className={`loadButton ${isLoading ? "loading" : ""}`}>
-              <button onClick={submitThread} disabled={isLoading}>
-                {isLoading ? "Submitting..." : "Submit"}
-              </button>
-            </div>
+        <AddTags tags={tags} setTags={setTags} />
+
+        <div className="loadButton container">
+          <div className={`loadButton ${isLoading ? "loading" : ""}`}>
+            <button onClick={submitThread} disabled={isLoading || !ruleAgreement}>
+              {isLoading ? "Submitting..." : "Submit"}
+            </button>
           </div>
         </div>
       </div>
-    </>
-  );
+    </div>
+  </>
+);
 }

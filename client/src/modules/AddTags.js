@@ -69,7 +69,7 @@ export default function AddTags({ tags, setTags }) {
           placeholder="Press Enter To Confirm"
         />
       </div>
-
+    {tags.length > 0 &&
       <div className="tags-container">
         {tags.map((tag, index) => (
           <div
@@ -81,6 +81,7 @@ export default function AddTags({ tags, setTags }) {
           </div>
         ))}
       </div>
+    }
     </>
   );
 }
