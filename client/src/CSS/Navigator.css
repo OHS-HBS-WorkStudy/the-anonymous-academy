@@ -90,13 +90,14 @@
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     opacity: 0; 
     pointer-events: none; 
+    border: 1px solid var(--clr-surface-a30);
   }
   
   
   .nav-toggle.menu-open .nav-toggle-close {
     opacity: 1;
     pointer-events: all; 
-    transform: scale(1.1); 
+    transform: scale(1); 
   }
   
   /* Hides Hamburger icon when menu open */
@@ -335,5 +336,6 @@
       transform: scale(1.1);
     }
   }
+
 
 @import url('./Media/NavMedia.css');

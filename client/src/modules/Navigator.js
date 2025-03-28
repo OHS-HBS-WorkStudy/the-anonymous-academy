@@ -4,12 +4,20 @@ import useNavigation from './useNavigation.js';
 // import AppLogo from '../img/AppLogo.png';
 
 export default function Navigator() {
-  const { goToHome, goToAccount, goToLogin, goToSignUp, goToNewThread, isActive } = useNavigation();
+  const { goToHome, goToacctStats, goToLogin, goToSignUp, goToNewThread, isActive } = useNavigation();
   const timeoutRef = useRef(null); 
   const [isHovered, setIsHovered] = useState(false);
   const [isExpanded, setIsExpanded] = useState(() => {
     return localStorage.getItem('isExpanded') === 'true';
   });
+
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  React.useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
 
 
@@ -72,6 +80,14 @@ export default function Navigator() {
           </div>
         </div>
 
+        {(isExpanded && screenWidth <= 480) && (
+        <div className="mobile-overlay" onClick={(e) => {
+          e.stopPropagation();
+          switchToggle();
+        }}></div>
+      )}
+
+
       <div className={`navigator ${isHovered || isExpanded ? 'menu-open' : ''}`} 
         onMouseEnter={handleMouseEnter} 
         onMouseLeave={handleMouseLeave}
@@ -79,6 +95,8 @@ export default function Navigator() {
         <nav className='sidebar'>
 
       <div className="menu-items"> 
+
+  
         <div className={`sidebar-link ${isActive('/signup') ? 'active-link' : ''}`} 
                 onClick={goToSignUp}>
               <button 
@@ -140,7 +158,7 @@ export default function Navigator() {
               </button>
             </div>
             <div className={`sidebar-link ${isActive('/account/stats') ? 'active-link' : ''}`} 
-                onClick={goToAccount}>
+                onClick={goToacctStats}>
               <button 
                 className={`sidebar-btn ${isActive('/account/stats') ? 'active-link' : ''}`}
               >

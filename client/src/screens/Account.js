@@ -8,7 +8,7 @@ import Stats from "./sub-screens/Stats";
 import useNavigation from '../modules/useNavigation';
 
 export default function Account() {
-    const {goToAccount, goToAccountactivity, goToLogin, goToSignUp} = useNavigation();
+    const {goToacctStats, goToacctActivity, goToLogin, goToSignUp} = useNavigation();
     const [activeSection, setActiveSection] = useState('stats');
     const [loggedInUser, setLoggedInUser] = useState(null);
     const location = useLocation();
@@ -30,9 +30,9 @@ export default function Account() {
     const handleSectionClick = (section) => {
         setActiveSection(section);
         if (section === 'stats') {
-          goToAccount();
+            goToacctStats();
         } else {
-          goToAccountactivity();
+            goToacctActivity();
         }
     };
 

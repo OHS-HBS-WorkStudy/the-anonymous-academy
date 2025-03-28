@@ -211,7 +211,10 @@ return (
 
         <div className="loadButton container">
           <div className={`loadButton ${isLoading ? "loading" : ""}`}>
-            <button onClick={submitThread} disabled={isLoading || !ruleAgreement}>
+            <button 
+              onClick={submitThread} 
+              disabled={isLoading || !ruleAgreement || getPlainText(ThreadTitle).length === 0 || getPlainText(ThreadContents).length === 0}
+            >
               {isLoading ? "Submitting..." : "Submit"}
             </button>
           </div>

@@ -71,7 +71,7 @@
   align-items: center; 
   justify-content: space-between; 
   margin-top: 10px;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid  var(--color-text-tertiary);
 }
 
 @media only screen and (max-width: 1200px) {
@@ -111,7 +111,7 @@
   flex-direction: column;
   border-radius: 12px;
   padding: 30px;
-  gap: 25px;
+  gap: 10px;
   background-color: var(--clr-surface-a10);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
@@ -149,7 +149,7 @@
   box-sizing: border-box;
   border: 1px solid var(--clr-surface-tonal-a50);
   border-radius: 12px;
-  overflow: visible;
+  margin-bottom: 10px;
 }
 
 .input-container::placeholder {
@@ -255,10 +255,8 @@ label h1 {
   justify-content: left;
   width: 100%;
   max-width: 100%;
-  margin-top: 0;
   font-size: 1.7rem;
   font-weight: 600;
-  margin-bottom: 15px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: left !important;
   color: var(--clr-primary-a30);
@@ -304,18 +302,19 @@ label h1 {
 
 .NewThread .text-box .ql-editor {
     width: 100%;
-    min-height: 180px; /* Reduced height */
-    font-size: 0.9rem; /* Reduced font size */
+    height: 100%;
+    font-size: 0.9rem; 
     color: white;
-    padding: 10px; /* Reduced padding */
+    padding: 10px; 
     box-sizing: border-box;
     resize: vertical;
     border: 1px dashed var(--clr-surface-tonal-a50) !important;
     border-radius: 12px !important;
 }
 
-label h1, 
-label h2{
+.threadDir h1, 
+.threadDir h2,
+.threadTag h1{
     display: flex;
     align-items: center;
     justify-content: left;
@@ -330,19 +329,22 @@ label h2{
     color: var(--clr-primary-a30);
 }
 
-label h1::after,
-label h2::after{
-    content: "*";
-    color: red;
-    margin-left: 3px;
+.threadDir h1::after,
+.threadDir h2::after {
+  content: "*";
+  color: red;
+  margin-left: 3px;
 }
+
+
 
 /* Text box styles */
 .NewThread .text-box {
   width: 100%;
   max-width: 100%;
+  height: fit-content !important;
   border: 1px solid var(--clr-surface-tonal-a50);
-  padding: 20px;
+  /* padding: 20px; */
   transition: border-color 0.3s ease-in-out;
   background-color: var(--clr-surface-a0);
   border-radius: 12px;
@@ -352,12 +354,10 @@ label h2::after{
   font-size: 16px;
 }
 
-/* Text box focus state */
 .NewThread .text-box:focus-within {
   border-color: var(--clr-primary-a50);
 }
 
-/* Quill editor toolbar styles */
 .ql-toolbar.ql-snow .ql-stroke,
 .ql-toolbar.ql-snow .ql-fill.ql-stroke {
   fill: none;
@@ -400,17 +400,22 @@ label h2::after{
   color: var(--color-text-tertiary) !important;
 }
 
+
 /* Quill editor text box styles */
 .NewThread .text-box .ql-editor {
   width: 100%;
+  height: 100%;
   min-height: 200px;
   font-size: 1rem;
   color: white;
   padding: 12px;
   box-sizing: border-box;
-  resize: vertical;
+  resize: none;
+
   border: 1px dashed var(--clr-surface-tonal-a50) !important;
   border-radius: 12px !important;
+  position: relative;
+  z-index: 1; 
 }
 
 /* Character counter styles */
@@ -425,9 +430,8 @@ label h2::after{
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 70px;
+  height: fit-content;
   width: 100%;
-  border: 1px solid yellow;
 }
 
 .loadButton button {
@@ -452,7 +456,6 @@ label h2::after{
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Load button loading state */
 .loadButton.loading button {
   background-color: #e0e0e0;
   cursor: not-allowed;
@@ -464,32 +467,64 @@ label h2::after{
   cursor: not-allowed;
   opacity: 0.7;
 }
-/* Responsive styles for screens smaller than 640px */
-@media (max-width: 900px) { /*Adjusted media query*/
+
+@media (max-width: 900px) { 
   .NewThread {
-    flex-direction: column; /* Stack center and rules vertically */
+    flex-direction: column;
+    padding: 7px;
   }
   .threadRules {
-    width: 100%; /* Make rules full width on smaller screens */
-    margin-left: 0; /* Remove left margin */
+    width: 100%; 
+    margin-left: 0; 
   }
   .NewThread .center {
-    width: 100%; /* Make center full width on smaller screens */
+    width: 100%; 
   }
 }
 
-@media (max-width: 640px) {
-    .NewThread .center {
-        height: fit-content !important;
-        padding: 20px;
-    }
-    .NewThread .text-box .ql-editor {
-        min-height: calc(100vh - 400px);
-    }
-    .input-container, .tag-input-container{
-        padding: 15px;
-    }
-    .tags-container{
-        padding: 10px;
-    }
+@media (max-width: 530px){
+  .NewThread .ql-toolbar.ql-snow {
+    background-color: var(--clr-primary-a10) !important;
+    border: 0 !important;
+    overflow-x: auto !important; 
+    overflow-y: hidden !important; 
+    white-space: nowrap; 
+    height: 50px !important;
+    display: flex !important;
+    border-radius: 8px !important;
+    margin-bottom: 12px !important;
+  }
+  
+  .NewThread .ql-toolbar.ql-snow .ql-formats {
+    display: inline-flex !important;
+    flex-wrap: nowrap !important; 
+    overflow: visible !important; 
+  }
+}
+
+@media (max-width: 425px) { 
+  .NewThread {
+    flex-direction: column; 
+  }
+
+  .NewThread .center {
+    padding: 10px;
+  }
+
+  .input-container {
+    padding: 10px !important;
+  }
+  .threadRules {
+    width: 100%; 
+    margin-left: 0; 
+    margin-bottom: 10px;
+    order: -2;
+  }
+
+
+  .NewThread .text-box .ql-editor {
+    min-width: fit-content !important;
+  }
+
+
 }

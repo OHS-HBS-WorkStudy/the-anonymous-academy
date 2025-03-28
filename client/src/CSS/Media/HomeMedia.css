@@ -146,7 +146,7 @@
         flex-wrap: nowrap;
         gap: 1em; 
         padding: 1em; 
-        justify-content: left; 
+        justify-items: left !important; 
         transform: scale(1.06);
     }
 
