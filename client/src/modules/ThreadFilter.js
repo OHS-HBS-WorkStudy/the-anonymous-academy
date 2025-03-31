@@ -75,9 +75,9 @@ button.addEventListener('click', (event) => {
 });
 
     return(
-        <div>
+        <div className="thread-filter">
         <div className={`grid-header ${filterOpen ? "open" : ""}`}>
-        <div className="title">Manager</div>
+        <div className="grid-header-title">Manager</div>
             <div className="dropdown">
               <label htmlFor="tagFilter" style={{ display: "none" }}>
                 Category:
@@ -100,7 +100,7 @@ button.addEventListener('click', (event) => {
               
 
             <div className="thread-page">
-      <button disabled={currentPage === 1}> {/* onClick={handlePreviousPage} */}
+      <button className="listpage-btn" disabled={currentPage === 1}> {/* onClick={handlePreviousPage} */}
         &lt;
       </button>
       <span>
@@ -132,7 +132,7 @@ button.addEventListener('click', (event) => {
         )}{' '}
         of {totalPages}
       </span>
-      <button disabled={currentPage === totalPages}> {/* onClick={handleNextPage} */}
+      <button className="listpage-btn" disabled={currentPage === totalPages}> {/* onClick={handleNextPage} */}
         &gt;
       </button>
     </div>

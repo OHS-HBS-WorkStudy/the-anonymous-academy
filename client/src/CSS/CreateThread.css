@@ -482,6 +482,7 @@ label h1 {
   }
 }
 
+
 @media (max-width: 530px){
   .NewThread .ql-toolbar.ql-snow {
     background-color: var(--clr-primary-a10) !important;

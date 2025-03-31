@@ -34,7 +34,7 @@
 .grid-header {
     display: flex;
     flex: 1 1 auto;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
     margin: 0 auto;
     width: 100%;
@@ -46,6 +46,12 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     margin-bottom: 0px;
     flex-wrap: nowrap;
+}
+
+.grid-header-title {
+    font-size: clamp(1rem, 1.25vw, 1.5rem);
+    font-weight: bold;
+    color: var(--color-text-primary);
 }
 
 
@@ -188,12 +194,6 @@
     border-color: var(--color-accent);
 }
 
-.grid-header .title {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: var(--color-text-primary);
-}
-
 /* Thread page styling */
 .thread-page {
     display: flex;
@@ -203,7 +203,7 @@
     gap: 20px;
 }
 
-.thread-page button {
+.thread-page .listpage-btn {
     background-color: var(--color-secondary-accent);
     color: var(--color-text-primary);
     font-size: 1.2rem;
@@ -214,12 +214,12 @@
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.thread-page button:hover {
+.thread-page .listpage-btn:hover {
     background-color: var(--color-accent);
     transform: scale(1.1);
 }
 
-.thread-page button:disabled {
+.thread-page .listpage-btn:disabled {
     background-color: var(--color-secondary);
     color: var(--color-text-secondary);
     cursor: not-allowed;
