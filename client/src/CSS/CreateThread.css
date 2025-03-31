@@ -392,12 +392,13 @@ label h1 {
 .NewThread .ql-container.ql-snow {
   border: 0 !important;
   border-radius: 12px !important;
-  color: var(--color-text-tertiary) !important;
+  color: white!important;
+  height: 200px !important;
   background-color: var(--clr-surface-a50) !important;
 }
 
 .NewThread .ql-container.ql-snow .ql-editor {
-  color: var(--color-text-tertiary) !important;
+  color: white !important;
 }
 
 

@@ -74,10 +74,16 @@ button.addEventListener('click', (event) => {
 });
 });
 
+const deleteList = () => {
+  sessionStorage.removeItem("data");
+  window.location.reload();
+}
+
     return(
         <div className="thread-filter">
         <div className={`grid-header ${filterOpen ? "open" : ""}`}>
         <div className="grid-header-title">Manager</div>
+        <button onClick={() => deleteList()}>Clear List</button>
             <div className="dropdown">
               <label htmlFor="tagFilter" style={{ display: "none" }}>
                 Category:

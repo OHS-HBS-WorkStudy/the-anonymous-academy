@@ -29,7 +29,7 @@ export default function Home() {
                                 </div>
                                 ))
                             ) : (
-                                <div className="no-threads-message">No Threads</div>
+                                <div>No Threads</div>
                             )}
                             </div>
                         </div>

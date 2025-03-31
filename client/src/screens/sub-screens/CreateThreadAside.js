@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 
-export default function CreateThreadAside({ruleAgreement, setruleAgreement}) {
+export default function CreateThreadAside({ruleAgreement, setRuleAgreement}) {
 
       const [isOpenRuleSet1, setIsOpenRuleSet1] = useState(false);
       const [isOpenRuleSet2, setIsOpenRuleSet2] = useState(false);
@@ -81,7 +81,8 @@ export default function CreateThreadAside({ruleAgreement, setruleAgreement}) {
             <input
               type="checkbox"
               checked={ruleAgreement}
-              onChange={(e) => setruleAgreement(e.target.checked)}
+              onChange={() => setRuleAgreement(!ruleAgreement)}
+
             />
             <b> I have read and agree to the thread creation guidelines.</b>
           </label>
