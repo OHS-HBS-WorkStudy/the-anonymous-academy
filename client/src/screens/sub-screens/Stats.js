@@ -1,7 +1,11 @@
 // Library declaration imports
 import { useState, useEffect} from 'react';
 
-export default function Stats({loggedInUser}) {
+import useNavigation from '../../modules/useNavigation';
+
+export default function Stats({loggedInUser, setLoggedInUser}) {
+
+  const { goToLogin } = useNavigation();
 
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("dark-mode") === "enabled";
@@ -16,6 +20,13 @@ export default function Stats({loggedInUser}) {
     setDarkMode((prevMode) => !prevMode);
   };
 
+  const handleLogout = () => {
+    sessionStorage.removeItem("foundUser");
+    setLoggedInUser(null);
+    goToLogin();
+};
+
+
     return (
         <>
         <div className="stats">
@@ -25,7 +36,9 @@ export default function Stats({loggedInUser}) {
             <div className="user-details">
               <h4>Joined on {loggedInUser.created}</h4>
               <h4></h4>
-              {/* <LogOut /> */}
+              <button className="logout-button" onClick={handleLogout}>
+                Logout
+              </button>
             </div>
             </div>
             

@@ -7,7 +7,7 @@ import signuppic from '../img/signpic.png';
 
 export default function SignUp() {
     const { goToLogin } = useNavigation();
-    const [activeButton, setActiveButton] = useState("student");
+    const [activeButton, setActiveButton] = useState("Student");
     const [passwordVisible, setPasswordVisible] = useState(false);
 
     const togglePasswordVisibility = () => {
@@ -100,20 +100,20 @@ export default function SignUp() {
                                 <div className="button-group-container">
                                     <div className="button-group">
                                         <button
-                                            className={`button-group-btn ${activeButton === "student" ? "active" : ""}`}
-                                            onClick={() => handleButtonClick("student")}
+                                            className={`button-group-btn ${activeButton === "Student" ? "active" : ""}`}
+                                            onClick={() => handleButtonClick("Student")}
                                         >
                                             Student
                                         </button>
                                         <button
-                                            className={`button-group-btn ${activeButton === "parent" ? "active" : ""}`}
-                                            onClick={() => handleButtonClick("parent")}
+                                            className={`button-group-btn ${activeButton === "Parent" ? "active" : ""}`}
+                                            onClick={() => handleButtonClick("Parent")}
                                         >
                                             Parent
                                         </button>
                                         <button
-                                            className={`button-group-btn ${activeButton === "teacher" ? "active" : ""}`}
-                                            onClick={() => handleButtonClick("teacher")}
+                                            className={`button-group-btn ${activeButton === "Teacher" ? "active" : ""}`}
+                                            onClick={() => handleButtonClick("Teacher")}
                                         >
                                             Teacher
                                         </button>

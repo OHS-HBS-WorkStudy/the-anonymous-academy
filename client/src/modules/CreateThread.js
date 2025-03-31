@@ -16,7 +16,7 @@ export default function CreateThread() {
   const [isLoading, setIsLoading] = useState(false);
   const [ruleAgreement, setruleAgreement] = useState(false);
 
-  const { goToThread } = useNavigation();
+  const { goToThread, goToSignUp, goToLogin } = useNavigation();
 
   const maxTitleLength = 200;
   const maxDescLength = 10000;
@@ -89,6 +89,15 @@ export default function CreateThread() {
     ],
   };
 
+  const [loggedInUser, setLoggedInUser] = useState(null);
+
+  useEffect(() => {
+      const foundUserGet = sessionStorage.getItem("foundUser");
+      if (foundUserGet) {
+          setLoggedInUser(JSON.parse(foundUserGet));
+      }
+  }, []);
+
   const submitThread = (e) => {
     if (!ruleAgreement) {
       alert("Please agree to the guidelines before submitting.");
@@ -136,6 +145,11 @@ export default function CreateThread() {
             minute: 'numeric',
             hour12: true,
         };
+
+        const requiredUserData = (user) => { 
+          const { first_name, last_name, email, account_type } = user;
+          return { first_name, last_name, email, account_type };
+      };
         const formattedTime = now.toLocaleDateString('en-US', options);
 
         let data = {
@@ -144,7 +158,7 @@ export default function CreateThread() {
             thread_id: newId,
             tags: tags,
             created_at: formattedTime,
-            account: currentUser ? currentUser.account_type : "", 
+            user: requiredUserData(loggedInUser), 
         };
 
         console.log(data);
@@ -163,7 +177,7 @@ export default function CreateThread() {
         setThreadContents([]);
     }, 3000);
 };
-
+if (loggedInUser) {
 return (
   <>
     <div className="NewThread">
@@ -224,5 +238,37 @@ return (
       <CreateThreadAside ruleAgreement={ruleAgreement} setruleAgreement={setruleAgreement} />
     </div>
   </>
-);
+)
+  } else {
+    return (
+        <>
+            <div className="overlay">
+                <div className="box-holder">
+                    <div className="overlay-box">
+                        <div className="box-content">
+                            <div className="box-top">
+                                <h2>Please sign up or log in access the creation page!</h2>
+                            </div>
+                            <div className="box-bottom">
+                                <p className="text">
+                                    You need to be logged in to access this page. 
+                                </p>
+                                <p className="text">
+                                    Please {' '}
+                                    <span className="underline" onClick={goToSignUp}>Sign up</span>
+                                    {' '}
+                                    or
+                                    {' '}
+                                    <span className="underline" onClick={goToLogin}>Log in</span>
+                                    {' '} to continue.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}
+
 }

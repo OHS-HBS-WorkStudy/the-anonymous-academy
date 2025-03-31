@@ -385,6 +385,31 @@
     align-items: flex-start;
 }
 
+.no-threads-message {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #6c757d;
+    text-align: center;
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    width: 100%;
+    margin-top: 50px;
+    transition: background-color 0.3s ease;
+  }
+  
+
+  .no-threads-message:hover {
+    background-color: #dae0e5;
+  }
+  
+  .no-threads-message {
+    animation: fadeIn 0.5s ease-out;
+  }
+
 .grid-item:hover {
     transform: translateY(-1.5px);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
