@@ -49,11 +49,13 @@ export default function SignUp() {
             account_type: activeButton,
             created: formattedTime,
             login: false,
+            pref: { ruleAgreement: false }, 
         };
-    
+        
         users.push(data);
         sessionStorage.setItem("user", JSON.stringify(users));
         goToLogin();
+        setActiveButton("Student");
     }
 
     return (

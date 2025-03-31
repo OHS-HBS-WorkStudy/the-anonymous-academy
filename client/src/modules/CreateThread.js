@@ -14,13 +14,24 @@ export default function CreateThread() {
   const [ThreadContents, setThreadContents] = useState("");
   const [tags, setTags] = useState(JSON.parse(sessionStorage.getItem("tags")) || []);
   const [isLoading, setIsLoading] = useState(false);
-  const [ruleAgreement, setRuleAgreement] = useState(() => sessionStorage.getItem("ruleAgreement") === "true");
 
-  useEffect(() => {
-    if (ruleAgreement === null || ruleAgreement === undefined) {
-      sessionStorage.setItem("ruleAgreement", "false");
+  const [ruleAgreement, setRuleAgreement] = useState(() => {
+    const foundUser = JSON.parse(sessionStorage.getItem("foundUser"));
+
+    return foundUser && foundUser.pref && foundUser.pref.ruleAgreement !== undefined
+        ? foundUser.pref.ruleAgreement
+        : false;
+});
+
+useEffect(() => {
+    const foundUser = JSON.parse(sessionStorage.getItem("foundUser")) || { pref: {} };
+    
+    if (foundUser && foundUser.pref) {
+        foundUser.pref.ruleAgreement = ruleAgreement;
+        sessionStorage.setItem("foundUser", JSON.stringify(foundUser));
     }
-  }, [ruleAgreement]);
+}, [ruleAgreement]);
+  
 
   const [loggedInUser, setLoggedInUser] = useState(() => {
     const user = sessionStorage.getItem("foundUser");
@@ -116,13 +127,15 @@ export default function CreateThread() {
       <div className="center">
         <div className="fill">
           <label htmlFor="questionTitle" className="threadDir"><h1>Question Title</h1></label>
-          <input
+     
+            <input
             id="questionTitle"
             className="input-container"
             placeholder="Enter Question Title"
             value={ThreadTitle}
             onChange={(e) => handleChange(e.target.value, setThreadTitle, maxTitleLength)}
           />
+
           <div className="charCounter">{getPlainText(ThreadTitle).length}/{maxTitleLength} characters</div>
         </div>
         <div className="fill">

@@ -8,19 +8,28 @@ export default function Stats({loggedInUser, setLoggedInUser}) {
   const { goToLogin } = useNavigation();
 
   const [darkMode, setDarkMode] = useState(() => {
-    return localStorage.getItem("dark-mode") === "enabled";
-  });
+    const foundUser = JSON.parse(sessionStorage.getItem("foundUser"));
+    return foundUser && foundUser.pref && foundUser.pref.darkMode !== undefined
+        ? foundUser.pref.darkMode
+        : false;
+});
 
-  useEffect(() => {
+useEffect(() => {
     document.body.classList.toggle("dark", darkMode);
-    localStorage.setItem("dark-mode", darkMode ? "enabled" : "disabled");
-  }, [darkMode]);
+    const foundUser = JSON.parse(sessionStorage.getItem("foundUser")) || { pref: {} };
 
-  const toggleDarkMode = () => {
+    if (foundUser && foundUser.pref) {
+        foundUser.pref.darkMode = darkMode;
+        sessionStorage.setItem("foundUser", JSON.stringify(foundUser));
+    }
+}, [darkMode]);
+
+const toggleDarkMode = () => {
     setDarkMode((prevMode) => !prevMode);
-  };
+};
 
   const handleLogout = () => {
+    document.body.classList.remove("dark");
     sessionStorage.removeItem("foundUser");
     setLoggedInUser(null);
     goToLogin();

@@ -147,10 +147,18 @@
   flex-direction: column;
   padding: 20px;
   box-sizing: border-box;
-  border: 1px solid var(--clr-surface-tonal-a50);
+  border: 1px solid var(--clr-surface-tonal-a50) ;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   border-radius: 12px;
   margin-bottom: 10px;
 }
+
+.input-container:focus {
+  border-color: var(--clr-primary-a50);
+  box-shadow: 0 0 8px rgba(var(--clr-primary-a50-rgb), 0.5);
+
+}
+
 
 .input-container::placeholder {
   color: white;
@@ -160,6 +168,15 @@
   background-color: transparent !important;
 }
 
+.input-containers {
+  border: 1px solid var(--clr-surface-tonal-a50);
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.input-containers:focus {
+  border-color: var(--clr-primary-a50);
+  box-shadow: 0 0 8px rgba(var(--clr-primary-a50-rgb), 0.5);
+}
 /* Tag input container styles */
 .tag-input-container {
   display: flex;
@@ -486,22 +503,24 @@ label h1 {
 
 @media (max-width: 530px){
   .NewThread .ql-toolbar.ql-snow {
-    background-color: var(--clr-primary-a10) !important;
-    border: 0 !important;
+    /* background-color: var(--clr-primary-a10) !important;
+    border: 0 !important; */
     overflow-x: auto !important; 
-    overflow-y: hidden !important; 
+    /* overflow-y: hidden !important; 
     white-space: nowrap; 
     height: 50px !important;
     display: flex !important;
     border-radius: 8px !important;
-    margin-bottom: 12px !important;
+    margin-bottom: 12px !important; */
   }
   
-  .NewThread .ql-toolbar.ql-snow .ql-formats {
+  /* .NewThread .ql-toolbar.ql-snow  {
     display: inline-flex !important;
-    flex-wrap: nowrap !important; 
-    overflow: visible !important; 
-  }
+    flex-wrap: nowrap !important;
+    overflow: visible !important;
+    width: auto !important; 
+
+} */
 }
 
 @media (max-width: 425px) { 
