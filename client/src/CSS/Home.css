@@ -544,6 +544,57 @@
     scrollbar-color: #7E4B8D #f0f0f0;  
 }
 
+
+.listman {
+  margin-right: 0 !important;
+}
+.listpage-btn {
+    background-color: var(--clr-surface-c10); 
+    color: var(--color-text-white); 
+    border: none;
+    padding: 0.5rem 1rem; 
+    margin: 0 0.5rem; 
+    border-radius: 4px; 
+    cursor: pointer;
+    font-size: 1rem; 
+    transition: background-color 0.3s ease, transform 0.2s ease; 
+  }
+  
+  .listpage-btn:hover {
+    background-color: var(--clr-surface-d10); 
+    transform: scale(1.05); 
+  }
+  
+  .listpage-btn:disabled {
+    background-color: var(--clr-surface-b10); 
+    color: var(--color-text-secondary);
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  
+  input[type="number"] {
+    background-color: transparent; 
+    color: var(--color-text-white); 
+    padding: 0.2rem; 
+    border-bottom: 2px solid var(--color-text-white); 
+    outline: none; 
+    font-size: 1rem; 
+    text-align: center;
+    width: 40px;
+  }
+  
+  input[type="number"]:focus {
+    border-bottom: 2px solid var(--color-accent); 
+  }
+  
+  span[onClick] {
+    cursor: pointer;
+    border-bottom: 1.5px ridge white;
+    text-align: center;
+    padding: 0 5px; 
+  }
+
 @media (max-width: 768px) {
     .grid-item {
         padding: 10px;
@@ -588,6 +639,10 @@
     .views-counter {
         padding: 3px 6px; 
         font-size: 10px; 
+    }
+
+    .grid-item-tags-container {
+        padding-left: 0px !important;
     }
 }
 @import url('./BentoBox.css');
