@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import DOMPurify from "dompurify";
 
 import TimeCounter from '../modules/TimeCounter.js';
+import ThreadVote from '../modules/ThreadVote.js';
 
 export default function Thread() {
     const { threadId } = useParams(); 
@@ -45,7 +46,7 @@ export default function Thread() {
 
                 <div class="thread-main-content">
                     <aside class="thread-vote-box">
-                        {/* <ThreadVote /> */}
+                        <ThreadVote />
                     </aside>
                     <div class="thread-description" dangerouslySetInnerHTML={{ __html: sanitizedDesc }} />
                     

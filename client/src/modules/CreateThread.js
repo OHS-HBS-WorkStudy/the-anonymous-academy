@@ -143,7 +143,7 @@ useEffect(() => {
           <ReactQuill
             id="questionDesc"
             ref={quillRef}
-            style={{ width: "100%", minHeight: "160px", overflowY: "auto" }}
+            style={{ width: "100%", minHeight: "160px", overflowY: "auto", maxWidth: "inherit" }}
             value={ThreadContents}
             onChange={handleQuillChange}
             modules={{

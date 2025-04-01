@@ -49,7 +49,7 @@ export default function AddTags({ tags, setTags }) {
     <>
       <div className="fill">
         <label htmlFor="tagLabel" className="threadTag">
-          <h1>Tags (Optional)</h1>
+          <h1>Tags</h1>
         </label>
       </div>
 
