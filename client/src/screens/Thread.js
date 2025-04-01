@@ -6,6 +6,10 @@ import DOMPurify from "dompurify";
 import TimeCounter from '../modules/TimeCounter.js';
 import ThreadVote from '../modules/ThreadVote.js';
 
+import ReplyList from '../modules/Reply/ReplyList.js';
+
+import ThreadReply from '../modules/Reply/ThreadReply.js';
+
 export default function Thread() {
     const { threadId } = useParams(); 
 
@@ -25,40 +29,48 @@ export default function Thread() {
         }
     
         return thread.tags.map((tag) => (
-          <div className="tags-container">
-            <span className="tag" key={tag}>{tag} </span> 
-          </div>
+
+            <div className="tag" key={tag}>{tag}</div> 
+
         ));
       }
 
     return(
         <div className="offset">
-           <div class="thread-page">
-            <article class="thread-content">
-                <header class="thread-header">
-                    <h1 class="thread-title" dangerouslySetInnerHTML={{ __html: sanitizedTitle }} />
-                    <div class="thread-meta">
+           <div className="thread-page">
+            <article className="thread-content">
+                <header className="thread-header">
+                    <h1 className="thread-title" dangerouslySetInnerHTML={{ __html: sanitizedTitle }} />
+                    <div className="thread-meta">
                         <p>Anonymous {thread.user.account_type}</p>
                         <p>Created: <TimeCounter date={thread.created_at} /></p>
                         <p>Views: 0</p>
                     </div>
                 </header>
+                
 
-                <div class="thread-main-content">
-                    <aside class="thread-vote-box">
+                <div className="thread-main-content">
+                    
+                    <aside className="thread-vote-box">
                         <ThreadVote />
                     </aside>
-                    <div class="thread-description" dangerouslySetInnerHTML={{ __html: sanitizedDesc }} />
-                    
-                    {getTags()}
+                    <div className="thread-description" dangerouslySetInnerHTML={{ __html: sanitizedDesc }} />
+
+
+                    <div className="tags-container">
+                        {getTags()}
+                    </div>     
                 </div>
 
-                <section class="thread-replies">
-                    <header class="replies-header">
-                        <h2 class="replies-title">Replies: 0</h2>
+                <section className="thread-replies">
+                    <ThreadReply />
+
+                    <header className="replies-header">
+                        <h2 className="replies-title">Replies:</h2>
                     </header>
-                    <div class="replies-list">
-                        {/* <ReplyList getCount={getReliesCount}/> */}
+
+                    <div className="replies-list">
+                        <ReplyList  />
                     </div>
                 </section>
             </article>

@@ -59,7 +59,7 @@
   font-size: 1rem;
   line-height: 1.7;
   word-break: break-word;
-  color: var(--color-text-primary);
+  color: var(--color-text-white) !important;
 }
 
 .thread-replies {
@@ -85,6 +85,12 @@
   gap: 1rem;
 }
 
+.replies-list h1,
+.replies-list h2, 
+.replies-list p {
+  color: white !important;
+}
+
 /* Optional: Additional styling for vote buttons */
 .vote-button {
   cursor: pointer;
@@ -107,14 +113,16 @@
 .tags-container {
   display: flex;
   flex-wrap: wrap;
-  align-items: left;
-  border-radius: 16px;
-  padding: 16px 20px;
-  gap: 10px;
-  min-width: 100%;
-  min-height: 45px;
+  align-items: center;
+  border-radius: 8px; 
+  padding: 4px 6px;  
+  min-height: 28px; 
+  min-width: 1400px; 
   box-sizing: border-box;
   transition: box-shadow 0.3s ease;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  margin-bottom: 40px;;
 }
 
 /* Individual tag styles */
@@ -124,7 +132,7 @@
   border-radius: 25px;
   cursor: pointer;
   font-size: 0.95rem;
-  color: var(--color-text-black);
+  color: var(--color-text-primary);
   font-weight: 500;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
@@ -206,44 +214,18 @@
     background-color: var(--clr-surface-a50) !important;
   }
   
-  /* Container for reply list */
-  .Replylist {
-    width: 97%;
-    margin-left: -15px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    box-sizing: border-box;
-    padding-left: 0;
-  }
-  
-  /* Layout for top section of reply list */
-  .ReplylistTop {
-    display: flex;
-    margin-left: 50px;
-    padding-bottom: 20px;
-  }
-  
   .reply.submitted-content-desc {
     width: 97%;
   }
   
-  /* Media query for small screens, adjusts padding and font size */
-  @media (max-width: 768px) {
-    .reply-section {
-      padding: 16px;
-    }
-  
-    .reply-header h2 {
-      font-size: 1.25rem;
-    }
-  
-    .reply-container .ql-editor {
-      min-height: 100px;
-    }
+
+  .reply-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 20px;
   }
-  
-  /* Styling for send button */
+ 
   .reply-container .btn-send {
     padding: 10px 20px;
     background-color: var(--clr-primary-a30) !important;
@@ -251,14 +233,9 @@
     font-size: 1rem;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease;
+    animation: none !important;
   }
-  
-  /* Hover effect for send button */
-  .reply-container .btn-send:hover {
-    transform: translateY(-5px);
-  }
-  
   /* Active state for send button */
   .btn-send:active {
     transform: translateY(0);

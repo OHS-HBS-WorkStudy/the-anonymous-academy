@@ -1,0 +1,51 @@
+@media (max-width: 900px) { 
+    .NewThread {
+      flex-direction: column;
+      padding: 7px;
+    }
+    .threadRules {
+      width: 100%; 
+      margin-left: 0; 
+    }
+    .NewThread .center {
+      width: 100%; 
+    }
+  }
+  
+  @media (max-width: 800px) { 
+    .NewThread .center{
+      max-width: 1000px !important;
+    }
+  }
+  
+  
+  @media (max-width: 530px){
+    .NewThread .ql-toolbar.ql-snow {
+      overflow-x: auto !important; 
+    }
+  }
+  
+  @media (max-width: 425px) { 
+    .NewThread {
+      flex-direction: column; 
+    }
+  
+    .NewThread .center {
+      padding: 10px;
+    }
+  
+    .input-container {
+      padding: 10px !important;
+    }
+    .threadRules {
+      width: 100%; 
+      margin-left: 0; 
+      margin-bottom: 10px;
+      order: -2;
+    }
+  
+  
+    .NewThread .text-box .ql-editor {
+      min-width: fit-content !important;
+    }
+  }

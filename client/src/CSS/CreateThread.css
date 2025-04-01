@@ -106,7 +106,7 @@
   justify-content: left;
   align-items: flex-start; 
   width: 100%;
-  max-width: 1000px;
+  max-width: calc(100% - 400px);
   height: fit-content;
   flex-direction: column;
   border-radius: 12px;
@@ -485,66 +485,4 @@ label h1 {
   opacity: 0.7;
 }
 
-@media (max-width: 900px) { 
-  .NewThread {
-    flex-direction: column;
-    padding: 7px;
-  }
-  .threadRules {
-    width: 100%; 
-    margin-left: 0; 
-  }
-  .NewThread .center {
-    width: 100%; 
-  }
-}
-
-
-@media (max-width: 530px){
-  .NewThread .ql-toolbar.ql-snow {
-    /* background-color: var(--clr-primary-a10) !important;
-    border: 0 !important; */
-    overflow-x: auto !important; 
-    /* overflow-y: hidden !important; 
-    white-space: nowrap; 
-    height: 50px !important;
-    display: flex !important;
-    border-radius: 8px !important;
-    margin-bottom: 12px !important; */
-  }
-  
-  /* .NewThread .ql-toolbar.ql-snow  {
-    display: inline-flex !important;
-    flex-wrap: nowrap !important;
-    overflow: visible !important;
-    width: auto !important; 
-
-} */
-}
-
-@media (max-width: 425px) { 
-  .NewThread {
-    flex-direction: column; 
-  }
-
-  .NewThread .center {
-    padding: 10px;
-  }
-
-  .input-container {
-    padding: 10px !important;
-  }
-  .threadRules {
-    width: 100%; 
-    margin-left: 0; 
-    margin-bottom: 10px;
-    order: -2;
-  }
-
-
-  .NewThread .text-box .ql-editor {
-    min-width: fit-content !important;
-  }
-
-
-}
+@import url('./Media/CreateMedia.css');

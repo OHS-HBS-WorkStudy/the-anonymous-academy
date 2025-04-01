@@ -17,7 +17,13 @@ export default function Threads({thread}) {
         if (tags.length === 0 || tags.length === null) {
             return "#No Tags";
         } else {
-            return tags;
+            return (
+                <div>
+                    {tags.map((tag, index) => (
+                        <span key={index} className="grid-item-tags">{tag}</span>
+                    ))}
+                </div>
+            );
         }
     }
 
@@ -66,10 +72,9 @@ export default function Threads({thread}) {
                     <div className="grid-item-title" dangerouslySetInnerHTML={{ __html: sanitizedName }} />
                     <div className="grid-item-desc" dangerouslySetInnerHTML={{ __html: sanitizedContents }} />
 
+                
                     <div className="grid-item-tags-container">
-                        <div className='grid-item-tags'>
                         {getTags()}
-                        </div>
                     </div>
                 </div>
             </div>

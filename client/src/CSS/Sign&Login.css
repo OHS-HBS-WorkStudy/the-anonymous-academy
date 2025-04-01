@@ -265,31 +265,7 @@
       border: red;
     }
     
-    .btn-send {
-      width: 100%;
-      background-color: var(--color-secondary);
-      color: var(--color-primary);
-      padding: 12px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.3s ease;
-      opacity: 0;
-      animation: fadeIn 1s ease-out forwards 1s;
-      cursor: pointer;
-    }
-    
-    .btn-send:hover {
-      background: var(--color-text-tertiary);
-      color: var(--color-accent);
-      transition: background 0.5s ease, color 0.5s ease;
-    }
-    
-    .btn-send:active {
-      transform: scale(0.98);
-    }
-    
+  
     .btn-container {
       width: 100%;
       min-width: 20vw;
