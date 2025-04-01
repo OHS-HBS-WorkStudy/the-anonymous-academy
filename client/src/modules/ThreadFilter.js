@@ -74,10 +74,16 @@ button.addEventListener('click', (event) => {
 });
 });
 
+const deleteList = () => {
+  sessionStorage.removeItem("data");
+  window.location.reload();
+}
+
     return(
-        <div>
+        <div className="thread-filter">
         <div className={`grid-header ${filterOpen ? "open" : ""}`}>
-        <div className="title">Manager</div>
+        <div className="grid-header-title">Manager</div>
+        <button onClick={() => deleteList()}>Clear List</button>
             <div className="dropdown">
               <label htmlFor="tagFilter" style={{ display: "none" }}>
                 Category:
@@ -99,43 +105,43 @@ button.addEventListener('click', (event) => {
               </button>
               
 
-            <div className="thread-page">
-      <button disabled={currentPage === 1}> {/* onClick={handlePreviousPage} */}
-        &lt;
-      </button>
-      <span>
-        Page{' '}
-        {isEditing ? (
-          <input
-            type="number"
-            value={inputPage}
-            onChange={handleInputChange}
-            onBlur={handleInputBlur}
-            onKeyDown={handleInputKeyPress}
-            style={{
-              width: '40px',
-              textAlign: 'center',
-              border: 'none',
-              borderBottom: '1px solid black',
-              outline: 'none',
-              fontSize: 'inherit',
-              color: 'hsl(270, 20%, 22%)',
-            }}
-            min="1"
-            max={totalPages}
-            autoFocus
-          />
-        ) : (
-          <span onClick={handleSpanClick} style={{ cursor: 'pointer', borderBottom: '1.5px ridge white', textAlign: 'center' }}>
-            {currentPage}
-          </span>
-        )}{' '}
-        of {totalPages}
-      </span>
-      <button disabled={currentPage === totalPages}> {/* onClick={handleNextPage} */}
-        &gt;
-      </button>
-    </div>
+          <div className="listman">
+            <button className="listpage-btn" disabled={currentPage === 1}> {/* onClick={handlePreviousPage} */}
+              &lt;
+            </button>
+            <span>
+              Page{' '}
+              {isEditing ? (
+                <input
+                  type="number"
+                  value={inputPage}
+                  onChange={handleInputChange}
+                  onBlur={handleInputBlur}
+                  onKeyDown={handleInputKeyPress}
+                  style={{
+                    width: '40px',
+                    textAlign: 'center',
+                    border: 'none',
+                    borderBottom: '1px solid black',
+                    outline: 'none',
+                    fontSize: 'inherit',
+                    color: 'hsl(270, 20%, 22%)',
+                  }}
+                  min="1"
+                  max={totalPages}
+                  autoFocus
+                />
+              ) : (
+                <span onClick={handleSpanClick} style={{ cursor: 'pointer', borderBottom: '1.5px ridge white', textAlign: 'center' }}>
+                  {currentPage}
+                </span>
+              )}{' '}
+              of {totalPages}
+            </span>
+            <button className="listpage-btn" disabled={currentPage === totalPages}> {/* onClick={handleNextPage} */}
+              &gt;
+            </button>
+          </div>
         </div>
 
         <div

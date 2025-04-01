@@ -48,8 +48,8 @@ export default function AddTags({ tags, setTags }) {
   return (
     <>
       <div className="fill">
-        <label htmlFor="questionDesc" className="threadDir">
-          <h1>Tags (Optional)</h1>
+        <label htmlFor="tagLabel" className="threadTag">
+          <h1>Tags</h1>
         </label>
       </div>
 

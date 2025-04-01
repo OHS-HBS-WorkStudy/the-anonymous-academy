@@ -1,7 +1,16 @@
 import useNavigation from '../modules/useNavigation.js';
+import { useState, useEffect } from 'react';
+import DOMPurify from 'dompurify';
+
+import TimeCounter from './TimeCounter.js';
 
 export default function Threads({thread}) {
     const { goToThread } = useNavigation();
+
+    const [loggedInUser, setLoggedInUser] = useState(null);
+    const sanitizedName = DOMPurify.sanitize(thread.thread_name);
+    const sanitizedContents = DOMPurify.sanitize(thread.thread_contents);
+    const userAccountType = thread?.user?.account_type || "Unknown";
 
     function getTags() {
         let tags = thread.tags;
@@ -12,13 +21,21 @@ export default function Threads({thread}) {
         }
     }
 
+    useEffect(() => {
+        const foundUserGet = sessionStorage.getItem("foundUser");
+        if (foundUserGet) {
+            setLoggedInUser(JSON.parse(foundUserGet));
+        }
+    }, []);
 
     return (
         <div className="grid-item" onClick={() => goToThread(thread.thread_id)}>
             <div className="user-header">
                 <div className="user-avatar"></div>
-                <p className="username">Anonymous Student</p>
-                <p className="date-display">Mar 20 2025 at 2:30 PM</p>
+                <p className="username">Anonymous {userAccountType}</p>
+                <p className="date-display">
+                    {thread.created_at ? <TimeCounter date={thread.created_at} /> : "Unknown date"}
+                </p>
             </div>
 
             <div className="content-row">
@@ -46,13 +63,9 @@ export default function Threads({thread}) {
                 </div>
 
                 <div className="text-content">
-                    <div className="grid-item-title">
-                        {thread.thread_name}
-                    </div>
-            
-                    <div className="grid-item-desc">
-                        {thread.thread_contents}
-                    </div>
+                    <div className="grid-item-title" dangerouslySetInnerHTML={{ __html: sanitizedName }} />
+                    <div className="grid-item-desc" dangerouslySetInnerHTML={{ __html: sanitizedContents }} />
+
                     <div className="grid-item-tags-container">
                         <div className='grid-item-tags'>
                         {getTags()}

@@ -8,7 +8,7 @@ import Stats from "./sub-screens/Stats";
 import useNavigation from '../modules/useNavigation';
 
 export default function Account() {
-    const {goToAccount, goToAccountactivity, goToLogin, goToSignUp} = useNavigation();
+    const {goToacctStats, goToacctActivity, goToLogin, goToSignUp} = useNavigation();
     const [activeSection, setActiveSection] = useState('stats');
     const [loggedInUser, setLoggedInUser] = useState(null);
     const location = useLocation();
@@ -30,9 +30,9 @@ export default function Account() {
     const handleSectionClick = (section) => {
         setActiveSection(section);
         if (section === 'stats') {
-          goToAccount();
+            goToacctStats();
         } else {
-          goToAccountactivity();
+            goToacctActivity();
         }
     };
 
@@ -60,7 +60,7 @@ export default function Account() {
                     </div>
 
                     {activeSection === 'stats' && (
-                        <Stats loggedInUser={loggedInUser} />
+                        <Stats loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
                     )}
                     {activeSection === 'activity' && (
                         <Activity loggedInUser={loggedInUser} />
@@ -83,11 +83,13 @@ export default function Account() {
                                         You need to be logged in to access this page.
                                     </p>
                                     <p className="text">
-                                        Please
+                                        Please {' '}
                                         <span className="underline" onClick={goToSignUp}>Sign up</span>
+                                        {' '}
                                         or
+                                        {' '}
                                         <span className="underline" onClick={goToLogin}>Log in</span>
-                                        to continue.
+                                        {' '} to continue.
                                     </p>
                                 </div>
                             </div>

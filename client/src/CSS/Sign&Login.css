@@ -187,14 +187,6 @@
     align-items: center;
     }
     
-    .account .center {
-      display: flex;
-      justify-content: center;
-      align-content: center;
-      width: 100vw;
-      height: 100vh;
-    }
-    
     .center h3 {
       color: var(--color-text-tertiary);
       font-size: 30px;
@@ -373,7 +365,8 @@
   }
   
   @media only screen and (max-width: 480px) {
-    .center {
+    .Sign-page .center,
+    .Login .center {
           transform: scale(0.8);
       }
       .split {
