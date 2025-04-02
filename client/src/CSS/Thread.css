@@ -20,14 +20,12 @@
 }
 .thread-header {
   border-bottom: 1px solid var(--color-border);
-  padding-bottom: 1.5rem;
-  margin-bottom: 1.5rem;
 }
 
 .thread-title {
   font-size: 2.2rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   word-break: break-word;
   letter-spacing: -0.02em;
 }
@@ -37,29 +35,72 @@
   gap: 1.5rem;
   font-size: 0.9rem;
   color: var(--color-text-white);
+  margin-bottom: 1.5rem;
+  margin-top: 10px;
+}
+
+.user-poster{
+  background-color: var(--clr-surface-tonal-a50);
+  border-radius: 25px;
+  cursor: pointer;
+  color: var(--color-text-primary);
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .thread-main-content {
   display: grid;
-  grid-template-columns: 60px 1fr;
-  gap: 1.5rem;
+  grid-template-columns: 40px 1fr;
   align-items: start;
   margin-bottom: 2rem;
-}
-
-.thread-vote-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.8rem;
-  margin-top: 0.5rem;
+  padding-top: 20px;
+  gap: 20px;
 }
 
 .thread-description {
+  width: 100%;
   font-size: 1rem;
   line-height: 1.7;
   word-break: break-word;
   color: var(--color-text-white) !important;
+  transform: translateY(-10px);
+}
+.thread-description p {
+  font-size: clamp(0.9rem, 1rem, 1.1rem); 
+  line-height: 1.6;
+}
+
+.thread-description h1 {
+  font-size: clamp(2rem, 2.5rem, 3rem);
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+}
+
+.thread-description h2 {
+  font-size: clamp(1.5rem, 1.75rem, 2rem);
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: white !important;
+}
+
+.thread-description .small {
+  font-size: clamp(0.75rem, 0.85rem, 0.95rem);
+}
+
+.thread-description .normal {
+  font-size: clamp(0.9rem, 1rem, 1.1rem);
+}
+
+.thread-description .large {
+  font-size: clamp(1.1rem, 1.25rem, 1.4rem);
+}
+
+.thread-description .huge {
+  font-size: clamp(1.75rem, 2rem, 2.25rem);
+}
+
+.thread-description .ql-editor {
+  padding: 0px !important;
 }
 
 .thread-replies {
@@ -68,7 +109,6 @@
 
 .replies-header {
   border-bottom: 1px solid var(--color-border);
-  padding-bottom: 1rem;
   margin-bottom: 1.5rem;
 }
 
@@ -91,31 +131,59 @@
   color: white !important;
 }
 
-/* Optional: Additional styling for vote buttons */
-.vote-button {
+.vote-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-radius: 12px;
+  transition: left 0.3s ease;
+}
+
+.vote-box .up-vote,
+.vote-box .down-vote {
   cursor: pointer;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  background-color: var(--clr-surface-c10);
+  transform: scale(0.85);
   display: flex;
+  gap: 0px;
   align-items: center;
   justify-content: center;
+  border: 1px solid black;
+  border-radius: 50%;
+  transition: transform 0.3s ease, background 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), inset 0 -1px 3px rgba(255, 255, 255, 0.4);
+}
+
+.up-vote svg,
+.down-vote svg {
+  fill: white;
+}
+
+.vote-box .up-vote:hover,
+.vote-box .down-vote:hover {
+  background: linear-gradient(145deg, var(--clr-surface-a0), var(--color-background));
+  transform: scale(1);
+}
+
+.vote-box .vote-number {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
   color: var(--color-text-white);
-  border: none;
-  transition: background-color 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
-
-.vote-button:hover {
-  background-color: var(--clr-surface-d10);
-}
-
+  
 /* Tags container */
 .thread-page .tags-container {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 1rem;
+  border: 1px solid yellow;
+  width: 100%;
 }
 
 /* Individual tag styling */
@@ -136,183 +204,11 @@
   transform: scale(1.03);
   color: white;
 }
-
-  /* Container for reply input, applies layout and styling */
-  .reply-container {
-    min-width: 100%;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 50px;
-  }
-  
-  /* Styling for reply input */
-  .reply-input {
-    min-width: 100%;
-  }
-  
-  /* Styling for Quill editor container */
-  .reply-container .ql-container {
-    width: 100%;
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    overflow: hidden;
-    box-sizing: border-box;
-  }
-  
-  /* Styling for Quill toolbar */
-  .reply-container .ql-toolbar.ql-snow {
-    border-radius: 5px !important;
-    margin-bottom: 10px !important;
-    color: white !important;
-  }
-  
-  /* Transition effect for Quill toolbar buttons */
-  .reply-container .ql-formats button {
-    transition: transform 0.3s ease;
-  }
-  
-  /* Hover effect for Quill toolbar buttons */
-  .reply-container .ql-formats button:hover {
-    transform: translateY(-5px);
-    transition: transform 0.3s ease;
-  }
-  
-  /* Styling for Quill toolbar */
-  .reply-container .ql-toolbar.ql-snow {
-    background-color: var(--clr-primary-a10) !important;
-    border: 0 !important;
-    border-radius: 5px !important;
-    margin-bottom: 10px !important;
-  }
-  
-  /* Layout for Quill toolbar formats */
-  .reply-container .ql-toolbar.ql-snow .ql-formats {
-    display: inline-flex !important;
-    flex-wrap: nowrap !important;
-  }
-  
-  /* Styling for Quill editor */
-  .reply-container .ql-editor {
-    width: 100%;
-    min-height: 170px;
-    font-size: 1rem;
-    color: white;
-    padding: 8px;
-    box-sizing: border-box;
-    resize: vertical;
-    border: 1.1px dashed #e0e0e062 !important;
-    border-radius: 8px !important;
-    background-color: var(--clr-surface-a50) !important;
-  }
-  
-  .reply.submitted-content-desc {
-    width: 97%;
-  }
-  
-
-  .reply-section {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding-bottom: 20px;
-  }
- 
-  .reply-container .btn-send {
-    padding: 10px 20px;
-    background-color: var(--clr-primary-a30) !important;
-    color: #fff !important;
-    font-size: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    animation: none !important;
-  }
   
   .btn-send:active {
     transform: translateY(0);
   }
 
-
-.vote-box {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  height: fit-content;
-  border-radius: 12px;
-  transition: top 0.3s ease;
-}
-
-/* Animation for vote box when thread is in play state */
-.thread.play .vote-box {
-  animation: fadeIn 1.5s ease-out;
-}
-
-.vote-box .up-vote,
-.vote-box .down-vote {
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid black;
-  border-radius: 50%;
-  transition: transform 0.3s ease, background 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), inset 0 -1px 3px rgba(255, 255, 255, 0.4);
-}
-
-/* Styling for SVG icons within vote buttons */
-.up-vote svg,
-.down-vote svg {
-  fill: white;
-}
-
-/* Hover effect for vote buttons */
-.vote-box .up-vote:hover,
-.vote-box .down-vote:hover {
-  background: linear-gradient(145deg, var(--clr-surface-a0), var(--color-background));
-  transform: scale(1.05);
-}
-
-/* Styling for vote number text */
-.vote-box .vote-number {
-  font-size: 1rem;
-  font-weight: bold;
-  text-align: center;
-  color: var(--color-text-white);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-  
-  /* Media query for small screens, adjusts layout and font size */
-  @media (max-width: 768px) {
-    .reply-container {
-      gap: 5px;
-    }
-  
-    .ql-editor {
-      font-size: 0.875rem;
-    }
-  
-    .btn-send {
-      font-size: 0.875rem;
-      padding: 8px 16px;
-    }
-  }
-  
-  /* Media query for extra small screens, adjusts padding */
-  @media (max-width: 480px) {
-    .ql-editor {
-      padding: 8px;
-    }
-  
-    .btn-send {
-      padding: 8px 14px;
-    }
-  }
   
   /* Animation for fadeIn effect */
   @keyframes fadeIn {

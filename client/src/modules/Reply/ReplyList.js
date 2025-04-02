@@ -1,7 +1,7 @@
 import { data, useParams } from "react-router-dom"; 
 import ReactQuill from "react-quill";
 import TimeCounter from "../TimeCounter";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect} from "react";
 import DOMPurify from 'dompurify';
 
 
@@ -56,21 +56,27 @@ export default function ReplyList({thread}) {
         }
     }
 
+
+    
+
     return (
             <div>
                 <header className="replies-header">
                     <h2 className="replies-title">Replies: {replies  ? replies.length : "0"}</h2>
 
-                    <select
-                        value={sortOption} 
-                        onChange={(e) => setSortOption(e.target.value)} 
-                        className="sort-dropdown"
-                    >
-                        <option value="newest">Newest</option>
-                        <option value="oldest">Oldest</option>
-                        <option value="popular">Popular</option>
-                        <option value="answered">Answered</option>
-                    </select>
+                    <div className="sort-dropdown-container">
+                        <select
+                            value={sortOption}
+                            onChange={(e) => setSortOption(e.target.value)}
+                            className="sort-dropdown"
+                        >
+                            <option value="newest">Newest</option>
+                            <option value="oldest">Oldest</option>
+                            <option value="popular">Popular</option>
+                            <option value="answered">Answered</option>
+                        </select>
+                        </div>
+
                 </header>
 
                 {replies.length > 0 ? (
@@ -88,12 +94,14 @@ export default function ReplyList({thread}) {
          
                             <div className="reply-content">
                                 <aside className="reply-vote-box">
-                                                        <ReplyVote />
+                                    <ReplyVote />
                                 </aside>
 
                                 <ReactQuill 
                                     value={DOMPurify.sanitize(reply.contents)} 
                                     readOnly={true} 
+                                    className="reply-desc"
+                                    style={{ backgroundColor: "transparent"}}
                                     theme="bubble" 
                                 />
                             </div>

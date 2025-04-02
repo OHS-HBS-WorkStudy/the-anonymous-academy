@@ -12,9 +12,10 @@
     }
   }
   
-  @media (max-width: 800px) { 
+  @media (max-width: 1200px) { 
     .NewThread .center{
-      max-width: 1000px !important;
+      max-width: 1200px !important;
+      width: 100%;
     }
   }
   

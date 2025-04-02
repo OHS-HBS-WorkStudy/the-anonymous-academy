@@ -75,9 +75,10 @@ export default function ThreadReply() {
     if (foundUser) {
         return (
             <div className="reply-section">
-                <div className="reply-header">
-                    <h2>Reply to Thread</h2>
-                </div>
+
+                <header className="replies-header">
+                    <h2 className="replies-title">Reply to Thread</h2>
+                </header>
                 <div className="reply-container">
                     <ReactQuill
                         id="questionDesc"
