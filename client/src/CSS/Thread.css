@@ -110,22 +110,15 @@
   background-color: var(--clr-surface-d10);
 }
 
-.tags-container {
+/* Tags container */
+.thread-page .tags-container {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  border-radius: 8px; 
-  padding: 4px 6px;  
-  min-height: 28px; 
-  min-width: 1400px; 
-  box-sizing: border-box;
-  transition: box-shadow 0.3s ease;
-  overflow-x: auto;
-  border: 1px solid var(--color-border);
-  margin-bottom: 40px;;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
-/* Individual tag styles */
+/* Individual tag styling */
 .tag {
   background-color: var(--clr-surface-tonal-a50);
   padding: 5px 10px;
@@ -236,7 +229,7 @@
     transition: background-color 0.3s ease;
     animation: none !important;
   }
-  /* Active state for send button */
+  
   .btn-send:active {
     transform: translateY(0);
   }
@@ -406,3 +399,5 @@
     list-style-position: inside;
     margin: 5px 0;
   }
+
+

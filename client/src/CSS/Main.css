@@ -5,6 +5,7 @@
 @import url('./Thread.css');
 @import url('./Account.css');
 @import url('./Overlay.css');
+@import url('./Replies.css');
 :root {
     --color-background: hsl(0, 0%, 98%); /* Very light gray for the main background */
     --color-surface: hsl(0, 0%, 100%); /* Pure white for surfaces like cards */

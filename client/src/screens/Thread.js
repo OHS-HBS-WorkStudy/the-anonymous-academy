@@ -13,12 +13,12 @@ import ThreadReply from '../modules/Reply/ThreadReply.js';
 export default function Thread() {
     const { threadId } = useParams(); 
 
-    let data = JSON.parse(sessionStorage.getItem("data")) || {};
+    let data = JSON.parse(sessionStorage.getItem("data")) || [];
     const thread = data.find(t => t.thread_id === parseInt(threadId));
 
-    if (!thread) {
+    if (!data) {
         return <h2>Thread not found!</h2>;
-    }
+    } 
 
     const sanitizedTitle = DOMPurify.sanitize(thread.thread_name);
     const sanitizedDesc = DOMPurify.sanitize(thread.thread_contents);
@@ -35,6 +35,21 @@ export default function Thread() {
         ));
       }
 
+      const foundUser = JSON.parse(sessionStorage.getItem("foundUser"));
+
+      function userCheck(thread, foundUser) {
+        if (!thread || !foundUser) {
+            return "Unknown User";  
+        }
+
+        if (foundUser.email === thread.user.email) {
+            return "Your Post";  
+        } else {
+            
+            return "Anonymous " + (thread.user.account_type || "Unknown User");
+        }
+    }
+
     return(
         <div className="offset">
            <div className="thread-page">
@@ -42,7 +57,7 @@ export default function Thread() {
                 <header className="thread-header">
                     <h1 className="thread-title" dangerouslySetInnerHTML={{ __html: sanitizedTitle }} />
                     <div className="thread-meta">
-                        <p>Anonymous {thread.user.account_type}</p>
+                        <p>{userCheck(thread, foundUser)}</p>
                         <p>Created: <TimeCounter date={thread.created_at} /></p>
                         <p>Views: 0</p>
                     </div>
@@ -54,6 +69,7 @@ export default function Thread() {
                     <aside className="thread-vote-box">
                         <ThreadVote />
                     </aside>
+                    
                     <div className="thread-description" dangerouslySetInnerHTML={{ __html: sanitizedDesc }} />
 
 
@@ -65,12 +81,8 @@ export default function Thread() {
                 <section className="thread-replies">
                     <ThreadReply />
 
-                    <header className="replies-header">
-                        <h2 className="replies-title">Replies:</h2>
-                    </header>
-
-                    <div className="replies-list">
-                        <ReplyList  />
+                    <div className="reply-list">
+                        <ReplyList thread={thread} />
                     </div>
                 </section>
             </article>

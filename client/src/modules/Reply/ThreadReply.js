@@ -26,6 +26,8 @@ export default function ThreadReply() {
     };
 
 
+
+  
     const foundUser = JSON.parse(sessionStorage.getItem("foundUser"));
 
     const ReplyButton = async () => {
@@ -41,6 +43,7 @@ export default function ThreadReply() {
             contents: questionDesc,
             thread_id: threadId,
             user: foundUser.account_type,
+            email: foundUser.email,
             date: new Date().toISOString(),
         };
 
@@ -69,32 +72,35 @@ export default function ThreadReply() {
             ["clean"],
         ],
     };
-
-    return (
-        <div className="reply-section">
-            <div className="reply-header">
-                <h2>Reply to Thread</h2>
-            </div>
-            <div className="reply-container">
-                <ReactQuill
-                    id="questionDesc"
-                    ref={quillRef}
-                    value={questionDesc}
-                    style={{ borderRadius: '8px', minHeight: '100px' }}
-                    modules={modules}
-                    onChange={handleQuillChange}
-                />
-                <div className="charCounter">
-                    {getPlainText(questionDesc).length}/{maxReplyLength} characters
+    if (foundUser) {
+        return (
+            <div className="reply-section">
+                <div className="reply-header">
+                    <h2>Reply to Thread</h2>
                 </div>
-                <button
-                    className="btn-send"
-                    onClick={ReplyButton}
-                    disabled={isSubmitting} 
-                >
-                    {isSubmitting ? "Sending..." : "Send"}
-                </button>
+                <div className="reply-container">
+                    <ReactQuill
+                        id="questionDesc"
+                        ref={quillRef}
+                        value={questionDesc}
+                        style={{ borderRadius: '8px', minHeight: '100px' }}
+                        modules={modules}
+                        onChange={handleQuillChange}
+                    />
+                    <div className="charCounter">
+                        {getPlainText(questionDesc).length}/{maxReplyLength} characters
+                    </div>
+                    <button
+                        className="btn-send"
+                        onClick={ReplyButton}
+                        disabled={isSubmitting} 
+                    >
+                        {isSubmitting ? "Sending..." : "Send"}
+                    </button>
+                </div>
             </div>
-        </div>
-    );
+        )
+    } else {
+        return;
+    }
 }

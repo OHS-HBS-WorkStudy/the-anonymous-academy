@@ -1,36 +1,112 @@
-import { useParams } from "react-router-dom"; 
+import { data, useParams } from "react-router-dom"; 
 import ReactQuill from "react-quill";
 import TimeCounter from "../TimeCounter";
-
+import { useState, useRef } from "react";
 import DOMPurify from 'dompurify';
 
-export default function ReplyList() {
+
+import ReplyToReply from "./ReplyToReply";
+import ReplyVote from "./ReplyVote";
+
+export default function ReplyList({thread}) {
     const { threadId } = useParams(); 
     const allReplies = JSON.parse(sessionStorage.getItem("replies")) || {};
 
+    const [replyStates, setReplyStates] = useState({});  
+
+    const toggleReplyButton = (replyId) => {
+        setReplyStates(prevState => ({
+            ...prevState,
+            [replyId]: !prevState[replyId] 
+        }));
+    };
     const findReplies = () => {
         return allReplies[threadId] || [];
     };
 
-    const replies = findReplies();
+    const [sortOption, setSortOption] = useState("newest");  
+
+    const sortReplies = (replies, sortOption) => {
+        switch (sortOption) {
+            case "oldest":
+                return [...replies].sort((a, b) => new Date(a.date) - new Date(b.date));
+            case "popular":
+                return;
+            case "answered":
+                return;
+            case "newest":
+            default:
+                return [...replies].sort((a, b) => new Date(b.date) - new Date(a.date));
+        }
+    };
+
+    const replies = sortReplies(findReplies(), sortOption);
+
+    
+    function userCheck(threadData, reply) {
+        if (!threadData || !reply) {
+            return "Unknown User";  
+        }
+
+        if (reply.email === thread.user.email) {
+            return "Original Poster";  
+        } else {
+            
+            return "Anonymous " + (reply.user || "Unknown User");
+        }
+    }
 
     return (
-        <div style={{ color: "white" }}>
-            {replies.length > 0 ? (
-                replies.map((reply, index) => (
-                    <div key={index} className="reply">
-                        <p><strong>Posted:</strong> Anonymous {reply.user || "Unknown User"}</p>
-                        <p><strong>Created:</strong> {<TimeCounter date={reply.date}/>}</p>
-                        <ReactQuill 
-                            value={DOMPurify.sanitize(reply.contents)} 
-                            readOnly={true} 
-                            theme="bubble" 
-                        />
-                    </div>
-                ))
-            ) : (
-                <p>No replies found for this thread.</p>
-            )}
-        </div>
-    );
+            <div>
+                <header className="replies-header">
+                    <h2 className="replies-title">Replies: {replies  ? replies.length : "0"}</h2>
+
+                    <select
+                        value={sortOption} 
+                        onChange={(e) => setSortOption(e.target.value)} 
+                        className="sort-dropdown"
+                    >
+                        <option value="newest">Newest</option>
+                        <option value="oldest">Oldest</option>
+                        <option value="popular">Popular</option>
+                        <option value="answered">Answered</option>
+                    </select>
+                </header>
+
+                {replies.length > 0 ? (
+                    replies.map((reply, index) => (
+                        <div key={index} className="reply-card">
+                            <div className="user-header">
+                                <div className="user-avatar"></div>
+                                <p className="username">
+                                     {userCheck(thread, reply)}
+                                </p>
+                                <p className="date-display">
+                                    <strong> <TimeCounter date={reply.date} /> </strong>
+                                </p>
+                            </div>
+         
+                            <div className="reply-content">
+                                <aside className="reply-vote-box">
+                                                        <ReplyVote />
+                                </aside>
+
+                                <ReactQuill 
+                                    value={DOMPurify.sanitize(reply.contents)} 
+                                    readOnly={true} 
+                                    theme="bubble" 
+                                />
+                            </div>
+                            <div>
+                                <button onClick={() => toggleReplyButton(reply.id)}>Reply</button>
+                            </div>
+
+                            {replyStates[reply.id] && <ReplyToReply />}
+                        </div>
+                    ))
+                ) : (
+                    <p className="no-replies">No replies found for this thread.</p>
+                )}
+            </div>
+        );
 }

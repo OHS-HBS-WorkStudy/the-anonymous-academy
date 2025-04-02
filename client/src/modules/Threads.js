@@ -34,11 +34,26 @@ export default function Threads({thread}) {
         }
     }, []);
 
+    const foundUser = JSON.parse(sessionStorage.getItem("foundUser"));
+
+      function userCheck(thread, foundUser) {
+        if (!thread || !foundUser) {
+            return "Unknown User";  
+        }
+
+        if (foundUser.email === thread.user.email) {
+            return "Posted by you";  
+        } else {
+            
+            return "Anonymous " + (thread.user.account_type || "Unknown User");
+        }
+    }
+
     return (
         <div className="grid-item" onClick={() => goToThread(thread.thread_id)}>
             <div className="user-header">
                 <div className="user-avatar"></div>
-                <p className="username">Anonymous {userAccountType}</p>
+                <p className="username">{userCheck(thread, foundUser)}</p>
                 <p className="date-display">
                     {thread.created_at ? <TimeCounter date={thread.created_at} /> : "Unknown date"}
                 </p>
