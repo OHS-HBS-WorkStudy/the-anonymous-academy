@@ -43,7 +43,7 @@ const toggleDarkMode = () => {
             <div className="account-info">
             <h2>Account Info</h2>
             <div className="user-details">
-              <h4>Joined on {loggedInUser.created}</h4>
+              <h4>Joined on {loggedInUser?.created}</h4>
               <h4></h4>
               <button className="logout-button" onClick={handleLogout}>
                 Logout

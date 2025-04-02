@@ -95,7 +95,7 @@
     color: var(--color-text-primary); 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border-radius: 5px; 
-    max-width: 1440px;
+
     box-sizing: border-box;
     background-color: var(--clr-surface-a10); 
 
@@ -111,6 +111,7 @@
     border-radius: 5px;
     border: 1px solid var(--color-border); 
     margin: 1rem 0; 
+    width: 100%;
   }
   
   .reply-card {
@@ -135,17 +136,7 @@
     margin-bottom: 0.75rem; 
   }
   
-  .reply-user {
-    font-size: 0.9rem; 
-    font-weight: 600;
-    color: var(--color-text-primary);
-  }
-  
-  .reply-date {
-    font-size: 0.8rem; 
-    color: var(--color-text-muted);
-    opacity: 1; 
-  }
+
   .ql-container.ql-bubble.ql-disabled {
     width: 100% !important;
     word-wrap: break-word !important; 
@@ -194,7 +185,7 @@
   
   
   .reply-content .ql-editor {
-    color: var(--color-text-primary); 
+    color: var(--color-text-white); 
     font-size: 0.95rem;
     line-height: 1.6;
     background-color: transparent !important;
@@ -212,9 +203,19 @@
     background-color: #ddd;
     }
 
+  .reply-card .reply-date,
+  .date-display {
+    font-size: 0.8rem; 
+    color: var(--color-text-primary) !important;
+    opacity: 1; 
+    margin-top: 1px;
+   
+  }
+
     .reply-card .username {
         font-size: 14px; 
         font-weight: 600;
+        color: white;
     }
 
   .reply-content {
@@ -224,6 +225,7 @@
     margin-left: -8px;
     width: 100%;  
     height: 100%;
+   
   }
   
 

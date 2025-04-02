@@ -42,16 +42,19 @@ export default function ReplyList({thread}) {
 
     const replies = sortReplies(findReplies(), sortOption);
 
+    const foundUser = JSON.parse(sessionStorage.getItem("foundUser")) || { pref: {} };
+
     
     function userCheck(threadData, reply) {
         if (!threadData || !reply) {
             return "Unknown User";  
         }
 
-        if (reply.email === thread.user.email) {
+        if (foundUser && foundUser.email === reply.email) {
+            return "You";
+        } else if (reply.email === thread.user.email) {
             return "Original Poster";  
         } else {
-            
             return "Anonymous " + (reply.user || "Unknown User");
         }
     }

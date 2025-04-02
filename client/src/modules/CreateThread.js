@@ -134,6 +134,7 @@ useEffect(() => {
             placeholder="Enter Question Title"
             value={ThreadTitle}
             onChange={(e) => handleChange(e.target.value, setThreadTitle, maxTitleLength)}
+            style={{ wordWrap: "break-word", whiteSpace: "normal" }}
           />
 
           <div className="charCounter">{getPlainText(ThreadTitle).length}/{maxTitleLength} characters</div>
@@ -143,7 +144,7 @@ useEffect(() => {
           <ReactQuill
             id="questionDesc"
             ref={quillRef}
-            style={{ width: "100%", minHeight: "160px", overflowY: "auto", maxWidth: "inherit" }}
+            style={{ width: "100%", minHeight: "160px", overflowY: "auto", maxWidth: "100%", wordWrap: "break-word", whiteSpace: "normal" }}
             value={ThreadContents}
             onChange={handleQuillChange}
             modules={{
