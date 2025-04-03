@@ -24,7 +24,7 @@ export default function CreateThread() {
 });
 
 useEffect(() => {
-    const foundUser = JSON.parse(sessionStorage.getItem("foundUser")) || { pref: {} };
+    const foundUser = JSON.parse(sessionStorage.getItem("foundUser"));
     
     if (foundUser && foundUser.pref) {
         foundUser.pref.ruleAgreement = ruleAgreement;

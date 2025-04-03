@@ -15,7 +15,7 @@ export default function Threads({thread}) {
     function getTags() {
         let tags = thread.tags;
         if (tags.length === 0 || tags.length === null) {
-            return "#No Tags";
+            return <span className="grid-item-tags">#No Tags</span>
         } else {
             return (
                 <div>
@@ -27,6 +27,9 @@ export default function Threads({thread}) {
         }
     }
 
+
+    const foundUser = JSON.parse(sessionStorage.getItem("foundUser"));
+
     useEffect(() => {
         const foundUserGet = sessionStorage.getItem("foundUser");
         if (foundUserGet) {
@@ -34,17 +37,10 @@ export default function Threads({thread}) {
         }
     }, []);
 
-    const foundUser = JSON.parse(sessionStorage.getItem("foundUser"));
-
       function userCheck(thread, foundUser) {
-        if (!thread || !foundUser) {
-            return "Unknown User";  
-        }
-
-        if (foundUser.email === thread.user.email) {
+        if (foundUser?.email === thread?.user.email) {
             return "Posted by you";  
         } else {
-            
             return "Anonymous " + (thread.user.account_type || "Unknown User");
         }
     }

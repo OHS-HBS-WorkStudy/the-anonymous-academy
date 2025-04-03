@@ -15,9 +15,22 @@ export default function Account() {
 
     useEffect(() => {
         const foundUserGet = sessionStorage.getItem("foundUser");
-        if (foundUserGet) {
-            setLoggedInUser(JSON.parse(foundUserGet));
+    if (foundUserGet) {
+        try {
+            const parsedUser = JSON.parse(foundUserGet);
+            if (parsedUser) {
+                setLoggedInUser(parsedUser);
+            } else {
+                setLoggedInUser(null);
+            }
+        } catch (error) {
+            console.error("Error parsing foundUser:", error);
+            setLoggedInUser(null);
         }
+    } else {
+        setLoggedInUser(null);
+    }
+
 
         const path = location.pathname;
         if (path.endsWith('/activity')) {
@@ -37,7 +50,7 @@ export default function Account() {
     };
 
 
-    if (!loggedInUser) {
+    if (!loggedInUser || loggedInUser === null) {
         return (
             <>
                 <div className="overlay">

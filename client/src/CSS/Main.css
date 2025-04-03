@@ -54,6 +54,9 @@
   --clr-surface-tonal-a50: #b7bcdd;
   
   --link-color: #cca633;
+  --grid-item-background: #fff;
+  --grid-item-hover: #f9f9f9;
+  --grid-item-border: #e0e0e0;
   
   
   --color-input-background: hsl(220, 15%, 90%); /* Soft light gray-blue */
@@ -78,8 +81,7 @@
     --color-text-black: #333; 
     --color-input-background: #3f3f3f;
   
-    --alt-background-color: #1e1e1e
-    ;
+    --alt-background-color: #1e1e1e;
   
     /** Dark theme primary colors */
   --clr-primary-a0: #4d3960;
@@ -107,6 +109,9 @@
   
   --newThread-button: #6C58CE;
   --newThread-button-hover: #5438a5;
+  --grid-item-background: var(--color-accent);
+  --grid-item-hover: hsl(270, 20%, 65%);
+  --grid-item-border: var(--color-accent);
   
   --link-color: white;
   --login-and-sign-color: linear-gradient(45deg, #9C6DD5, #7A4F9A, #B47BD9);
