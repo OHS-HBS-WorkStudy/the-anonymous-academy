@@ -13,6 +13,13 @@ export default function Thread() {
     const { threadId } = useParams(); 
     const isInitialLoad = useRef(true);
 
+    useEffect(() => {
+        if (isInitialLoad.current) {
+            window.scrollTo(0, 0); 
+            isInitialLoad.current = false; 
+        }
+    }, []);
+
     let data = JSON.parse(sessionStorage.getItem("data")) || [];
     const thread = data.find(t => t.thread_id === parseInt(threadId));
 
@@ -49,12 +56,7 @@ export default function Thread() {
             return "Anonymous " + (thread.user.account_type || "Unknown User");
         }
     }
-    useEffect(() => {
-        if (isInitialLoad.current) {
-            window.scrollTo(0, 0); 
-            isInitialLoad.current = false; 
-        }
-    }, []);
+
 
     return(
         <div className="offset">

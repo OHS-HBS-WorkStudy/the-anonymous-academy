@@ -337,7 +337,7 @@ label h1 {
 
 .threadDir h1, 
 .threadDir h2,
-.threadTag h1{
+.threadTag h1 {
     display: flex;
     align-items: center;
     justify-content: left;
@@ -353,7 +353,8 @@ label h1 {
 }
 
 .threadDir h1::after,
-.threadDir h2::after {
+.threadDir h2::after,
+.required::after {
   content: "*";
   color: red;
   margin-left: 3px;

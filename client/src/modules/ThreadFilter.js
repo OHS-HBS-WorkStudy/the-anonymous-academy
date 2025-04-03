@@ -79,20 +79,18 @@ const deleteList = () => {
   window.location.reload();
 }
 
-    return(
+    return (
         <div className="thread-filter">
-        <div className={`grid-header ${filterOpen ? "open" : ""}`}>
-        <div className="grid-header-title">Manager</div>
-        <button onClick={() => deleteList()}>Clear List</button>
+          <div className={`grid-header ${filterOpen ? "open" : ""}`}>
+            <div className="grid-header-title">Manager</div>
+              <button onClick={() => deleteList()}>Clear List</button>
             <div className="dropdown">
               <label htmlFor="tagFilter" style={{ display: "none" }}>
-                Category:
-
-                
+                Categories
               </label>
-              
-            </div>
 
+    
+        </div>
 
               <button
                 ref={filterButtonRef}
@@ -103,7 +101,6 @@ const deleteList = () => {
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M440-120v-240h80v80h320v80H520v80h-80Zm-320-80v-80h240v80H120Zm160-160v-80H120v-80h160v-80h80v240h-80Zm160-80v-80h400v80H440Zm160-160v-240h80v80h160v80H680v80h-80Zm-480-80v-80h400v80H120Z"/></svg>
                 Filter
               </button>
-              
 
           <div className="listman">
             <button className="listpage-btn" disabled={currentPage === 1}> {/* onClick={handlePreviousPage} */}
@@ -144,7 +141,7 @@ const deleteList = () => {
           </div>
         </div>
 
-        <div
+              <div
                 ref={dropdownRef}
                 className={`dropdown-content ${filterOpen ? "open" : ""}`}
               >
@@ -154,7 +151,7 @@ const deleteList = () => {
                   </label>
 
                   <div className="left">
-                  <h3>Tag Filter</h3>
+                    <h3>Trending Tags:</h3>
                     <input type="radio" id="math" name="category" value="math" />
                     <label htmlFor="math">#Math</label>
 
@@ -167,105 +164,50 @@ const deleteList = () => {
                     <input type="radio" id="socialstudies" name="category" value="socialstudies" />
                     <label htmlFor="socialstudies">#Social Studies</label>
 
-                    <label htmlFor="tagsInput" style={{ display: "none" }}>
-                    Tags:
-                  </label>
+
+                    <h3>Custom Tag</h3>
+                    <div className="tag-input-container">
+                      <input 
+                        id="customtag" 
+                        className="tag-input" 
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                          }
+                        }}
+                        type="text" 
+                        placeholder="type in..."
+                      />
+                    </div>
+                  </div>
+      
+                </div>
             
 
+                      <div className="dropdown col2">
+                        <div className="left">
+                        <h3>Date Filter</h3>
+                        <label htmlFor="dateFilter" style={{ display: "none" }}>
+                        Date:
+                        </label>
+                        <div>
+                        <input type="radio" id="newest" name="date" value="newest"  />
+                        <label htmlFor="newest">Newest</label>
 
-                  </div>
+                        <input type="radio" id="oldest" name="date" value="oldest"  />
+                        <label htmlFor="oldest">Oldest</label>
 
-                   <div className="right">
-                   <div>
-                   <input 
-                id="customtag" 
-                className="tag-input-container" 
-                // value={tagInput || ''} // Ensure 'tagInput' is defined
-                // onChange={(e) => setTagInput(e.target.value)} // Added 'setTagInput' handler
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    // Handle enter key logic
-                  }
-                }}
-                type="text" 
-                placeholder="type in..."
-                />
-                  </div>
-                   </div>
-                </div>
+                        <input type="radio" id="trending" name="date" value="trending" />
+                        <label htmlFor="trending">Trending</label>
 
-                <div class="dropdown col2">
-                  <div className="left">
-                  <h3>Date Filter</h3>
-                  <label htmlFor="dateFilter" style={{ display: "none" }}>
-                    Date:
-                  </label>
-                  <div>
-                    <input type="radio" id="newest" name="date" value="newest"  />
-                    <label htmlFor="newest">Newest</label>
-
-                    <input type="radio" id="oldest" name="date" value="oldest"  />
-                    <label htmlFor="oldest">Oldest</label>
+                        <input type="date" id="startDate" name="startDate" />
+                        </div>
 
 
-                    <input type="radio" id="trending" name="date" value="trending" />
-                    <label htmlFor="trending">Trending</label>
-
-                  <input type="date" id="startDate" name="startDate" />
-                  </div>
-
-                  </div>
-                  
-                  <div className="right">
-                  <h3>List Size</h3>
-                  <label htmlFor="listFilter" style={{ display: "none" }}>
-                    listSize:
-                  </label>
-                
-                  <div>
-                    <input type="radio" id="thread10" name="listSize" value="10" />
-                    <label htmlFor="thread10">10</label>
-
-                    <input type="radio" id="thread25" name="listSize" value="25" />
-                    <label htmlFor="thread25">25</label>
-
-                    <input type="radio" id="thread50" name="listSize" value="50" />
-                    <label htmlFor="thread50">50</label>
-
-                    <input type="radio" id="thread100" name="listSize" value="100" />
-                    <label htmlFor="thread100">100</label>
-
-
-                  </div>
-
-                  </div>
-                </div>
-
-                <div className="dropdown col3">
-                
-                  <div className="left">
-                  <h3>Thread Status</h3>
-                  <label htmlFor="statusFilter" style={{ display: "none" }}>
-                    Thread Status:
-                  </label>
-                  <div>
-                    <input type="radio" id="open" name="status" value="open" />
-                    <label htmlFor="open">Open</label>
-
-                    <input type="radio" id="closed" name="status" value="closed" />
-                    <label htmlFor="closed">Closed</label>
-
-                    <input type="radio" id="pinned" name="status" value="pinned" />
-                    <label htmlFor="pinned">Pinned</label>
-                  </div>
-                  </div>
-
-                  <div className="right">
-                    <h3>Sort</h3>
-                  <label htmlFor="sortFilter" style={{ display: "none" }}>
-                    Sort By:
-                  </label>
-                  <div>
+                        <h3>Sort</h3>
+                        <label htmlFor="sortFilter" style={{ display: "none" }}>
+                        Sort By:
+                        </label>
+                        <div>
                     <input type="radio" id="sortAnswered" name="sortBy" value="answered" />
                     <label htmlFor="sortAnswered">Answered</label>
 
@@ -274,15 +216,62 @@ const deleteList = () => {
 
                     <input type="radio" id="sortComments" name="sortBy" value="comments" />
                     <label htmlFor="sortComments">Most Comments</label>
-                    {/* Removed undefined function call 'setPinned()' */}
+
                     <input type="radio" id="sortLikes" name="sortBy" value="likes" />
                     <label htmlFor="sortLikes">Most Likes</label>
 
+                        </div>
+                        
+                      </div>
 
-                    </div>
-                  </div>
-                  </div>
-                </div>
-              </div>
-    );
-}
+                      <div className="dropdown col3">
+                      
+                        <div className="left">
+                        <h3>Thread Status</h3>
+                        <label htmlFor="statusFilter" style={{ display: "none" }}>
+                        Thread Status:
+                        </label>
+                        
+                        <select 
+                            id="selectStatus" 
+                            className="select-status" 
+                            onChange={(e) => {
+                              // Handle select change logic
+                            }}
+                          >
+                            <option value="" selected>
+                              Select a status...
+                            </option>
+                            <option value="open">Open</option>
+                            <option value="closed">Closed</option>
+                            <option value="pinned">Pinned</option>
+                          </select>
+
+                          <h3>List Size</h3>
+                        <label htmlFor="listFilter" style={{ display: "none" }}>
+                        listSize:
+                        </label>
+                      
+                        <div>
+                        <input type="radio" id="thread10" name="listSize" value="10" />
+                        <label htmlFor="thread10">10</label>
+
+                        <input type="radio" id="thread25" name="listSize" value="25" />
+                        <label htmlFor="thread25">25</label>
+
+                        <input type="radio" id="thread50" name="listSize" value="50" />
+                        <label htmlFor="thread50">50</label>
+
+                        <input type="radio" id="thread100" name="listSize" value="100" />
+                        <label htmlFor="thread100">100</label>
+                        </div>
+                        
+                        </div>
+
+                       
+          </div>
+        </div>
+        </div>
+        </div>
+  );
+}                

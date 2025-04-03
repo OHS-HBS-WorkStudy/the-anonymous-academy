@@ -104,20 +104,33 @@ useEffect(() => {
 
   if (!loggedInUser) {
     return (
+     <>
       <div className="overlay">
-        <div className="box-holder">
-          <div className="overlay-box">
-            <div className="box-content">
-              <h2>Please sign up or log in to access the creation page!</h2>
-              <p>
-                You need to be logged in to access this page. Please{" "}
-                <span className="underline" onClick={goToSignUp}>Sign up</span> or{" "}
-                <span className="underline" onClick={goToLogin}>Log in</span> to continue.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+                    <div className="box-holder">
+                        <div className="overlay-box">
+                            <div className="box-content">
+                                <div className="box-top">
+                                    <h2>Please sign up or log in access the creation page!</h2>
+                                </div>
+                                <div className="box-bottom">
+                                    <p className="text">
+                                        You need to be logged in to access this page.
+                                    </p>
+                                    <p className="text">
+                                        Please {' '}
+                                        <span className="underline" onClick={goToSignUp}>Sign up</span>
+                                        {' '}
+                                        or
+                                        {' '}
+                                        <span className="underline" onClick={goToLogin}>Log in</span>
+                                        {' '} to continue.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+      </>
     );
   }
 
@@ -135,6 +148,7 @@ useEffect(() => {
             value={ThreadTitle}
             onChange={(e) => handleChange(e.target.value, setThreadTitle, maxTitleLength)}
             style={{ wordWrap: "break-word", whiteSpace: "normal" }}
+            required
           />
 
           <div className="charCounter">{getPlainText(ThreadTitle).length}/{maxTitleLength} characters</div>
@@ -147,6 +161,7 @@ useEffect(() => {
             style={{ width: "100%", minHeight: "160px", overflowY: "auto", maxWidth: "100%", wordWrap: "break-word", whiteSpace: "normal" }}
             value={ThreadContents}
             onChange={handleQuillChange}
+            required
             modules={{
               toolbar: [
                 [{ header: "1" }, { header: "2" }],

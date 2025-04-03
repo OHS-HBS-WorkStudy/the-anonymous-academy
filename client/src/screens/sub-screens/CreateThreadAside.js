@@ -82,9 +82,10 @@ export default function CreateThreadAside({ruleAgreement, setRuleAgreement}) {
               type="checkbox"
               checked={ruleAgreement}
               onChange={() => setRuleAgreement(!ruleAgreement)}
-
+              required
+             
             />
-            <b> I have read and agree to the thread creation guidelines.</b>
+            <span  className="required"><b> I have read and agree to the thread creation guidelines.</b></span>
           </label>
         </div>
       </aside>

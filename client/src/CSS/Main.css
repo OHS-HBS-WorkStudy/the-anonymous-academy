@@ -6,6 +6,7 @@
 @import url('./Account.css');
 @import url('./Overlay.css');
 @import url('./Replies.css');
+@import url('./ThreadFilter.css');
 :root {
     --color-background: hsl(0, 0%, 98%); /* Very light gray for the main background */
     --color-surface: hsl(0, 0%, 100%); /* Pure white for surfaces like cards */
@@ -57,6 +58,8 @@
   --grid-item-background: #fff;
   --grid-item-hover: #f9f9f9;
   --grid-item-border: #e0e0e0;
+
+  --text-color-blue: blue;
   
   
   --color-input-background: hsl(220, 15%, 90%); /* Soft light gray-blue */
@@ -132,6 +135,9 @@
 
 @media only screen and (max-width: 480px) {
     .offset {
+        margin-left: 0;
+    }
+    .overlay {
         margin-left: 0;
     }
 }
