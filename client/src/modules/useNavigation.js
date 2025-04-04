@@ -5,8 +5,8 @@ const useNavigation = () => {
   const location = useLocation(); 
 
   const goToHome = () => navigate('/');
-  const goToAccount = () => navigate('/account/stats');
-  const goToAccountactivity = () => navigate('/account/activity');
+  const goToacctStats = () => navigate('/account/stats');
+  const goToacctActivity= () => navigate('/account/activity');
   const goToLogin = () => navigate('/login');
   const goToSignUp = () => navigate('/signup');
   const goToNewThread = () => navigate('/newthread');
@@ -16,8 +16,8 @@ const useNavigation = () => {
 
   return { 
     goToHome, 
-    goToAccount, 
-    goToAccountactivity,
+    goToacctStats, 
+    goToacctActivity,
     goToLogin, 
     goToSignUp, 
     goToThread,

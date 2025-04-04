@@ -1,16 +1,22 @@
 /* Bento box container styling */
+.limiter {
+
+    margin-left: 70px;
+}
+
 .bento-box {
     display: flex;
     flex-wrap: nowrap;
     height: 570px;
     width: 100%;
-    padding: 1em;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: calc(100% - 60px); 
     gap: 1em;
+    padding-bottom: 60px;
     box-sizing: border-box;
-    max-width: 1440px; 
+    justify-content: center; 
 }
+
+
 
 /* Left column styling */
 .col-left {
@@ -146,14 +152,6 @@
     transform: translateX(3px);
 }
 
-/* Responsive styling for thread visited and created paragraph */
-@media (max-width: 600px) {
-    .threadvisted-content p {
-        font-size: 14px;
-        padding: 8px 10px;
-    }
-}
-
 /* Second row styling */
 .col-row.row2 {
     background: linear-gradient(to right, var(--color-primary), var(--color-primary-accent));
@@ -173,11 +171,10 @@
 .col-right {
     flex: 0 0 auto;
     border-radius: 2em;
-    min-width: 300px;
+    max-width: 300px;
     display: flex;
     flex-direction: column;
     gap: 0.5em;
-    max-width: 40vw;
 }
 
 /* Row container styling */
@@ -201,7 +198,7 @@
 }
 
 /* Bottom row first child styling */
-.col-row.bottom.row1 {
+.col-row.bottom.row3 {
     flex: 1 1 auto;
     width: auto;
     flex-direction: column;
@@ -219,6 +216,13 @@
     flex: 1 1 auto;
 }
 
+.credibility h1 {
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--color-text-primary);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
 /* Credibility content styling */
 .cred-content {
     flex: 1 1 auto;
@@ -377,22 +381,6 @@ h1.fire {
     }
 }
 
-/* @media (max-width: 600px) {
-    .threadvisted-content p {
-        font-size: 14px;
-        padding: 8px 10px;
-    }
-    .threadvisted h1,
-    .threadcreated h1 {
-        font-size: 20px;
-    }
-    .fire {
-        font-size: 16px;
-    }
-    .threadtrending-content p {
-        font-size: 10px;
-    }
-} */
 
 @media only screen and (max-width: 480px) {
     .grid-container {
@@ -404,7 +392,7 @@ h1.fire {
     .grid-item{
         min-width: 100vw;
     }
-
+/* 
     .bento-box {
         flex-direction: column;
         height: auto;
@@ -432,7 +420,7 @@ h1.fire {
         min-height: 100px;
         border-radius: 0;
         transform: scale(0.95) !important;
-    }
+    } */
     .grid-header{
         margin-left: 0;
         margin-right: 0;

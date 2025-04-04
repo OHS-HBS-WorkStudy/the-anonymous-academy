@@ -40,6 +40,7 @@ export default function Login() {
     
         if (foundUser) {
             sessionStorage.setItem("foundUser", JSON.stringify(foundUser));
+            localStorage.setItem("userPreferences", JSON.stringify(foundUser.pref));
             goToHome();
         } else {
             alert("Login Unsuccessful");

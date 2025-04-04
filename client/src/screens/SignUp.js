@@ -7,7 +7,7 @@ import signuppic from '../img/signpic.png';
 
 export default function SignUp() {
     const { goToLogin } = useNavigation();
-    const [activeButton, setActiveButton] = useState("student");
+    const [activeButton, setActiveButton] = useState("Student");
     const [passwordVisible, setPasswordVisible] = useState(false);
 
     const togglePasswordVisibility = () => {
@@ -25,10 +25,27 @@ export default function SignUp() {
             users = [];
         }
     
-        const firstName = document.getElementById("fname").value;
-        const lastName = document.getElementById("lname").value;
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
+        const firstName = document.getElementById("fname")?.value;
+        const lastName = document.getElementById("lname")?.value;
+        const email = document.getElementById("email")?.value;
+        const password = document.getElementById("password")?.value;
+
+        const reenteredPassword = document.getElementById("reenteredpassword").value;
+
+        if (firstName === "" || lastName === "" || email === "" || password === "" || reenteredPassword === "") {
+            alert("Please fill in all fields!");
+            return;
+        } else if (users.some(user => user.email === email)) {
+            alert("Email already exists!");
+            return;
+        } else if (password.length < 4) {
+            alert("Password must be at least 4 characters long!");
+            return;
+        }  else if (password !== reenteredPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
+
 
         const now = new Date();
         const options = {
@@ -49,11 +66,13 @@ export default function SignUp() {
             account_type: activeButton,
             created: formattedTime,
             login: false,
+            pref: { ruleAgreement: false }, 
         };
-    
+        
         users.push(data);
         sessionStorage.setItem("user", JSON.stringify(users));
         goToLogin();
+        setActiveButton("Student");
     }
 
     return (
@@ -95,25 +114,33 @@ export default function SignUp() {
                                     >
                                         {passwordVisible ? "Hide" : "Show"}
                                     </button>
+
+                                    <input
+                                        type='password'
+                                        id="reenteredpassword"
+                                        className="reenteredpassword"
+                                        placeholder="Re-Enter Password"
+                                    />
+                                    
                                 </div>
 
                                 <div className="button-group-container">
                                     <div className="button-group">
                                         <button
-                                            className={`button-group-btn ${activeButton === "student" ? "active" : ""}`}
-                                            onClick={() => handleButtonClick("student")}
+                                            className={`button-group-btn ${activeButton === "Student" ? "active" : ""}`}
+                                            onClick={() => handleButtonClick("Student")}
                                         >
                                             Student
                                         </button>
                                         <button
-                                            className={`button-group-btn ${activeButton === "parent" ? "active" : ""}`}
-                                            onClick={() => handleButtonClick("parent")}
+                                            className={`button-group-btn ${activeButton === "Parent" ? "active" : ""}`}
+                                            onClick={() => handleButtonClick("Parent")}
                                         >
                                             Parent
                                         </button>
                                         <button
-                                            className={`button-group-btn ${activeButton === "teacher" ? "active" : ""}`}
-                                            onClick={() => handleButtonClick("teacher")}
+                                            className={`button-group-btn ${activeButton === "Teacher" ? "active" : ""}`}
+                                            onClick={() => handleButtonClick("Teacher")}
                                         >
                                             Teacher
                                         </button>

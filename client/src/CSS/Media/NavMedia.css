@@ -1,4 +1,18 @@
 @media only screen and (max-width: 480px) {
+  .mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin-left: 165px;
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  }
+  
     .sidebar {
       display: none !important;
       overflow: hidden;
@@ -44,6 +58,11 @@
       animation: none !important;
       transform: none !important;
       background-color: inherit !important;
+    }
+
+    .nav-toggle,
+    .nav-toggle {
+      transform: scale(0.8);
     }
   }
   
