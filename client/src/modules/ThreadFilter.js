@@ -12,13 +12,32 @@ export default function ThreadFilter() {
     const [currentPage, setCurrentPage] = useState(1); // Initialized 'index' with 1
     const itemsPerPage = 1; 
     const [inputPage, setInputPage] = useState(currentPage);
+    const [inputValue, setInputValue] = useState('');
+    const [tags, setTags] = useState([]);
+    const inputRef = useRef(null);
+  
+    const handleKeyDown = (e) => {
+      if (e.key === 'Enter' && inputValue.trim() !== '') {
+        let newTag = inputValue.trim();
+        if (!newTag.startsWith('#')) {
+          newTag = '#' + newTag;
+        }
+  
+        setTags([...tags, newTag]);
+        setInputValue('');
+      }
+    };
+  
+    const handleInputChange = (e) => {
+      setInputValue(e.target.value);
+    };
+  
+    const removeTag = (index) => {
+      setTags(tags.filter((t, i) => i !== index));
+    };
 
     const totalPages = 5;
 
-    const handleInputChange = (e) => {
-        setInputPage(e.target.value);
-      };
-    
       const handleInputBlur = () => {
         const page = Math.max(1, Math.min(totalPages, parseInt(inputPage, 10) || 1));
         setCurrentPage(page);
@@ -152,40 +171,50 @@ const deleteList = () => {
 
                   <div className="left">
                     <h3>Trending Tags:</h3>
-                    <input type="radio" id="math" name="category" value="math" />
-                    <label htmlFor="math">#Math</label>
+                    <input type="checkbox" id="math" name="category" value="math" />
+                    <label htmlFor="math">#Math | Threads 30</label>
 
-                    <input type="radio" id="english" name="category" value="english" />
-                    <label htmlFor="english">#English</label>
+                    <input type="checkbox" id="english" name="category" value="english" />
+                    <label htmlFor="english">#English | Threads 27</label>
 
-                    <input type="radio" id="science" name="category" value="science" />
-                    <label htmlFor="science">#Science</label>
+                    <input type="checkbox" id="science" name="category" value="science" />
+                    <label htmlFor="science">#Science | Threads 19</label>
 
-                    <input type="radio" id="socialstudies" name="category" value="socialstudies" />
-                    <label htmlFor="socialstudies">#Social Studies</label>
+                    <input type="checkbox" id="socialstudies" name="category" value="socialstudies" />
+                    <label htmlFor="socialstudies">#Social Studies | Threads 18</label>
 
 
-                    <h3>Custom Tag</h3>
-                    <div className="tag-input-container">
-                      <input 
-                        id="customtag" 
-                        className="tag-input" 
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter') {
-                          }
-                        }}
-                        type="text" 
-                        placeholder="type in..."
-                      />
+                    <h3 className="tag-input-text">Custom Tag:</h3>
+                      
+                        <input
+                          ref={inputRef}
+                          id="customtag"
+                          className="tag-input"
+                          type="text"
+                          placeholder={tags.length === 0 ? "Enter Tags..." : ""}
+                          value={inputValue}
+                          onChange={handleInputChange}
+                          onKeyDown={handleKeyDown}
+                        />
+
+                    {tags.length > 0 && 
+                      <div className="tag-input-container">
+                        {tags.map((tag, index) => (
+                          <span onClick={() => removeTag(index)} key={index} className="tag">
+                            {tag}
+                            <button>x</button>
+                          </span>
+                        ))}
+                        </div>
+                      }
                     </div>
-                  </div>
       
                 </div>
             
 
                       <div className="dropdown col2">
                         <div className="left">
-                        <h3>Date Filter</h3>
+                        <h3>Date Filter:</h3>
                         <label htmlFor="dateFilter" style={{ display: "none" }}>
                         Date:
                         </label>
@@ -199,7 +228,7 @@ const deleteList = () => {
                         <input type="radio" id="trending" name="date" value="trending" />
                         <label htmlFor="trending">Trending</label>
 
-                        <input type="date" id="startDate" name="startDate" />
+                        <input type="date" id="startDate" name="startDate" className="date-input" />
                         </div>
 
 
@@ -208,18 +237,17 @@ const deleteList = () => {
                         Sort By:
                         </label>
                         <div>
-                    <input type="radio" id="sortAnswered" name="sortBy" value="answered" />
-                    <label htmlFor="sortAnswered">Answered</label>
+                          <input type="radio" id="sortAnswered" name="sortBy" value="answered" />
+                          <label htmlFor="sortAnswered">Answered</label>
 
-                    <input type="radio" id="sortViews" name="sortBy" value="views" />
-                    <label htmlFor="sortViews">Most Views</label>
+                          <input type="radio" id="sortViews" name="sortBy" value="views" />
+                          <label htmlFor="sortViews">Most Views</label>
 
-                    <input type="radio" id="sortComments" name="sortBy" value="comments" />
-                    <label htmlFor="sortComments">Most Comments</label>
+                          <input type="radio" id="sortComments" name="sortBy" value="comments" />
+                          <label htmlFor="sortComments">Most Comments</label>
 
-                    <input type="radio" id="sortLikes" name="sortBy" value="likes" />
-                    <label htmlFor="sortLikes">Most Likes</label>
-
+                          <input type="radio" id="sortLikes" name="sortBy" value="likes" />
+                          <label htmlFor="sortLikes">Most Likes</label>
                         </div>
                         
                       </div>
@@ -227,7 +255,7 @@ const deleteList = () => {
                       <div className="dropdown col3">
                       
                         <div className="left">
-                        <h3>Thread Status</h3>
+                        <h3>Thread Status:</h3>
                         <label htmlFor="statusFilter" style={{ display: "none" }}>
                         Thread Status:
                         </label>
@@ -247,7 +275,7 @@ const deleteList = () => {
                             <option value="pinned">Pinned</option>
                           </select>
 
-                          <h3>List Size</h3>
+                          <h3>List Size:</h3>
                         <label htmlFor="listFilter" style={{ display: "none" }}>
                         listSize:
                         </label>
@@ -264,6 +292,10 @@ const deleteList = () => {
 
                         <input type="radio" id="thread100" name="listSize" value="100" />
                         <label htmlFor="thread100">100</label>
+
+                        <h3>Custom Size:</h3>
+                        <input type="number" id="customsize" name="listSize" />
+                       
                         </div>
                         
                         </div>

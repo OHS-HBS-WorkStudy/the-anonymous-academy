@@ -73,6 +73,11 @@
         height: 60px;
     }
 
+    .dropdown-content,
+    .dropdown-content.open {
+        max-width: 1200px !important;
+    }
+
     .no-threads-message {
         max-width: 1200px !important;
     }
@@ -108,6 +113,11 @@
         flex-shrink: 0;
         max-width: 1100px !important;
         padding: 5px 10px !important;
+    }
+
+    .dropdown-content,
+    .dropdown-content.open {
+        max-width: 1100px !important;
     }
 
     .no-threads-message {
