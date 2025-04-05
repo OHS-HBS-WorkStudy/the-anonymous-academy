@@ -2,52 +2,58 @@
 .Home {
     background-color: var(--color-background);
     display: grid;
-    grid-template-columns: 1fr; /* Single column for full width stacking initially */
+    grid-template-columns: 1fr; 
     grid-template-rows: auto auto auto;
     grid-template-areas:
       "bento-box"
-      "main-content"; /* Area to hold the 60%/40% split */
+      "main-content"; 
     width: 100vw;
     height: fit-content;
     min-height: 100vh;
     min-width: 992px;
     margin-top: 10px;
-    margin-left: 0 !important; /* Ensure no left margin */
     gap: 20px;
     padding-bottom: 80px;
     position: relative;
     overflow: hidden;
-    justify-content: center; /* Center the main content area */
-    box-sizing: border-box; /* Important for width calculations */
-    /* border: 1px solid yellow; */
+    justify-content: center; 
+    box-sizing: border-box; 
 }
 
-.Home::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 0;
-    height: 0;
-    background-color: rgba(255, 255, 255, 0.15); /* Adjust color and opacity */
-    border-radius: 50%;
-    animation: pulseBackground 1.5s ease-out infinite; /* Adjust duration and easing */
-    z-index: -1; /* Place it behind the Home background */
-}
-
-@keyframes pulseBackground {
+.questionsSection {
+    width: 100%;
+    background-color: #f7f7f7;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    opacity: 0; /* Start with 0 opacity */
+    transform: translateY(-20px);
+    animation: fadeInSlideDown 0.8s ease-out forwards; 
+  }
+  
+  .questionsTitle {
+    font-size: 1em;
+    color: #333;
+    margin-right: 10px;
+  }
+  
+  .countUp {
+    font-size: 1em;
+    font-weight: bold;
+    color: var(--color-primary, #007bff);
+  }
+  
+  @keyframes fadeInSlideDown {
     0% {
-        width: 0;
-        height: 0;
-        opacity: 0.8;
+      opacity: 0;
+      transform: translateY(-20px);
     }
     100% {
-        width: 200vw; 
-        height: 200vw;
-        opacity: 0;
+      opacity: 1;
+      transform: translateY(0);
     }
-}
+  }
 
 .bento-box-area {
     grid-area: bento-box;
@@ -58,11 +64,11 @@
 .main-content-area {
     grid-area: main-content;
     display: grid;
-    grid-template-columns: 75% 25%;
+    grid-template-columns: 75% 20%;
     grid-template-areas:
       "grid-header right-space"
       "grid-container right-space";
-    gap: 20px; 
+    gap: 10px; 
     width: 100%; 
     justify-content: center; 
     box-sizing: border-box;
@@ -71,13 +77,14 @@
 .grid-header-area {
     grid-area: grid-header;
     width: 100%; 
-    margin-left: 20px;
+
     border: 1px solid yellow;
     box-sizing: border-box;
 }
 
 .grid-container-area {
     grid-area: grid-container;
+    border: 1px solid yellow;
     width: 100%; 
     box-sizing: border-box;
 }
@@ -490,6 +497,63 @@
     .grid-item-tags-container {
         padding-left: 0px !important;
     }
+}
+
+.trending-threads-cont {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-text-primary);
+    border-radius: 12px;
+    box-sizing: border-box;
+    padding: 20px; 
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: inherit;
+    height: fit-content;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px); 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05); 
+    border: 1px solid var(--clr-surface-a10)
+}
+
+
+.trending-threads-cont h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--color-primary);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5); 
+    padding-bottom: 5px;
+}
+
+.trending-threads-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.trending-thread-item {
+    background-color: rgba(255, 255, 255, 0.05); 
+    color: var(--color-text-secondary);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+}
+
+.trending-thread-item:hover {
+    background-color: rgba(255, 255, 255, 0.2); 
+    color: var(--color-text-primary);
+    transform: scale(1.02);
 }
 @import url('./BentoBox.css');
 @import url('./Media/HomeMedia.css');

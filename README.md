@@ -25,6 +25,13 @@
  npm install react-quill
 ```
 
+### Install React both Visibility and Count Up for fun 
+```
+ npm install react-visibility-sensor
+ npm i react-countup
+```
+
+
 ### Open the application
 ```
  cd client

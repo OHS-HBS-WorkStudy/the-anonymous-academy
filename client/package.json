@@ -9,10 +9,12 @@
     "@testing-library/user-event": "^13.5.0",
     "dompurify": "^3.2.4",
     "react": "^18.3.1",
+    "react-countup": "^6.5.3",
     "react-dom": "^18.3.1",
     "react-quill": "^2.0.0",
     "react-router-dom": "^7.4.1",
     "react-scripts": "5.0.1",
+    "react-visibility-sensor": "^5.1.1",
     "router-dom": "^3.0.3",
     "web-vitals": "^2.1.4"
   },
