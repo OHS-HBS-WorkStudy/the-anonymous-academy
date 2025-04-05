@@ -7,10 +7,7 @@ export default function Home() {
     let data = JSON.parse(sessionStorage.getItem("data")) || {};
     let recieveThread = data || [];
 
-    console.log(data, recieveThread)
-
-
-
+    console.log(data, recieveThread);
 
         return (
             <div className="offset">
@@ -19,8 +16,10 @@ export default function Home() {
                     <div className="Home">
                         <div className="container1">
                         <BentoBox />
+                        
+                        <div className="main-content-area">
                         <ThreadFilter />
-                        <div className="container2">
+                        <div className='grid-container-area'>
                             <div className="thread-list-container">
                             {recieveThread && recieveThread.length > 0 ? (
                                 recieveThread.map((thread) => (
@@ -31,6 +30,13 @@ export default function Home() {
                             ) : (
                                 <div className="no-threads-message">No Threads</div>
                             )}
+                            </div>
+                            </div>
+                            <div className='right-space-area'>
+                                <div className='right-space'>
+
+                                <p>new content</p>
+                                </div>
                             </div>
                         </div>
                         </div>

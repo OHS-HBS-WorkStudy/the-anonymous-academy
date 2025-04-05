@@ -1,28 +1,118 @@
 /* Home Styling */
 .Home {
     background-color: var(--color-background);
-    display: flex;
-    flex-direction: column; 
+    display: grid;
+    grid-template-columns: 1fr; /* Single column for full width stacking initially */
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "bento-box"
+      "main-content"; /* Area to hold the 60%/40% split */
     width: 100vw;
     height: fit-content;
     min-height: 100vh;
     min-width: 992px;
     margin-top: 10px;
-
+    margin-left: 0 !important; /* Ensure no left margin */
     gap: 20px;
-    padding-bottom: 15px;
     padding-bottom: 80px;
-    
+    position: relative;
+    overflow: hidden;
+    justify-content: center; /* Center the main content area */
+    box-sizing: border-box; /* Important for width calculations */
+    /* border: 1px solid yellow; */
 }
 
-/* Layout wrapper styling */
+.Home::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    background-color: rgba(255, 255, 255, 0.15); /* Adjust color and opacity */
+    border-radius: 50%;
+    animation: pulseBackground 1.5s ease-out infinite; /* Adjust duration and easing */
+    z-index: -1; /* Place it behind the Home background */
+}
+
+@keyframes pulseBackground {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.8;
+    }
+    100% {
+        width: 200vw; 
+        height: 200vw;
+        opacity: 0;
+    }
+}
+
+.bento-box-area {
+    grid-area: bento-box;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.main-content-area {
+    grid-area: main-content;
+    display: grid;
+    grid-template-columns: 75% 25%;
+    grid-template-areas:
+      "grid-header right-space"
+      "grid-container right-space";
+    gap: 20px; 
+    width: 100%; 
+    justify-content: center; 
+    box-sizing: border-box;
+}
+
+.grid-header-area {
+    grid-area: grid-header;
+    width: 100%; 
+    margin-left: 20px;
+    border: 1px solid yellow;
+    box-sizing: border-box;
+}
+
+.grid-container-area {
+    grid-area: grid-container;
+    width: 100%; 
+    box-sizing: border-box;
+}
+
+
+.right-space-area {
+    grid-area: right-space;
+    border: 1px solid yellow;
+    height: 100%; 
+    box-sizing: border-box;
+}
+
+.Home {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "bento-box"
+      "main-content";
+    justify-content: center;
+    width: 100vw;
+    box-sizing: border-box;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
 .layout-wrapper {
     padding-bottom: -1px;
     box-sizing: border-box;
     background-color: var(--color-background);
     display: flex;
     flex-direction: row; 
-    width: 100vw;
+    width: calc(100vw - 60px);
     min-width: 100%; 
 }
 
@@ -71,16 +161,15 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    /* transform: translateX(-30px); */
     margin-top: 10px;
     padding: 0 20px;
     box-sizing: border-box;
     overflow: hidden;
     scrollbar-width: thin;
     -ms-overflow-style: none;
-    margin-left: auto;
-    margin-right: auto;
+    z-index: 1;
 }
+
 
 .text-content {
     text-overflow: ellipsis;
@@ -106,7 +195,6 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
     overflow: hidden;
     border: 1px solid var(--grid-item-border);
-    margin: 0 auto;
     align-items: flex-start;
 }
 

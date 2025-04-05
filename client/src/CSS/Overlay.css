@@ -1,99 +1,133 @@
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    margin-left: 60px;
-    margin-top: 60px;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(10px);
-    z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin-left: 60px;
+  margin-top: 60px;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  z-index: 1;
+  overflow: hidden; 
+}
+
+.overlay::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  background-color: rgba(255, 255, 255, 0.15); 
+  border-radius: 50%;
+  animation: pulseBackground 3s ease-out infinite; 
+  z-index: -1; 
+}
+
+@keyframes pulseBackground {
+  0% {
+      width: 0;
+      height: 0;
+      opacity: 0.8;
   }
-  
-  .box-holder {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 500px;
-    height: 100%;
+  100% {
+      width: 200vw; 
+      height: 200vw;
+      opacity: 0;
   }
-  
+}
+
+.box-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 100%;
+  z-index: 2; 
+}
+
+.overlay-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-background, #ffffff);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 90%;
+  max-height: 90%;
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  text-align: center;
+  gap: 20px;
+  word-wrap: break-word;
+  white-space: normal;
+  z-index: 3; /* Ensure the box is above the pulse */
+}
+
+.overlay-box .box-content {
+  color: var(--color-text-tertiary, #333333);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  word-wrap: break-word;
+  white-space: normal;
+  z-index: 3;
+}
+
+.box-top h2 {
+  font-size: 1.8rem;
+  color: var(--color-text-primary, #333333) !important;
+  margin-bottom: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+  z-index: 3;
+}
+
+.box-bottom .text {
+  font-size: 1rem;
+  color: var(--color-text-secondary, #777777);
+  word-wrap: break-word;
+  white-space: normal;
+  padding-bottom: 10px;
+  z-index: 3;
+}
+
+.underline {
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--link-color, #007bff);
+  transition: color 0.3s ease;
+  z-index: 3;
+}
+
+.underline:hover {
+  color: var(--color-primary-dark, #0056b3);
+  z-index: 3;
+}
+
+@media (max-width: 768px) {
   .overlay-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--color-background, #ffffff);
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 90%;
-    max-height: 90%;
-    width: 100%;
-    height: auto;
-    box-sizing: border-box;
-    text-align: center;
-    gap: 20px;
-    word-wrap: break-word;
-    white-space: normal;
-  }
-  
-  .overlay-box .box-content {
-    color: var(--color-text-tertiary, #333333);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    word-wrap: break-word;
-    white-space: normal;
-  }
-  
-  .box-top h2 {
-    font-size: 1.8rem;
-    color: var(--color-text-primary, #333333) !important;
-    margin-bottom: 20px;
-    font-weight: 600;
-    line-height: 1.2;
-  }
-  
-  .box-bottom .text {
-    font-size: 1rem;
-    color: var(--color-text-secondary, #777777);
-    word-wrap: break-word;
-    white-space: normal;
-    padding-bottom: 10px;
-  }
-  
-  .underline {
-    text-decoration: underline;
-    cursor: pointer;
-    font-weight: bold;
-    color: var(--link-color, #007bff);
-    transition: color 0.3s ease;
-  }
-  
-  .underline:hover {
-    color: var(--color-primary-dark, #0056b3);
-  }
-  
-  @media (max-width: 768px) {
-    .overlay-box {
       padding: 20px;
       max-width: 95%;
       min-width: 280px;
-    }
-  
-    .box-top h2 {
-      font-size: 1.5rem;
-    }
-  
-    .box-bottom .text {
-      font-size: 0.9rem;
-    }
   }
-  
+
+  .box-top h2 {
+      font-size: 1.5rem;
+  }
+
+  .box-bottom .text {
+      font-size: 0.9rem;
+  }
+}

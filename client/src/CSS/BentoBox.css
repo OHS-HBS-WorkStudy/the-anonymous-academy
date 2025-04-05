@@ -1,15 +1,16 @@
 /* Bento box container styling */
-.limiter {
+/* .limiter {
 
     margin-left: 70px;
-}
+} */
 
 .bento-box {
     display: flex;
     flex-wrap: nowrap;
     height: 570px;
-    width: 100%;
-    max-width: calc(100% - 60px); 
+    width: calc(100% -60px);
+    margin-left: 0;
+
     gap: 1em;
     padding-bottom: 60px;
     box-sizing: border-box;

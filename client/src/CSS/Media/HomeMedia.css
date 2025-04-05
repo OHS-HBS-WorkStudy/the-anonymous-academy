@@ -67,8 +67,11 @@
         height: 550px;
         transform: scale(0.97);
     }
+
+
     .grid-header {
-        max-width: 1200px !important;
+        max-width: 1040px !important;
+        
 
         height: 60px;
     }

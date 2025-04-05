@@ -1,5 +1,5 @@
 // Library declaration imports
-import { useState} from 'react';
+import { useState, useRef, useEffect} from 'react';
 
 // Other modules components imports
 import useNavigation from '../modules/useNavigation';
@@ -9,6 +9,19 @@ export default function SignUp() {
     const { goToLogin } = useNavigation();
     const [activeButton, setActiveButton] = useState("Student");
     const [passwordVisible, setPasswordVisible] = useState(false);
+
+    const leftSplitRef = useRef(null);
+  const rightSplitRef = useRef(null);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoaded(true);
+    }, 0); // Adjust the delay to control when the animation starts
+
+    return () => clearTimeout(timer);
+  }, []);
+
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
@@ -80,7 +93,10 @@ export default function SignUp() {
             <div className="Sign-page">
                 <div className='parent-container'>
                     <div className="split">
-                        <div className="split right">
+                    <div
+                            ref={rightSplitRef}
+                            className={`split right Sign-page ${loaded ? 'animate-right' : ''}`}
+                        >
                             <div className="center">
                                 <div className='content'>
                                     <img src={signuppic} alt="signpic" className="signpic" />
@@ -88,7 +104,10 @@ export default function SignUp() {
                             </div>
                         </div>
 
-                        <div className="split left">
+                        <div
+                                ref={leftSplitRef}
+                                className={`split left Sign-page ${loaded ? 'animate-left' : ''}`}
+                            >
                             <div className="center">
 
                                 <div className="page-title">

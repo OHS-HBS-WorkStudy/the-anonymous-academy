@@ -123,17 +123,128 @@
   
   }
   
-  
-    
-    
-    
-  .Sign .split.right {
-      animation: slideInL 1s ease-out forwards;
-    }
-  
-    .Sign .split.left {
-      animation: slideInR 1s ease-out forwards;
-    }
+.Sign-page .split.right {
+  transform: translateX(100%);
+}
+
+.Sign-page .split.left {
+  transform: translateX(-100%);
+}
+
+.Sign-page .split.right {
+  transform: translateX(100%) scale(0.8); 
+  opacity: 0;
+}
+
+.Sign-page .split.left {
+  transform: translateX(-100%) scale(0.8); 
+  opacity: 0;
+}
+
+.Sign-page .split.right.animate-right {
+  animation: scaleFadeInRight 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; 
+}
+
+.Sign-page .split.left.animate-left {
+  animation: scaleFadeInLeft 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; 
+}
+
+@keyframes scaleFadeInRight {
+  from {
+      transform: translateX(100%) scale(0.8);
+      opacity: 0;
+  }
+  to {
+      transform: translateX(0) scale(1);
+      opacity: 1;
+  }
+}
+
+@keyframes scaleFadeInLeft {
+  from {
+      transform: translateX(-100%) scale(0.8);
+      opacity: 0;
+  }
+  to {
+      transform: translateX(0) scale(1);
+      opacity: 1;
+  }
+}
+
+.Login .split {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  height: 100vh;
+  min-height: 500px;
+  overflow: hidden; /* Important to hide the off-screen parts */
+}
+
+.Login .split.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  background-color: var(--alt-background-color);
+  width: 50vw;
+  height: 100vh;
+  max-width: 50vw;
+  max-height: 100vh;
+  overflow: hidden;
+  transform: translateY(-100%); /* Start off-screen from the top */
+  opacity: 0;
+}
+
+.Login .split.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--login-and-sign-color);
+  width: 50vw;
+  height: 100vh;
+  position: relative;
+  max-width: 50vw;
+  max-height: 100vh;
+  overflow: hidden;
+  transform: translateY(100%); /* Start off-screen from the bottom */
+  opacity: 0;
+}
+
+.Login .split.right.animate-right {
+  animation: revealDiagonalRight 1.2s cubic-bezier(0.645, 0.045, 0.355, 1) forwards; /* Classic ease */
+}
+
+.Login .split.left.animate-left {
+  animation: revealDiagonalLeft 1.2s cubic-bezier(0.645, 0.045, 0.355, 1) forwards; /* Classic ease */
+}
+
+@keyframes revealDiagonalRight {
+  from {
+      transform: translateY(100%);
+      opacity: 0;
+  }
+  to {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+@keyframes revealDiagonalLeft {
+  from {
+      transform: translateY(-100%);
+      opacity: 0;
+  }
+  to {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
     
     .split::before,
     .split::after {
@@ -201,6 +312,24 @@
       }
     }
     
+    .Login .split.right .content {
+      z-index: 1;
+      color: white;
+      text-align: center;
+      font-size: 24px;
+      padding: 20px;
+      position: relative;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Smoother ease */
+  }
+  
+  .Login .split.right .content img {
+      margin-top: 60px;
+      margin-left: 30px;
+      width: 80%;
+      height: auto;
+      object-fit: contain;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+  }
   
     
     .input-container {

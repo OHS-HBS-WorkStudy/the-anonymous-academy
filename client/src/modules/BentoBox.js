@@ -3,7 +3,8 @@ import '../CSS/Main.css';
 
 export default function BentoBox() {
     return(
-        <div className="limiter">
+        <div className="bento-box-area">
+            <div className='limiter'>
             <div className="bento-box">
                     <div className="col-left">
                         <div className="col-row row1">
@@ -51,6 +52,7 @@ export default function BentoBox() {
                             </div>
                         </div>
                 </div>
+            </div>
             </div>
         </div>
     );
