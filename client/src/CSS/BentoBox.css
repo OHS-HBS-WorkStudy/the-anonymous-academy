@@ -166,10 +166,11 @@
 }
 
 .cred-content {
-    padding-bottom: 5px !important;
+    padding: 5px !important;
     height: 200px !important;
     justify-content: start !important;
-    align-items: start !important;
+    align-items: center !important;
+    overflow: hidden;
 }
 
 .credit-scorepro-content {

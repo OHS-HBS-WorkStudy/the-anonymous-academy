@@ -36,6 +36,11 @@
  npm install react-chartjs-2 chart.js
 ```
 
+### Install Google Icons  
+```
+ npm install @mui/icons-material
+```
+
 ### Open the application
 ```
  cd client

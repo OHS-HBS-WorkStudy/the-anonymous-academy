@@ -20,12 +20,6 @@
     color: var(--color-text-primary);
 }
 
-/* Grid header open state */
-.grid-header.open {
-    border-radius: 12px 12px 0 0;
-    transition: border-radius 0.3s ease-in-out;
-}
-
 .tag-input-text {
     margin-top: 20px !important;
 }
@@ -106,9 +100,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
     margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
+    width: 73%;
     max-width: 1440px;
     border-radius: 12px;
     background-color: var(--color-secondary);
@@ -121,13 +113,12 @@
     position: relative;
     max-height: 600px;
     margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
     overflow: visible;
     color: var(--color-text-tertiary);
     z-index: 10;
     transform: translateY(0);
     opacity: 1;
+    width: 73%;
 }
 
 .dropdown-content.open h3 {

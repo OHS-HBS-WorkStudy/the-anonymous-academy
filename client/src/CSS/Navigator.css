@@ -277,6 +277,7 @@
     cursor: pointer;
     background-color: transparent;
     border-style: none;
+    overflow-y: auto;
   }
   
   .navigator.menu-open {
@@ -300,7 +301,75 @@
   .sidebar-link:hover .icon-pencil {
     animation: drawing 1.7s ease-in-out forwards; 
   }
+
+  .recentThreadsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-top: 3rem;
+  }
   
+  .recentThreadsCollapsedTitle {
+    font-size: 1.2rem;
+    color: var(--color-text-secondary, hsl(220, 10%, 40%));
+    margin: 0;
+    padding: 0.625rem 0.9375rem;
+    cursor: pointer;
+    text-align: center;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .recentThreadsCollapsedTitle:hover {
+    color: var(--color-primary-accent, hsl(220, 55%, 65%));
+  }
+  
+  .recentThreadsExpanded {
+    padding: 1rem;
+    background-color: inherit;
+    border-radius: 0.5rem;
+    
+  }
+  
+  .recentThreadsTitle {
+    font-size: 1.2rem;
+    color: white;
+    margin: 0 0 0.625rem 0;
+    border-bottom: 1px solid var(--color-border, hsl(0, 0%, 85%));
+    padding-bottom: 0.3125rem;
+  }
+  
+  .recentThreadsExpanded ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: 14.375rem;
+    overflow-y: auto;
+  }
+  
+  .recentThreadItem {
+    padding: 0.5rem 0.9375rem;
+    font-size: 0.95rem;
+    color: white;
+    cursor: pointer;
+    border-radius: 0.3125rem;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .recentThreadItem:hover {
+    background-color: var(--color-primary-accent, hsl(220, 55%, 65%));
+    color: var(--color-text-white, white);
+    white-space: normal;
+  }
+  
+  .recentThreadEmpty {
+    font-size: 0.9rem;
+    color: var(--color-text-muted, hsl(220, 10%, 40%));
+    padding: 0.5rem 0.9375rem;
+    text-align: center;
+  }
   @keyframes drawing {
     0% {
       transform: rotate(0deg); 
