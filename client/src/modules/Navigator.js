@@ -44,6 +44,13 @@ export default function Navigator() {
     }
   }; 
 
+  function handleRVClick(thread) {
+    recent = recent.filter(item => item.id !== thread.id);
+    recent.unshift(thread);
+    sessionStorage.setItem("recentlyViewed", JSON.stringify(recent));
+    goToThread(thread.id);
+  }
+
   return (
     <>
       <div className="top-nav">
@@ -190,7 +197,7 @@ export default function Navigator() {
             <h2 className="recentThreadsTitle">Recent Viewed</h2>
             <ul>
               {recent.map(thread => (
-                <li key={thread.id} className={`recentThreadItem ${isActive('/thread/${thread.id}`') ? 'active-link' : ''}`} onClick={() => goToThread(thread.id)}>
+                <li key={thread.id} className={`recentThreadItem ${isActive('/thread/${thread.id}`') ? 'active-link' : ''}`} onClick={() => handleRVClick(thread)}>
                   {thread.title}
                 </li>
               ))}

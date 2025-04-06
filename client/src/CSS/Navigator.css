@@ -344,6 +344,7 @@
     margin: 0;
     max-width: 14.375rem;
     overflow-y: auto;
+    width: 240px;
   }
   
   .recentThreadItem {
