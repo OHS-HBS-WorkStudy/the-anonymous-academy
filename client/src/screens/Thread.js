@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import DOMPurify from "dompurify";
 import ReactQuill from "react-quill";
 
-import TimeCounter from '../modules/TimeCounter.js';
+import TimeCounter from '../modules/I-Candy/TimeCounter.js';
 import ThreadVote from '../modules/ThreadVote.js';
 import ReplyList from '../modules/Reply/ReplyList.js';
 import ThreadReply from '../modules/Reply/ThreadReply.js';

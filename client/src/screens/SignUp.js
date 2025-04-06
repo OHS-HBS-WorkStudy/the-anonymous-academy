@@ -4,6 +4,7 @@ import { useState, useRef, useEffect} from 'react';
 // Other modules components imports
 import useNavigation from '../modules/useNavigation';
 import signuppic from '../img/signpic.png';
+import TimeCounter from '../modules/I-Candy/TimeCounter';
 
 export default function SignUp() {
     const { goToLogin } = useNavigation();
@@ -17,7 +18,7 @@ export default function SignUp() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoaded(true);
-    }, 0); // Adjust the delay to control when the animation starts
+    }, 0); 
 
     return () => clearTimeout(timer);
   }, []);

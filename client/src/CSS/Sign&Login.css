@@ -461,9 +461,9 @@
     .split.left {
         min-width: 100vw !important;
         min-height: 100vh !important;
-        
-        animation: none !important;
-        overflow: hidden !important;
+        overflow: auto;
+       
+   
 
         box-sizing: border-box; 
     }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import CountUpComponent from '../modules/CountUp.js';
+import CountUpComponent from '../modules/I-Candy/CountUp.js';
 
 // Other modules components imports
 import BentoBox from '../modules/BentoBox.js';
@@ -31,7 +31,7 @@ export default function Home() {
                             </h1>
                         </div>
 
-                        <BentoBox />
+                            <BentoBox />
                         
                         <div className="main-content-area">
                         <ThreadFilter />
@@ -68,7 +68,6 @@ export default function Home() {
                                         <li className='trending-thread-item'>
                                         A Deep Dive into the Latest advancements in Web Security
                                         </li>
-                                        {/* You can add more trending threads here */}
                                     </ul>
                                 </div>
                             </div>

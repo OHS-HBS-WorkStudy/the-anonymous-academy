@@ -31,6 +31,10 @@
  npm i react-countup
 ```
 
+### Install React Chart for looks 
+```
+ npm install react-chartjs-2 chart.js
+```
 
 ### Open the application
 ```

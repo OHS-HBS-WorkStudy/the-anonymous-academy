@@ -1,19 +1,57 @@
-
-.bento-box-grid {
+.top-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr; 
-    grid-template-rows: auto auto;
+    grid-template-columns: 2fr 1fr;
     grid-template-areas:
-      "thread-history trending"
-      "your-threads cred-score"; 
+      "credit-progress trending";
     gap: 1em;
     width: calc(100% - 60px);
-    max-width: 1080px;
+    max-width: 1280px;
     margin: 0 auto;
-    height: 570px;
-    box-sizing: border-box;
-    padding-bottom: 60px;
+    margin-bottom: 40px;
+    max-height: 260px;
+    opacity: 0;
+    transform: translateY(-50px); 
+    animation: fadeSlideInTop 1s forwards;
 }
+
+.bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas:
+      "cred-score your-threads";
+    gap: 1em;
+    width: calc(100% - 60px);
+    max-width: 1280px;
+    margin: 0 auto;
+    height: 260px;
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(50px); 
+    animation: fadeSlideInBottom 1s 0.3s forwards; 
+}
+
+@keyframes fadeSlideInTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeSlideInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 .thread-history-container {
     grid-area: thread-history;
@@ -27,6 +65,19 @@
     padding: 10px;
 }
 
+.credit-scorepro-container {
+    grid-area: credit-progress;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-secondary-accent), var(--color-secondary));
+    border-radius: 2em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px; 
+}
+
+/* Trending container */
 .trending-container {
     grid-area: trending;
     background: linear-gradient(135deg, #FF5F6D, #FFC371);
@@ -48,7 +99,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Center the content */
+    justify-content: center;
     padding: 10px;
 }
 
@@ -62,11 +113,12 @@
     flex-direction: column;
     align-items: center;
     padding: 10px;
-    overflow-y: auto; /* For potential scrolling */
+    overflow-y: auto;
 }
 
-/* Hover effects */
+
 .thread-history-container:hover,
+.cred-score-container:hover,
 .trending-container:hover,
 .cred-score-container:hover,
 .your-threads-container:hover {
@@ -75,8 +127,8 @@
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-/* Common styling for titles */
 .thread-history-container h1,
+.credit-scorepro-container h1,
 .trending-container h1,
 .cred-score-container h1,
 .your-threads-container h1 {
@@ -95,8 +147,8 @@
     font-size: 27.5px;
 }
 
-/* Content areas */
 .thread-history-content,
+.credit-scorepro-content,
 .trending-content,
 .cred-content,
 .your-threads-content {
@@ -110,15 +162,32 @@
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1);
-    overflow-y: auto; /* Enable scrolling within content areas */
+    /* overflow-y: auto;  */
 }
 
+.cred-content {
+    padding-bottom: 5px !important;
+    height: 200px !important;
+    justify-content: start !important;
+    align-items: start !important;
+}
+
+.credit-scorepro-content {
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 0px !important;
+    max-height: 240px !important;
+    padding-top: -10px !important;
+}
+.rating-display {
+    font-size: 0.95em;
+    color: inherit;
+}
 .cred-content {
     justify-content: center;
     align-items: center;
 }
 
-/* Paragraph styling */
 .thread-history-content p,
 .trending-content p,
 .your-threads-content p {
@@ -142,10 +211,10 @@
 }
 
 .trending-content p {
-    -webkit-line-clamp: none; /* Show all trending items */
+    -webkit-line-clamp: none; 
 }
 
-/* Hover effect for paragraphs */
+
 .thread-history-content p:hover,
 .trending-content p:hover,
 .your-threads-content p:hover {
@@ -154,7 +223,6 @@
     background: rgba(255, 255, 255, 0.2);
 }
 
-/* Arrow icon */
 .thread-history-content p::after,
 .your-threads-content p::after {
     content: '→';
@@ -169,7 +237,6 @@
     transform: translateX(3px);
 }
 
-/* Styling for the fire icon in Trending */
 .trending-container h1.fire {
     text-shadow:
         0 -1px 3px #fff,
@@ -196,7 +263,6 @@
     }
 }
 
-/* Media Queries (Adjust as needed) */
 @media only screen and (max-width: 768px) {
     .bento-box-grid {
         grid-template-columns: 1fr;

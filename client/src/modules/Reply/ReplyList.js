@@ -1,6 +1,6 @@
 import { data, useParams } from "react-router-dom"; 
 import ReactQuill from "react-quill";
-import TimeCounter from "../TimeCounter";
+import TimeCounter from "../I-Candy/TimeCounter";
 import { useState, useRef, useEffect} from "react";
 import DOMPurify from 'dompurify';
 

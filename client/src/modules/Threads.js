@@ -2,7 +2,7 @@ import useNavigation from '../modules/useNavigation.js';
 import { useState, useEffect } from 'react';
 import DOMPurify from 'dompurify';
 
-import TimeCounter from './TimeCounter.js';
+import TimeCounter from './I-Candy/TimeCounter.js';
 
 export default function Threads({thread}) {
     const { goToThread } = useNavigation();
