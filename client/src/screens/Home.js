@@ -16,6 +16,7 @@ export default function Home() {
     console.log(data, recieveThread);
 
         return (
+            
             <div className="offset">
                 <div className="layout-wrapper">
                     <div className="layout-content">

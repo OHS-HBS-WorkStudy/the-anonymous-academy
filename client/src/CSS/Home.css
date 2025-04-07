@@ -13,7 +13,7 @@
     gap: 20px;
     padding-bottom: 80px;
     position: relative;
-    overflow: scroll;
+overflow: hidden;
     justify-content: center;
     box-sizing: border-box;
     padding-left: 0;
