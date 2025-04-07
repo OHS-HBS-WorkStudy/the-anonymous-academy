@@ -96,6 +96,14 @@ useEffect(() => {
       sessionStorage.setItem("tags", JSON.stringify(tags));
       setIsLoading(false);
       goToThread(newThread.thread_id);
+
+      const recentlyViewed = JSON.parse(sessionStorage.getItem('recentlyViewed') || '[]');
+      recentlyViewed.unshift({ id: threads.length, title: sanitizedTitle });
+      if (recentlyViewed.length > 10) {
+        recentlyViewed.pop();
+      }
+      sessionStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewed));
+
       setTags([]);
       setThreadTitle("");
       setThreadContents("");

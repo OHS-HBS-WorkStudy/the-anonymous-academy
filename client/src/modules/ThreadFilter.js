@@ -99,6 +99,7 @@ const deleteList = () => {
 }
 
     return (
+      <div className="grid-header-area">
         <div className="thread-filter">
           <div className={`grid-header ${filterOpen ? "open" : ""}`}>
             <div className="grid-header-title">Manager</div>
@@ -302,6 +303,7 @@ const deleteList = () => {
 
                        
           </div>
+        </div>
         </div>
         </div>
         </div>

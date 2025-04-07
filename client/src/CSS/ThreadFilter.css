@@ -4,9 +4,8 @@
     flex: 1 1 auto;
     justify-content: space-between;
     align-items: center;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 1440px;
+
+    width: 73%;
     gap: 16px;
     padding: 12px 24px;
     background-color: var(--color-secondary);
@@ -19,12 +18,6 @@
     font-size: clamp(1.2rem, 1.5vw, 1.8rem);
     font-weight: 600;
     color: var(--color-text-primary);
-}
-
-/* Grid header open state */
-.grid-header.open {
-    border-radius: 12px 12px 0 0;
-    transition: border-radius 0.3s ease-in-out;
 }
 
 .tag-input-text {
@@ -107,9 +100,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
     margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
+    width: 73%;
     max-width: 1440px;
     border-radius: 12px;
     background-color: var(--color-secondary);
@@ -122,13 +113,12 @@
     position: relative;
     max-height: 600px;
     margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
     overflow: visible;
     color: var(--color-text-tertiary);
     z-index: 10;
     transform: translateY(0);
     opacity: 1;
+    width: 73%;
 }
 
 .dropdown-content.open h3 {

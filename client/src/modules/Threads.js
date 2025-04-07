@@ -2,15 +2,46 @@ import useNavigation from '../modules/useNavigation.js';
 import { useState, useEffect } from 'react';
 import DOMPurify from 'dompurify';
 
-import TimeCounter from './TimeCounter.js';
+import TimeCounter from './I-Candy/TimeCounter.js';
 
-export default function Threads({thread}) {
+export default function Threads({ thread }) {
     const { goToThread } = useNavigation();
 
     const [loggedInUser, setLoggedInUser] = useState(null);
     const sanitizedName = DOMPurify.sanitize(thread.thread_name);
     const sanitizedContents = DOMPurify.sanitize(thread.thread_contents);
     const userAccountType = thread?.user?.account_type || "Unknown";
+
+    useEffect(() => {
+        const foundUserGet = sessionStorage.getItem("foundUser");
+        if (foundUserGet) {
+            setLoggedInUser(JSON.parse(foundUserGet));
+        }
+    }, []);
+
+    const updateRecentViewed = (threadId, threadTitle) => {
+        const viewedThreadsJSON = sessionStorage.getItem('recentlyViewed');
+        let viewedThreads = viewedThreadsJSON ? JSON.parse(viewedThreadsJSON) : [];
+
+        const existingIndex = viewedThreads.findIndex(item => item.id === threadId);
+
+        if (existingIndex !== -1) {
+            const existingThread = viewedThreads.splice(existingIndex, 1)[0];
+            viewedThreads.unshift(existingThread);
+        } else {
+            viewedThreads.unshift({ id: threadId, title: threadTitle });
+
+            if (viewedThreads.length > 10) {
+                viewedThreads.pop();
+            }
+        }
+        sessionStorage.setItem('recentlyViewed', JSON.stringify(viewedThreads));
+    };
+
+    const handleThreadClick = () => {
+        updateRecentViewed(thread.thread_id, thread.thread_name);
+        goToThread(thread.thread_id);
+    };
 
     function getTags() {
         let tags = thread.tags;
@@ -27,26 +58,18 @@ export default function Threads({thread}) {
         }
     }
 
-
     const foundUser = JSON.parse(sessionStorage.getItem("foundUser"));
 
-    useEffect(() => {
-        const foundUserGet = sessionStorage.getItem("foundUser");
-        if (foundUserGet) {
-            setLoggedInUser(JSON.parse(foundUserGet));
-        }
-    }, []);
-
-      function userCheck(thread, foundUser) {
+    function userCheck(thread, foundUser) {
         if (foundUser?.email === thread?.user.email) {
-            return "Posted by you";  
+            return "Posted by you";
         } else {
             return "Anonymous " + (thread.user.account_type || "Unknown User");
         }
     }
 
     return (
-        <div className="grid-item" onClick={() => goToThread(thread.thread_id)}>
+        <div className="grid-item" onClick={handleThreadClick}>
             <div className="user-header">
                 <div className="user-avatar"></div>
                 <p className="username">{userCheck(thread, foundUser)}</p>
@@ -83,7 +106,7 @@ export default function Threads({thread}) {
                     <div className="grid-item-title" dangerouslySetInnerHTML={{ __html: sanitizedName }} />
                     <div className="grid-item-desc" dangerouslySetInnerHTML={{ __html: sanitizedContents }} />
 
-                
+
                     <div className="grid-item-tags-container">
                         {getTags()}
                     </div>
