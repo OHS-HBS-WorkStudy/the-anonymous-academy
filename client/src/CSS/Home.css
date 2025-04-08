@@ -80,7 +80,7 @@
 
 .grid-header-area {
     grid-area: grid-header;
-    width: 95.5%; 
+    width: 100%; 
     border: 1px solid yellow; 
     box-sizing: border-box;
 }
