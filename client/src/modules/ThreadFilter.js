@@ -103,7 +103,7 @@ const deleteList = () => {
         <div className="thread-filter">
           <div className={`grid-header ${filterOpen ? "open" : ""}`}>
             <div className="grid-header-title">Manager</div>
-              <button onClick={() => deleteList()}>Clear List</button>
+            <button onClick={() => deleteList()}>Clear List</button>
             <div className="dropdown">
               <label htmlFor="tagFilter" style={{ display: "none" }}>
                 Categories

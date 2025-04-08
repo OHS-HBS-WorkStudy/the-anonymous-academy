@@ -20,6 +20,9 @@ export default function BentoBox() {
             <h1 className="fire">Trending</h1>
             <div className="trending-content">
               <p>No trends</p>
+              <p>No trends</p>
+              <p>No trends</p>
+              <p>No trends</p>
             </div>
           </div>
           </div>
@@ -34,6 +37,9 @@ export default function BentoBox() {
           <div className="your-threads-container">
             <h1>Your Threads</h1>
             <div className="your-threads-content">
+              <p>No threads created yet</p>
+              <p>No threads created yet</p>
+              <p>No threads created yet</p>
               <p>No threads created yet</p>
             </div>
           </div>

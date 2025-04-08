@@ -5,13 +5,14 @@
     justify-content: space-between;
     align-items: center;
 
-    width: 73%;
+    width: 100%;
     gap: 16px;
     padding: 12px 24px;
     background-color: var(--color-secondary);
     border-radius: 12px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     flex-wrap: nowrap;
+    margin-left: 0px !important;
 }
 
 .grid-header-title {
@@ -100,8 +101,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
     margin-top: 10px;
-    width: 73%;
-    max-width: 1440px;
+    width: 100%;
     border-radius: 12px;
     background-color: var(--color-secondary);
     transform: translateY(10%);
@@ -118,7 +118,7 @@
     z-index: 10;
     transform: translateY(0);
     opacity: 1;
-    width: 73%;
+    width: 100%;
 }
 
 .dropdown-content.open h3 {
