@@ -24,7 +24,7 @@
 
 .questionsSection {
     width: 100%;
-    background-color: #f7f7f7;
+    background: var(--alt-background-color) !important;
     padding: 20px;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -36,14 +36,14 @@
   
   .questionsTitle {
     font-size: 1em;
-    color: #333;
-    margin-right: 10px;
+    color: var( --color-text-tertiary);
+    margin-right: 15px;
   }
   
   .countUp {
     font-size: 1em;
     font-weight: bold;
-    color: var(--color-primary, #007bff);
+    color: var(--clr-primary-a40, #007bff);
   }
   
   @keyframes fadeInSlideDown {
@@ -139,17 +139,22 @@
     align-items: center;
     margin-left: auto;
     gap: 20px;
+    color: var(--color-text-tertiary) !important;
 }
 
 .thread-page .listpage-btn {
     background-color: var(--color-secondary-accent);
-    color: var(--color-text-primary);
+    color: var(--color-text-tertiary) !important;
     font-size: 1.2rem;
     padding: 10px 15px;
     border: 1px solid var(--color-primary-accent);
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.thread-page  span {
+    color: var(--color-text-tertiary) !important;
 }
 
 .thread-page .listpage-btn:hover {
@@ -159,7 +164,7 @@
 
 .thread-page .listpage-btn:disabled {
     background-color: var(--color-secondary);
-    color: var(--color-text-secondary);
+    color: var(--color-text-tertiary) !important;
     cursor: not-allowed;
     transform: none;
 }
@@ -218,7 +223,7 @@
 .grid-item-title {
     font-size: 18px;
     font-weight: 600;
-    color: #333;
+    color: var(--color-text-tertiary) !important;
     line-height: 1.3;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -229,7 +234,7 @@
 
 .grid-item-desc {
     font-size: 14px;
-    color: #555;
+    color: var(--color-text-fouthy) !important;
     line-height: 1.5;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -282,11 +287,12 @@
 .username {
     font-size: 13px; 
     font-weight: 600;
+    color: var(--color-text-tertiary) !important;
 }
 
 .date-display {
     font-size: 11px;
-    color: #777;
+    color: var(--color-text-secondary);
     font-weight: normal;
 }
 
@@ -505,7 +511,7 @@
 
 .trending-threads-cont {
     background-color: rgba(255, 255, 255, 0.1);
-    color: var(--color-text-primary);
+    color: var(--color-text-tertiary) !important;
     border-radius: 12px;
     box-sizing: border-box;
     padding: 20px; 
@@ -525,11 +531,14 @@
 }
 
 
+
+
+
 .trending-threads-cont h3 {
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 8px;
-    color: var(--color-primary);
+    color: var(--color-text-tertiary) !important;
     border-bottom: 2px solid rgba(255, 255, 255, 0.5); 
     padding-bottom: 5px;
 }

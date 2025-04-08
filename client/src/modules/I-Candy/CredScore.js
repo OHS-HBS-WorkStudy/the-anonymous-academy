@@ -62,8 +62,8 @@ const FullCircle = ({ score, score1 }) => {
     <div
       style={{
         display: 'flex',
-        justifyContent: 'start',
-        alignItems: 'start',
+        justifyContent: 'center',
+        alignItems: 'center',
         textAlign: 'center',
         margin: '10px',
         transform: 'scale(1.5)',

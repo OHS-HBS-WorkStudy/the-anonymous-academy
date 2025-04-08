@@ -1,0 +1,315 @@
+.dark {
+    --color-background: #1e1e1e; /* Deep muted gray */
+    --alt-background-color: #1e1e1e; /* Slightly lighter muted gray */
+    --color-text-primary: hsl(0, 0%, 92%); /* Soft white for readability */
+    --color-text-secondary: hsl(0, 0%, 70%); /* Light gray for secondary text */
+    --color-text-tertiary: hsl(0, 0%, 100%); /* White */
+    --color-text-fouthy: hsl(0, 0%, 85%);
+    --color-text-white: white; /* White for text on dark backgrounds */
+    --color-text-black: #333;
+    --color-input-background: #3f3f3f;
+
+    /** Dark theme surface colors */
+    --clr-surface-a0: #121212;
+    --clr-surface-a10: #282828;
+    --clr-surface-a20: #3f3f3f;
+    --clr-surface-a30: #575757;
+    --clr-surface-a40: #717171;
+    --clr-surface-a50: #8b8b8b;
+
+    /** Dark theme tonal surface colors */
+    --clr-surface-tonal-a0: #18161a;
+    --clr-surface-tonal-a10: #2d2b2f;
+    --clr-surface-tonal-a20: #444245;
+    --clr-surface-tonal-a30: #5b5a5d;
+    --clr-surface-tonal-a40: #747376;
+    --clr-surface-tonal-a50: #8f8d90;
+
+    --newThread-button: #6C58CE;
+    --newThread-button-hover: #5438a5;
+
+    /* Grid item colors */
+    --grid-item-background: #2a2a2a; /* Slightly lighter than background for contrast */
+    --grid-item-hover: #3a3a3a; /* A bit brighter for hover effect */
+    --grid-item-border: #444444; /* Subtle border for better separation */
+
+    --link-color: white;
+}
+
+.dark {
+    --color-primary: hsl(270, 25%, 18%); /* Dark lavender-gray */
+    --color-primary-accent: hsla(270, 40%, 25%, 0.8); /* Slightly transparent dark purple */
+    --color-secondary: hsl(270, 20%, 22%); /* Muted dark gray with purple */
+    --color-secondary-accent: hsl(270, 25%, 30%); /* Slightly lighter muted purple */
+    --color-tertiary: hsl(270, 15%, 10%); /* Nearly black with subtle purple */
+    --color-accent: hsl(270, 20%, 50%); /* Slightly vibrant purple for accents */
+
+    /** Dark theme primary colors */
+    --clr-primary-a0: #4d3960;
+    --clr-primary-a10: #5f4d70;
+    --clr-primary-a20: #726181;
+    --clr-primary-a30: #857692;
+    --clr-primary-a40: #988ba4;
+    --clr-primary-a50: #aca1b5;
+
+    --newThread-button: #6C58CE;
+    --newThread-button-hover: #5438a5;
+
+    /* Grid item colors */
+    --grid-item-background: #2a2a2a;
+    --grid-item-hover: #3a3a3a;
+    --grid-item-border: #444444;
+
+    --login-and-sign-color: linear-gradient(45deg, #9C6DD5, #7A4F9A, #B47BD9);
+}
+
+.dark[data-accent-color="blue"] {
+    --color-primary: hsl(210, 25%, 18%); /* Dark slate blue */
+    --color-primary-accent: hsla(210, 40%, 25%, 0.8); /* Slightly transparent dark blue */
+    --color-secondary: hsl(210, 20%, 22%); /* Muted dark gray with blue */
+    --color-secondary-accent: hsl(210, 25%, 30%); /* Slightly lighter muted blue */
+    --color-tertiary: hsl(210, 15%, 10%); /* Nearly black with subtle blue */
+    --color-accent: hsl(210, 20%, 50%); /* Slightly vibrant blue for accents */
+
+    /** Dark theme primary colors */
+    --clr-primary-a0: #2b3a4b;
+    --clr-primary-a10: #3a4d63;
+    --clr-primary-a20: #4a607b;
+    --clr-primary-a30: #5a7493;
+    --clr-primary-a40: #6a88ab;
+    --clr-primary-a50: #7a9cc3;
+
+    --newThread-button: #3a6ea5;
+    --newThread-button-hover: #2a4d75;
+
+    /* Grid item colors */
+    --grid-item-background: #3a4d63;
+    --grid-item-hover: #4a607b;
+    --grid-item-border: #5a7493;
+
+    --login-and-sign-color: linear-gradient(45deg, #5A9BD5, #3A6EA5, #7AAED9);
+}
+.dark[data-accent-color="green"] {
+    --color-primary: hsl(120, 25%, 18%); /* Dark forest green */
+    --color-primary-accent: hsla(120, 40%, 25%, 0.8); /* Slightly transparent dark green */
+    --color-secondary: hsl(120, 20%, 22%); /* Muted dark gray with green */
+    --color-secondary-accent: hsl(120, 25%, 30%); /* Slightly lighter muted green */
+    --color-tertiary: hsl(120, 15%, 10%); /* Nearly black with subtle green */
+    --color-accent: hsl(120, 20%, 50%); /* Slightly vibrant green for accents */
+
+    /** Dark theme primary colors */
+    --clr-primary-a0: #2b4b3a;
+    --clr-primary-a10: #3a634d;
+    --clr-primary-a20: #4a7b60;
+    --clr-primary-a30: #5a936a;
+    --clr-primary-a40: #6aab7a;
+    --clr-primary-a50: #7ac38a;
+
+    --newThread-button: #3a9e75;
+    --newThread-button-hover: #2a6e55;
+
+    /* Grid item colors */
+    --grid-item-background: #3a634d;
+    --grid-item-hover: #4a7b60;
+    --grid-item-border: #5a936a;
+
+    --login-and-sign-color: linear-gradient(45deg, #5AD5A5, #3AA57A, #7AD9B4);
+}
+
+.dark[data-accent-color="red"] {
+    --color-primary: hsl(0, 25%, 18%); /* Dark crimson */
+    --color-primary-accent: hsla(0, 40%, 25%, 0.8); /* Slightly transparent dark red */
+    --color-secondary: hsl(0, 20%, 22%); /* Muted dark gray with red */
+    --color-secondary-accent: hsl(0, 25%, 30%); /* Slightly lighter muted red */
+    --color-tertiary: hsl(0, 15%, 10%); /* Nearly black with subtle red */
+    --color-accent: hsl(0, 20%, 50%); /* Slightly vibrant red for accents */
+
+    /** Dark theme primary colors */
+    --clr-primary-a0: #4b2b2b;
+    --clr-primary-a10: #633a3a;
+    --clr-primary-a20: #7b4a4a;
+    --clr-primary-a30: #93605a;
+    --clr-primary-a40: #ab6a6a;
+    --clr-primary-a50: #c37a7a;
+
+    --newThread-button: #a53a3a;
+    --newThread-button-hover: #752a2a;
+
+    /* Grid item colors */
+    --grid-item-background: #633a3a;
+    --grid-item-hover: #7b4a4a;
+    --grid-item-border: #93605a;
+
+    --login-and-sign-color: linear-gradient(45deg, #D55A5A, #A53A3A, #D97A7A);
+}
+
+.dark[data-accent-color="brown"] {
+    --color-primary: hsl(30, 25%, 18%); /* Dark burnt orange */
+    --color-primary-accent: hsla(30, 40%, 25%, 0.8); /* Slightly transparent dark orange */
+    --color-secondary: hsl(30, 20%, 22%); /* Muted dark gray with orange */
+    --color-secondary-accent: hsl(30, 25%, 30%); /* Slightly lighter muted orange */
+    --color-tertiary: hsl(30, 15%, 10%); /* Nearly black with subtle orange */
+    --color-accent: hsl(30, 20%, 50%); /* Slightly vibrant orange for accents */
+
+    /** Dark theme primary colors */
+    --clr-primary-a0: #4b392b;
+    --clr-primary-a10: #63503a;
+    --clr-primary-a20: #7b664a;
+    --clr-primary-a30: #937d5a;
+    --clr-primary-a40: #ab946a;
+    --clr-primary-a50: #c3ab7a;
+
+    --newThread-button: #a55a3a;
+    --newThread-button-hover: #75422a;
+
+    /* Grid item colors */
+    --grid-item-background: #63503a;
+    --grid-item-hover: #7b664a;
+    --grid-item-border: #937d5a;
+
+    --login-and-sign-color: linear-gradient(45deg, #D58A5A, #A55A3A, #D9A27A);
+}
+
+
+
+:root {
+    --color-background: hsl(0, 0%, 98%); /* Very light gray for the main background */
+    --color-surface: hsl(0, 0%, 100%); /* Pure white for surfaces like cards */
+    --color-text-primary: hsl(220, 15%, 20%); /* Dark slate blue for main text */
+    --color-text-secondary: hsl(220, 10%, 40%); /* Medium gray-blue for secondary text */
+    --color-text-tertiary: black; /* Black for text on light backgrounds */
+    --color-text-fouthy: #555; /* Medium gray for less emphasized text */
+    --color-text-white: white; /* White for text on dark backgrounds */
+    --color-text-black: #333;
+
+    --color-border: hsl(0, 0%, 85%); /* Light gray for separation */
+    --color-shadow: hsla(0, 0%, 0%, 0.1); /* Soft black shadow for depth */
+    --color-input-background: hsl(220, 15%, 90%); /* Soft light gray-blue */
+
+    --alt-background-color: #f7f7f7;
+
+
+
+    --grid-item-background: #fff;
+    --grid-item-hover: #f9f9f9;
+    --grid-item-border: #e0e0e0;
+
+    --link-color: #cca633;
+
+    --newThread-button: #406abf;
+    --newThread-button-hover: #5a79c6;
+
+    --login-and-sign-color: linear-gradient(45deg, #e6e6fa, #add8e6);
+}
+
+:root[data-accent-color="default"] {
+    --color-primary: hsl(220, 50%, 50%); /* Modern medium blue */
+    --color-primary-accent: hsl(220, 55%, 65%); /* Light blue for highlights or hover effects */
+    --color-secondary: hsl(45, 60%, 50%); /* Classic gold for accents */
+    --color-secondary-accent: hsl(45, 65%, 40%); /* Rich gold for deeper emphasis */
+    --color-black-gold: hsl(45, 35%, 15%); /* Deep, muted black gold for bold contrasts */
+    --color-black-gold-light: hsl(45, 30%, 25%); /* Slightly lighter black gold for secondary elements */
+    --color-text-accent: var(--color-black-gold); /* Black gold for special text like headers */
+
+    --clr-primary-a0: #cca633;
+    --clr-primary-a10: #d3af4c;
+    --clr-primary-a20: #dab963;
+    --clr-primary-a30: #e1c37a;
+    --clr-primary-a40: #e7cc90;
+    --clr-primary-a50: #edd6a6;
+
+    --clr-surface-a0: #406abf;
+    --clr-surface-a10: #5a79c6;
+    --clr-surface-a20: #7189ce;
+    --clr-surface-a30: #8799d5;
+    --clr-surface-a40: #9ba9dc;
+    --clr-surface-a50: #afbae3;
+
+    --clr-surface-tonal-a0: #5b6fb3;
+    --clr-surface-tonal-a10: #6e7ebb;
+    --clr-surface-tonal-a20: #818dc4;
+    --clr-surface-tonal-a30: #939ccc;
+    --clr-surface-tonal-a40: #a5acd5;
+    --clr-surface-tonal-a50: #b7bcdd;
+}
+
+
+:root[data-accent-color="blue"] {
+    --color-primary: hsl(210, 50%, 85%); /* Soft sky blue */
+    --color-primary-accent: hsl(210, 55%, 75%); /* Light blue for highlights */
+    --color-secondary: hsl(210, 40%, 90%); /* Pale blue-gray */
+    --color-secondary-accent: hsl(210, 45%, 80%); /* Muted light blue */
+    --color-accent: hsl(210, 60%, 70%); /* Vibrant blue for accents */
+
+    --clr-primary-a0: #d9e6f2;
+    --clr-primary-a10: #c4d9eb;
+    --clr-primary-a20: #b0cceb;
+    --clr-primary-a30: #9bbfde;
+    --clr-primary-a40: #87b2d7;
+    --clr-primary-a50: #73a5d0;
+
+    --newThread-button: #73a5d0;
+    --newThread-button-hover: #5b8bb8;
+
+    --login-and-sign-color: linear-gradient(45deg, #c4d9eb, #b0cceb, #9bbfde);
+}
+
+:root[data-accent-color="green"] {
+    --color-primary: hsl(120, 50%, 85%); /* Soft mint green */
+    --color-primary-accent: hsl(120, 55%, 75%); /* Light green for highlights */
+    --color-secondary: hsl(120, 40%, 90%); /* Pale green-gray */
+    --color-secondary-accent: hsl(120, 45%, 80%); /* Muted light green */
+    --color-accent: hsl(120, 60%, 70%); /* Vibrant green for accents */
+
+    --clr-primary-a0: #d9f2e6;
+    --clr-primary-a10: #c4ebd9;
+    --clr-primary-a20: #b0e4cb;
+    --clr-primary-a30: #9bdebd;
+    --clr-primary-a40: #87d7af;
+    --clr-primary-a50: #73d0a1;
+
+    --newThread-button: #73d0a1;
+    --newThread-button-hover: #5bb88b;
+
+    --login-and-sign-color: linear-gradient(45deg, #c4ebd9, #b0e4cb, #9bdebd);
+}
+
+:root[data-accent-color="red"] {
+    --color-primary: hsl(0, 50%, 85%); /* Soft pinkish red */
+    --color-primary-accent: hsl(0, 55%, 75%); /* Light red for highlights */
+    --color-secondary: hsl(0, 40%, 90%); /* Pale red-gray */
+    --color-secondary-accent: hsl(0, 45%, 80%); /* Muted light red */
+    --color-accent: hsl(0, 60%, 70%); /* Vibrant red for accents */
+
+    --clr-primary-a0: #f2d9d9;
+    --clr-primary-a10: #ebc4c4;
+    --clr-primary-a20: #e4b0b0;
+    --clr-primary-a30: #de9b9b;
+    --clr-primary-a40: #d78787;
+    --clr-primary-a50: #d07373;
+
+    --newThread-button: #d07373;
+    --newThread-button-hover: #b85b5b;
+
+    --login-and-sign-color: linear-gradient(45deg, #ebc4c4, #e4b0b0, #de9b9b);
+}
+
+:root[data-accent-color="orange"] {
+    --color-primary: hsl(30, 50%, 85%); /* Soft peach orange */
+    --color-primary-accent: hsl(30, 55%, 75%); /* Light orange for highlights */
+    --color-secondary: hsl(30, 40%, 90%); /* Pale orange-gray */
+    --color-secondary-accent: hsl(30, 45%, 80%); /* Muted light orange */
+    --color-accent: hsl(30, 60%, 70%); /* Vibrant orange for accents */
+
+    --clr-primary-a0: #f2e6d9;
+    --clr-primary-a10: #ebd9c4;
+    --clr-primary-a20: #e4cbaf;
+    --clr-primary-a30: #debd9b;
+    --clr-primary-a40: #d7af87;
+    --clr-primary-a50: #d0a173;
+
+    --newThread-button: #d0a173;
+    --newThread-button-hover: #b88b5b;
+
+    --login-and-sign-color: linear-gradient(45deg, #ebd9c4, #e4cbaf, #debd9b);
+}

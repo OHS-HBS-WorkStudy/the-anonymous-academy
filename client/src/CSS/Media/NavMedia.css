@@ -1,4 +1,21 @@
-@media only screen and (max-width: 480px) {
+@media (max-width: 786px) {
+  .sidebar {
+    width: 60px;
+    overflow: hidden;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-in-out;
+    opacity: 1;
+  }
+
+  .navigator:not(.menu-open) .sidebar {
+    width: 0;
+    opacity: 0;
+  }
+
+  .navigator.menu-open .sidebar {
+    width: 60px;
+    opacity: 1;
+  }
+
   .mobile-overlay {
     position: fixed;
     top: 0;
@@ -12,44 +29,9 @@
     align-items: center;
     z-index: 1;
   }
-  
-    .sidebar {
-      display: none !important;
-      overflow: hidden;
-      padding: 0;
-      transition: width 0.3s ease-in-out;
-      height: 100vw;
-      border-top-right-radius: 15px;
-      border-bottom-right-radius: 15px;
-      box-shadow: 4px 0 5px -2px rgba(0, 0, 0, 0.6);
-    }
-  
-    .navigator.menu-open .sidebar {
-      width: 170px !important; 
-      display: flex !important;
-    }
-  
-    .navigator.menu-open {
-      margin-left: 160px !important;
-    }
-  
-    .sidebar-link {
-      padding-left: 5px !important;
-      margin-left: 28px !important;
-    }
-  
-    .navigator.menu-open .sidebar-link {
-      padding-left: 10px !important;
-    }
-  
-    .navigator.menu-open .sidebar-link svg {
-      margin-right: 3px !important;
-    }
-  
-    .nav-toggle {
-      margin-left: -4px !important;
-    }
-  
+}
+
+@media only screen and (max-width: 480px) {
     .sidebar-link:hover,
     .sidebar-link:hover svg,
     .sidebar-link:hover .icon-gear,

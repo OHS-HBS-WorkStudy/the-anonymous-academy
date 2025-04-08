@@ -360,7 +360,7 @@ transform: scale(1.1);
 }
 
 .recentThreadItem:hover {
-  background-color: var(--color-primary-accent, hsl(220, 55%, 65%));
+  background-color: rgba(0, 0, 255, 0.1) !important;
   color: var(--color-text-white, white);
   white-space: normal;
 }

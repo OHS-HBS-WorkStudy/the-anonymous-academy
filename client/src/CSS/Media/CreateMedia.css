@@ -50,3 +50,17 @@
       min-width: fit-content !important;
     }
   }
+
+@media (max-width: 786px) {
+  .NewThread {
+    background-color: var(--alt-background-color);
+    display: grid;
+    padding-right: 0px !important;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+    grid-template-areas:
+      "text-top"
+      "thread-rules"
+      "center-content" !important;
+  }
+}

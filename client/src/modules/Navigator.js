@@ -90,7 +90,7 @@ export default function Navigator() {
           </div>
         </div>
 
-        {(isExpanded && screenWidth <= 480) && (
+        {(isExpanded && screenWidth <= 786) && (
         <div className="mobile-overlay" onClick={(e) => {
           e.stopPropagation();
           switchToggle();

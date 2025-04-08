@@ -65,7 +65,8 @@ useEffect(() => {
   const handleClickOutside = (event) => {
     if (
       filterButtonRef.current && !filterButtonRef.current.contains(event.target) &&
-      dropdownRef.current && !dropdownRef.current.contains(event.target)
+      dropdownRef.current && !dropdownRef.current.contains(event.target) &&
+      event.target !== document.scrollingElement
     ) {
       setFilterOpen(false);
     }

@@ -85,7 +85,7 @@ export default function CreateThreadAside({ruleAgreement, setRuleAgreement}) {
               required
              
             />
-            <span  className="required"><b> I have read and agree to the thread creation guidelines.</b></span>
+            <span  className="required"><b> I have read and agreed to the thread creation guidelines.</b></span>
           </label>
         </div>
       </aside>

@@ -125,6 +125,16 @@
     margin-bottom: none !important;
 }
 
+
+@media (max-width: 786px) {
+    .dropdown-content {
+        grid-template-columns: 1fr;
+    }
+
+    .dropdown.col1 .left {
+        border-right: none !important; 
+    }
+}
 /* Dropdown column styling */
 .dropdown-content.open .dropdown.col1,
 .dropdown-content.open .dropdown.col2,
