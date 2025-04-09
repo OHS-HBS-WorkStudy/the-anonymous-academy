@@ -87,7 +87,7 @@ export default function Stats({ loggedInUser, setLoggedInUser }) {
               <option value="default">Default</option>
               <option value="blue">Blue</option>
               <option value="green">Green</option>
-              <option value="red">Red</option>
+              <option value="red">Rose</option>
               <option value="brown">Brown</option>
             </select>
           </div>
