@@ -5,9 +5,9 @@ import "react-quill/dist/quill.snow.css";
 import DOMPurify from 'dompurify';
 
 // Other modules components imports
-import useNavigation from "./useNavigation";
-import AddTags from "./AddTags";
-import CreateThreadAside from "../screens/sub-screens/CreateThreadAside";
+import useNavigation from "../useNavigation";
+import AddTags from "../AddTags";
+import CreateThreadAside from "../../screens/sub-screens/CreateThreadAside";
 
 export default function CreateThread() {
   const [ThreadTitle, setThreadTitle] = useState("");
