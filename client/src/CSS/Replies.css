@@ -26,7 +26,8 @@
   .reply-container .ql-toolbar.ql-snow {
     border-radius: 5px !important;
     margin-bottom: 10px !important;
-    color: white !important;
+   
+    
   }
   
   /* Transition effect for Quill toolbar buttons */
@@ -46,6 +47,10 @@
     border: 0 !important;
     border-radius: 5px !important;
     margin-bottom: 10px !important;
+  }
+
+  .reply-container .ql-toolbar.ql-snow .ql-picker-options {
+    background-color: var(--clr-primary-a10);
   }
   
   /* Layout for Quill toolbar formats */
@@ -147,9 +152,9 @@
   }
 
   .reply-card .date-display {
-    font-size: 11px;
+    font-size: var(--font-size-xs) !important;
     color: var(--color-text-secondary);
-    font-weight: bold;
+    font-weight: normal;
 }
   
   .reply-content .ql-container {
@@ -205,17 +210,15 @@
 
   .reply-card .reply-date,
   .date-display {
-    font-size: 0.8rem; 
     color: var(--color-text-primary) !important;
     opacity: 1; 
-    margin-top: 1px;
+   
    
   }
 
     .reply-card .username {
-        font-size: 14px; 
-        font-weight: 600;
-        color: white;
+      font-size: var(--font-size-md) !important; 
+    
     }
 
   .reply-content {
@@ -288,5 +291,12 @@
   
   .replies-title {
     font-weight: bold;
+    color: var(--color-text-white);
+  }
+
+  .replies-title h2 span {
+    font-weight: bold;
+    color: var(--clr-primary-a40) !important;
+    display: inline !important; /* Ensure span is not overridden by other styles */
   }
   

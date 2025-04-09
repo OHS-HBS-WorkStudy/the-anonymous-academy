@@ -6,17 +6,18 @@
     grid-template-areas:
       "bento-box"
       "main-content"; 
-    max-width: 100vw; 
-    width: calc(100vw - 60px); 
+   
+    width: fit-content;
+   
     height: fit-content;
     min-height: 100vh;
-    margin: 0 auto; 
+
     padding-bottom: 80px;
     position: relative;
     justify-content: center;
     box-sizing: border-box;
-    border: 1px solid yellow;
     padding: 10px;
+    margin: 0 auto;
 }
 
 .questionsSection {
@@ -106,7 +107,8 @@
       "bento-box"
       "main-content";
     justify-content: center;
-    width: 100vw;
+   
+    width: 100%;
     box-sizing: border-box;
     padding-left: 0;
     padding-right: 0;
@@ -219,7 +221,7 @@
 
 .grid-item-title {
     font-size: var(--font-size-lg);
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     color: var(--color-text-tertiary) !important;
     line-height: var(--line-height-heading);
     text-overflow: ellipsis;
@@ -284,14 +286,14 @@
 
 .username {
     font-size: var(--font-size-sm) !important; 
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     color: var(--color-text-tertiary) !important;
 }
 
 .date-display {
     font-size: var(--font-size-xs) !important;
     color: var(--color-text-secondary);
-    font-weight: normal;
+    font-weight: var(--font-weight-normal);
 }
 
 .content-row {

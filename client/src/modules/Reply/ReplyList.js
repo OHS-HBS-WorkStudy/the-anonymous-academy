@@ -7,6 +7,7 @@ import DOMPurify from 'dompurify';
 
 import ReplyToReply from "./ReplyToReply";
 import ReplyVote from "./ReplyVote";
+import CountUpComponent from "../I-Candy/CountUp.js";
 
 export default function ReplyList({thread}) {
     const { threadId } = useParams(); 
@@ -59,13 +60,20 @@ export default function ReplyList({thread}) {
         }
     }
 
+    function getRepliesLength() {
+        return replies  ? replies.length : "0";
+    }
+
 
     
 
     return (
             <div>
                 <header className="replies-header">
-                    <h2 className="replies-title">Replies: {replies  ? replies.length : "0"}</h2>
+                    <h2 className="replies-title">Replies: {''} 
+                        <CountUpComponent endValue={getRepliesLength()} duration={3.8} />
+                    </h2>
+                   
 
                     <div className="sort-dropdown-container">
                         <select

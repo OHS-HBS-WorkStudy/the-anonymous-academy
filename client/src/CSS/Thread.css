@@ -5,7 +5,6 @@
   max-width: 100vw; 
   width: 100%;
   background-color: var(--clr-surface-a10);
-  
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: var(--color-text-white);
   line-height: 1.6;
@@ -14,19 +13,20 @@
 
 .thread-content {
   width: 100%;
-
   margin-right: auto; 
   padding: 2rem;
   box-sizing: border-box; 
 }
+
 .thread-header {
   border-bottom: 1px solid var(--color-border);
 }
 
 .thread-title {
-  font-size: 2.2rem;
-  font-weight: 600;
+  font-size: var( --font-size-xxl);
+  font-weight: var(--font-weight-bold);
   margin-bottom: 0.5rem;
+  color: var(--color-text-white);
   word-break: break-word;
   letter-spacing: -0.02em;
 }
@@ -35,18 +35,23 @@
   display: flex;
   gap: 1.5rem;
   font-size: 0.9rem;
-  color: var(--color-text-white);
+  color: var(--color-text-white) !important;
   margin-bottom: 1.5rem;
   margin-top: 10px;
 }
+.thread-meta p,
+.thread-meta span {
 
+  color: var(--color-text-white) !important;
+
+}
 .user-poster{
   background-color: var(--color-secondary);
   border-radius: 25px;
-  cursor: pointer;
   color: var(--color-text-primary);
   padding-left: 10px;
   padding-right: 10px;
+
 }
 
 .thread-main-content {
@@ -113,8 +118,8 @@
 }
 
 .replies-title {
-  font-size: 1.7rem;
-  font-weight: 600;
+  font-size: var( --font-size-xl);
+  font-weight: var(--font-weight-bold);
   color: var(--color-text-white);
   letter-spacing: -0.01em;
 }

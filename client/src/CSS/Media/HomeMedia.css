@@ -76,9 +76,7 @@
 
 
 @media only screen and (max-width: 1440px) {
-    .Home {
-        max-width: 1440px !important;
-    }
+
     .bento-box {
         gap: 0.7em;
         height: 550px;
@@ -151,9 +149,6 @@
 
 @media only screen and (max-width: 1250px) {
 
-    .Home {
-        max-width: 1250px !important;
-    }
     .top-grid,
     .bottom-grid {
 
