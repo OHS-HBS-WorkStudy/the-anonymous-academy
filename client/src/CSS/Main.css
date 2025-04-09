@@ -60,6 +60,23 @@
   
   --newThread-button: #406abf;
   --newThread-button-hover: #5a79c6;
+
+  --font-size-xs: 12px;   /* Extra small */
+  --font-size-sm: 14px;   /* Small */
+  --font-size-md: 16px;   /* Medium */
+  --font-size-lg: 18px;   /* Large */
+  --font-size-xl: 24px;   /* Extra Large */
+  --font-size-xxl: 32px;  /* Extra Extra Large */
+  
+  /* Font Weights */
+  --font-weight-normal: 400;   /* Regular weight */
+  --font-weight-semibold: 600; /* Semi-bold weight */
+  --font-weight-bold: 700;     /* Bold weight */
+
+  /* Line Heights */
+  --line-height-normal: 1.5;
+  --line-height-heading: 1.25;
+--line-height-paragraph: 1.75;
   }
 
 

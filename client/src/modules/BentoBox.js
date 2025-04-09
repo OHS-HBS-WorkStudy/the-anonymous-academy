@@ -10,7 +10,7 @@ export default function BentoBox() {
       <div className="limiter">
       <div class="top-grid">
           <div className="credit-scorepro-container">
-            <h1>Credit Score Progress</h1>
+            <h1>My Score Progress</h1>
             <div className="credit-scorepro-content">
               <MyAnimatedLineChart />
             </div>
@@ -37,10 +37,7 @@ export default function BentoBox() {
           <div className="your-threads-container">
             <h1>Your Threads</h1>
             <div className="your-threads-content">
-              <p>No threads created yet</p>
-              <p>No threads created yet</p>
-              <p>No threads created yet</p>
-              <p>No threads created yet</p>
+              <p>Start a new thread!</p>
             </div>
           </div>
         </div>
