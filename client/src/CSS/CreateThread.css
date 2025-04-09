@@ -119,6 +119,7 @@
   background-color: var(--clr-surface-a10);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
+  border: 1px solid var(--clr-primary-a30);
   flex: 2 1 600px; 
 
 }

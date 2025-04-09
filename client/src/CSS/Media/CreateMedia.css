@@ -29,11 +29,11 @@
   @media (max-width: 425px) { 
     .NewThread {
       flex-direction: column; 
+      padding-left: 10px !important;
+      padding-right: 10px !important;
     }
   
-    .NewThread .center {
-      padding: 10px;
-    }
+   
   
     .input-container {
       padding: 10px !important;
@@ -55,7 +55,7 @@
   .NewThread {
     background-color: var(--alt-background-color);
     display: grid;
-    padding-right: 0px !important;
+    
     grid-template-columns: 1fr !important;
     grid-template-rows: auto !important;
     grid-template-areas:

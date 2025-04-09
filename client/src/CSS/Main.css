@@ -104,9 +104,9 @@
 @import url('./Navigator.css');
 @import url('./Sign&Login.css');
 @import url('./Home.css');
+@import url('./ThreadFilter.css');
 @import url('./CreateThread.css');
 @import url('./Thread.css');
 @import url('./Account.css');
 @import url('./Overlay.css');
 @import url('./Replies.css');
-@import url('./ThreadFilter.css');

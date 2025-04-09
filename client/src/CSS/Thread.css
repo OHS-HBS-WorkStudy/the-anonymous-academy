@@ -41,7 +41,7 @@
 }
 
 .user-poster{
-  background-color: var(--clr-surface-tonal-a50);
+  background-color: var(--color-secondary);
   border-radius: 25px;
   cursor: pointer;
   color: var(--color-text-primary);

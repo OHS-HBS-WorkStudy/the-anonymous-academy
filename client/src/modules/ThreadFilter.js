@@ -99,12 +99,19 @@ const deleteList = () => {
   window.location.reload();
 }
 
+const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
     return (
       <div className="grid-header-area">
         <div className="thread-filter">
           <div className={`grid-header ${filterOpen ? "open" : ""}`}>
             <div className="grid-header-title">Manager</div>
-            <button onClick={() => deleteList()}>Clear List</button>
             <div className="dropdown">
               <label htmlFor="tagFilter" style={{ display: "none" }}>
                 Categories
@@ -120,14 +127,14 @@ const deleteList = () => {
                 className="filter-button"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M440-120v-240h80v80h320v80H520v80h-80Zm-320-80v-80h240v80H120Zm160-160v-80H120v-80h160v-80h80v240h-80Zm160-80v-80h400v80H440Zm160-160v-240h80v80h160v80H680v80h-80Zm-480-80v-80h400v80H120Z"/></svg>
-                Filter
+                {screenWidth >= 438 && "Filter"}
               </button>
 
           <div className="listman">
             <button className="listpage-btn" disabled={currentPage === 1}> {/* onClick={handlePreviousPage} */}
               &lt;
             </button>
-            <span>
+            <span className="listpage-text">
               Page{' '}
               {isEditing ? (
                 <input
@@ -143,7 +150,6 @@ const deleteList = () => {
                     borderBottom: '1px solid black',
                     outline: 'none',
                     fontSize: 'inherit',
-                    color: 'hsl(270, 20%, 22%)',
                   }}
                   min="1"
                   max={totalPages}
@@ -251,6 +257,8 @@ const deleteList = () => {
                           <input type="radio" id="sortLikes" name="sortBy" value="likes" />
                           <label htmlFor="sortLikes">Most Likes</label>
                         </div>
+
+                        <button onClick={() => deleteList()}>Clear List</button>
                         
                       </div>
 

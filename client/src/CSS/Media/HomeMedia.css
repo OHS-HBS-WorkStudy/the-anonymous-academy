@@ -127,7 +127,7 @@
 
     .dropdown-content,
     .dropdown-content.open {
-        max-width: inherit !important;
+        max-width: 1200px !important;
     }
 
     .no-threads-message {
@@ -362,92 +362,18 @@
 }
 
 
+@media (max-width: 425px) {
 
-
-@media only screen and (max-width: 480px) {
-    .Home {
-        overflow-x: hidden !important;
+    .top-grid,
+    .bottom-grid {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
     }
-    .bento-box {
-        height: auto; 
-        flex-direction: column;
-        gap: 1em; 
-        justify-content: center; 
-        align-items: center; 
-        height: fit-content;
-        margin-bottom: 0;
-    }
+    .listman  {
+        transform: scale(0.94) !important;
+      }
 
-    .grid-header {
-        display: flex; 
-        max-width: 480px !important;
-        justify-content: flex-start; 
-        align-items: flex-start; 
-        margin-right: auto;
-        gap: 2.5px !important;
-        align-items: left !important;
-    }
-
-    .no-threads-message {
-        max-width: 480px !important;
-    }
-
-    .limiter {
-        margin-left: -20px;
-        overflow-x: hidden !important;
-    }
-
-    /* .grid-header-title{
-        display: none;
-    } */
-
-    .thread-filter {
-        display: flex;
-        justify-content: left;
-        padding-left: 60px !important;
-        padding-right: 60px !important;
-        min-width: 90% !important;
-        margin-left: 0px !important;
-    }
-
-    .grid-header {
-        display: flex; 
-        min-width: calc(100%-20px) !important;
-        justify-content: flex-start; 
-        align-items: flex-start; 
-        margin-right: auto;
-    }
-
-    .no-threads-message {
-        min-width: 90% !important;
-        padding-left: 60px !important;
-        padding-right: 60px !important;
-    }
-
-
-    .col-left {
-        max-width: 100% !important;
-        height: 200px !important;
-        flex-direction: row;
-    }
-
-    .col-right {
-        max-width: 480px !important;
-        width: 100%;
-        height: 200px !important;
-        flex-direction: row;
-    }
-
-    .col-right {
-        max-width: 100% !important;
-        flex-direction: row;
-    }
-
-    .col-row.top {
-        height: 200px;
-    }
-
-    .col-row.bottom {
-        width: 50%;
+      .grid-header {
+        justify-content: start !important;
     }
 }
