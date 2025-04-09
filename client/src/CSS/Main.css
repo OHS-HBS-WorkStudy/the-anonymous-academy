@@ -89,18 +89,28 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
     font-family: 'Roboto', sans-serif;
 }
 
 .offset {
     margin-top: 60px;
     margin-left: 60px;
-    width: 100%;
+    max-width: calc(100vw - 60px);
 }
+
+/* .offset .Home {
+    transform: translateX(-30px) !important;
+} */
 
 @media only screen and (max-width: 786px) {
     .offset {
         margin-left: 0;
+        max-width: 100vw;
+    }
+
+    .offset .Home {
+        transform: translateX(0) !important;
     }
     .overlay {
         margin-left: 0;

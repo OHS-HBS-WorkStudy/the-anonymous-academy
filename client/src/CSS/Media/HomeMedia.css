@@ -215,7 +215,7 @@
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 786px) {
     .top-grid,
     .bottom-grid {
         gap: 0.4em !important;

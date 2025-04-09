@@ -41,7 +41,7 @@ export default function MyAnimatedLineChart() {
         label: 'Past Month Credit Score', // Label for past month dataset
         data: [650, 670, 690, 710], // Past month data
         borderColor: '#888888', // Light gray for past data
-        backgroundColor: 'rgba(136, 136, 136, 0.3)', // Semi-transparent fill
+        backgroundColor: 'rgba(255, 255, 255, 0.1)', // Semi-transparent fill
         borderWidth: 3,
         pointRadius: 5, // Point size
         pointBackgroundColor: '#888888', // Point color

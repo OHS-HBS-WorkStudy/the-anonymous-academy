@@ -8,14 +8,14 @@
       "content"
       "account-pages";
     min-height: 100vh; 
-    width: auto;
+    max-width: calc(100vw - 60px);
     padding: 20px;
-    color: var(--color-text-tertiary);
-    background-color: var(--color-primary);
+    background-color: var(--alt-background-color);
+  
   }
   
   .account-page:root {
-    background-color: var(--clr-surface-a20);
+    background-color: var(--alt-background-color) !important;
   }
   
   .account-page.dark-mode {
@@ -33,6 +33,14 @@
   .account-page h2 {
     /* Styles for h2 inside the account page */
     color: var(--color-background);
+  }
+
+  .account-page .userName {
+    font-size: var(--font-size-xxl);
+    font-weight: var(--font-weight-semibold);
+    line-height: var( --line-height-heading);
+    text-align: start;
+    color: var(--clr-primary-a30);
   }
   
   .account-top { 
@@ -81,6 +89,7 @@
   .my-user-stats {
     /* Styles for various sections inside the account page */
     background-color: var(--clr-primary-a10);
+    border: 1px solid var(--clr-primary-a30);
     color: var(--color-background);
     border-radius: 10px;
     padding: 20px;
@@ -225,7 +234,7 @@
     color: var(--color-background);
   }
   
-  @media (max-width: 768px) {
+  @media (max-width: 897px) {
     .account-content {
       display: block;
       padding-top: 0;
