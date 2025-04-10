@@ -64,7 +64,7 @@
 .main-content-area {
     grid-area: main-content;
     display: grid;
-    grid-template-columns: 75% 20%;
+    grid-template-columns: 72% 22%;
     grid-template-areas:
       "grid-header grid-header "
       "grid-container right-space";
@@ -516,7 +516,7 @@
 
 .trending-threads-cont {
     background-color: rgba(255, 255, 255, 0.1);
-    color: var(--color-text-tertiary) !important;
+    color: var(--clr-surface-a10) !important;
     border-radius: 12px;
     box-sizing: border-box;
     padding: 20px; 
@@ -537,15 +537,11 @@
     
 }
 
-
-
-
-
 .trending-threads-cont h3 {
-    font-size: 1.2rem;
+    font-size: var(--font-size-lg);
     font-weight: 600;
     margin-bottom: 8px;
-    color: var(--color-text-tertiary) !important;
+    color: var(--clr-surface-a10) !important;
     border-bottom: 2px solid rgba(255, 255, 255, 0.5); 
     padding-bottom: 5px;
 }
@@ -569,7 +565,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 0.9rem;
+    font-size: var(--font-size-xs);
     border: 1px solid rgba(255, 255, 255, 0.1); 
 }
 

@@ -140,6 +140,7 @@ const CredScore = () => {
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
+              marginTop: '15px',
             }}
           >
             <FullCircle score={score} />

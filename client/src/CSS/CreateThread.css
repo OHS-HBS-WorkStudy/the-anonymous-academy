@@ -24,6 +24,7 @@
   grid-area: text-top;
   display: flex;
   width: 100%;
+  font-size: var(--font-size-xxl);
   color: var(--color-text-tertiary);
 }
 
@@ -53,13 +54,13 @@
 }
 
 .threadRules h2 {
-  font-size: 1.3em;
+  font-size: var(--font-size-xl);
   color: var(--color-text-tertiary);
   font-weight: 600;
 }
 
 .threadRules p, b {
-  font-size: 1em;
+  font-size: var(--font-size-md) !important;
   color: var(--color-text-tertiary);
   margin-bottom: 15px;
   line-height: 1.6;
@@ -72,7 +73,7 @@
 }
 
 .threadRules li {
-  font-size: 1em;
+  font-size: var(--font-size-md) !important;
   color: var(--color-text-tertiary);
   line-height: 1.7;
 }
@@ -156,7 +157,7 @@
   border: 1px solid var(--clr-surface-tonal-a50) ;
   transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   border-radius: 12px;
-  margin-bottom: 10px;
+
 }
 
 .input-container:focus {
@@ -283,7 +284,16 @@ label h1 {
   text-align: left !important;
   color: var(--clr-primary-a30);
 }
+.NewThread .ql-container.ql-snow {
+  overflow: visible !important;
+  height: auto !important;
+}
 
+.NewThread .ql-container.ql-snow .ql-editor {
+  overflow: visible !important;
+  height: auto !important;
+  min-height: 200px; /* Adjust as needed */
+}
 /* Input container heading styles */
 .NewThread .input-container h2 {
   font-size: 1.6rem;
@@ -322,17 +332,6 @@ label h1 {
   transition: box-shadow 0.2s ease, border-bottom 0.4s ease-in-out;
 }
 
-/* .NewThread .ql-editor p {
-
-    width: 100% !important;
-    word-wrap: break-word !important; 
-    overflow-wrap: break-word !important; 
-    padding-right: 0 !important; 
-    box-sizing: border-box !important;
-    white-space: normal !important; 
-    overflow: auto !important;
-} */
-
 .threadDir h1, 
 .threadDir h2,
 .threadTag h1 {
@@ -363,15 +362,21 @@ label h1 {
 .NewThread .text-box {
   width: 100%;
   max-width: 100%;
-  height: fit-content !important;
+  height: fit-content !important; /* Ensure the text-box grows with content */
   border: 1px solid var(--clr-surface-tonal-a50);
-  /* padding: 20px; */
   transition: border-color 0.3s ease-in-out;
   background-color: var(--clr-surface-a0);
   border-radius: 12px;
+  display: flex; /* Add flex to control ql-container height */
+  flex-direction: column; /* Stack toolbar and editor */
 }
 
+
+
+
+
 .text {
+  
   font-size: 16px;
 }
 
@@ -414,37 +419,31 @@ label h1 {
 .NewThread .ql-container.ql-snow {
   border: 0 !important;
   border-radius: 12px !important;
-  color: white!important;
-  height: 200px !important;
+  color: white !important;
+  height: auto !important;
+  min-height: 200px !important;
   width: 100% !important;
   background-color: var(--clr-surface-a50) !important;
+  flex-grow: 1;
 }
 
 .NewThread .ql-container.ql-snow .ql-editor {
   color: white !important;
+  height: auto !important; 
+  min-height: 100px; 
+  overflow-y: visible !important; 
+  padding: 10px; 
 }
 
-
-/* Quill editor text box styles */
-.NewThread .ql-container.ql-snow .ql-editor {
-  max-width: 100%;
-
-  height: 100%;
-  min-height: 200px;
-  font-size: 1rem;
-  color: white;
-  padding: 12px;
-  box-sizing: border-box;
-  border: 1px dashed var(--clr-surface-tonal-a50) !important;
-  border-radius: 12px !important;
-  position: relative;
-  z-index: 1; 
+.ql-containe.ql-snow {
+  height: auto !important;
 }
 
 /* Character counter styles */
 .NewThread .charCounter {
   color: var(--clr-surface-tonal-a50);
-  padding-top: 8px;
+  font-size: var(--font-size-sm);
+
 }
 
 /* Load button styles */

@@ -67,7 +67,7 @@
 
 .credit-scorepro-container {
     grid-area: credit-progress;
-    background: linear-gradient(135deg, var(--color-accent), var(--color-secondary-accent), var(--color-secondary));
+    background: var(--alt-background-color);
     border-radius: 2em;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -75,6 +75,7 @@
     flex-direction: column;
     align-items: center;
     padding: 10px; 
+    border: 1px solid var(--clr-primary-a30);
 }
 
 /* Trending container */
@@ -88,11 +89,13 @@
     flex-direction: column;
     align-items: center;
     padding: 10px;
+    border: 1px solid ;
+    animation: borderFlicker 2s infinite;
 }
 
 .cred-score-container {
     grid-area: cred-score;
-    background: linear-gradient(135deg, var(--clr-surface-a30), var(--clr-surface-a50));
+    background: var(--alt-background-color);
     border-radius: 2em;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -101,6 +104,7 @@
     align-items: center;
     justify-content: center;
     padding: 10px;
+    border: 1px solid var(--clr-primary-a30);
 }
 
 .your-threads-container {
@@ -114,11 +118,11 @@
     align-items: center;
     padding: 10px;
     overflow-y: auto;
+    border: 1px solid var(--color-accent);
 }
 
 
 .thread-history-container:hover,
-.cred-score-container:hover,
 .trending-container:hover,
 .cred-score-container:hover,
 .your-threads-container:hover {
@@ -244,6 +248,7 @@
         0 -2px 6px #FF3,
         0 -6px 12px #F90,
         0 -10px 20px #C33;
+    border: 2px solid transparent;
     animation: flicker 2s infinite;
 }
 
@@ -261,6 +266,15 @@
             0 -4px 12px #FF3,
             0 -8px 16px #F90,
             0 -12px 24px #C33;
+    }
+}
+
+@keyframes borderFlicker {
+    0%, 100% {
+        border-color: #FF3;
+    }
+    50% {
+        border-color: #F90;
     }
 }
 

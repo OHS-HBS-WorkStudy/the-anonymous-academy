@@ -167,7 +167,7 @@ useEffect(() => {
           <ReactQuill
             id="questionDesc"
             ref={quillRef}
-            style={{ width: "100%", minHeight: "160px", overflow: "auto", maxWidth: "100%", wordWrap: "break-word", whiteSpace: "normal" }}
+            style={{ width: "100%", minHeight: "200px", height: 'auto', maxWidth: "100%", wordWrap: "break-word", whiteSpace: "normal" }}
             value={ThreadContents}
             onChange={handleQuillChange}
             required
