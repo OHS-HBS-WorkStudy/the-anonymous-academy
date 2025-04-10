@@ -2,22 +2,44 @@
 .NewThread {
   background-color: var(--alt-background-color);
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: auto auto;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
   grid-template-areas:
-    "text-top text-top"
-    "center-content thread-rules";
+    "text-top"
+    "main-content-area";
   width: 100%;
-  max-width: inherit;
+  max-width: 100vw;
   height: fit-content;
   min-height: 100vh;
   margin-top: 10px;
-  gap: 20px;
+
   padding: 20px;
 
   box-sizing: border-box;
 
-  overflow: hidden;
+}
+
+.main-content-area {
+  grid-area: main-content-area;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas:
+  "center-content thread-rules";
+  width: 100%;
+  justify-content: center;
+  align-items: start;
+  margin-top: 0px;
+  gap: 20px;
+}
+
+/* Media query for phones */
+.NewThread .new-input-container .ql-editor {
+  
+  min-width: 0; 
+  width: 100%; 
+  max-width: 100%; 
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .NewThread .text-top {
@@ -25,6 +47,7 @@
   display: flex;
   width: 100%;
   font-size: var(--font-size-xxl);
+  padding: 10px;
   color: var(--color-text-tertiary);
 }
 
@@ -49,7 +72,7 @@
 
 }
 
-.NewThread .text-box .ql-editor {
+.NewThread .new-input-container .ql-editor {
   min-width: fit-content !important;
 }
 
@@ -110,7 +133,9 @@
   display: flex;
   justify-content: left;
   align-items: flex-start; 
-  width: 100%;
+  max-width: 100%; /* Ensure it doesn't exceed the container's width */
+  width: 100%; /* Take up the full width of its container */
+  box-sizing: border-box; /* Include padding and border in width calculation */
 
   height: fit-content;
   flex-direction: column;
@@ -121,8 +146,7 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
   border: 1px solid var(--clr-primary-a30);
-  flex: 2 1 600px; 
-
+  overflow: auto !important; 
 }
 
 /* Focus state for the center container */
@@ -140,35 +164,37 @@
 
 /* Full width utility class */
 .fill {
-  max-width: 100%;
+
   width: 100%;
 }
 
 /* Input container styles */
-.input-container {
-  width: 100%;
-  max-width: 100%;
-  background-color: var(--clr-surface-a0);
+.new-input-container1,
+.new-input-container2 {
+  
   color: #e7e7e7FF;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+
   box-sizing: border-box;
-  border: 1px solid var(--clr-surface-tonal-a50) ;
+  
   transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   border-radius: 12px;
+  resize: vertical !important;
+  width: 100% !important; 
+  max-width: 100% !important; 
+  overflow: auto !important; 
 
 }
 
-.input-container:focus {
+.new-input-container2  {
+  min-height: 200px !important;
+}
+
+.new-input-container:focus {
   border-color: var(--clr-primary-a50);
   box-shadow: 0 0 8px rgba(var(--clr-primary-a50-rgb), 0.5);
 
-}
-
-
-.input-container::placeholder {
-  color: white;
 }
 
 .input-container.text-box.ql-container {
@@ -287,12 +313,11 @@ label h1 {
 .NewThread .ql-container.ql-snow {
   overflow: visible !important;
   height: auto !important;
-}
-
+} 
 .NewThread .ql-container.ql-snow .ql-editor {
   overflow: visible !important;
   height: auto !important;
-  min-height: 200px; /* Adjust as needed */
+  min-height: 200px; 
 }
 /* Input container heading styles */
 .NewThread .input-container h2 {
@@ -359,17 +384,17 @@ label h1 {
 
 
 /* Text box styles */
-.NewThread .text-box {
+/* .NewThread .text-box {
   width: 100%;
   max-width: 100%;
-  height: fit-content !important; /* Ensure the text-box grows with content */
+  height: fit-content !important; 
   border: 1px solid var(--clr-surface-tonal-a50);
   transition: border-color 0.3s ease-in-out;
   background-color: var(--clr-surface-a0);
   border-radius: 12px;
-  display: flex; /* Add flex to control ql-container height */
-  flex-direction: column; /* Stack toolbar and editor */
-}
+  display: flex; 
+  flex-direction: column; 
+} */
 
 
 
@@ -414,7 +439,7 @@ label h1 {
 
 .NewThread .ql-toolbar.ql-snow::placeholder {
   color: white !important;
-}
+} 
 
 .NewThread .ql-container.ql-snow {
   border: 0 !important;
@@ -425,17 +450,18 @@ label h1 {
   width: 100% !important;
   background-color: var(--clr-surface-a50) !important;
   flex-grow: 1;
+  overflow-y: auto !important; 
 }
 
 .NewThread .ql-container.ql-snow .ql-editor {
   color: white !important;
   height: auto !important; 
   min-height: 100px; 
-  overflow-y: visible !important; 
+  overflow-y: auto !important; 
   padding: 10px; 
 }
 
-.ql-containe.ql-snow {
+.ql-container.ql-snow {
   height: auto !important;
 }
 

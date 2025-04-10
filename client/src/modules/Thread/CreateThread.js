@@ -146,13 +146,14 @@ useEffect(() => {
   return (
     <div className="NewThread">
       <h1 className="text-top">Create Your Thread</h1>
+      <div className="main-content-area">
       <div className="center">
         <div className="fill">
           <label htmlFor="questionTitle" className="threadDir"><h1>Question Title</h1></label>
      
             <input
             id="questionTitle"
-            className="input-container"
+            className="new-input-container1"
             placeholder="Enter Question Title"
             value={ThreadTitle}
             onChange={(e) => handleChange(e.target.value, setThreadTitle, maxTitleLength)}
@@ -167,7 +168,7 @@ useEffect(() => {
           <ReactQuill
             id="questionDesc"
             ref={quillRef}
-            style={{ width: "100%", minHeight: "200px", height: 'auto', maxWidth: "100%", wordWrap: "break-word", whiteSpace: "normal" }}
+            className="new-input-container2"
             value={ThreadContents}
             onChange={handleQuillChange}
             required
@@ -182,6 +183,8 @@ useEffect(() => {
               ],
             }}
           />
+
+{/* style={{ width: "100%", minHeight: "200px", height: 'auto', maxWidth: "100%", wordWrap: "break-word", whiteSpace: "normal" }} */}
           <div className="charCounter">{getPlainText(ThreadContents).length}/{maxDescLength} characters</div>
         </div>
         <AddTags tags={tags} setTags={setTags} />
@@ -195,6 +198,7 @@ useEffect(() => {
         </div>
       </div>
       <CreateThreadAside ruleAgreement={ruleAgreement} setRuleAgreement={setRuleAgreement} />
+    </div>
     </div>
   );
 }

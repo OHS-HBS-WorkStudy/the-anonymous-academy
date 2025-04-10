@@ -1,8 +1,11 @@
 @media (max-width: 900px) { 
-    .NewThread {
-      flex-direction: column;
-      padding: 7px;
-    }
+
+  .main-content-area {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "thread-rules"
+      "center-content" !important;
+  }
     .threadRules {
       width: 100%; 
       margin-left: 0; 
@@ -21,8 +24,8 @@
   
   
   @media (max-width: 530px){
-    .NewThread .ql-toolbar.ql-snow {
-      overflow-x: auto !important; 
+    .NewThread {
+      padding: 0px !important;
     }
   }
   
@@ -50,17 +53,3 @@
       min-width: fit-content !important;
     }
   }
-
-@media (max-width: 786px) {
-  .NewThread {
-    background-color: var(--alt-background-color);
-    display: grid;
-    
-    grid-template-columns: 1fr !important;
-    grid-template-rows: auto !important;
-    grid-template-areas:
-      "text-top"
-      "thread-rules"
-      "center-content" !important;
-  }
-}
