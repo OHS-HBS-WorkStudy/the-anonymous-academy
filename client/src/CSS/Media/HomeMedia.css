@@ -245,7 +245,6 @@
         height: fit-content;
     }
 
-
     .limiter {
         margin-left: -30px !important;
         margin-right: -30px !important;
@@ -262,6 +261,7 @@
           "grid-container"
           "right-space" !important;
         width: 100%;
+        max-height: max-content !important;
         justify-content: center;
         align-items: start;
         margin-top: 30px;

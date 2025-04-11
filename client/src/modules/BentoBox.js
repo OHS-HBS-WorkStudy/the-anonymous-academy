@@ -8,7 +8,7 @@ export default function BentoBox() {
   return (
     <div className="bento-box-area">
       <div className="limiter">
-      <div class="top-grid">
+      <div className="top-grid">
           <div className="credit-scorepro-container">
             <h1>My Score Progress</h1>
             <div className="credit-scorepro-content">
@@ -28,7 +28,7 @@ export default function BentoBox() {
           </div>
 
 
-          <div class="bottom-grid">
+          <div className="bottom-grid">
           <div className="cred-score-container">
             <h1>Credibility Score</h1>        
               <CredScore />

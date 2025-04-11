@@ -50,7 +50,7 @@
     background-color: var(--alt-background-color);
     width: 100%;
     height: 100%;
-    max-width: 50vw;
+    max-width: calc(50vw + 60px);
     max-height: 100vh;
     overflow-y: hidden; 
     overflow-x: hidden;
@@ -75,7 +75,7 @@
     width: 100%;
     height: 100%;
     position: relative;
-    max-width: 50vw;
+    max-width: calc(50vw + 60px);
     max-height: 100vh;
     overflow-y: hidden; 
     overflow-x: hidden;

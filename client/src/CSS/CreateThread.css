@@ -19,7 +19,7 @@
 
 }
 
-.main-content-area {
+.NewThread .main-content-area {
   grid-area: main-content-area;
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -213,32 +213,26 @@
 /* Tag input container styles */
 .tag-input-container {
   display: flex;
-  align-items: left;
-  justify-content: center;
+  align-items: left !important;
+  justify-content: left !important;
   flex-direction: column;
-  width: 100%;
-  padding: 20px;
+  min-width: 100%;
   background-color: transparent !important;
   color: #e7e7e7FF;
-  font-size: 1rem;
+  font-size: var(--font-size-md);
   box-sizing: border-box;
   opacity: 1;
   border-radius: 12px;
-  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   overflow: visible;
 }
 
-input #tag-input.tag-input-container {
+/* input #tag-input.tag-input-container {
   background-color: white !important;
   z-index: 1000;
   opacity: 1;
-}
+} */
 
-/* Tag input focus state */
-.tag-input-container:focus {
-  border-color: var(--clr-primary-a50);
-  box-shadow: 0 0 8px rgba(var(--clr-primary-a50-rgb), 0.5);
-}
+
 
 /* Tags container styles */
 .tags-container {
@@ -401,13 +395,14 @@ label h1 {
 
 
 .text {
-  
-  font-size: 16px;
+  font-size: var(--font-size-md);
+  text-align: left;
 }
 
-.NewThread .text-box:focus-within {
+
+/* .NewThread .text-box:focus-within {
   border-color: var(--clr-primary-a50);
-}
+} */
 
 .ql-toolbar.ql-snow .ql-stroke,
 .ql-toolbar.ql-snow .ql-fill.ql-stroke {

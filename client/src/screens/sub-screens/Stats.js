@@ -82,14 +82,24 @@ export default function Stats({ loggedInUser, setLoggedInUser }) {
                 <span className="slider round"></span>
               </label>
             </div>
-            <h2>Accent Color</h2>
-            <select value={accentColor} onChange={handleAccentColorChange}>
-              <option value="default">Default</option>
-              <option value="blue">Blue</option>
-              <option value="green">Green</option>
-              <option value="red">Rose</option>
-              <option value="brown">Brown</option>
-            </select>
+            <div className="accent-color-options">
+              {["default", "blue", "green", "red", "brown"].map((color) => (
+                <div
+                  key={color}
+                  className={`color-card ${color === accentColor ? "selected" : ""}`}
+                  style={{
+                    border: color === accentColor ? "2px solid black" : "1px solid gray",
+                    borderRadius: "50%",
+                    width: "40px",
+                    height: "40px",
+                    backgroundColor: color === "default" ? "purple" : color,
+                    cursor: "pointer",
+                    marginTop: "10px",
+                  }}
+                  onClick={() => setAccentColor(color)}
+                ></div>
+              ))}
+            </div>
           </div>
 
           <div className="my-user-stats">

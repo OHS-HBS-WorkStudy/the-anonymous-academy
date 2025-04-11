@@ -45,13 +45,13 @@
     min-width: 100%;
     font-size: 1rem;
     background-color: transparent;
-    color: var(--color-text-primary);
+    color: var(--color-text-tertiary) !important;
     border: none;
     outline: none;
 }
 
 .tag-input::placeholder {
-    color: var(--color-text-secondary);
+    color: var(--color-text-tertiary) !important;
 }
 
 .tag-input:focus {
