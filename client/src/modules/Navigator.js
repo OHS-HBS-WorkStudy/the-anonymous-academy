@@ -3,8 +3,9 @@ import useNavigation from './useNavigation.js';
 
 // import AppLogo from '../img/AppLogo.png';
 
+
 export default function Navigator() {
-  const { goToHome, goToacctStats, goToLogin, goToSignUp, goToNewThread, isActive } = useNavigation();
+  const { goToHome, goToacctStats, goToLogin, goToSignUp, goToNewThread, goToThread, isActive } = useNavigation();
   const timeoutRef = useRef(null); 
   const [isHovered, setIsHovered] = useState(false);
   const [isExpanded, setIsExpanded] = useState(() => {
@@ -18,6 +19,8 @@ export default function Navigator() {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  let recent = JSON.parse(sessionStorage.getItem("recentlyViewed")) || [];
 
 
 
@@ -40,6 +43,13 @@ export default function Navigator() {
       setIsHovered(false);
     }
   }; 
+
+  function handleRVClick(thread) {
+    recent = recent.filter(item => item.id !== thread.id);
+    recent.unshift(thread);
+    sessionStorage.setItem("recentlyViewed", JSON.stringify(recent));
+    goToThread(thread.id);
+  }
 
   return (
     <>
@@ -80,7 +90,7 @@ export default function Navigator() {
           </div>
         </div>
 
-        {(isExpanded && screenWidth <= 480) && (
+        {(isExpanded && screenWidth <= 786) && (
         <div className="mobile-overlay" onClick={(e) => {
           e.stopPropagation();
           switchToggle();
@@ -104,7 +114,7 @@ export default function Navigator() {
               >
                   <div className="icon-container">
                     <i>
-                      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368">
                       <path d="M720-400v-120H600v-80h120v-120h80v120h120v80H800v120h-80Zm-360-80q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM40-160v-112q0-34 17.5-62.5T104-378q62-31 126-46.5T360-440q66 0 130 15.5T616-378q29 15 46.5 43.5T680-272v112H40Zm80-80h480v-32q0-11-5.5-20T580-306q-54-27-109-40.5T360-360q-56 0-111 13.5T140-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T440-640q0-33-23.5-56.5T360-720q-33 0-56.5 23.5T280-640q0 33 23.5 56.5T360-560Zm0-80Zm0 400Z"/>
                       </svg>
                     </i>
@@ -119,7 +129,7 @@ export default function Navigator() {
               >
                   <div className="icon-container">
                     <i>
-                      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368">
                       <path d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z"/>
                       </svg>
                     </i>
@@ -173,6 +183,31 @@ export default function Navigator() {
               </button>
             </div>
         </div>
+
+          <div className="recentThreadsContainer">
+
+        {!isHovered && !isExpanded && (
+          <div className='sidebar-link'>
+       <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M610-760q-21 0-35.5-14.5T560-810q0-21 14.5-35.5T610-860q21 0 35.5 14.5T660-810q0 21-14.5 35.5T610-760Zm0 660q-21 0-35.5-14.5T560-150q0-21 14.5-35.5T610-200q21 0 35.5 14.5T660-150q0 21-14.5 35.5T610-100Zm160-520q-21 0-35.5-14.5T720-670q0-21 14.5-35.5T770-720q21 0 35.5 14.5T820-670q0 21-14.5 35.5T770-620Zm0 380q-21 0-35.5-14.5T720-290q0-21 14.5-35.5T770-340q21 0 35.5 14.5T820-290q0 21-14.5 35.5T770-240Zm60-190q-21 0-35.5-14.5T780-480q0-21 14.5-35.5T830-530q21 0 35.5 14.5T880-480q0 21-14.5 35.5T830-430ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880v80q-134 0-227 93t-93 227q0 134 93 227t227 93v80Zm132-212L440-464v-216h80v184l148 148-56 56Z"/>
+       </svg>
+       </div>
+        )}
+        {(isHovered || isExpanded) && (
+          <div className="recentThreadsExpanded">
+            <h2 className="recentThreadsTitle">Recent Viewed</h2>
+            <ul>
+              {recent.map(thread => (
+                <li key={thread.id} className={`recentThreadItem ${isActive('/thread/${thread.id}`') ? 'active-link' : ''}`} onClick={() => handleRVClick(thread)}>
+                  {thread.title}
+                </li>
+              ))}
+              {recent.length === 0 && (
+                <li className="recentThreadEmpty">No Recently Viewed</li>
+              )}
+            </ul>
+          </div>
+        )}
+      </div>
       </nav>
     </div>
     </>

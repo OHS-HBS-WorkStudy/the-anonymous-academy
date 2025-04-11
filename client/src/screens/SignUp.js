@@ -25,10 +25,27 @@ export default function SignUp() {
             users = [];
         }
     
-        const firstName = document.getElementById("fname").value;
-        const lastName = document.getElementById("lname").value;
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
+        const firstName = document.getElementById("fname")?.value;
+        const lastName = document.getElementById("lname")?.value;
+        const email = document.getElementById("email")?.value;
+        const password = document.getElementById("password")?.value;
+
+        const reenteredPassword = document.getElementById("reenteredpassword").value;
+
+        if (firstName === "" || lastName === "" || email === "" || password === "" || reenteredPassword === "") {
+            alert("Please fill in all fields!");
+            return;
+        } else if (users.some(user => user.email === email)) {
+            alert("Email already exists!");
+            return;
+        } else if (password.length < 4) {
+            alert("Password must be at least 4 characters long!");
+            return;
+        }  else if (password !== reenteredPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
+
 
         const now = new Date();
         const options = {
@@ -97,6 +114,14 @@ export default function SignUp() {
                                     >
                                         {passwordVisible ? "Hide" : "Show"}
                                     </button>
+
+                                    <input
+                                        type='password'
+                                        id="reenteredpassword"
+                                        className="reenteredpassword"
+                                        placeholder="Re-Enter Password"
+                                    />
+                                    
                                 </div>
 
                                 <div className="button-group-container">

@@ -1,4 +1,4 @@
-import CreateThread from '../modules/CreateThread.js';
+import CreateThread from "../modules/Thread/CreateThread";
 
 
 export default function NewThread() {

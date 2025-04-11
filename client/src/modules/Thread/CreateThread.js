@@ -5,9 +5,9 @@ import "react-quill/dist/quill.snow.css";
 import DOMPurify from 'dompurify';
 
 // Other modules components imports
-import useNavigation from "./useNavigation";
-import AddTags from "./AddTags";
-import CreateThreadAside from "../screens/sub-screens/CreateThreadAside";
+import useNavigation from "../useNavigation";
+import AddTags from "../AddTags";
+import CreateThreadAside from "../../screens/sub-screens/CreateThreadAside";
 
 export default function CreateThread() {
   const [ThreadTitle, setThreadTitle] = useState("");
@@ -24,7 +24,7 @@ export default function CreateThread() {
 });
 
 useEffect(() => {
-    const foundUser = JSON.parse(sessionStorage.getItem("foundUser")) || { pref: {} };
+    const foundUser = JSON.parse(sessionStorage.getItem("foundUser"));
     
     if (foundUser && foundUser.pref) {
         foundUser.pref.ruleAgreement = ruleAgreement;
@@ -96,6 +96,14 @@ useEffect(() => {
       sessionStorage.setItem("tags", JSON.stringify(tags));
       setIsLoading(false);
       goToThread(newThread.thread_id);
+
+      const recentlyViewed = JSON.parse(sessionStorage.getItem('recentlyViewed') || '[]');
+      recentlyViewed.unshift({ id: threads.length, title: sanitizedTitle });
+      if (recentlyViewed.length > 10) {
+        recentlyViewed.pop();
+      }
+      sessionStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewed));
+
       setTags([]);
       setThreadTitle("");
       setThreadContents("");
@@ -104,36 +112,53 @@ useEffect(() => {
 
   if (!loggedInUser) {
     return (
+     <>
       <div className="overlay">
-        <div className="box-holder">
-          <div className="overlay-box">
-            <div className="box-content">
-              <h2>Please sign up or log in to access the creation page!</h2>
-              <p>
-                You need to be logged in to access this page. Please{" "}
-                <span className="underline" onClick={goToSignUp}>Sign up</span> or{" "}
-                <span className="underline" onClick={goToLogin}>Log in</span> to continue.
-              </p>
-            </div>
+          <div className="box-holder">
+              <div className="overlay-box">
+                  <div className="box-content">
+                      <div className="box-top">
+                        <h2>Please sign up or log in access the creation page!</h2>
+                      </div>
+                      
+                      <div className="box-bottom">
+                        <p className="text">
+                            You need to be logged in to access this page.
+                        </p>
+                        <p className="text">
+                            Please {' '}
+                            <span className="underline" onClick={goToSignUp}>Sign up</span>
+                            {' '}
+                            or
+                            {' '}
+                            <span className="underline" onClick={goToLogin}>Log in</span>
+                            {' '} to continue.
+                        </p>
+                      </div>
+                  </div>
+              </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 
   return (
     <div className="NewThread">
-      <h1 className="NewThread text-top">Create Your Thread</h1>
+      <h1 className="text-top">Create Your Thread</h1>
+      <div className="main-content-area">
       <div className="center">
         <div className="fill">
           <label htmlFor="questionTitle" className="threadDir"><h1>Question Title</h1></label>
      
             <input
             id="questionTitle"
-            className="input-container"
+            className="new-input-container1"
             placeholder="Enter Question Title"
             value={ThreadTitle}
             onChange={(e) => handleChange(e.target.value, setThreadTitle, maxTitleLength)}
+            style={{ wordWrap: "break-word", whiteSpace: "normal" }}
+            required
           />
 
           <div className="charCounter">{getPlainText(ThreadTitle).length}/{maxTitleLength} characters</div>
@@ -143,9 +168,10 @@ useEffect(() => {
           <ReactQuill
             id="questionDesc"
             ref={quillRef}
-            style={{ width: "100%", minHeight: "160px", overflowY: "auto", maxWidth: "inherit" }}
+            className="new-input-container2"
             value={ThreadContents}
             onChange={handleQuillChange}
+            required
             modules={{
               toolbar: [
                 [{ header: "1" }, { header: "2" }],
@@ -157,6 +183,8 @@ useEffect(() => {
               ],
             }}
           />
+
+{/* style={{ width: "100%", minHeight: "200px", height: 'auto', maxWidth: "100%", wordWrap: "break-word", whiteSpace: "normal" }} */}
           <div className="charCounter">{getPlainText(ThreadContents).length}/{maxDescLength} characters</div>
         </div>
         <AddTags tags={tags} setTags={setTags} />
@@ -170,6 +198,7 @@ useEffect(() => {
         </div>
       </div>
       <CreateThreadAside ruleAgreement={ruleAgreement} setRuleAgreement={setRuleAgreement} />
+    </div>
     </div>
   );
 }
