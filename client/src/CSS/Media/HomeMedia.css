@@ -6,7 +6,7 @@
     }
 
     .grid-header {
-        max-width: 2050px !important;
+        max-width: 100% !important;
     }
     .no-threads-message {
         max-width: 2050px !important;
@@ -45,12 +45,12 @@
 
 
     .grid-header {
-        max-width: 1350px !important;
+        max-width: 100% !important;
         height: 60px;
     }
 
     .dropdown-content {
-        max-width: 1350px !important;
+        max-width: 100% !important;
     }
 
     .no-threads-message {

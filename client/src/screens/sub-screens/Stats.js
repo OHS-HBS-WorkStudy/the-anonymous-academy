@@ -15,9 +15,7 @@ export default function Stats({ loggedInUser, setLoggedInUser }) {
 
   const [accentColor, setAccentColor] = useState(() => {
     const foundUser = JSON.parse(sessionStorage.getItem("foundUser"));
-    return foundUser && foundUser.pref && foundUser.pref.accentColor
-      ? foundUser.pref.accentColor
-      : "default";
+    return foundUser?.pref?.accentColor || "default";
   });
 
   useEffect(() => {

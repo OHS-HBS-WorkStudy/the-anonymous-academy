@@ -37,30 +37,30 @@
 }
 
 .dark {
-    --color-primary: hsl(270, 25%, 18%); /* Dark lavender-gray */
-    --color-primary-accent: hsla(270, 40%, 25%, 0.8); /* Slightly transparent dark purple */
-    --color-secondary: hsl(270, 20%, 22%); /* Muted dark gray with purple */
-    --color-secondary-accent: hsl(270, 25%, 30%); /* Slightly lighter muted purple */
-    --color-tertiary: hsl(270, 15%, 10%); /* Nearly black with subtle purple */
-    --color-accent: hsl(270, 20%, 50%); /* Slightly vibrant purple for accents */
+    --color-primary: hsl(270, 30%, 20%); /* Deep modern purple */
+    --color-primary-accent: hsla(270, 45%, 28%, 0.8); /* Slightly transparent rich purple */
+    --color-secondary: hsl(270, 25%, 25%); /* Muted dark purple-gray */
+    --color-secondary-accent: hsl(270, 30%, 35%); /* Slightly lighter muted purple */
+    --color-tertiary: hsl(270, 20%, 15%); /* Darker purple for depth */
+    --color-accent: hsl(270, 40%, 50%); /* Vibrant purple for accents */
 
     /** Dark theme primary colors */
-    --clr-primary-a0: #4d3960;
-    --clr-primary-a10: #5f4d70;
-    --clr-primary-a20: #726181;
-    --clr-primary-a30: #857692;
-    --clr-primary-a40: #988ba4;
-    --clr-primary-a50: #aca1b5;
+    --clr-primary-a0: #3e2a5a;
+    --clr-primary-a10: #50346e;
+    --clr-primary-a20: #623e82;
+    --clr-primary-a30: #754997;
+    --clr-primary-a40: #8763ab;
+    --clr-primary-a50: #9a7dbf;
 
-    --newThread-button: #6C58CE;
-    --newThread-button-hover: #5438a5;
+    --newThread-button: #7a4fbf;
+    --newThread-button-hover: #5e3a8f;
 
     /* Grid item colors */
-    --grid-item-background: #2a2a2a;
-    --grid-item-hover: #3a3a3a;
-    --grid-item-border: #444444;
+    --grid-item-background: #3e2a5a;
+    --grid-item-hover: #50346e;
+    --grid-item-border: #623e82;
 
-    --login-and-sign-color: linear-gradient(45deg, #9C6DD5, #7A4F9A, #B47BD9);
+    --login-and-sign-color: linear-gradient(45deg, #7A4FBF, #5E3A8F, #9A7DBF);
 }
 
 .dark[data-accent-color="blue"] {

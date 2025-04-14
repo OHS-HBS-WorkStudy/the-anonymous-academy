@@ -1,7 +1,7 @@
 /* Grid header styling */
 .grid-header {
     display: flex;
-    flex: 1 1 auto;
+    flex: 1 1 1;
     justify-content: space-between;
     align-items: center;
 
@@ -38,6 +38,13 @@
     box-sizing: border-box;
     padding: 4px 8px;
     margin-bottom: 20px !important;
+}
+
+.tag-input-container {
+    height: 100%;
+    max-height: 80px;
+    overflow: auto !important;
+    padding: 0px !important;
 }
 
 .tag-input {
@@ -98,7 +105,7 @@
     max-height: 0;
     overflow: hidden;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     margin-top: 10px;
     width: 100%;

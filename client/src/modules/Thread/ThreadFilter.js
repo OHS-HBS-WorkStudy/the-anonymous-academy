@@ -218,9 +218,15 @@ export default function ThreadFilter() {
                     <input type="checkbox" id="socialstudies" name="category" value="socialstudies" />
                     <label htmlFor="socialstudies">#Social Studies | Threads 18</label>
 
-
-                    <h3 className="tag-input-text">Custom Tag:</h3>
-                      
+                      <div className="tag-input-container">
+                        {tags.map((tag, index) => (
+                          <span onClick={() => removeTag(index)} key={index} className="tag">
+                            {tag}
+                            <button>x</button>
+                          </span>
+                        ))}
+                        </div>
+                        <h3 className="tag-input-text">Custom Tag:</h3>
                         <input
                           ref={inputRef}
                           id="customtag"
@@ -231,17 +237,7 @@ export default function ThreadFilter() {
                           onChange={handleInputChange}
                           onKeyDown={handleKeyDown}
                         />
-
-                    {tags.length > 0 && 
-                      <div className="tag-input-container">
-                        {tags.map((tag, index) => (
-                          <span onClick={() => removeTag(index)} key={index} className="tag">
-                            {tag}
-                            <button>x</button>
-                          </span>
-                        ))}
-                        </div>
-                      }
+                      
                     </div>
       
                 </div>
@@ -287,6 +283,7 @@ export default function ThreadFilter() {
 
                         <button onClick={() => deleteList()}>Clear List</button>
                         
+                      </div>
                       </div>
 
                       <div className="dropdown col3">
@@ -338,7 +335,7 @@ export default function ThreadFilter() {
                         </div>
 
                        
-          </div>
+          
         </div>
         </div>
         </div>
