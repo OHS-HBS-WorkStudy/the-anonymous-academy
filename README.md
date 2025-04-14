@@ -37,6 +37,16 @@
  npm install react-chartjs-2 chart.js
 ```
 
+### Install React Motion for more complex animations 
+```
+ npm install framer-motion
+```
+
+### Install React Calander for looks and better nav 
+```
+ npm install react-calendar
+```
+
 ### Open the application
 ```
  cd client

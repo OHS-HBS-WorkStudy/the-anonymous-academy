@@ -1,6 +1,6 @@
 @media (max-width: 900px) { 
 
-  .main-content-area {
+  .NewThread .main-content-area {
     grid-template-columns: 1fr !important;
     grid-template-areas:
       "thread-rules"

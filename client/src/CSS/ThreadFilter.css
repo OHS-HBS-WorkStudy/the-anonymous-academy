@@ -4,7 +4,6 @@
     flex: 1 1 1;
     justify-content: space-between;
     align-items: center;
-
     width: 100%;
     gap: 16px;
     padding: 12px 24px;
@@ -13,6 +12,7 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     flex-wrap: nowrap;
     margin-left: 0px !important;
+    /* Removed transition as Framer Motion will handle animations */
 }
 
 .grid-header-title {
@@ -38,6 +38,7 @@
     box-sizing: border-box;
     padding: 4px 8px;
     margin-bottom: 20px !important;
+    /* Removed transition - let Framer Motion control if needed */
 }
 
 .tag-input-container {
@@ -78,7 +79,7 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Keep button transition */
     margin-right: auto;
 }
 
@@ -89,11 +90,11 @@
 
 .filter-button:hover {
     background-color: var( --color-secondary-accent);
-    transform: translateY(-2px);
+    transform: translateY(-2px); /* Keep button hover transform */
 }
 
 .filter-button:active {
-    transform: translateY(0);
+    transform: translateY(0); /* Keep button active transform */
 }
 
 .filter-button:focus-visible {
@@ -109,16 +110,17 @@
     gap: 16px;
     margin-top: 10px;
     width: 100%;
+    height: 100%;
     border-radius: 12px;
     background-color: var(--color-secondary);
-    transform: translateY(10%);
-    transition: max-height 0.4s ease, transform 0.4s ease, opacity 0.4s ease;
+    transform: translateY(10%); /* Initial hidden position */
+    transition: transform 0.4s ease, opacity 0.4s ease; /* Removed max-height transition, Framer Motion controls height */
     opacity: 0;
 }
 
 .dropdown-content.open {
     position: relative;
-    max-height: 600px;
+    max-height: 600px; /* Keep max-height as a fallback/limit */
     margin-top: 10px;
     overflow: visible;
     color: var(--color-text-tertiary);
@@ -140,7 +142,7 @@
     justify-content: flex-start;
     margin-bottom: auto;
     opacity: 1;
-    transition: opacity 0.2s ease-out;
+    transition: opacity 0.2s ease-out; /* Keep opacity transition for columns */
 }
 
 .dropdown.col1,
@@ -149,16 +151,16 @@
     margin-bottom: 12px;
     justify-content: flex-start;
     opacity: 0;
-    transition: opacity 0.2s ease-out;
+    transition: opacity 0.2s ease-out; /* Keep opacity transition for columns */
 }
 
 .dropdown label {
     display: block;
-    font-size: 1rem; 
-    margin-bottom: 8px; 
-    color: var(--color-text-primary, #333); 
+    font-size: 1rem;
+    margin-bottom: 8px;
+    color: var(--color-text-primary, #333);
     font-weight: 500;
-    letter-spacing: 0.02em; 
+    letter-spacing: 0.02em;
 }
 
 #customtag,
@@ -169,6 +171,7 @@
     border: 1px solid var(--color-primary-light);
     background-color: var(--color-secondary-accent);
     color: var(--color-text-primary);
+    /* Removed transition - let Framer Motion handle if needed */
 }
 
 /* Grid header dropdown styling */
@@ -186,7 +189,7 @@
     font-size: 1rem;
     cursor: pointer;
     appearance: none;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease; /* Keep select border transition */
 }
 
 .grid-header .dropdown select:focus {
@@ -195,24 +198,26 @@
 }
 
 .dropdown.col2 {
-    display: flex; 
-    align-items: center; 
+    display: flex;
+    align-items: center;
 }
 
 .dropdown .left {
-    flex: 1; 
-    text-align: left; 
+    flex: 1;
+    text-align: left;
     padding: 10px;
-    border-right: 1px solid var(--color-text-tertiary); 
+    border-right: 1px solid var(--clr-primary-a50);
     top: 0;
+    min-height: 100%;
     max-width: 100%;
 }
 
 #customsize {
     min-width: 60px;
+    /* Removed transition */
 }
 
-#customsize, 
+#customsize,
 .date-input {
     padding: 2px;
     border: 1px solid #ccc;
@@ -221,35 +226,33 @@
     line-height: 1.5;
     color: #333;
     background-color: #fff;
-    box-sizing: border-box; 
-    transition: border-color 0.3s ease;
-    font-family: sans-serif; 
+    box-sizing: border-box;
+    transition: border-color 0.3s ease; /* Keep input border transition */
+    font-family: sans-serif;
     margin-bottom: 10px;
-  }
-  
-  .date-input:focus {
+}
+
+.date-input:focus {
     outline: none;
-    border-color: #007bff; 
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); 
-  }
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
 
 
 .dropdown.col3 .left {
-    border-right: none !important; 
+    border-right: none !important;
 }
 
 .dropdown .right {
-    flex: 1; 
-    text-align: left; 
-    padding: 10px; 
+    flex: 1;
+    text-align: left;
+    padding: 10px;
 }
 
 .dropdown.col1   {
-    display: flex; 
-    align-items: center; 
+    display: flex;
+    align-items: center;
 }
-
-
 
 .dropdown.col3 {
     display: flex;
@@ -331,15 +334,14 @@
 .dropdown input[type="checkbox"]:checked + label::after  {
     opacity: 1;
 }
-
 .dropdown.col1 .tag-input-container  {
     display: inline-flex;
     flex-wrap: wrap;
     flex-direction: row;
-
     border-radius: 4px;
     align-items: center;
     border: 0px;
+    /* Removed transition */
 }
 
 .dropdown.col1  .tag {
@@ -351,7 +353,8 @@
     border-radius: 3px;
     font-size: 0.9rem;
     display: inline-flex;
-    align-items: center; 
+    align-items: center;
+    /* Removed transition - Framer Motion handles */
 }
 
 .dropdown.col1  .tag button {
@@ -363,6 +366,7 @@
     font-size: 0.8rem;
     padding: 0;
     line-height: 1;
+    transition: color 0.2s ease-in-out; /* Keep tag button transition */
 }
 
 .dropdown.col1  .tag button:hover {
@@ -375,7 +379,8 @@
     padding: 8px;
     font-size: 1rem;
     outline: none;
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
+    /* Removed transition */
 }
 
 .dropdown.col1 .tag-input:empty::placeholder {
@@ -390,7 +395,7 @@
     }
 
     .dropdown.col1 .left {
-        border-right: none !important; 
+        border-right: none !important;
     }
 }
 
@@ -407,3 +412,166 @@
         justify-content: start;
     }
 }
+
+/* List pagination buttons */
+.listman {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.listpage-btn {
+    padding: 8px 12px;
+    border: 1px solid var(--color-primary-light);
+    border-radius: 6px;
+    background-color: var(--color-secondary-accent);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out; /* Keep button transitions */
+}
+
+.listpage-btn:hover {
+    background-color: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+}
+
+.listpage-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.listpage-text {
+    font-size: 1rem;
+    color: var(--color-text-primary);
+}
+
+/* Clear list button */
+.delete-button {
+    padding: 10px 15px;
+    background-color: #dc3545; /* Example red color */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease-in-out; /* Keep button transition */
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+.apply-button {
+    padding: 10px 15px;
+    background-color: #28a745; /* Example green color */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease-in-out; /* Keep button transition */
+}
+
+.apply-button:hover {
+    background-color: #218838;
+}
+
+/* Custom size input */
+.custom-size-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #333;
+    width: 60px;
+    margin-left: 5px;
+    /* Removed transition */
+}
+
+.custom-size-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.animated-dropdown {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .dropdown-trigger {
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--clr-primary-a50);
+  }
+  
+  .dropdown-options {
+    transform-origin: top;
+    overflow: hidden;
+    width: 100%;
+    background-color: var(--clr-primary-a50);
+    border: 0.8px solid var( --color-secondary-accent);
+    border-top: none;
+    position: absolute;
+    z-index: 10;
+  }
+  
+  .dropdown-options p {
+    margin: 0;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .dropdown-options p:hover {
+    background: var(--color-primary);
+  }
+  
+
+  .animated-date-picker {
+    position: relative;
+    width: 100%;
+  }
+  
+  .date-trigger {
+    padding: 10px;
+    background-color: inherit;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--clr-primary-a50);
+  }
+  
+  .calendar-dropdown {
+    position: absolute;
+    z-index: 20;
+    width: 100%;
+    background-color: var(--clr-primary-a50) !important;
+    border: 1px solid var(--color-primary);
+    border-top: none;
+    overflow: hidden;
+    transform-origin: top;
+    margin-top: -20px;
+  }
+  
+  .react-calendar {
+    width: 100% !important;
+    border: none;
+  }
+  
+  .react-calendar__tile--active {
+    background: var(--color-primary);
+    color: white;
+  }
+  
+  .react-calendar__tile:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+  
