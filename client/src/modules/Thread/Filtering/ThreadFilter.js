@@ -1,15 +1,34 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import AnimatedDatePicker from "./AnimatedCal";
 
+import AnimatedDropdown from "./AnimatedDropdown";
 export default function ThreadFilter() {
   const [isEditing, setIsEditing] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
   const filterButtonRef = useRef(null);
   const dropdownRef = useRef(null);
 
+  const [startDate, setStartDate] = useState(null);
+
+  const [threadStatus, setThreadStatus] = useState("");
+
   const [threads, setThreads] = useState(() => {
     const storedData = sessionStorage.getItem("data");
     return storedData ? JSON.parse(storedData) : [];
   });
+
+  const buttonVariants = {
+    hover: { scale: 1.1 },
+    tap: { scale: 0.95 },
+  };
+
+  const statusOptions = [
+    { value: "", label: "None" },
+    { value: "Open", label: "Open" },
+    { value: "Closed", label: "Closed" },
+    { value: "Pinned", label: "Pinned" },
+  ];
  
  
  
@@ -259,7 +278,11 @@ export default function ThreadFilter() {
                         <input type="radio" id="trending" name="date" value="trending" />
                         <label htmlFor="trending">Trending</label>
 
-                        <input type="date" id="startDate" name="startDate" className="date-input" />
+                        <AnimatedDatePicker
+                          name="startDate"
+                          label="Select date..."
+                          onChange={(e) => setStartDate(e.target.value)}
+                        />
                         </div>
 
 
@@ -268,7 +291,7 @@ export default function ThreadFilter() {
                         Sort By:
                         </label>
                         <div>
-                          <input type="radio" id="sortAnswered" name="sortBy" value="answered" />
+                          <input type="checkbox" id="sortAnswered" name="sortBy" value="answered" />
                           <label htmlFor="sortAnswered">Answered</label>
 
                           <input type="radio" id="sortViews" name="sortBy" value="views" />
@@ -281,11 +304,12 @@ export default function ThreadFilter() {
                           <label htmlFor="sortLikes">Most Likes</label>
                         </div>
 
-                        <button onClick={() => deleteList()}>Clear List</button>
-                        
                       </div>
                       </div>
+<<<<<<< HEAD:client/src/modules/Thread/ThreadFilter.js
 
+=======
+>>>>>>> c68d9c5 (try):client/src/modules/Thread/Filtering/ThreadFilter.js
                       <div className="dropdown col3">
                       
                         <div className="left">
@@ -294,20 +318,13 @@ export default function ThreadFilter() {
                         Thread Status:
                         </label>
                         
-                        <select 
-                            id="selectStatus" 
-                            className="select-status" 
-                            onChange={(e) => {
-                              // Handle select change logic
-                            }}
-                          >
-                            <option value="" selected>
-                              Select a status...
-                            </option>
-                            <option value="open">Open</option>
-                            <option value="closed">Closed</option>
-                            <option value="pinned">Pinned</option>
-                          </select>
+                        <AnimatedDropdown
+                        
+                          name="threadStatus"
+                          label="Select a status..."
+                          options={statusOptions}
+                          onChange={(e) => setThreadStatus(e.target.value)}
+                        />
 
                           <h3>List Size:</h3>
                         <label htmlFor="listFilter" style={{ display: "none" }}>
@@ -328,14 +345,26 @@ export default function ThreadFilter() {
                         <label htmlFor="thread100">100</label>
 
                         <h3>Custom Size:</h3>
-                        <input type="number" id="customsize" name="listSize" />
+                        <input type="number" min="1" placeholder="10" id="customsize" name="listSize" />
                        
                         </div>
-                        
+
+                        <motion.button onClick={deleteList} className="apply-button" variants={buttonVariants} whileHover="hover" whileTap="tap">
+                        Apply
+                        </motion.button>
+
+                        <motion.button onClick={deleteList} className="delete-button" variants={buttonVariants} whileHover="hover" whileTap="tap">
+                        Clear
+                      </motion.button>
+                      <button onClick={() => deleteList()}>Clear List</button>
                         </div>
 
                        
+<<<<<<< HEAD:client/src/modules/Thread/ThreadFilter.js
           
+=======
+       
+>>>>>>> c68d9c5 (try):client/src/modules/Thread/Filtering/ThreadFilter.js
         </div>
         </div>
         </div>

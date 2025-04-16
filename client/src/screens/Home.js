@@ -4,7 +4,7 @@ import CountUpComponent from '../modules/I-Candy/CountUp.js';
 // Other modules components imports
 import BentoBox from '../modules/BentoBox.js';
 import Threads from '../modules/Thread/Threads.js';
-import ThreadFilter from '../modules/Thread/ThreadFilter.js';
+import ThreadFilter from '../modules/Thread/Filtering/ThreadFilter.js';
 
 
 export default function Home() {
