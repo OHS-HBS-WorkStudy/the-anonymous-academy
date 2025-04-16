@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 export default function AddTags({ tags, setTags }) {
-  const [inputValue, setInputValue] = useState("#");
+  const [inputValue, setInputValue] = useState("");
   const [tagRemoving, setTagRemoving] = useState(null);
 
   useEffect(() => {
@@ -52,11 +52,6 @@ export default function AddTags({ tags, setTags }) {
       </label>
 
       <div className="tag-input-container text-box ql-container">
-        <div className='text'>
-            Enter one tag at a time. Press <strong>Enter</strong> to add.
-        </div>
-        
-
         <input
           id="tag-input"
           className="input-container"
@@ -64,7 +59,7 @@ export default function AddTags({ tags, setTags }) {
           value={inputValue}
           onChange={tagInputChange}
           onKeyDown={enterCheck}
-          placeholder="Press Enter to Add Tag"
+          placeholder={inputValue === "#" ? "" : "Press Enter to Add Tag"}
         />
       </div>
 

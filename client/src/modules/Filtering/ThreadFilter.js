@@ -306,10 +306,6 @@ export default function ThreadFilter() {
 
                       </div>
                       </div>
-<<<<<<< HEAD:client/src/modules/Thread/ThreadFilter.js
-
-=======
->>>>>>> c68d9c5 (try):client/src/modules/Thread/Filtering/ThreadFilter.js
                       <div className="dropdown col3">
                       
                         <div className="left">
@@ -358,16 +354,9 @@ export default function ThreadFilter() {
                       </motion.button>
                       <button onClick={() => deleteList()}>Clear List</button>
                         </div>
-
-                       
-<<<<<<< HEAD:client/src/modules/Thread/ThreadFilter.js
-          
-=======
-       
->>>>>>> c68d9c5 (try):client/src/modules/Thread/Filtering/ThreadFilter.js
-        </div>
-        </div>
-        </div>
-        </div>
+            </div>
+            </div>
+          </div>
+   </div>
   );
 }                

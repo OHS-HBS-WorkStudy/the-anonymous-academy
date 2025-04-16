@@ -8,21 +8,11 @@
     "text-top"
     "main-content-area";
   width: 100%;
-<<<<<<< HEAD
-  max-width: 100vw;
-  height: fit-content;
-  min-height: 100vh;
-  margin-top: 10px;
-
-=======
   max-width: calc(100vw - 60px);
   height: fit-content;
   min-height: 100vh;
- 
   gap: 20px;
->>>>>>> 8e5db7c (save)
   padding: 20px;
-
   box-sizing: border-box;
 
 }
@@ -80,13 +70,8 @@
 
 }
 
-<<<<<<< HEAD
-.NewThread .new-input-container .ql-editor {
-  min-width: fit-content !important;
-=======
 .NewThread .text-box .ql-editor {
   max-width: inherit !important;
->>>>>>> 8e5db7c (save)
 }
 
 .threadRules h2 {
@@ -144,19 +129,11 @@
 .NewThread .center {
   grid-area: center-content;
   display: flex;
-  flex-direction: column; /* Keep the content stacked */
+  flex-direction: column; 
   justify-content: left;
-<<<<<<< HEAD
-  align-items: flex-start; 
-  max-width: 100%; /* Ensure it doesn't exceed the container's width */
-  width: 100%; /* Take up the full width of its container */
-  box-sizing: border-box; /* Include padding and border in width calculation */
-
-=======
   align-items: flex-start;
-  width: 100%; /* Ensure it respects the grid column width */
-  max-width: 100%; /* Prevent overflow */
->>>>>>> 8e5db7c (save)
+  width: 100%; 
+  max-width: 100%;
   height: fit-content;
   border-radius: 12px;
   padding: 30px;
@@ -165,27 +142,9 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
   border: 1px solid var(--clr-primary-a30);
-<<<<<<< HEAD
-  overflow: auto !important; 
-=======
-  flex: 0 !important; /* Allow it to shrink and grow within the grid */
+  flex: 0 !important; 
 }
 
-/* .NewThread .ql-container.ql-snow {
-  grid-column: 1; 
-  width: 100%; 
-  height: auto !important;
-
->>>>>>> 8e5db7c (save)
-}
-
-.NewThread .ql-container.ql-snow .ql-editor {
-  overflow: visible !important;
-  height: auto !important;
-  min-height: 200px;
-} */
-
-/* Focus state for the center container */
 .NewThread .center:focus-within {
   border-color: var(--clr-primary-a50);
 }
@@ -233,13 +192,14 @@
 
 }
 
-<<<<<<< HEAD
-=======
+.new-input-container1::placeholder {
+  color: white;
+}
+
 .input-container::placeholder {
   color: white;
 }
 
->>>>>>> 8e5db7c (save)
 .input-container.text-box.ql-container {
   background-color: transparent !important;
 }
@@ -347,19 +307,7 @@ label h1 {
   text-align: left !important;
   color: var(--clr-primary-a30);
 }
-<<<<<<< HEAD
-.NewThread .ql-container.ql-snow {
-  overflow: visible !important;
-  height: auto !important;
-} 
-.NewThread .ql-container.ql-snow .ql-editor {
-  overflow: visible !important;
-  height: auto !important;
-  min-height: 200px; 
-}
-=======
 
->>>>>>> 8e5db7c (save)
 /* Input container heading styles */
 .NewThread .input-container h2 {
   font-size: 1.6rem;

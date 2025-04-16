@@ -37,10 +37,7 @@ export default function BentoBox() {
           >
             <h1 className="fire">Trending</h1>
             <div className="trending-content">
-              <p>No trends</p>
-              <p>No trends</p>
-              <p>No trends</p>
-              <p>No trends</p>
+              <p>No trends? Create a trend!</p>
             </div>
           </motion.div>
         </div>
