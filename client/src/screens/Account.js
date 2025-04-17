@@ -15,9 +15,22 @@ export default function Account() {
 
     useEffect(() => {
         const foundUserGet = sessionStorage.getItem("foundUser");
-        if (foundUserGet) {
-            setLoggedInUser(JSON.parse(foundUserGet));
+    if (foundUserGet) {
+        try {
+            const parsedUser = JSON.parse(foundUserGet);
+            if (parsedUser) {
+                setLoggedInUser(parsedUser);
+            } else {
+                setLoggedInUser(null);
+            }
+        } catch (error) {
+            console.error("Error parsing foundUser:", error);
+            setLoggedInUser(null);
         }
+    } else {
+        setLoggedInUser(null);
+    }
+
 
         const path = location.pathname;
         if (path.endsWith('/activity')) {
@@ -37,38 +50,7 @@ export default function Account() {
     };
 
 
-    if (loggedInUser) {
-        return (
-            <div className="offset">
-                <div className="account-page">
-                    <div className="account-top">
-                        <h1 className="userName">{loggedInUser.first_name} {loggedInUser.last_name}</h1>
-                        <div className="account-pages">
-                            <h3
-                                className={activeSection === 'stats' ? 'active' : ''}
-                                onClick={() => handleSectionClick('stats')}
-                            >
-                                Stats
-                            </h3>
-                            <h3
-                                className={activeSection === 'activity' ? 'active' : ''}
-                                onClick={() => handleSectionClick('activity')}
-                            >
-                                Activity
-                            </h3>
-                        </div>
-                    </div>
-
-                    {activeSection === 'stats' && (
-                        <Stats loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
-                    )}
-                    {activeSection === 'activity' && (
-                        <Activity loggedInUser={loggedInUser} />
-                    )}
-                </div>
-            </div>
-        );
-    } else {
+    if (!loggedInUser || loggedInUser === null) {
         return (
             <>
                 <div className="overlay">
@@ -97,6 +79,37 @@ export default function Account() {
                     </div>
                 </div>
             </>
+        );
+    } else {
+        return (
+            <div className="offset">
+                <div className="account-page">
+                    <div className="account-top">
+                        <h1 className="userName">{loggedInUser?.first_name} {loggedInUser?.last_name}</h1>
+                        <div className="account-pages">
+                            <h3
+                                className={activeSection === 'stats' ? 'active' : ''}
+                                onClick={() => handleSectionClick('stats')}
+                            >
+                                Stats
+                            </h3>
+                            <h3
+                                className={activeSection === 'activity' ? 'active' : ''}
+                                onClick={() => handleSectionClick('activity')}
+                            >
+                                Activity
+                            </h3>
+                        </div>
+                    </div>
+
+                    {activeSection === 'stats' && (
+                        <Stats loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
+                    )}
+                    {activeSection === 'activity' && (
+                        <Activity loggedInUser={loggedInUser} />
+                    )}
+                </div>
+            </div>
         );
     }
 }
