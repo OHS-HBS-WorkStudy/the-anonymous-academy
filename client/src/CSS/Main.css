@@ -93,6 +93,9 @@
     font-family: 'Roboto', sans-serif;
 }
 
+html {
+    background-color: var(--color-background) !important;
+}
 .offset {
     margin-top: 60px;
     margin-left: 60px;

@@ -4,16 +4,29 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import DOMPurify from 'dompurify';
 
+
+
 // Other modules components imports
 import useNavigation from "../useNavigation";
-import AddTags from "../AddTags";
+import AddTags from "./AddTags";
 import CreateThreadAside from "../../screens/sub-screens/CreateThreadAside";
+import CreatePoll from "./CreatePoll";
+import { motion } from "framer-motion";
 
 export default function CreateThread() {
   const [ThreadTitle, setThreadTitle] = useState("");
   const [ThreadContents, setThreadContents] = useState("");
   const [tags, setTags] = useState(JSON.parse(sessionStorage.getItem("tags")) || []);
   const [isLoading, setIsLoading] = useState(false);
+  const [pollQuestion, setPollQuestion] = useState(""); 
+  const [pollOptions, setPollOptions] = useState(['', '']); 
+
+  const containerVariants = {
+    initial: { opacity: 0, y: -10 },
+    animate: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeInOut" } },
+    exit: { opacity: 0, y: -10, transition: { duration: 0.2, ease: "easeInOut" } },
+  };
+
 
   const [ruleAgreement, setRuleAgreement] = useState(() => {
     const foundUser = JSON.parse(sessionStorage.getItem("foundUser"));
@@ -22,6 +35,19 @@ export default function CreateThread() {
         ? foundUser.pref.ruleAgreement
         : false;
 });
+
+const [includePoll, setIncludePoll] = useState(false);
+
+const handleIncludePollChange = (event) => {
+  setIncludePoll(event.target.checked);
+};
+
+const handlePollData = (question, options) => {
+  setPollQuestion(question);
+  setPollOptions(options);
+};
+
+
 
 useEffect(() => {
     const foundUser = JSON.parse(sessionStorage.getItem("foundUser"));
@@ -90,6 +116,9 @@ useEffect(() => {
         tags,
         created_at: new Date().toISOString(),
         user: foundUser ? (({ first_name, last_name, email, account_type }) => ({ first_name, last_name, email, account_type }))(foundUser) : null,
+        poll: includePoll && pollQuestion && pollOptions.some(option => option.trim() !== '')
+        ? { question: DOMPurify.sanitize(pollQuestion), options: pollOptions.map(opt => DOMPurify.sanitize(opt)) }
+        : null,
       };
 
       sessionStorage.setItem("data", JSON.stringify([...threads, newThread]));
@@ -145,11 +174,26 @@ useEffect(() => {
 
   return (
     <div className="NewThread">
-      <h1 className="text-top">Create Your Thread</h1>
+      <div className="NewThread-header">
+      <h1 className="text-top">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 inline-block mr-2">
+        <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.94l-1.72 1.72a.75.75 0 101.06 1.06l3-3z" clipRule="evenodd" />
+      </svg>
+      Create Your Thread
+      </h1>
+      <p className="text-subheading">Share your questions, ideas, and start engaging discussions with the community.</p>
+      </div>
       <div className="main-content-area">
       <div className="center">
-        <div className="fill">
+        <motion.div 
+          className="fill"
+          variants={containerVariants}
+          initial="initial"
+          animate="animate"
+        >
           <label htmlFor="questionTitle" className="threadDir"><h1>Question Title</h1></label>
+          <p className="subtext">Be clear and concise. What is the core question you want to ask?</p>
+
      
             <input
             id="questionTitle"
@@ -162,9 +206,15 @@ useEffect(() => {
           />
 
           <div className="charCounter">{getPlainText(ThreadTitle).length}/{maxTitleLength} characters</div>
-        </div>
-        <div className="fill">
+        </motion.div>
+        <motion.div 
+          className="fill"
+          variants={containerVariants}
+          initial="initial"
+          animate="animate"
+        >
           <label htmlFor="questionDesc" className="threadDir"><h1>Question Description</h1></label>
+          <p className="subtext">Provide more details and context. Explain your question or idea thoroughly.</p>
           <ReactQuill
             id="questionDesc"
             ref={quillRef}
@@ -184,10 +234,40 @@ useEffect(() => {
             }}
           />
 
-{/* style={{ width: "100%", minHeight: "200px", height: 'auto', maxWidth: "100%", wordWrap: "break-word", whiteSpace: "normal" }} */}
           <div className="charCounter">{getPlainText(ThreadContents).length}/{maxDescLength} characters</div>
-        </div>
+        </motion.div>
+
         <AddTags tags={tags} setTags={setTags} />
+
+        <div className="fill">
+          <label htmlFor="tag-input" className="threadTag">
+            <h1>Extras</h1>
+          </label>
+      
+          <label className="rule-checkbox">
+            <input
+              type="checkbox"
+              checked={includePoll}
+              onChange={handleIncludePollChange}
+            />
+            <span>Include a Poll?</span>
+          </label>
+
+          <label className="rule-checkbox">
+            <input
+              type="checkbox"
+            />
+            <span>Mark as Urgent?</span>
+          </label>
+
+        </div>
+
+        {includePoll && (
+            <CreatePoll
+              onPollData={handlePollData} 
+            />
+          )}
+
         <div className="loadButton container">
           <button
             onClick={submitThread}

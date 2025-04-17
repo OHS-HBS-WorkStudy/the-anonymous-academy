@@ -126,14 +126,7 @@
   
     
     
-    
-  .Sign .split.right {
-      animation: slideInL 1s ease-out forwards;
-    }
-  
-    .Sign .split.left {
-      animation: slideInR 1s ease-out forwards;
-    }
+
     
     .split::before,
     .split::after {
@@ -313,7 +306,7 @@
       transform: translateY(-2px);
     }
     
-    
+
     @media (max-width: 825px) {
       .split {
         display: flex;

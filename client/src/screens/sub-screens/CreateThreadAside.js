@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function CreateThreadAside({ruleAgreement, setRuleAgreement}) {
 
@@ -11,9 +12,20 @@ export default function CreateThreadAside({ruleAgreement, setRuleAgreement}) {
       const toggleCommunication = () => setIsOpenRuleSet2(!isOpenRuleSet2);
       const toggleContent = () => setIsOpenRuleSet3(!isOpenRuleSet3);
 
+      const containerVariants = {
+        initial: { opacity: 0, y: -10 },
+        animate: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeInOut" } },
+        exit: { opacity: 0, y: -10, transition: { duration: 0.2, ease: "easeInOut" } },
+      };
+
     return (
         <aside>
-        <div className="threadRules">
+        <motion.div 
+          className="threadRules"
+          variants={containerVariants}
+          initial="initial"
+          animate="animate"
+        >
           <div onClick={toggleGeneral} className="drowdown">
             <h2>General Guidelines</h2>
             <span className="drowdown-arrow">{isOpenRuleSet1 ? '▲' : '▼'}</span>
@@ -87,7 +99,7 @@ export default function CreateThreadAside({ruleAgreement, setRuleAgreement}) {
             />
             <span  className="required"><b> I have read and agreed to the thread creation guidelines.</b></span>
           </label>
-        </div>
+        </motion.div>
       </aside>
     );
 }
