@@ -1,11 +1,17 @@
 # The Anonymous Academy
 
+
+## (IMPORTANT!) Open the client folder
+```
+ cd client
+```
+
 ### Install React and React DOM
 ```
  npm install react react-dom
 ```
 
-## REINSTALL REACT 18 OR ELSE
+##  (IMPORTANT!) REINSTALL REACT 18 OR ELSE
 ### For now, Install React 18 to work with React Quill
 ```
  npm install react@18 react-dom@18
@@ -49,6 +55,5 @@
 
 ### Open the application
 ```
- cd client
  npm start
 ```
