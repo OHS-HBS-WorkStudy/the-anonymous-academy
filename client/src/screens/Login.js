@@ -17,7 +17,7 @@ import {
     linkVariants,
     togglePasswordVariants,
     backgroundMotion,
-} from '../modules/Thread/Animations/LoginAnimations';
+} from '../modules/Animations/LoginAnimations';
 
 export default function Login() {
     const { goToSignUp, goToHome } = useNavigation();

@@ -17,7 +17,7 @@ import {
     fadeVariants,
     buttonGroupVariants,
     submitButtonVariants,
-} from '../modules/Thread/Animations/SignAnimations';
+} from '../modules/Animations/SignAnimations';
 
 export default function SignUp() {
     const { goToLogin } = useNavigation();
