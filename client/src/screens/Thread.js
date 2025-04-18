@@ -8,6 +8,7 @@ import TimeCounter from '../modules/I-Candy/TimeCounter.js';
 import ThreadVote from '../modules/Thread/ThreadVote.js';
 import ReplyList from '../modules/Reply/ReplyList.js';
 import ThreadReply from '../modules/Reply/ThreadReply.js';
+import PollingSystem from '../modules/Thread/PollingSystem.js';
 
 export default function Thread() {
     const { threadId } = useParams(); 
@@ -90,6 +91,14 @@ export default function Thread() {
 
                      
                 </div>
+
+                {thread.poll && Array.isArray(thread.poll.options) && thread.poll.options.length > 1 && (
+                    <PollingSystem
+                        question={thread.poll.question}
+                        options={thread.poll.options}
+                        pollId={thread.thread_id.toString()}
+                    />
+                )}
 
                 <div className="tags-container">
                         {getTags()}
