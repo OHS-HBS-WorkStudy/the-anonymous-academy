@@ -98,6 +98,19 @@ useEffect(() => {
     setValue(value.length <= maxLength ? value : value.substring(0, maxLength));
   };
 
+  const canSubmit = () => {
+    if (!ruleAgreement) {
+      return "Please agree to the guidelines.";
+    }
+    if (!getPlainText(ThreadTitle).trim()) {
+      return "Please enter a title for your thread.";
+    }
+    if (!getPlainText(ThreadContents).trim()) {
+      return "Please enter content for your thread.";
+    }
+    return null; 
+  };
+
   const submitThread = (e) => {
     e.preventDefault();
     if (!ruleAgreement) return alert("Please agree to the guidelines before submitting.");
@@ -270,8 +283,8 @@ useEffect(() => {
 
         <div className="loadButton container">
           <button
-            onClick={submitThread}
-            disabled={isLoading || !ruleAgreement || !getPlainText(ThreadTitle) || !getPlainText(ThreadContents)}
+             onClick={submitThread}
+             disabled={isLoading || canSubmit() !== null}
           >
             {isLoading ? "Submitting..." : "Submit"}
           </button>

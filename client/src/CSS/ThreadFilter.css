@@ -12,7 +12,6 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     flex-wrap: nowrap;
     margin-left: 0px !important;
-    /* Removed transition as Framer Motion will handle animations */
 }
 
 .grid-header-title {
@@ -90,11 +89,11 @@
 
 .filter-button:hover {
     background-color: var( --color-secondary-accent);
-    transform: translateY(-2px); /* Keep button hover transform */
+    transform: translateY(-2px); 
 }
 
 .filter-button:active {
-    transform: translateY(0); /* Keep button active transform */
+    transform: translateY(0); 
 }
 
 .filter-button:focus-visible {
@@ -102,7 +101,7 @@
 }
 
 /* Dropdown content styling */
-.dropdown-content {
+.thread-filter .dropdown-content {
     max-height: 0;
     overflow: hidden;
     display: grid;
@@ -113,14 +112,14 @@
     height: 100%;
     border-radius: 12px;
     background-color: var(--color-secondary);
-    transform: translateY(10%); /* Initial hidden position */
-    transition: transform 0.4s ease, opacity 0.4s ease; /* Removed max-height transition, Framer Motion controls height */
+    transform: translateY(10%); 
+    transition: transform 0.4s ease, opacity 0.4s ease; 
     opacity: 0;
 }
 
 .dropdown-content.open {
     position: relative;
-    max-height: 600px; /* Keep max-height as a fallback/limit */
+    max-height: 600px; 
     margin-top: 10px;
     overflow: visible;
     color: var(--color-text-tertiary);
@@ -334,7 +333,7 @@
 .dropdown input[type="checkbox"]:checked + label::after  {
     opacity: 1;
 }
-.dropdown.col1 .tag-input-container  {
+.dropdown.col3 .tag-input-container  {
     display: inline-flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -344,7 +343,7 @@
     /* Removed transition */
 }
 
-.dropdown.col1  .tag {
+.dropdown.col3  .tag {
     background-color: #e1ecf4;
     color: #39739d;
     padding: 5px 8px;
@@ -357,7 +356,7 @@
     /* Removed transition - Framer Motion handles */
 }
 
-.dropdown.col1  .tag button {
+.dropdown.col3  .tag button {
     background: none;
     border: none;
     color: #777;
@@ -369,11 +368,11 @@
     transition: color 0.2s ease-in-out; /* Keep tag button transition */
 }
 
-.dropdown.col1  .tag button:hover {
+.dropdown.col3  .tag button:hover {
     color: #000;
 }
 
-.dropdown.col1 .tag-input {
+.dropdown.col3 .tag-input {
     flex-grow: 1;
     border: none;
     padding: 8px;
@@ -383,7 +382,7 @@
     /* Removed transition */
 }
 
-.dropdown.col1 .tag-input:empty::placeholder {
+.dropdown.col3 .tag-input:empty::placeholder {
     color: var(--color-primary-accent);
 }
 
@@ -575,3 +574,87 @@
     background: rgba(0, 0, 0, 0.05);
   }
   
+
+
+
+  .compact-dropdown-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .compact-filter-button {
+    background-color: transparent;
+    color: #333;
+    border: none;
+    border-radius: 6px; 
+    padding: 10px 16px; 
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: fit-content;
+    min-width: 120px; 
+  }
+  
+  
+  .compact-filter-button > span {
+    flex-grow: 1;
+    text-align: left;
+  }
+  
+  .dropdown-arrow {
+    margin-left: 10px;
+    fill: #cbd5e0; /* Light gray arrow */
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .compact-dropdown-container.open .dropdown-arrow {
+    transform: rotate(180deg);
+  }
+  
+  .compact-dropdown-options {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background-color: #fff; 
+    border: 1px solid #e2e8f0; 
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* More noticeable shadow */
+    z-index: 10;
+    overflow: hidden;
+    width: 100%; 
+    min-width: inherit; 
+    margin: 0;
+    padding: 8px 0;
+    list-style: none;
+    transform-origin: top center;
+  }
+  
+  .compact-dropdown-options li:first-child button {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+  
+  .compact-dropdown-options li:last-child button {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+  
+  .compact-dropdown-option-button {
+    display: block;
+    width: 100%;
+    padding: 10px 16px; 
+    text-align: left;
+    background-color: transparent;
+    color: #334155; 
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .compact-dropdown-option-button:hover {
+    background-color: #f0f0f0; 
+  }

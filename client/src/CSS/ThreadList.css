@@ -1,0 +1,99 @@
+.ThreadList {
+    background-color: var(--color-background);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "main-content";  
+    width: fit-content;
+    height: fit-content;
+    min-height: 100vh;
+    padding-bottom: 80px;
+    position: relative;
+    justify-content: center;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.questionsSection {
+    width: 100%;
+    background: var( --color-background) !important;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    opacity: 0; 
+    transform: translateY(-20px);
+    animation: fadeInSlideDown 0.8s ease-out forwards; 
+}
+  
+.questionsTitle {
+    font-size: 1em;
+    color: var( --color-text-tertiary);
+    margin-right: 15px;
+}
+
+  
+@keyframes fadeInSlideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.main-content-area {
+    grid-area: main-content;
+    display: grid;
+    grid-template-columns: 72% 22%;
+    grid-template-areas:
+      "grid-header"
+      "grid-container right-space";
+    width: 100%;
+    justify-content: center;
+    align-items: start;
+    margin-top: 30px;
+}
+
+
+.grid-header-area {
+    grid-area: grid-header;
+    width: 100%; 
+    max-width: 100%; 
+    box-sizing: border-box;
+}
+
+.grid-container-area {
+    grid-area: grid-container;
+    width: 100%;
+    max-width: 100%; 
+    box-sizing: border-box;
+    overflow-x: hidden; 
+}
+
+.right-space-area {
+    grid-area: right-space; 
+    height: 100%; 
+    box-sizing: border-box;
+    max-width: 100%;  
+    overflow: hidden; 
+}
+
+
+.ThreadList {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "main-content";
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}

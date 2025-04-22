@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import AnimatedDatePicker from "./AnimatedCal";
 
 import AnimatedDropdown from "./AnimatedDropdown";
+import CompactDropdown from "./CompactDropdown";
 export default function ThreadFilter() {
   const [isEditing, setIsEditing] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
@@ -12,6 +13,8 @@ export default function ThreadFilter() {
   const [startDate, setStartDate] = useState(null);
 
   const [threadStatus, setThreadStatus] = useState("");
+  const [threadDate, setThreadDate] = useState("");
+  const [threadSize, setThreadSize] = useState("");
 
   const [threads, setThreads] = useState(() => {
     const storedData = sessionStorage.getItem("data");
@@ -29,8 +32,20 @@ export default function ThreadFilter() {
     { value: "Closed", label: "Closed" },
     { value: "Pinned", label: "Pinned" },
   ];
- 
- 
+
+  const dataOptions = [
+    { value: "", label: "Newest" },
+    { value: "Oldest", label: "Oldest" },
+    { value: "Trending", label: "Trending" },
+    { value: "Active", label: "Active" },
+  ];
+
+  const listOptions = [
+    { value: "10", label: "10" },
+    { value: "", label: "25" },
+    { value: "50", label: "50" },
+    { value: "100", label: "100" },
+  ];
  
   const [currentPage, setCurrentPage] = useState(() => {
     if (threads.length === 0) {
@@ -151,12 +166,20 @@ export default function ThreadFilter() {
       <div className="grid-header-area">
       <div className="thread-filter">
         <div className={`grid-header ${filterOpen ? "open" : ""}`}>
-        <div className="grid-header-title">Manager</div>
-        <div className="dropdown">
-          <label htmlFor="tagFilter" style={{ display: "none" }}>
-          Categories
-          </label>
-        </div>
+
+        <CompactDropdown
+          name="threadDate"
+          options={dataOptions}
+          selectedValue={threadDate} 
+          onChange={(e) => setThreadDate(e.target.value)}
+        />
+
+        <CompactDropdown
+          name="threadSize"
+          options={listOptions}
+          selectedValue={threadSize} 
+          onChange={(e) => setThreadSize(e.target.value)}
+        />
 
         <button
           ref={filterButtonRef}
@@ -237,25 +260,18 @@ export default function ThreadFilter() {
                     <input type="checkbox" id="socialstudies" name="category" value="socialstudies" />
                     <label htmlFor="socialstudies">#Social Studies | Threads 18</label>
 
-                      <div className="tag-input-container">
-                        {tags.map((tag, index) => (
-                          <span onClick={() => removeTag(index)} key={index} className="tag">
-                            {tag}
-                            <button>x</button>
-                          </span>
-                        ))}
-                        </div>
-                        <h3 className="tag-input-text">Custom Tag:</h3>
-                        <input
-                          ref={inputRef}
-                          id="customtag"
-                          className="tag-input"
-                          type="text"
-                          placeholder={tags.length === 0 ? "Enter Tags..." : ""}
-                          value={inputValue}
-                          onChange={handleInputChange}
-                          onKeyDown={handleKeyDown}
-                        />
+                    <h3>Thread Status:</h3>
+                        <label htmlFor="statusFilter" style={{ display: "none" }}>
+                          Thread Status:
+                        </label>
+                        
+                          <AnimatedDropdown
+                            name="threadStatus"
+                            label="Select a status..."
+                            options={statusOptions}
+                            onChange={(e) => setThreadStatus(e.target.value)}
+                          />
+
                       
                     </div>
       
@@ -269,14 +285,7 @@ export default function ThreadFilter() {
                         Date:
                         </label>
                         <div>
-                        <input type="radio" id="newest" name="date" value="newest"  />
-                        <label htmlFor="newest">Newest</label>
-
-                        <input type="radio" id="oldest" name="date" value="oldest"  />
-                        <label htmlFor="oldest">Oldest</label>
-
-                        <input type="radio" id="trending" name="date" value="trending" />
-                        <label htmlFor="trending">Trending</label>
+          
 
                         <AnimatedDatePicker
                           name="startDate"
@@ -309,41 +318,36 @@ export default function ThreadFilter() {
                       <div className="dropdown col3">
                       
                         <div className="left">
-                        <h3>Thread Status:</h3>
-                        <label htmlFor="statusFilter" style={{ display: "none" }}>
-                        Thread Status:
-                        </label>
-                        
-                        <AnimatedDropdown
-                        
-                          name="threadStatus"
-                          label="Select a status..."
-                          options={statusOptions}
-                          onChange={(e) => setThreadStatus(e.target.value)}
+
+                        <h3 className="tag-input-text">Custom Tags:</h3>
+                        <input
+                          ref={inputRef}
+                          id="customtag"
+                          className="tag-input"
+                          type="text"
+                          placeholder={tags.length === 0 ? "Enter Tags..." : ""}
+                          value={inputValue}
+                          onChange={handleInputChange}
+                          onKeyDown={handleKeyDown}
                         />
 
-                          <h3>List Size:</h3>
-                        <label htmlFor="listFilter" style={{ display: "none" }}>
-                        listSize:
-                        </label>
-                      
-                        <div>
-                        <input type="radio" id="thread10" name="listSize" value="10" />
-                        <label htmlFor="thread10">10</label>
-
-                        <input type="radio" id="thread25" name="listSize" value="25" />
-                        <label htmlFor="thread25">25</label>
-
-                        <input type="radio" id="thread50" name="listSize" value="50" />
-                        <label htmlFor="thread50">50</label>
-
-                        <input type="radio" id="thread100" name="listSize" value="100" />
-                        <label htmlFor="thread100">100</label>
-
-                        <h3>Custom Size:</h3>
-                        <input type="number" min="1" placeholder="10" id="customsize" name="listSize" />
-                       
+                        <div className="tag-input-container">
+                        {tags.map((tag, index) => (
+                          <span onClick={() => removeTag(index)} key={index} className="tag">
+                            {tag}
+                            <button>x</button>
+                          </span>
+                        ))}
                         </div>
+                      
+
+                          <div>
+                            <h3>Custom List Size:</h3>
+                            <label htmlFor="listFilter" style={{ display: "none" }}>
+                              Custom List Size
+                            </label>
+                            <input type="number" min="5" placeholder="10" id="customsize" name="listSize" />
+                          </div>
 
                         <motion.button onClick={deleteList} className="apply-button" variants={buttonVariants} whileHover="hover" whileTap="tap">
                         Apply
@@ -351,12 +355,12 @@ export default function ThreadFilter() {
 
                         <motion.button onClick={deleteList} className="delete-button" variants={buttonVariants} whileHover="hover" whileTap="tap">
                         Clear
-                      </motion.button>
+                        </motion.button>
                       <button onClick={() => deleteList()}>Clear List</button>
                         </div>
             </div>
-            </div>
           </div>
+      </div>
    </div>
   );
 }                
