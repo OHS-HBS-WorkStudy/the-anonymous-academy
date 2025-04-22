@@ -17,16 +17,22 @@ export default function ThreadList() {
             <div className="ThreadList">
                 <div className="container1">
                     <div className="questionsSection">
-                        <h1>
-                            <span className="questionsTitle">Questions</span>
+                        <h1 className="threadListTitle">
+                            Thread Hub
+                        </h1>
+                    
+                        <h3>
+                            <span className="questionsTitle">Question</span>
+
                             <span className="countUp">
                                 <CountUpComponent endValue={recieveThread.length} duration={3.8} />
                             </span>
-                        </h1>
+                        </h3>
+
+                        <ThreadFilter />
                     </div>
 
                     <div className="main-content-area">
-                        <ThreadFilter />
                         <div className="grid-container-area">
                             <div className="thread-list-container">
                                 {recieveThread && recieveThread.length > 0 ? (

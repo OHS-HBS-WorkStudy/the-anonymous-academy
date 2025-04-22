@@ -19,12 +19,15 @@
     padding: 10px;
     margin: 0 auto;
 }
+.welcomeSection {
+    text-align: center;
+}
 
-.questionsSection {
+.questionsSection,
+.welcomeSection {
     width: 100%;
     background: var( --color-background) !important;
     padding: 20px;
-    text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
     opacity: 0; 
@@ -37,12 +40,7 @@
     color: var( --color-text-tertiary);
     margin-right: 15px;
 }
-  
-.countUp {
-    font-size: 1em;
-    font-weight: bold;
-    color: var(--clr-primary-a40, #007bff);
-}
+
   
 @keyframes fadeInSlideDown {
     0% {

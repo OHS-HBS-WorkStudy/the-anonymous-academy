@@ -4,45 +4,86 @@ import AnimatedDatePicker from "./AnimatedCal";
 
 import AnimatedDropdown from "./AnimatedDropdown";
 import CompactDropdown from "./CompactDropdown";
+import PageNavigation from "./PageNav";
+
+
+const dropdownVariants = {
+  open: {
+    scaleY: 1,
+    opacity: 1,
+    transition: {
+      scaleY: { stiffness: 100, damping: 20 },
+      opacity: { duration: 0.1 },
+    },
+    originY: 0,
+  },
+  closed: {
+    scaleY: 0,
+    opacity: 0,
+    transition: {
+      scaleY: { stiffness: 100, damping: 20 },
+      opacity: { duration: 0.1 },
+    },
+    originY: 0,
+  },
+};
+
+
 export default function ThreadFilter() {
   const [isEditing, setIsEditing] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
   const filterButtonRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  const toggleOpen = () => setIsOpen(!isOpen);
 
   const [startDate, setStartDate] = useState(null);
 
   const [threadStatus, setThreadStatus] = useState("");
   const [threadDate, setThreadDate] = useState("");
   const [threadSize, setThreadSize] = useState("");
+  const [threadTag, setThreadTag] = useState("");
 
   const [threads, setThreads] = useState(() => {
     const storedData = sessionStorage.getItem("data");
     return storedData ? JSON.parse(storedData) : [];
   });
 
+  const trendingTags = ["#Math | Threads 30", "#English | Threads 27", "#Science | Threads 19", "#Social Studies | Threads 18"];
+  
   const buttonVariants = {
     hover: { scale: 1.1 },
     tap: { scale: 0.95 },
   };
 
+  const tagOptions = [
+    { value: "__title__", label: "Trending 🔥", isLabel: true },
+    ...trendingTags.map(tagString => {
+      const [labelPart] = tagString.split(" |");
+      return { value: labelPart.trim().toLowerCase(), label: labelPart.trim() };
+    })
+  ];
+  
   const statusOptions = [
-    { value: "", label: "None" },
+    { value: "__title__", label: "Filter Status", isLabel: true },
     { value: "Open", label: "Open" },
     { value: "Closed", label: "Closed" },
     { value: "Pinned", label: "Pinned" },
   ];
-
+  
   const dataOptions = [
-    { value: "", label: "Newest" },
+    { value: "__title__", label: "Sort By", isLabel: true },
+    { value: "Newest", label: "Newest" },
     { value: "Oldest", label: "Oldest" },
     { value: "Trending", label: "Trending" },
     { value: "Active", label: "Active" },
   ];
-
+  
   const listOptions = [
+    { value: "__title__", label: "Items Per Page", isLabel: true },
     { value: "10", label: "10" },
-    { value: "", label: "25" },
+    { value: "25", label: "25" },
     { value: "50", label: "50" },
     { value: "100", label: "100" },
   ];
@@ -96,20 +137,6 @@ export default function ThreadFilter() {
     setInputPage(page);
     setIsEditing(false);
   };
- 
- 
-  const handleInputKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      handleInputBlur();
-    }
-  };
- 
- 
-  const handleSpanClick = () => {
-    setIsEditing(true);
-  };
- 
  
   const toggleFilter = () => {
     setFilterOpen(!filterOpen);
@@ -175,15 +202,30 @@ export default function ThreadFilter() {
         />
 
         <CompactDropdown
+          name="threadTags"
+          options={tagOptions}
+          selectedValue={threadTag} 
+          onChange={(e) => setThreadTag(e.target.value)}
+        />
+
+        <CompactDropdown
           name="threadSize"
           options={listOptions}
           selectedValue={threadSize} 
           onChange={(e) => setThreadSize(e.target.value)}
         />
 
+        <CompactDropdown
+          name="threadStatus"
+          options={statusOptions}
+          selectedValue={threadStatus} 
+          onChange={(e) => setThreadStatus(e.target.value)}
+        />
+
+
         <button
           ref={filterButtonRef}
-          onClick={toggleFilter}
+          onClick={toggleOpen}
           aria-expanded={filterOpen ? "true" : "false"}
           className="filter-button"
         >
@@ -192,175 +234,85 @@ export default function ThreadFilter() {
         </button>
 
         <div className="listman">
-          <button
-          className="listpage-btn"
-          disabled={currentPage === 1}
-          onClick={() => setCurrentPage((prev) => threads.length >= 1 ? Math.max(prev - 1, 1) : 0)}
-          >
-          &lt;
-          </button>
-          <span className="listpage-text">
-          Page{' '}
-          {isEditing ? (
-            <input
-            type="number"
-            value={inputPage}
-            onChange={(e) => setInputPage(e.target.value)}
-            onBlur={handleInputBlur}
-            onKeyDown={handleInputKeyPress}
-            style={{
-              width: '40px',
-              textAlign: 'center',
-              border: 'none',
-              borderBottom: '1px solid black',
-              outline: 'none',
-              fontSize: 'inherit',
-            }}
-            min="0"
-            max={totalPages}
-            autoFocus
-            />
-          ) : (
-            <span onClick={handleSpanClick} style={{ cursor: 'pointer', borderBottom: '1.5px ridge white', textAlign: 'center' }}>
-            {currentPage}
-            </span>
-          )}{' '}
-          of {totalPages}
-          </span>
-          <button
-          className="listpage-btn"
-          disabled={currentPage === totalPages}
-          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-          >
-          &gt;
-          </button>
+          <PageNavigation />
         </div>
         </div>
 
-              <div
-                ref={dropdownRef}
-                className={`dropdown-content ${filterOpen ? "open" : ""}`}
-              >
-                <div className="dropdown col1">
-                  <label htmlFor="categoryFilter" style={{ display: "none" }}>
-                    Category:
-                  </label>
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              className="motion-dropdown"
+              variants={dropdownVariants}
+              initial="closed"
+              animate="open"
+              exit="closed"
+            >
+              <div className="motion-dropdown-section">
+                <h3 className="motion-dropdown-title">Advance Sort By</h3>
+                <label htmlFor="sortAnswered">
+                  <input type="checkbox" id="sortAnswered" name="sortBy" value="answered" />
+                  Answered
+                </label>
+                <label htmlFor="sortViews">
+                  <input type="checkbox" id="sortViews" name="sortBy" value="views" />
+                  Most Views
+                </label>
+                <label htmlFor="sortComments">
+                  <input type="checkbox" id="sortComments" name="sortBy" value="comments" />
+                  Most Comments
+                </label>
+                <label htmlFor="sortLikes">
+                  <input type="checkbox" id="sortLikes" name="sortBy" value="likes" />
+                  Most Likes
+                </label>
+              </div>
 
-                  <div className="left">
-                    <h3>Trending Tags:</h3>
-                    <input type="checkbox" id="math" name="category" value="math" />
-                    <label htmlFor="math">#Math | Threads 30</label>
+              <div className="motion-dropdown-section">
+                <h3 className="motion-dropdown-title">Advance Date Filter</h3>
+                    <AnimatedDatePicker
+                      name="startDate"
+                      label="Select date..."
+                       className="tag-input"
+                      onChange={(e) => setStartDate(e.target.value)}
+                    />
+              </div>
 
-                    <input type="checkbox" id="english" name="category" value="english" />
-                    <label htmlFor="english">#English | Threads 27</label>
-
-                    <input type="checkbox" id="science" name="category" value="science" />
-                    <label htmlFor="science">#Science | Threads 19</label>
-
-                    <input type="checkbox" id="socialstudies" name="category" value="socialstudies" />
-                    <label htmlFor="socialstudies">#Social Studies | Threads 18</label>
-
-                    <h3>Thread Status:</h3>
-                        <label htmlFor="statusFilter" style={{ display: "none" }}>
-                          Thread Status:
-                        </label>
-                        
-                          <AnimatedDropdown
-                            name="threadStatus"
-                            label="Select a status..."
-                            options={statusOptions}
-                            onChange={(e) => setThreadStatus(e.target.value)}
-                          />
-
-                      
-                    </div>
-      
+              <div className="motion-dropdown-section">
+                <h3 className="motion-dropdown-title">Custom Tags</h3>
+                <input
+                  ref={inputRef}
+                  id="customtag"
+                  className="tag-input"
+                  type="text"
+                  placeholder={tags.length === 0 ? "Enter Tags..." : "#"}
+                  value={inputValue}
+                  onChange={handleInputChange}
+                  onKeyDown={handleKeyDown}
+                />
+                <div className="tag-input-container">
+                  {tags.map((tag, index) => (
+                    <span onClick={() => removeTag(index)} key={index} className="tag">
+                      {tag}
+                      <button>x</button>
+                    </span>
+                  ))}
                 </div>
-            
+              </div>
 
-                      <div className="dropdown col2">
-                        <div className="left">
-                        <h3>Date Filter:</h3>
-                        <label htmlFor="dateFilter" style={{ display: "none" }}>
-                        Date:
-                        </label>
-                        <div>
-          
-
-                        <AnimatedDatePicker
-                          name="startDate"
-                          label="Select date..."
-                          onChange={(e) => setStartDate(e.target.value)}
-                        />
-                        </div>
-
-
-                        <h3>Sort</h3>
-                        <label htmlFor="sortFilter" style={{ display: "none" }}>
-                        Sort By:
-                        </label>
-                        <div>
-                          <input type="checkbox" id="sortAnswered" name="sortBy" value="answered" />
-                          <label htmlFor="sortAnswered">Answered</label>
-
-                          <input type="radio" id="sortViews" name="sortBy" value="views" />
-                          <label htmlFor="sortViews">Most Views</label>
-
-                          <input type="radio" id="sortComments" name="sortBy" value="comments" />
-                          <label htmlFor="sortComments">Most Comments</label>
-
-                          <input type="radio" id="sortLikes" name="sortBy" value="likes" />
-                          <label htmlFor="sortLikes">Most Likes</label>
-                        </div>
-
-                      </div>
-                      </div>
-                      <div className="dropdown col3">
-                      
-                        <div className="left">
-
-                        <h3 className="tag-input-text">Custom Tags:</h3>
-                        <input
-                          ref={inputRef}
-                          id="customtag"
-                          className="tag-input"
-                          type="text"
-                          placeholder={tags.length === 0 ? "Enter Tags..." : ""}
-                          value={inputValue}
-                          onChange={handleInputChange}
-                          onKeyDown={handleKeyDown}
-                        />
-
-                        <div className="tag-input-container">
-                        {tags.map((tag, index) => (
-                          <span onClick={() => removeTag(index)} key={index} className="tag">
-                            {tag}
-                            <button>x</button>
-                          </span>
-                        ))}
-                        </div>
-                      
-
-                          <div>
-                            <h3>Custom List Size:</h3>
-                            <label htmlFor="listFilter" style={{ display: "none" }}>
-                              Custom List Size
-                            </label>
-                            <input type="number" min="5" placeholder="10" id="customsize" name="listSize" />
-                          </div>
-
-                        <motion.button onClick={deleteList} className="apply-button" variants={buttonVariants} whileHover="hover" whileTap="tap">
-                        Apply
-                        </motion.button>
-
-                        <motion.button onClick={deleteList} className="delete-button" variants={buttonVariants} whileHover="hover" whileTap="tap">
-                        Clear
-                        </motion.button>
-                      <button onClick={() => deleteList()}>Clear List</button>
-                        </div>
-            </div>
+              <div className="motion-dropdown-section">
+                <h3 className="motion-dropdown-title">Custom Items Per Page</h3>
+                <input
+                  type="number"
+                  min="5"
+                  placeholder="10"
+                  id="customsize"
+                  name="listSize"
+                />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
           </div>
       </div>
-   </div>
   );
 }                

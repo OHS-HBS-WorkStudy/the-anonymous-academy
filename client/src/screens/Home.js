@@ -18,7 +18,7 @@ export default function Home() {
         <div className="offset">
             <div className="Home">
                 <div className="container1">
-                     <div className="questionsSection">
+                     <div className="welcomeSection">
                         <h1>
                             <span className="questionsTitle">Welcome Back! {foundUser.first_name} {foundUser.last_name}</span>
                         </h1>

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
+import "react-calendar/dist/Calendar.css"; // Basic styles, we'll override
 
 const dropdownVariants = {
   open: {
@@ -45,8 +45,15 @@ function AnimatedDatePicker({ label = "Select date", name, onChange }) {
 
   return (
     <div className="animated-date-picker" ref={ref}>
-      <motion.div className="date-trigger" onClick={toggleOpen} whileTap={{ scale: 0.98 }}>
-        {selectedDate ? selectedDate.toDateString() : label}
+      <motion.button
+        className="date-trigger"
+        onClick={toggleOpen}
+        whileHover={{ backgroundColor: "var(--color-primary-light)" }}
+        whileTap={{ scale: 0.98 }}
+      >
+        <span className="date-trigger-label">
+          {selectedDate ? selectedDate.toLocaleDateString() : label}
+        </span>
         <motion.svg
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.2 }}
@@ -55,6 +62,7 @@ function AnimatedDatePicker({ label = "Select date", name, onChange }) {
           viewBox="0 0 20 20"
           width="16px"
           fill="currentColor"
+          className="date-trigger-icon"
         >
           <path
             fillRule="evenodd"
@@ -62,7 +70,7 @@ function AnimatedDatePicker({ label = "Select date", name, onChange }) {
             clipRule="evenodd"
           />
         </motion.svg>
-      </motion.div>
+      </motion.button>
       <motion.div
         className="calendar-dropdown"
         variants={dropdownVariants}
@@ -70,7 +78,7 @@ function AnimatedDatePicker({ label = "Select date", name, onChange }) {
         animate={isOpen ? "open" : "closed"}
         style={{ originY: "top" }}
       >
-        <Calendar onChange={handleDateChange} value={selectedDate} />
+        <Calendar onChange={handleDateChange} value={selectedDate} className="modern-calendar" />
       </motion.div>
     </div>
   );
