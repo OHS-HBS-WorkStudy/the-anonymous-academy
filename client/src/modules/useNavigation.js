@@ -4,10 +4,11 @@ const useNavigation = () => {
   const navigate = useNavigate();
   const location = useLocation(); 
 
-  const goToHome = () => navigate('/');
-  const goToAccount = () => navigate('/account/stats');
-  const goToAccountactivity = () => navigate('/account/activity');
+  const goToHome = () => navigate('/home');
+  const goToacctStats = () => navigate('/account/stats');
+  const goToacctActivity= () => navigate('/account/activity');
   const goToLogin = () => navigate('/login');
+  const goToThreadList = () => navigate('/');
   const goToSignUp = () => navigate('/signup');
   const goToNewThread = () => navigate('/newthread');
   const goToThread = (threadId) => navigate(`/thread/${threadId}`);
@@ -16,9 +17,10 @@ const useNavigation = () => {
 
   return { 
     goToHome, 
-    goToAccount, 
-    goToAccountactivity,
+    goToacctStats, 
+    goToacctActivity,
     goToLogin, 
+    goToThreadList,
     goToSignUp, 
     goToThread,
     goToNewThread,

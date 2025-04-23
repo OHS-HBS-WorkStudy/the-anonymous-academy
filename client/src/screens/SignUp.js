@@ -1,13 +1,27 @@
 // Library declaration imports
 import { useState} from 'react';
+import { motion } from 'framer-motion';
 
 // Other modules components imports
 import useNavigation from '../modules/useNavigation';
 import signuppic from '../img/signpic.png';
+import {
+    containerVariants,
+    splitRightVariants,
+    loginContainerVariants,
+    imageVariants,
+    titleVariants,
+    inputVariants,
+    buttonVariants,
+    orLineVariants,
+    fadeVariants,
+    buttonGroupVariants,
+    submitButtonVariants,
+} from '../modules/Animations/SignAnimations';
 
 export default function SignUp() {
     const { goToLogin } = useNavigation();
-    const [activeButton, setActiveButton] = useState("student");
+    const [activeButton, setActiveButton] = useState("Student");
     const [passwordVisible, setPasswordVisible] = useState(false);
 
     const togglePasswordVisibility = () => {
@@ -20,17 +34,33 @@ export default function SignUp() {
     function createUser() {
         let usersGet = sessionStorage.getItem("user");
         let users = usersGet ? JSON.parse(usersGet) : [];
-    
+
         if (!Array.isArray(users)) {
             users = [];
         }
-    
-        const firstName = document.getElementById("fname").value;
-        const lastName = document.getElementById("lname").value;
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
+
+        const firstName = document.getElementById("fname")?.value;
+        const lastName = document.getElementById("lname")?.value;
+        const email = document.getElementById("email")?.value;
+        const password = document.getElementById("password")?.value;
+        const reenteredPassword = document.getElementById("reenteredpassword").value;
+
+        if (firstName === "" || lastName === "" || email === "" || password === "" || reenteredPassword === "") {
+            alert("Please fill in all fields!");
+            return;
+        } else if (users.some(user => user.email === email)) {
+            alert("Email already exists!");
+            return;
+        } else if (password.length < 4) {
+            alert("Password must be at least 4 characters long!");
+            return;
+        }  else if (password !== reenteredPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
 
         const now = new Date();
+
         const options = {
             month: 'long',
             day: 'numeric',
@@ -39,8 +69,8 @@ export default function SignUp() {
             minute: 'numeric',
             hour12: true,
         };
+
         const formattedTime = now.toLocaleDateString('en-US', options);
-    
         const data = {
             first_name: firstName,
             last_name: lastName,
@@ -49,92 +79,139 @@ export default function SignUp() {
             account_type: activeButton,
             created: formattedTime,
             login: false,
+            pref: { ruleAgreement: false },
+
         };
-    
+
         users.push(data);
         sessionStorage.setItem("user", JSON.stringify(users));
         goToLogin();
+        setActiveButton("Student");
     }
 
     return (
-        <div className="offset">
-            <div className="Sign-page">
-                <div className='parent-container'>
-                    <div className="split">
-                        <div className="split right">
-                            <div className="center">
-                                <div className='content'>
+        <motion.div
+            className="offset"
+            variants={containerVariants}
+            initial="initial"
+            animate="animate"
+        >
+            <motion.div className="Sign-page">
+                <motion.div className='parent-container'>
+                    <motion.div className="split">
+                        <motion.div
+                            className="split right"
+                            variants={splitRightVariants}
+                        >
+                            <motion.div className="center">
+                                <motion.div className='content' variants={imageVariants}>
                                     <img src={signuppic} alt="signpic" className="signpic" />
-                                </div>
-                            </div>
-                        </div>
+                                </motion.div>
+                            </motion.div>
+                        </motion.div>
 
-                        <div className="split left">
-                            <div className="center">
+                        <motion.div
+                            className="split left"
+                        >
+                            <motion.div className="center">
 
-                                <div className="page-title">
+                                <motion.div className="page-title" variants={titleVariants}>
                                     <h2>Join the Community!</h2>
-                                </div>
+                                </motion.div>
 
-                                <div className="inputbox">
-                                    <input id="fname" type="text" placeholder="Enter your first name" />
-                                    <input id="lname" type="text" placeholder="Enter your last name" />
-                                    <input type="text" id="email" className="email" placeholder="Email" />
+                                <motion.div className="inputbox">
+                                    <motion.input variants={inputVariants} id="fname" type="text" placeholder="Enter your first name" />
+                                    <motion.input variants={inputVariants} id="lname" type="text" placeholder="Enter your last name" />
+                                    <motion.input variants={inputVariants} type="text" id="email" className="email" placeholder="Email" />
 
-                                    <input
-                                        type={passwordVisible ? "text" : "password"}
-                                        id="password"
-                                        className="password"
-                                        placeholder="Password"
-                                    />
+                                        <motion.input
+                                            variants={inputVariants}
+                                            type="password"
+                                            id="password"
+                                            className="password"
+                                            placeholder="Password"
+                                        />
 
-                                    <button
-                                        type="button"
-                                        className="toggle-password"
-                                        onClick={togglePasswordVisibility}
-                                    >
-                                        {passwordVisible ? "Hide" : "Show"}
-                                    </button>
-                                </div>
+                                    <motion.div style={{ position: 'relative' }}>
+                                        <motion.input
+                                            variants={inputVariants}
+                                            type={passwordVisible ? "text" : "password"}
+                                            id="reenteredpassword"
+                                            className="reenteredpassword"
+                                            placeholder="Re-Enter Password"
+                                        />
 
-                                <div className="button-group-container">
-                                    <div className="button-group">
-                                        <button
-                                            className={`button-group-btn ${activeButton === "student" ? "active" : ""}`}
-                                            onClick={() => handleButtonClick("student")}
+                                        <motion.button
+                                            whileHover="hover"
+                                            whileTap="tap"
+                                            type="button"
+                                            className="toggle-password"
+                                            onClick={togglePasswordVisibility}
+                                            variants={fadeVariants}
+                                            initial="initial"
+                                            animate="animate"
+                                        >
+                                            {passwordVisible ? "Hide" : "Show"}
+                                        </motion.button>
+                                    </motion.div>
+                                </motion.div>
+
+                                <motion.div className="button-group-container" variants={buttonGroupVariants}>
+                                    <motion.div className="button-group">
+                                        <motion.button
+                                            variants={buttonVariants}
+                                            whileHover="hover"
+                                            whileTap="tap"
+                                            className={`button-group-btn ${activeButton === "Student" ? "active" : ""}`}
+                                            onClick={() => handleButtonClick("Student")}
                                         >
                                             Student
-                                        </button>
-                                        <button
-                                            className={`button-group-btn ${activeButton === "parent" ? "active" : ""}`}
-                                            onClick={() => handleButtonClick("parent")}
+                                        </motion.button>
+                                        <motion.button
+                                            variants={buttonVariants}
+                                            whileHover="hover"
+                                            whileTap="tap"
+                                            className={`button-group-btn ${activeButton === "Parent" ? "active" : ""}`}
+                                            onClick={() => handleButtonClick("Parent")}
                                         >
                                             Parent
-                                        </button>
-                                        <button
-                                            className={`button-group-btn ${activeButton === "teacher" ? "active" : ""}`}
-                                            onClick={() => handleButtonClick("teacher")}
+                                        </motion.button>
+                                        <motion.button
+                                            variants={buttonVariants}
+                                            whileHover="hover"
+                                            whileTap="tap"
+                                            className={`button-group-btn ${activeButton === "Teacher" ? "active" : ""}`}
+                                            onClick={() => handleButtonClick("Teacher")}
                                         >
                                             Teacher
-                                        </button>
-                                    </div>
-                                </div>
+                                        </motion.button>
+                                    </motion.div>
+                                </motion.div>
 
-                                <button className="submit-button" type="submit" onClick={createUser}>Sign Up</button>
-                                <div className="border-line">
+                                <motion.button
+                                    variants={submitButtonVariants}
+                                    whileHover="hover"
+                                    whileTap="tap"
+                                    className="submit-button"
+                                    type="submit"
+                                    onClick={createUser}
+                                >
+                                    Sign Up
+                                </motion.button>
+                                <motion.div className="border-line" variants={orLineVariants}>
                                     <span>Or</span>
-                                </div>
+                                </motion.div>
 
-                                <div className="login-container">
+                                <motion.div className="login-container" variants={loginContainerVariants}>
                                     <p className="login-text">Have an account? </p>
                                     <p className="smalltext" onClick={goToLogin}>Login here</p>
-                                </div>
+                                </motion.div>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                            </motion.div>
+                        </motion.div>
+                    </motion.div>
+                </motion.div>
+            </motion.div>
+        </motion.div>
     );
 }
