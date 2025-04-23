@@ -2,10 +2,14 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedDatePicker from "./AnimatedCal";
 
-import AnimatedDropdown from "./AnimatedDropdown";
 import CompactDropdown from "./CompactDropdown";
-import PageNavigation from "./PageNav";
 
+
+const breakpoints = {
+  large: 960, 
+  medium: 600,
+  small: 425,  
+};
 
 const dropdownVariants = {
   open: {
@@ -30,13 +34,15 @@ const dropdownVariants = {
 
 
 export default function ThreadFilter() {
-  const [isEditing, setIsEditing] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
   const filterButtonRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const gridHeaderRef = useRef(null);
 
   const toggleOpen = () => setIsOpen(!isOpen);
+
+
 
   const [startDate, setStartDate] = useState(null);
 
@@ -52,11 +58,6 @@ export default function ThreadFilter() {
 
   const trendingTags = ["#Math | Threads 30", "#English | Threads 27", "#Science | Threads 19", "#Social Studies | Threads 18"];
   
-  const buttonVariants = {
-    hover: { scale: 1.1 },
-    tap: { scale: 0.95 },
-  };
-
   const tagOptions = [
     { value: "__title__", label: "Trending 🔥", isLabel: true },
     ...trendingTags.map(tagString => {
@@ -88,16 +89,6 @@ export default function ThreadFilter() {
     { value: "100", label: "100" },
   ];
  
-  const [currentPage, setCurrentPage] = useState(() => {
-    if (threads.length === 0) {
-      return 0;
-    } else {
-      return 1;
-    }
-  });
-
-  const itemsPerPage = 1;
-  const [inputPage, setInputPage] = useState(currentPage);
   const [inputValue, setInputValue] = useState('');
   const [tags, setTags] = useState([]);
   const inputRef = useRef(null);
@@ -127,22 +118,6 @@ export default function ThreadFilter() {
     setTags(tags.filter((t, i) => i !== index));
   };
  
- 
-  const totalPages = Math.ceil(threads.length / itemsPerPage);
- 
- 
-  const handleInputBlur = () => {
-    const page = Math.max(1, Math.min(totalPages, parseInt(inputPage, 10) || 1));
-    setCurrentPage(page);
-    setInputPage(page);
-    setIsEditing(false);
-  };
- 
-  const toggleFilter = () => {
-    setFilterOpen(!filterOpen);
-  };
- 
- 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -159,49 +134,39 @@ export default function ThreadFilter() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
  
- 
-  const handleStatusChange = (e) => {
-    const selectedStatus = e.target.value;
-    const storedData = sessionStorage.getItem("data");
-    if (storedData) {
-      const allThreads = JSON.parse(storedData);
-      const filteredThreads = selectedStatus
-        ? allThreads.filter(thread => thread.status === selectedStatus)
-        : allThreads;
-      setThreads(filteredThreads);
-    }
-  };
- 
- 
-  const deleteList = () => {
-    sessionStorage.removeItem("data");
-    setThreads([]);
-    window.location.reload();
-  };
- 
- 
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
- 
-
-  const [showCollapsedDropdown, setShowCollapsedDropdown] = useState(false); // State for the collapsed dropdown
+  const [showCollapsedDropdown, setShowCollapsedDropdown] = useState(false); 
 
   const toggleCollapsedDropdown = () => {
     setShowCollapsedDropdown(!showCollapsedDropdown);
   };
-
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const handleClickOutside = (event) => {
+    if (showCollapsedDropdown && gridHeaderRef.current && !gridHeaderRef.current.contains(event.target)) {
+      setShowCollapsedDropdown(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showCollapsedDropdown,]);
+ 
+
     return (
       <div className="grid-header-area">
       <div className="thread-filter">
-        <div className={`grid-header ${filterOpen ? "open" : ""}`}>
+        <div ref={gridHeaderRef} className={`grid-header ${filterOpen ? "open" : ""}`}>
 
-        {screenWidth >= 680 ? ( 
-        <>
+        {screenWidth >= breakpoints.large ? (
+        <div style={{ display: 'flex', gap: '10px' }}>
           <CompactDropdown
             name="threadDate"
             options={dataOptions}
@@ -226,55 +191,147 @@ export default function ThreadFilter() {
             selectedValue={threadStatus}
             onChange={(e) => setThreadStatus(e.target.value)}
           />
-        </>
+        </div>
+      ) : screenWidth >= breakpoints.medium ? (
+        <div className="collapsed-container">
+          <CompactDropdown
+            name="threadDate"
+            options={dataOptions}
+            selectedValue={threadDate}
+            onChange={(e) => setThreadDate(e.target.value)}
+          />
+          <CompactDropdown
+            name="threadTags"
+            options={tagOptions}
+            selectedValue={threadTag}
+            onChange={(e) => setThreadTag(e.target.value)}
+          />
+          <CompactDropdown
+                    name="threadSize"
+                    options={listOptions}
+                    selectedValue={threadSize}
+                    onChange={(e) => setThreadSize(e.target.value)}
+                  />
+          <div className="vertical-dots-wrapper" onClick={toggleCollapsedDropdown}>
+            <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true" fill="#5f6368" style={{ display: 'inline-block', userSelect: 'none', pointerEvents: 'none', overflow: 'visible', width: '24px', height: '24px' }}>
+              <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+            </svg>
+          </div>
+          <AnimatePresence>
+            {showCollapsedDropdown && (
+              <motion.div
+                className="collapsed-dropdown-options"
+                variants={dropdownVariants}
+                initial="closed"
+                animate="open"
+                exit="closed"
+              >
+                <div className="dropdown-right-align">
+                  <CompactDropdown
+                    name="threadStatus"
+                    options={statusOptions}
+                    selectedValue={threadStatus}
+                    onChange={(e) => setThreadStatus(e.target.value)}
+                  />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      ) : screenWidth >= breakpoints.small ? (
+        <div className="collapsed-container">
+          <CompactDropdown
+            name="threadDate"
+            options={dataOptions}
+            selectedValue={threadDate}
+            onChange={(e) => setThreadDate(e.target.value)}
+          />
+          <CompactDropdown
+            name="threadTags"
+            options={tagOptions}
+            selectedValue={threadTag}
+            onChange={(e) => setThreadTag(e.target.value)}
+          />
+          <div className="vertical-dots-wrapper" onClick={toggleCollapsedDropdown}>
+            {/* Dots SVG */}
+            <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true" fill="#5f6368" style={{ display: 'inline-block', userSelect: 'none', pointerEvents: 'none', overflow: 'visible', width: '24px', height: '24px' }}>
+              <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+            </svg>
+          </div>
+          <AnimatePresence>
+            {showCollapsedDropdown && (
+              <motion.div
+                className="collapsed-dropdown-options"
+                variants={dropdownVariants}
+                initial="closed"
+                animate="open"
+                exit="closed"
+              >
+                <div className="dropdown-right-align">
+                  <CompactDropdown
+                    name="threadSize"
+                    options={listOptions}
+                    selectedValue={threadSize}
+                    onChange={(e) => setThreadSize(e.target.value)}
+                  />
+                  <CompactDropdown
+                    name="threadStatus"
+                    options={statusOptions}
+                    selectedValue={threadStatus}
+                    onChange={(e) => setThreadStatus(e.target.value)}
+                  />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       ) : (
         <div className="collapsed-container">
           <CompactDropdown
-                      name="threadDate"
-                      options={dataOptions}
-                      selectedValue={threadDate}
-                      onChange={(e) => setThreadDate(e.target.value)}
-                    />
-                  
-              <div className="vertical-dots-wrapper" onClick={toggleCollapsedDropdown}>
-                <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true" fill="#5f6368" style={{ display: 'inline-block', userSelect: 'none', pointerEvents: 'none', overflow: 'visible', width: '24px', height: '24px' }}>
-                  <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
-                </svg>
-              </div>
-
-  
-              <AnimatePresence>
-                {showCollapsedDropdown && (
-                  <motion.div
-                    className="collapsed-dropdown-options"
-                    variants={dropdownVariants}
-                    initial="closed"
-                    animate="open"
-                    exit="closed"
-                  >
-                  
+            name="threadDate"
+            options={dataOptions}
+            selectedValue={threadDate}
+            onChange={(e) => setThreadDate(e.target.value)}
+          />
+          <div className="vertical-dots-wrapper" onClick={toggleCollapsedDropdown}>
+            {/* Dots SVG */}
+            <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true" fill="#5f6368" style={{ display: 'inline-block', userSelect: 'none', pointerEvents: 'none', overflow: 'visible', width: '24px', height: '24px' }}>
+              <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+            </svg>
+          </div>
+          <AnimatePresence>
+            {showCollapsedDropdown && (
+              <motion.div
+                className="collapsed-dropdown-options"
+                variants={dropdownVariants}
+                initial="closed"
+                animate="open"
+                exit="closed"
+              >
+                <div className="dropdown-right-align">
                   <CompactDropdown
-                      name="threadTags"
-                      options={tagOptions}
-                      selectedValue={threadTag}
-                      onChange={(e) => setThreadTag(e.target.value)}
-                    />
-                    <CompactDropdown
-                      name="threadSize"
-                      options={listOptions}
-                      selectedValue={threadSize}
-                      onChange={(e) => setThreadSize(e.target.value)}
-                    />
-                     <CompactDropdown
-                      name="threadStatus"
-                      options={statusOptions}
-                      selectedValue={threadStatus}
-                      onChange={(e) => setThreadStatus(e.target.value)}
-                    />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+                    name="threadTags"
+                    options={tagOptions}
+                    selectedValue={threadTag}
+                    onChange={(e) => setThreadTag(e.target.value)}
+                  />
+                  <CompactDropdown
+                    name="threadSize"
+                    options={listOptions}
+                    selectedValue={threadSize}
+                    onChange={(e) => setThreadSize(e.target.value)}
+                  />
+                  <CompactDropdown
+                    name="threadStatus"
+                    options={statusOptions}
+                    selectedValue={threadStatus}
+                    onChange={(e) => setThreadStatus(e.target.value)}
+                  />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       )}
 
         <button

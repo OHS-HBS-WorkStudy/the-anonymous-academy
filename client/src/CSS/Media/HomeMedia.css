@@ -272,6 +272,7 @@
     }
     .main-content-area {
         grid-area: main-content;
+        position: relative;
         display: grid;
         grid-template-columns: minmax(0, 2fr) !important;
         grid-template-rows: minmax(0, 1fr) !important; 
@@ -285,6 +286,7 @@
         align-items: start;
         margin-top: 30px;
         transform: scale(0.95) !important;
+        z-index: 0 !important;
     }
 
     .grid-header-area, 
@@ -305,13 +307,13 @@
         margin-left: 0px !important;
     }
 
-    .grid-header {
+    /* .grid-header {
         display: flex; 
         min-width: 100% !important;
         justify-content: flex-start; 
         align-items: flex-start; 
         margin-right: auto;
-    }
+    } */
 
     .col-left {
         max-width: 100% !important;
@@ -387,7 +389,7 @@
         transform: scale(0.94) !important;
       }
 
-      .grid-header {
+      /* .grid-header {
         justify-content: start !important;
-    }
+    } */
 }
