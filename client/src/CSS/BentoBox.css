@@ -30,12 +30,11 @@
     animation: fadeSlideInBottom 1s 0.3s forwards;
 }
 
-/* Ensure direct children of .top-grid and .bottom-grid take 100% width */
 .top-grid > div,
 .bottom-grid > div {
     width: 100%;
-    display: flex; /* To make inner content potentially fill width */
-    flex-direction: column; /* Stack content within */
+    display: flex; 
+    flex-direction: column; 
 }
 
 @keyframes fadeSlideInTop {

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -13,7 +13,6 @@ import {
   ArcElement
 } from 'chart.js';
 
-// Register Chart.js components to be used for the line chart
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -27,53 +26,49 @@ ChartJS.register(
 );
 
 export default function MyAnimatedLineChart() {
-  // Ref for the chart instance
   const chartRef = useRef(null);
 
-  // Labels for the X-axis (weeks)
   const labels = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
 
-  // Data for the chart
   const data = {
-    labels: labels, // Weeks
+    labels: labels,
     datasets: [
       {
-        label: 'Past Month Credit Score', // Label for past month dataset
-        data: [650, 670, 690, 710], // Past month data
-        borderColor: '#888888', // Light gray for past data
-        backgroundColor: 'rgba(255, 255, 255, 0.1)', // Semi-transparent fill
+        label: 'Past Month Credit Score',
+        data: [650, 670, 690, 710],
+        borderColor: '#888888',
+        backgroundColor: 'rgba(255, 255, 255, 0.1)',
         borderWidth: 3,
-        pointRadius: 5, // Point size
-        pointBackgroundColor: '#888888', // Point color
+        pointRadius: 5,
+        pointBackgroundColor: '#888888',
         pointBorderColor: '#888888',
-        fill: true, // Fill under the line
-        tension: 0.4, // Smoothing the line
+        fill: true,
+        tension: 0.4,
       },
       {
-        label: 'This Month Credit Score', // Label for current month dataset
-        data: [720, 630, 740, 750], // Current month data
-        borderColor: '#28a745', // Green for current data
-        backgroundColor: 'rgba(40, 167, 69, 0.3)', // Semi-transparent green fill
+        label: 'This Month Credit Score',
+        data: [720, 630, 740, 750],
+        borderColor: '#28a745',
+        backgroundColor: 'rgba(40, 167, 69, 0.3)',
         borderWidth: 3,
         pointRadius: 5,
         pointBackgroundColor: '#28a745',
         pointBorderColor: '#28a745',
-        fill: true, // Fill under the line
-        tension: 0.4, // Smoothing the line
+        fill: true,
+        tension: 0.4,
       },
     ],
   };
 
-  // Options to customize chart behavior and appearance
   const options = {
-    responsive: true, // Make the chart responsive to screen size
-    maintainAspectRatio: false, // Allow chart to stretch
+    responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
-        position: 'top', // Position legend at the bottom
+        position: 'top',
         labels: {
           font: {
-            size: 14, // Larger font size for legend items
+            size: 14,
           },
         },
       },
@@ -88,14 +83,14 @@ export default function MyAnimatedLineChart() {
       },
     },
     animation: {
-      duration: 1500, // Animation duration
-      easing: 'easeInOutQuart', // Smooth animation effect
+      duration: 1500,
+      easing: 'easeInOutQuart',
     },
     scales: {
       y: {
-        beginAtZero: false, // Ensure the Y-axis doesn't start at zero
+        beginAtZero: false,
         ticks: {
-          stepSize: 50, 
+          stepSize: 50,
         },
       },
     },
@@ -114,10 +109,12 @@ export default function MyAnimatedLineChart() {
     },
   };
 
+
   return (
-    <div style={{ width: '100%', height: '400px' }}>
-      {/* Line chart with provided data and options */}
-      <Line ref={chartRef} data={data} options={options} />
-    </div>
-  );
+
+    <div className="chartjs" style={{ width: '100%', height: '400px' }}>
+    
+        <Line ref={chartRef} data={data} options={options} />
+      </div>
+    );
 }

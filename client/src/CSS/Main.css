@@ -131,6 +131,7 @@ html {
 }
 
 @import url('./ColorPalette.css');
+@import url('./ThreadList.css');
 @import url('./Navigator.css');
 @import url('./Sign&Login.css');
 @import url('./Home.css');
