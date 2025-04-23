@@ -1,6 +1,6 @@
 /* Grid header styling */
 .grid-header {
-    display: flex;
+    display: inline-flex;
     flex: 1;
     justify-content: space-between;
     align-items: center;
@@ -612,14 +612,14 @@
   }
   
   .compact-dropdown-options {
-    position: absolute;
+    position: absolute !important;
     top: calc(100% + 8px);
     left: 0;
     background-color: #fff; 
     border: 1px solid #e2e8f0; 
     border-radius: 6px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* More noticeable shadow */
-    z-index: 10;
+    z-index: 1000 !important;
     overflow: hidden;
     width: 100%; 
     min-width: inherit; 
@@ -657,4 +657,55 @@
   }
 
 
+  .vertical-dots-wrapper {
+    display: inline-flex; 
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 8px; 
+    flex-wrap: nowrap;
+  }
+
+  @media (max-width: 786px) {
+    .grid-header {
+      gap: -3px !important;
+    }
+  }
+  @media (max-width: 600px) {
+    .collapsed-dropdown-container {
+      position: absolute !important;
+      top: calc(100% + 8px);
+      left: 0;
+      background-color: #fff !important; 
+      border: 1px solid #e2e8f0; 
+      border-radius: 6px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* More noticeable shadow */
+      z-index: 1000 !important;
+      overflow: hidden;
+      width: 100%; 
+      min-width: inherit; 
+      margin: 0;
+      padding: 8px 0;
+      list-style: none;
+      transform-origin: top center;
+    }
+  
+    .collapsed {
+      display: none; 
+      margin-right: 8px; 
+    }
+  
+    .collapsed.open {
+      display: inline-block; /* Or your preferred inline display */
+    }
+  
+    .grid-header > * { 
+      margin-right: 5px; /* Adjust spacing between elements */
+    }
+  
+    .vertical-dots-wrapper {
+      display: relative;
+      margin-left: auto; /* Push dots to the right */
+    }
+  }
   

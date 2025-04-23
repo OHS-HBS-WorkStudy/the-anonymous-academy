@@ -4,7 +4,7 @@ import CountUpComponent from '../modules/I-Candy/CountUp.js';
 // Other modules components imports
 import Threads from '../modules/Thread/Threads.js';
 import ThreadFilter from '../modules/Filtering/ThreadFilter.js';
-
+import PageNavigation from '../modules/Filtering/PageNav.js';
 
 export default function ThreadList() {
     let data = JSON.parse(sessionStorage.getItem("data")) || {};
@@ -18,7 +18,7 @@ export default function ThreadList() {
                 <div className="container1">
                     <div className="questionsSection">
                         <h1 className="threadListTitle">
-                            Thread Hub
+                            Thread Directory
                         </h1>
                     
                         <h3>
@@ -45,7 +45,12 @@ export default function ThreadList() {
                                     <div className="no-threads-message">No Threads</div>
                                 )}
                             </div>
+
+                            <div className="listman">
+                            <PageNavigation />
+                            </div>
                         </div>
+
                         <div className="right-space-area">
                             <div className="trending-threads-cont">
                                 <h3>Trending Threads</h3>

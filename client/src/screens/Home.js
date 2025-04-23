@@ -20,7 +20,7 @@ export default function Home() {
                 <div className="container1">
                      <div className="welcomeSection">
                         <h1>
-                            <span className="questionsTitle">Welcome Back! {foundUser.first_name} {foundUser.last_name}</span>
+                            <span className="questionsTitle">Welcome Back! {foundUser?.first_name} {foundUser?.last_name}</span>
                         </h1>
                     </div>
 
