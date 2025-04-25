@@ -53,6 +53,11 @@
  npm install react-calendar
 ```
 
+### Install pa11y (if err)
+```
+ npm i pa11y
+```
+
 ### Open the application
 ```
  npm start

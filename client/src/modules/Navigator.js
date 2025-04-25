@@ -55,8 +55,11 @@ export default function Navigator() {
     <>
       <div className="top-nav">
           <div className="top-nav-content">
-            <button className={`nav-toggle ${isExpanded ? 'menu-open' : ''}`}
+            <button 
+            aria-label={isExpanded ? 'Close navigation menu' : 'Open navigation menu'}
+                    className={`nav-toggle ${isExpanded ? 'menu-open' : ''}`}
                     onClick={switchToggle}>
+                      
                 <div className="nav-toggle-open">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -93,11 +96,6 @@ export default function Navigator() {
               <button className="top-nav-btn sign-up" onClick={goToSignUp}>
                   <h1>Sign Up</h1>
               </button>
-
-                <button className="top-nav-btn"  onClick={goToLogin}>
-                    <h1>Login</h1>
-                </button>
-
             </div>
           </div>
         </div>
@@ -116,12 +114,27 @@ export default function Navigator() {
       >
         <nav className='sidebar'>
 
-      <div className="menu-items"> 
+      <div className="menu-items">
+        <div className={`sidebar-link ${isActive('login') ? 'active-link' : ''}`} 
+                onClick={goToLogin}>
+              <button 
+                className={`sidebar-btn ${isActive('/login') ? 'active-link' : ''}`}
+                 aria-label="Go to login page"
+              >
+                <div className="icon-container">
+                <i><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368">
+                                    <path d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z"/>
+                                </svg></i>
+                  </div>
+                  {(isHovered || isExpanded) && (<h1>Login</h1>)}
+              </button>
+            </div> 
           
           <div className={`sidebar-link ${isActive('/home') ? 'active-link' : ''}`} 
                 onClick={goToHome}>
               <button 
                 className={`sidebar-btn ${isActive('/home') ? 'active-link' : ''}`} 
+                aria-label="Go to home page"
               >
                 <div className="icon-container">
                     <i>
@@ -137,6 +150,7 @@ export default function Navigator() {
                 onClick={goToThreadList}>
               <button 
                 className={`sidebar-btn ${isActive('/') ? 'active-link' : ''}`}
+                aria-label="Go to thread list"
               >
                   <div className="icon-container">
                     <i>
@@ -152,6 +166,7 @@ export default function Navigator() {
                 onClick={goToNewThread}>
               <button 
                 className={`sidebar-btn ${isActive(`/newthread`) ? 'active-link' : ''}`} 
+                aria-label="Go to create a new thread"
               >
                 <div className="icon-container">
                     <i>
@@ -167,6 +182,7 @@ export default function Navigator() {
                 onClick={goToacctStats}>
               <button 
                 className={`sidebar-btn ${isActive('/account/stats') ? 'active-link' : ''}`}
+                 aria-label="Go to account page"
               >
                 <div className="icon-container">
                     <i>

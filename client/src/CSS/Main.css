@@ -3,6 +3,7 @@
     --color-background: hsl(0, 0%, 98%); /* Very light gray for the main background */
     --color-surface: hsl(0, 0%, 100%); /* Pure white for surfaces like cards */
     --color-primary: hsl(220, 50%, 50%); /* Modern medium blue */
+    --color-primary-see: hsla(220, 50%, 50%, 0.8);
     --color-primary-accent: hsl(220, 55%, 65%); /* Light blue for highlights or hover effects */
     --color-secondary: hsl(45, 60%, 50%); /* Classic gold for accents */
     --color-secondary-accent: hsl(45, 65%, 40%); /* Rich gold for deeper emphasis */

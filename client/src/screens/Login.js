@@ -1,23 +1,24 @@
 // Library declaration imports
-import { useState, useEffect, useRef} from 'react';
-import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 
-// Other modules components imports
+// Other modules/components imports
 import useNavigation from '../modules/useNavigation';
 import loginpic from '../img/loginpic.png';
 import {
     containerVariants,
-    leftSplitVariants,
-    rightSplitVariants,
+    splitRightVariants,
+    loginContainerVariants,
     imageVariants,
     titleVariants,
     inputVariants,
     buttonVariants,
     orLineVariants,
-    linkVariants,
+    fadeVariants,
+    submitButtonVariants,
     togglePasswordVariants,
-    backgroundMotion,
-} from '../modules/Animations/LoginAnimations';
+    linkVariants
+} from '../modules/Animations/SignAnimations';
 
 export default function Login() {
     const { goToSignUp, goToHome } = useNavigation();
@@ -36,7 +37,7 @@ export default function Login() {
     useEffect(() => {
         const timer = setTimeout(() => {
             setLoaded(true);
-        }, 500); // Slightly longer delay
+        }, 500); // Slight delay for animation
 
         return () => clearTimeout(timer);
     }, []);
@@ -103,28 +104,20 @@ export default function Login() {
             animate="animate"
             exit="exit"
         >
-            <motion.div
-                className="Login-background-effect"
-                variants={backgroundMotion}
-                initial="initial"
-                animate="animate"
-                style={{ x: bgX, y: bgY }}
-            />
             <div className="Login">
                 <div className="parent-container">
                     <motion.div className="split">
+                        {/* Right Split with Image */}
                         <motion.div
                             ref={rightSplitRef}
-                            className={`split right Login-page`}
-                            variants={rightSplitVariants}
+                            className="split right Login-page"
+                            variants={splitRightVariants}
                             initial="initial"
                             animate={loaded ? "animate" : "initial"}
                             exit="exit"
                             onMouseMove={handleMouseMove}
                             onMouseLeave={handleMouseLeave}
-                            style={{
-                                perspective: 600,
-                            }}
+                            style={{ perspective: 600 }}
                         >
                             <motion.div
                                 className="content"
@@ -137,24 +130,40 @@ export default function Login() {
                                 }}
                                 whileHover="hover"
                             >
-                                <img src={loginpic} alt='Community' />
+                                <img src={loginpic} alt="Community" />
                             </motion.div>
                         </motion.div>
 
+                        {/* Left Split with Form */}
                         <motion.div
                             ref={leftSplitRef}
-                            className={`split left Login-page`}
-                            variants={leftSplitVariants}
+                            className="split left Login-page"
                             initial="initial"
                             animate={loaded ? "animate" : "initial"}
                             exit="exit"
                         >
-                            <div className='center'>
-                                <motion.div className="page-title" variants={titleVariants} initial="initial" animate={loaded ? "animate" : "initial"} exit="exit">
+                            <div className="center">
+                                <motion.div
+                                    className="page-title"
+                                    variants={titleVariants}
+                                    initial="initial"
+                                    animate={loaded ? "animate" : "initial"}
+                                    exit="exit"
+                                >
                                     <h2>Welcome Back!</h2>
                                 </motion.div>
+
                                 <div className="inputbox">
-                                    <motion.input variants={inputVariants} initial="initial" animate={loaded ? "animate" : "initial"} exit="exit" type="text" id="email" name="email" placeholder="Email" />
+                                    <motion.input
+                                        variants={inputVariants}
+                                        initial="initial"
+                                        animate={loaded ? "animate" : "initial"}
+                                        exit="exit"
+                                        type="text"
+                                        id="email"
+                                        name="email"
+                                        placeholder="Email"
+                                    />
                                     <motion.div style={{ position: 'relative' }}>
                                         <motion.input
                                             variants={inputVariants}
@@ -181,8 +190,9 @@ export default function Login() {
                                         </motion.button>
                                     </motion.div>
                                 </div>
+
                                 <motion.button
-                                    variants={buttonVariants}
+                                    variants={submitButtonVariants}
                                     initial="initial"
                                     animate={loaded ? "animate" : "initial"}
                                     exit="exit"
@@ -194,12 +204,34 @@ export default function Login() {
                                 >
                                     Login
                                 </motion.button>
-                                <motion.div className="border-line" variants={orLineVariants} initial="initial" animate={loaded ? "animate" : "initial"} exit="exit">
+
+                                <motion.div
+                                    className="border-line"
+                                    variants={orLineVariants}
+                                    initial="initial"
+                                    animate={loaded ? "animate" : "initial"}
+                                    exit="exit"
+                                >
                                     <span>Or</span>
                                 </motion.div>
-                                <motion.div className="login-container" variants={linkVariants} initial="initial" animate={loaded ? "animate" : "initial"} exit="exit">
-                                    <p className="login-text">Don't have an account? </p>
-                                    <motion.p className="smalltext" onClick={goToSignUp} whileHover="hover" whileTap="tap">Sign Up here</motion.p>
+
+                                <motion.div
+                                    className="login-container"
+                                    variants={loginContainerVariants}
+                                    initial="initial"
+                                    animate={loaded ? "animate" : "initial"}
+                                    exit="exit"
+                                >
+                                    <p className="login-text">Don't have an account?</p>
+                                    <motion.p
+                                        className="smalltext"
+                                        onClick={goToSignUp}
+                                        variants={linkVariants}
+                                        whileHover="hover"
+                                        whileTap="tap"
+                                    >
+                                        Sign Up here
+                                    </motion.p>
                                 </motion.div>
                             </div>
                         </motion.div>
