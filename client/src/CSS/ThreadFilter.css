@@ -620,7 +620,10 @@
     gap: 10px;
   }
   
-
+  .compact-dropdown-option-button.dropdown-label,
+  .compact-dropdown-option-button  {
+    color: var(--color-text-tertiary) !important;
+  }
   .compact-filter-button {
     background-color: transparent;
     color: #333;
@@ -638,9 +641,10 @@
   }
 
 
-  .compact-filter-button > span {
+  .compact-filter-button  span {
     flex-grow: 1;
     text-align: left;
+    color: var(--color-text-tertiary);
   }
 
   .dropdown-arrow {
@@ -657,7 +661,7 @@
     position: absolute !important;
     top: calc(100% + 8px);
     left: 0;
-    background-color: #fff;
+    background-color: var( --alt-background-color);
     border: 1px solid #e2e8f0;
     border-radius: 6px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); 
@@ -732,6 +736,7 @@
       position: absolute;
       top: calc(100%); 
       left: auto; 
+      background-color: var( --alt-background-color);
       right: 0; 
       width: auto;
       max-width: fit-content; 

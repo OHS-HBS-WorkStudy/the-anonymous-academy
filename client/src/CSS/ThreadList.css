@@ -192,7 +192,7 @@
   
   .pagination-ellipsis {
     font-size: 1rem;
-    color: #777; 
+    color: #737373; 
     padding: 0 6px; 
   }
   
@@ -204,9 +204,8 @@
 
 
 .motion-dropdown {
-    display: flex;
-    background-color: var(--color-secondary);
-    border: 1px solid var(--color-primary-light);
+    background-color: var(--color-primary-see);
+    border: 1px solid var(--color-primary);
     border-radius: 6px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 10;
@@ -223,7 +222,7 @@
   
   .motion-dropdown-title {
     font-size: 0.85rem;
-    color: var(--color-text-secondary);
+    color: var(--color-text-tertiary);
     font-weight: bold;
     margin-bottom: 6px;
     letter-spacing: 0.02em;

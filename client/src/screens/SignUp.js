@@ -1,5 +1,5 @@
 // Library declaration imports
-import { useState} from 'react';
+import { useState, useEffect} from 'react';
 import { motion } from 'framer-motion';
 
 // Other modules components imports
@@ -23,6 +23,21 @@ export default function SignUp() {
     const { goToLogin } = useNavigation();
     const [activeButton, setActiveButton] = useState("Student");
     const [passwordVisible, setPasswordVisible] = useState(false);
+    const[screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+          setScreenWidth(window.innerWidth); // Update the state on window resize
+        };
+    
+        // Add the resize event listener
+        window.addEventListener('resize', handleResize);
+    
+        // Cleanup the event listener on component unmount
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
+      }, []);
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
@@ -114,6 +129,12 @@ export default function SignUp() {
                             className="split left"
                         >
                             <motion.div className="center">
+
+                                {screenWidth <= 825 && (
+                                    <motion.div className='content' variants={imageVariants}>
+                                    <img src={signuppic} alt="signpic" className="signpic" />
+                                    </motion.div>
+                                )}
 
                                 <motion.div className="page-title" variants={titleVariants}>
                                     <h2>Join the Community!</h2>
