@@ -32,6 +32,8 @@
   --clr-primary-a40: #e7cc90;
   --clr-primary-a50: #edd6a6;
 
+  --color-accent:  #f39c12;
+
   --color-primary-a60: #f39c12; 
   --color-primary-dark-a60: #e67e22;  
   
@@ -92,9 +94,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
     font-family: 'Roboto', sans-serif;
 }
+
+span .dark {
+    color: var(--color-accent) !important;
+}
+
 
 html {
     background-color: var(--color-background) !important;

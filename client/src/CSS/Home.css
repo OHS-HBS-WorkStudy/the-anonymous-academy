@@ -6,22 +6,20 @@
     grid-template-areas:
       "bento-box"
       "main-content"; 
-   
     width: fit-content;
-   
     height: fit-content;
     min-height: 100vh;
-
     padding-bottom: 80px;
     position: relative;
     justify-content: center;
     box-sizing: border-box;
     padding: 10px;
     margin-left: 60px;
-
 }
+
 .welcomeSection {
     text-align: center;
+    border-bottom: 0.3px dashed var(--color-accent);
 }
 
 .questionsSection,
@@ -52,6 +50,11 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.Home .main-content-area {
+    display: flex;
+    flex-direction: column;
 }
 
 .bento-box-area {

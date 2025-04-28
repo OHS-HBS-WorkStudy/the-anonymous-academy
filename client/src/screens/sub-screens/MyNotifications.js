@@ -141,7 +141,6 @@ export default function MyNotifications () {
 
     return (
         <div>
-            <h2>My Notifications</h2>
             <ul>
                 {visibleNotifications.map((notification) => (
                     <li key={notification.id}>

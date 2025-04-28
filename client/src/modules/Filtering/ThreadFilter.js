@@ -67,7 +67,7 @@ export default function ThreadFilter() {
   ];
   
   const statusOptions = [
-    { value: "__title__", label: "Filter Status", isLabel: true },
+    { value: "__title__", label: "Thread Status", isLabel: true },
     { value: "Open", label: "Open" },
     { value: "Closed", label: "Closed" },
     { value: "Pinned", label: "Pinned" },
