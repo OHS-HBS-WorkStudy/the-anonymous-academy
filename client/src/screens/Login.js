@@ -20,6 +20,7 @@ import {
     linkVariants
 } from '../modules/Animations/SignAnimations';
 
+
 export default function Login() {
     const { goToSignUp, goToHome } = useNavigation();
     const [loaded, setLoaded] = useState(false);
