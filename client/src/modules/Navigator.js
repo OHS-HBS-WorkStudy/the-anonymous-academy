@@ -1,11 +1,8 @@
 import React, {useRef, useState} from 'react';
 import useNavigation from './useNavigation.js';
 
-// import AppLogo from '../img/AppLogo.png';
-
-
 export default function Navigator() {
-  const { goToHome, goToacctStats, goToLogin, goToThreadList, goToSignUp, goToNewThread, goToThread, isActive } = useNavigation();
+  const { goToHome, goToAcct, goToLogin, goToThreadList, goToSignUp, goToNewThread, goToThread, isActive } = useNavigation();
   const timeoutRef = useRef(null); 
   const [isHovered, setIsHovered] = useState(false);
   const [isExpanded, setIsExpanded] = useState(() => {
@@ -179,7 +176,7 @@ export default function Navigator() {
               </button>
             </div>
             <div className={`sidebar-link ${isActive('/account/stats') ? 'active-link' : ''}`} 
-                onClick={goToacctStats}>
+                onClick={goToAcct}>
               <button 
                 className={`sidebar-btn ${isActive('/account/stats') ? 'active-link' : ''}`}
                  aria-label="Go to account page"

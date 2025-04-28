@@ -18,6 +18,8 @@
     --color-text-fouthy: #555; /* Medium gray for less emphasized text */
     --color-text-white: white; /* White for text on dark backgrounds */
     --color-text-black: #333; 
+
+    --card-background: var(--clr-primary-a10);
   
     --alt-background-color: #f7f7f7;
   
