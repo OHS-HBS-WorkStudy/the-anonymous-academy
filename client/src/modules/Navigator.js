@@ -175,10 +175,10 @@ export default function Navigator() {
                   {(isHovered || isExpanded) && (<h1>New Thread</h1>)}
               </button>
             </div>
-            <div className={`sidebar-link ${isActive('/account/stats') ? 'active-link' : ''}`} 
+            <div className={`sidebar-link ${isActive('/account/overview') || isActive('/account/activity')  || isActive('/account/settings')  ? 'active-link' : ''}`} 
                 onClick={goToAcct}>
               <button 
-                className={`sidebar-btn ${isActive('/account/stats') ? 'active-link' : ''}`}
+                className={`sidebar-btn ${isActive('/account/overview') || isActive('/account/activity')  || isActive('/account/settings')  ? 'active-link' : ''}`}
                  aria-label="Go to account page"
               >
                 <div className="icon-container">

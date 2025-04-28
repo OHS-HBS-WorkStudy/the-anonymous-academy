@@ -23,6 +23,7 @@
     box-sizing: border-box; 
     position: relative;
     z-index: 3 !important;
+    border-bottom: 0.3px dashed var(--color-accent);
 }
 
 .questionsTitle {
@@ -128,6 +129,11 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+  border-radius: 15px;
+}
+
+.grid-item {
+  border-radius: 10px;
 }
 
 .trending-thread-item {

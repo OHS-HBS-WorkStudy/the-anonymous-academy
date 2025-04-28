@@ -15,6 +15,7 @@
   padding-bottom: 20px;
   border-bottom: 1px solid var(--border-color);
   margin-bottom: 20px;
+
 }
 
 .user-profile {
@@ -102,7 +103,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 20px 0;
+  padding: 10px 0;
 }
 
 .account-content-area > div {
@@ -120,6 +121,21 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .stats {
+    flex-direction: column;
+  }
+
+
+  .notification-popup-overlay {
+    margin-left: 0px !important;
+  }
+  
+
+  .stats .user-info-column {
+    width: fit-content !important;
+    flex-direction: row !important;
+  }
+
   .account-header {
       flex-direction: column;
       align-items: flex-start;
@@ -149,54 +165,15 @@
   }
 }
 
-.account-page-modern.dark-mode {
-  background-color: var(--color-background);
-  color: var(--color-text-white);
+@media (max-width: 508px) {
+  .stats .user-info-column {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
 }
 
-.account-page-modern.dark-mode .account-header {
-  border-bottom-color: var(--dark-border-color);
-}
-
-.account-page-modern.dark-mode .nav-item {
-  color: var(--dark-text-secondary);
-}
-
-.account-page-modern.dark-mode .nav-item.active,
-.account-page-modern.dark-mode .nav-item:hover {
-  background-color: var(--dark-primary-color);
-  color: var(--color-text-white);
-}
-
-.account-page-modern.dark-mode .posts-dropdown .dropdown-menu {
-  background-color: var(--color-background);
-  color: var(--color-text-white);
-  border-color: var(--dark-border-color);
-  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
-}
-
-.account-page-modern.dark-mode .posts-dropdown .dropdown-menu li {
-  color: var(--color-text-white);
-}
-
-.account-page-modern.dark-mode .posts-dropdown .dropdown-menu li:hover,
-.account-page-modern.dark-mode .posts-dropdown .dropdown-menu li.active {
-  background-color: var(--dark-primary-color);
-}
-
-.account-page-modern.dark-mode .account-content-area > div {
-  background-color: var(--dark-primary-color);
-  color: var(--color-text-white);
-  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
-}
-
-.account-page-modern.dark-mode .account-content-area h2 {
-  color: var(--color-heading-dark);
-  border-bottom-color: var(--dark-border-color);
-}
-
-
-.stats {
+.stats,
+.activity {
   padding: 20px;
   display: flex; 
   gap: 30px;
@@ -205,7 +182,10 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.stats .user-info-column {
+
+
+.stats .user-info-column,
+.activity .user-info-column {
   width: 300px; 
   display: flex;
   flex-direction: column; 
@@ -215,12 +195,13 @@
 .user-details {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center items horizontally */
+  align-items: center; 
   padding: 30px;
   border-radius: 12px;
-  background-color: var(--card-background);
+  background-color: var(--clr-primary-a10);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   text-align: center; 
+  border-left: 6px solid var(--color-accent);
 }
 
 .profile-avatar {
@@ -383,6 +364,7 @@
   padding: 25px;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-left: 6px solid var(--color-accent);
 }
 
 .stats .my-user-stats h2 {
@@ -426,15 +408,10 @@
   padding: 25px;
   border-radius: 12px;
   box-shadow: var(--card-shadow);
+  border-left: 6px solid var(--color-accent);
 }
 
-.stats .achievements h2 {
-  font-size: 1.8rem;
-  margin-bottom: 15px;
-  color: var(--color-primary);
-  border-bottom: 2px solid var(--border-color);
-  padding-bottom: 10px;
-}
+
 
 .stats .achievements .achievement-list {
   display: flex;
@@ -460,7 +437,7 @@
 
 /* My Notifications Card */
 .my-notifications {
-  background-color: var(--card-background);
+  background-color: var(--clr-primary-a10);
   color: var(--color-heading);
   padding: 30px;
   border-radius: 16px;
@@ -470,25 +447,18 @@
   border-left: 6px solid var(--color-accent); 
 }
 
-.my-notifications h2 {
-  font-size: 2.2rem; /* Larger title */
-  margin-bottom: 25px;
-  color: var(--color-accent); /* Accent color for title */
-  border-bottom: 3px solid var(--color-accent-light);
-  padding-bottom: 15px;
-}
-
 .my-notifications ul {
   list-style: none;
   padding: 0;
 }
 
 .my-notifications li {
-  padding: 20px;
+  padding: 10px;
   border-bottom: 1px solid var(--border-color-light);
   display: grid; 
   grid-template-columns: auto 1fr auto; 
   gap: 15px;
+  border-radius: 15px;
   align-items: center;
   transition: background-color 0.2s ease, transform 0.2s ease; 
 }
@@ -498,7 +468,7 @@
 }
 
 .my-notifications li:hover {
-  background-color: var(--alt-card-background);
+  background-color: var(--clr-primary-a20);
   transform: translateX(5px); 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
@@ -543,7 +513,7 @@
 }
 
 .notification-popup {
-  background-color: var(--card-background);
+  background-color: var(--clr-primary-a10);
   color: var(--color-text-primary);
   padding: 30px;
   border-radius: 16px;
@@ -616,50 +586,14 @@
   background-color: var(--color-accent-dark);
 }
 
-.stats.dark-mode .notification-popup-overlay {
-  background-color: rgba(0, 0, 0, 0.7);
-}
-
-.stats.dark-mode .notification-popup {
-  background-color: var(--card-background-dark);
-  color: var(--color-text-white);
-  box-shadow: 0 12px 24px rgba(255, 255, 255, 0.08);
-}
-
-.stats.dark-mode .notification-popup h3 {
-  color: var(--color-primary-light);
-  border-bottom-color: var(--border-color-dark);
-}
-
-.stats.dark-mode .notification-popup li {
-  border-bottom-color: var(--border-color-dark);
-}
-
-.stats.dark-mode .notification-popup .notification-content p {
-  color: var(--color-text-primary-dark);
-}
-
-.stats.dark-mode .notification-popup .notification-timestamp {
-  color: var(--color-text-secondary-dark);
-}
-
-.stats.dark-mode .notification-popup button {
-  background-color: var(--color-accent-dark);
-  color: var(--color-text-white);
-}
-
-.stats.dark-mode .notification-popup button:hover {
-  background-color: var(--color-accent-light);
-}
-
 .see-all-button {
   background: none;
   border: none;
-  color: var(--color-accent);
+  color: var(--clr-primary-a50);
   cursor: pointer;
   padding: 10px 15px;
   border-radius: 8px;
-  font-size: 0.9rem;
+  font-size: 0.97rem;
   transition: color 0.3s ease;
   align-self: center;
   margin-top: 15px;
@@ -668,3 +602,5 @@
 .see-all-button:hover {
   color: var(--color-accent-dark);
 }
+
+

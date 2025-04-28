@@ -66,6 +66,8 @@ export default function Account() {
             setActiveSection('overview'); 
         } else if (path.startsWith('/posts')) {
             setActiveSection('posts');
+        } else if (path.endsWith('/settings')) {
+            setActiveSection('settings');
         } else {
             setActiveSection('overview');
         }
@@ -96,7 +98,6 @@ export default function Account() {
         { label: 'My Posts', value: 'posts' },
         { label: 'My Answers', value: 'answers' },
         { label: 'My Questions', value: 'questions' },
-        // Add more post types as needed
     ];
 
     if (!loggedInUser || loggedInUser === null) {
@@ -144,7 +145,7 @@ export default function Account() {
                                 <FontAwesomeIcon icon={faChartBar} className="nav-icon" />
                                 Overview
                             </button>
-                            <div className="nav-item posts-dropdown" onClick={handlePostsDropdownToggle}>
+                            {/* <div className="nav-item posts-dropdown" onClick={handlePostsDropdownToggle}>
                                 <FontAwesomeIcon icon={faListAlt} className="nav-icon" />
                                 Posts <FontAwesomeIcon icon={faCaretDown} />
                                 {isPostsDropdownOpen && (
@@ -160,7 +161,7 @@ export default function Account() {
                                         ))}
                                     </ul>
                                 )}
-                            </div>
+                            </div> */}
                             <button
                                 className={`nav-item ${activeSection === 'activity' ? 'active' : ''}`}
                                 onClick={() => handleSectionClick('activity')}
