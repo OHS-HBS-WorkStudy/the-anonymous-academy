@@ -70,9 +70,9 @@ export default function ReplyList({thread}) {
     return (
             <div>
                 <header className="replies-header">
-                    <h2 className="replies-title">Replies: {''} 
+                    <h1 className="replies-title">Replies: {''} 
                         <CountUpComponent endValue={getRepliesLength()} duration={3.8} />
-                    </h2>
+                    </h1>
                    
 
                     <div className="sort-dropdown-container">
