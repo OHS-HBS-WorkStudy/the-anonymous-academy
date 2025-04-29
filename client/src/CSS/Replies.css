@@ -96,6 +96,30 @@
     animation: none !important;
   }
 
+  .reply-send {
+    background: linear-gradient(to right, var(--clr-primary-a30), var(--clr-primary-a40)); 
+    color: white;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    transition: all 0.25s ease;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.reply-send:disabled {
+    background: #d1d5db;
+    color: #6b7280;      
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+
 .reply-list {
     color: var(--color-text-primary); 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -290,13 +314,10 @@
   }
   
   .replies-title {
-    font-weight: bold;
     color: var(--color-text-white);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 0.5rem;
+    word-break: break-word;
+    letter-spacing: -0.02em;
   }
-
-  .replies-title h2 span {
-    font-weight: bold;
-    color: var(--clr-primary-a40) !important;
-    display: inline !important; /* Ensure span is not overridden by other styles */
-  }
-  

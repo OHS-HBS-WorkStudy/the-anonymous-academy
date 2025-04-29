@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useParams } from "react-router-dom"; 
 import ReactQuill from "react-quill";
-
+import { motion } from "framer-motion";
 import "react-quill/dist/quill.snow.css";
 
 export default function ThreadReply() {
@@ -9,10 +9,10 @@ export default function ThreadReply() {
     const [questionDesc, setQuestionDesc] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false); 
     const quillRef = useRef(null);
-
     const maxReplyLength = 10000;
 
-    const getPlainText = (html) => new DOMParser().parseFromString(html, "text/html").body.textContent || "";
+    const getPlainText = (html) =>
+        new DOMParser().parseFromString(html, "text/html").body.textContent || "";
 
     const handleQuillChange = (value) => {
         const plainText = getPlainText(value);
@@ -25,9 +25,6 @@ export default function ThreadReply() {
         }
     };
 
-
-
-  
     const foundUser = JSON.parse(sessionStorage.getItem("foundUser"));
 
     const ReplyButton = async () => {
@@ -56,9 +53,7 @@ export default function ThreadReply() {
 
         console.log(`Reply saved to thread ${threadId}:`, data);
 
-   
         await new Promise((resolve) => setTimeout(resolve, 2000));
-
         setIsSubmitting(false); 
     };
 
@@ -72,36 +67,69 @@ export default function ThreadReply() {
             ["clean"],
         ],
     };
-    if (foundUser) {
-        return (
-            <div className="reply-section">
 
-                <header className="replies-header">
-                    <h2 className="replies-title">Reply to Thread</h2>
-                </header>
-                <div className="reply-container">
-                    <ReactQuill
-                        id="questionDesc"
-                        ref={quillRef}
-                        value={questionDesc}
-                        style={{ borderRadius: '8px', minHeight: '100px' }}
-                        modules={modules}
-                        onChange={handleQuillChange}
-                    />
-                    <div className="charCounter">
-                        {getPlainText(questionDesc).length}/{maxReplyLength} characters
-                    </div>
-                    <button
-                        className="btn-send"
-                        onClick={ReplyButton}
-                        disabled={isSubmitting} 
-                    >
-                        {isSubmitting ? "Sending..." : "Send"}
-                    </button>
-                </div>
-            </div>
-        )
-    } else {
-        return;
-    }
+    if (!foundUser) return null;
+
+    return (
+        <motion.div
+            className="reply-section"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+        >
+            <motion.header
+                className="replies-header"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+            >
+                <h2 className="replies-title">Reply to Thread</h2>
+            </motion.header>
+
+            <motion.div
+                className="reply-container"
+                layout
+                transition={{ type: "spring", stiffness: 80 }}
+            >
+                <ReactQuill
+                    id="questionDesc"
+                    ref={quillRef}
+                    value={questionDesc}
+                    style={{ borderRadius: '8px', minHeight: '100px' }}
+                    modules={modules}
+                    onChange={handleQuillChange}
+                />
+
+                <motion.div
+                    className="charCounter"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                >
+                    {getPlainText(questionDesc).length}/{maxReplyLength} characters
+                </motion.div>
+
+                <motion.button
+                    className="reply-send"
+                    onClick={ReplyButton}
+                    disabled={isSubmitting || getPlainText(questionDesc).length < 10}
+                    whileHover={
+                        !isSubmitting && getPlainText(questionDesc).length >= 10
+                            ? { scale: 1.05 }
+                            : {}
+                    }
+                    whileTap={
+                        !isSubmitting && getPlainText(questionDesc).length >= 10
+                            ? { scale: 0.95 }
+                            : {}
+                    }
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                >
+                    {isSubmitting ? "Sending..." : "Send"}
+                </motion.button>
+            </motion.div>
+        </motion.div>
+    );
 }
