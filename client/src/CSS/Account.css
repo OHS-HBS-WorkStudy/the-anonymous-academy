@@ -762,7 +762,8 @@
   padding-bottom: 10px;
 }
 
-.activity .icon {
+.activity .icon,
+.stats .icon {
   color: var(--color-accent);
   margin-right: 0.5rem;
 }

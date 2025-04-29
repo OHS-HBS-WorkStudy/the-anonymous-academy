@@ -13,8 +13,28 @@ export default function Thread() {
     const { threadId } = useParams();
     const isInitialLoad = useRef(true);
     const threadContentRef = useRef(null);
-    const [maxHeight, setMaxHeight] = useState('auto');
+    const [maxHeight, setMaxHeight] = useState(null);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []); 
+
+  useEffect(() => {
+    if (screenWidth <= 786) {
+      setMaxHeight('auto');
+    } else {
+      setMaxHeight(null);
+    }
+  }, [screenWidth]);
     useEffect(() => {
         if (isInitialLoad.current) {
             window.scrollTo(0, 0);
@@ -113,8 +133,8 @@ export default function Thread() {
                         <motion.p className="user-poster" whileHover={{ scale: 1.05 }}>
                             {userCheck(thread, foundUser)}
                         </motion.p>
-                        <motion.p>Created: <TimeCounter date={thread.created_at} /></motion.p>
-                        <motion.p>Views: 0</motion.p>
+                        <motion.p><TimeCounter date={thread.created_at} /></motion.p>
+                        <motion.p>0 views</motion.p>
                     </motion.div>
 
                     <motion.div className="thread-main-content" layout>
@@ -150,6 +170,17 @@ export default function Thread() {
                         <ThreadReply />
                     </motion.section>
                 </motion.article>
+
+                {thread.replies && thread.replies.length > 3 && (
+                    <motion.div
+                        className="scroll-indicator"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1, y: [0, 5, 0] }}
+                        transition={{ repeat: Infinity, duration: 1.5 }}
+                    >
+                        ↓ Scroll to see more
+                    </motion.div>
+                    )}
 
                 <motion.div
                     className="comment-list-container"
