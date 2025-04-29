@@ -21,6 +21,8 @@
   }
   .comment-list-container {
     width: 100% !important;
+    max-height: fit-content !important;
+    overflow: visible !important;
   }
 }
 
@@ -33,10 +35,18 @@
   }
 }
 
+.scroll-indicator {
+  text-align: center;
+  color: #888;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+
 .thread-content {
   width: 50%;
   margin-right: 0;
-  padding: 2rem;
+  padding: 1rem;
   padding-bottom: 0;
   box-sizing: border-box;
   display: flex; 
@@ -86,11 +96,11 @@
 
 .thread-main-content {
   display: grid;
-  grid-template-columns: 40px 1fr;
+  grid-template-columns: 35px 1fr;
   align-items: start;
   margin-bottom: 2rem;
   padding-top: 20px;
-  gap: 20px;
+  gap: 15px;
 }
 
 .thread-description {
@@ -456,13 +466,26 @@
   width: 50%;
   background-color: var(--clr-surface-a10);
   box-sizing: border-box;
-  padding: 2rem;
+  padding: 1rem;
   padding-bottom: 0;
   overflow-y: auto;
-  height: auto;
-  max-height: fit-content;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none; 
 }
 
-.comment-list-container .thread-replies {
-  margin-top: 0;
+
+.comment-list-container{
+  white-space: nowrap;
 }
+
+.comment-list-container.active-drag {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.comment-list-container::-webkit-scrollbar {
+  display: none; 
+}
+
+

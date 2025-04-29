@@ -1,7 +1,7 @@
 import useNavigation from '../../modules/useNavigation';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faMapMarkerAlt, faClock, faUserTag, faCheckCircle, faExclamationTriangle, faInfoCircle, faBell} from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faMapMarkerAlt, faClock, faUserTag, faTrophy, faExclamationTriangle, faInfoCircle, faBell} from '@fortawesome/free-solid-svg-icons';
 import MyNotifications from './MyNotifications';
 
 export default function Stats({ loggedInUser, setLoggedInUser }) {
@@ -83,12 +83,13 @@ export default function Stats({ loggedInUser, setLoggedInUser }) {
 
             <div className="other-content">
                 <div className="my-notifications">
-                <h2>Notifications Hub</h2>
+                <h2><FontAwesomeIcon icon={faBell} className="icon" />
+                Notifications Hub</h2>
                   <MyNotifications />
             </div>
 
                 <div className="achievements">
-                    <h2>Achievements</h2>
+                    <h2><FontAwesomeIcon icon={faTrophy} className="icon" />Achievements</h2>
                     <div className="achievement-list"></div>
                 </div>
             </div>

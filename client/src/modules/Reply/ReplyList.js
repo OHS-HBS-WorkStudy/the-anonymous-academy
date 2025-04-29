@@ -12,7 +12,6 @@ import CountUpComponent from "../I-Candy/CountUp.js";
 export default function ReplyList({thread}) {
     const { threadId } = useParams(); 
     const allReplies = JSON.parse(sessionStorage.getItem("replies")) || {};
-
     const [replyStates, setReplyStates] = useState({});  
 
     const toggleReplyButton = (replyId) => {
@@ -64,14 +63,15 @@ export default function ReplyList({thread}) {
         return replies  ? replies.length : "0";
     }
 
+    
+
 
     
 
     return (
             <div>
-                <header className="replies-header">
-                    <h1 className="replies-title">Replies: {''} 
-                        <CountUpComponent endValue={getRepliesLength()} duration={3.8} />
+                <header className="replies-header" >
+                    <h1 className="replies-title"><CountUpComponent endValue={getRepliesLength()} duration={3.8} /> replies
                     </h1>
                    
 
