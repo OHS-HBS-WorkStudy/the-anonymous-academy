@@ -20,16 +20,16 @@ export default function Home() {
                 <div className="container1">
                      <div className="welcomeSection">
                         <h1>
-                            <span className="questionsTitle">Welcome Back! {foundUser?.first_name} {foundUser?.last_name}</span>
+                            <span className="questionsTitle">Welcome Back! <span className="color-accent">{foundUser?.first_name} {foundUser?.last_name}</span></span>
                         </h1>
                     </div>
 
                     <BentoBox />
 
                     <div className="main-content-area">
-                    Interesting posts for you
-                    Based on your viewing history and watched tags.
                         <div className="grid-container-area">
+                        Interesting posts for you
+                        Based on your viewing history and watched tags.
                             <div className="thread-list-container">
                                 {recieveThread && recieveThread.length > 0 ? (
                                     recieveThread.map((thread) => (

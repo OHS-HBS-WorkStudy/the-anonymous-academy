@@ -1,27 +1,45 @@
 .Home {
     background-color: var(--color-background);
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
+    /* Define the grid with two rows: one for the bento box and one for the main content */
+    grid-template-rows: auto 1fr;
+    /* Assign the grid areas */
     grid-template-areas:
       "bento-box"
-      "main-content"; 
-   
-    width: fit-content;
-   
-    height: fit-content;
+      "main-content";
+    width: 100%; /* Ensure it takes full width of its container */
     min-height: 100vh;
-
     padding-bottom: 80px;
     position: relative;
-    justify-content: center;
+    justify-content: center; /* Center the content horizontally within the grid */
     box-sizing: border-box;
-    padding: 10px;
-    margin-left: 60px;
-
+    padding: 10px; /* Adjust padding as needed */
+    margin-left: auto !important; /* Ensure centering if within a wider container */
+    margin-right: auto !important;
 }
+
+.bento-box-area {
+    grid-area: bento-box;
+    width: 100%;
+    box-sizing: border-box;
+    /* Add styles to control the bento box layout itself (e.g., grid or flex) */
+    /* This will depend on your BentoBox.css */
+}
+
+.Home .main-content-area {
+    grid-area: main-content; /* Place the main content in the designated grid area */
+    display: flex; /* Or grid, depending on how you want to layout the content within */
+    flex-direction: column; /* Stack items vertically by default */
+    width: 100%; /* Ensure it takes the full width of its grid area */
+    box-sizing: border-box;
+    padding: 20px; /* Add padding within the main content area */
+    /* You might want to add a background color or other styling here */
+}
+
+/* Keep your existing styles for welcomeSection, questionsSection, etc. as they are */
 .welcomeSection {
     text-align: center;
+    border-bottom: 0.3px dashed var(--color-accent);
 }
 
 .questionsSection,
@@ -31,18 +49,17 @@
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-    opacity: 0; 
+    opacity: 0;
     transform: translateY(-20px);
-    animation: fadeInSlideDown 0.8s ease-out forwards; 
+    animation: fadeInSlideDown 0.8s ease-out forwards;
 }
-  
+
 .questionsTitle {
     font-size: 1em;
     color: var( --color-text-tertiary);
     margin-right: 15px;
 }
 
-  
 @keyframes fadeInSlideDown {
     0% {
         opacity: 0;
@@ -52,6 +69,12 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* ... (rest of your CSS, including grid-header-area, grid-container-area, etc.) ... */
+.Home .main-content-area {
+    display: flex;
+    flex-direction: column;
 }
 
 .bento-box-area {
@@ -123,7 +146,7 @@
     justify-content: right;
     align-items: center;
     margin-left: auto;
-    gap: 20px;
+    gap: 10px;
     color: var(--color-text-tertiary) !important;
 }
 
@@ -163,7 +186,7 @@
     flex-direction: column;
     width: 100%;
     margin-top: 10px;
-    /* padding: 20px; */
+    gap: 5px;
     padding-right: 10px;
     box-sizing: border-box;
     overflow: hidden;
@@ -236,7 +259,7 @@
     font-weight: 500;
     color: #6c757d;
     text-align: center;
-    background-color: #e9ecef;
+    background-color: #f8fbfe;
     padding: 10px;
     border-radius: 8px;
     border: 1px solid #ddd;

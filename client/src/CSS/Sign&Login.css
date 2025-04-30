@@ -83,7 +83,23 @@
   }
   
   
+
+  @media screen and (max-width: 425px) {
+    .Sign-page img {
+      width: inherit;
+      height: 300px;
+    }
+  }
   
+
+  @media screen and (max-width: 825px) {
+    .content {
+      transform: scale(0.8);
+    }
+    .Sign-page img {
+      transform: scale(0.8) translateY(-80px);
+    }
+  }
   
   
   

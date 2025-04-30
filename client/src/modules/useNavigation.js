@@ -5,8 +5,9 @@ const useNavigation = () => {
   const location = useLocation(); 
 
   const goToHome = () => navigate('/home');
-  const goToacctStats = () => navigate('/account/stats');
+  const goToAcct = () => navigate('/account/overview');
   const goToacctActivity= () => navigate('/account/activity');
+  const goToacctSettings= () => navigate('/account/settings');
   const goToLogin = () => navigate('/login');
   const goToThreadList = () => navigate('/');
   const goToSignUp = () => navigate('/signup');
@@ -17,8 +18,9 @@ const useNavigation = () => {
 
   return { 
     goToHome, 
-    goToacctStats, 
+    goToAcct, 
     goToacctActivity,
+    goToacctSettings,
     goToLogin, 
     goToThreadList,
     goToSignUp, 

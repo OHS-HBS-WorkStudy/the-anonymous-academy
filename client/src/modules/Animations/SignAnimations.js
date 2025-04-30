@@ -55,3 +55,17 @@ export const fadeVariants = {
     initial: { opacity: 0, y: 30 },
     animate: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut", delay: 0.8 } },
 }
+
+export const togglePasswordVariants = {
+    initial: { opacity: 0, scale: 0.6 },
+    animate: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: "easeOut", delay: 0.8 } },
+    hover: { scale: 1.1, color: "#777" },
+    tap: { scale: 0.9 },
+};
+
+export const linkVariants = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut", delay: 1 } },
+    hover: { color: "#00bfff", scale: 1.05, fontWeight: "bold" },
+    tap: { scale: 0.95 },
+};

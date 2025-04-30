@@ -27,8 +27,9 @@ export default function Manager() {
       <Route path="/home" element={<Home />} />
       <Route path="/" element={<ThreadList />} />
 
-      <Route path="/account/stats" element={<Account />} />
+      <Route path="/account/overview" element={<Account />} />
       <Route path="/account/activity" element={<Account />} />
+      <Route path="/account/settings" element={<Account />} />
 
 
       <Route path="/login" element={<Login />} />

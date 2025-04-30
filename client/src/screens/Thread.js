@@ -1,118 +1,197 @@
-// Library declaration imports
-import React, {useEffect, useRef} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import DOMPurify from "dompurify";
-import ReactQuill from "react-quill";
-
+import DOMPurify from 'dompurify';
+import ReactQuill from 'react-quill';
 import TimeCounter from '../modules/I-Candy/TimeCounter.js';
 import ThreadVote from '../modules/Thread/ThreadVote.js';
 import ReplyList from '../modules/Reply/ReplyList.js';
 import ThreadReply from '../modules/Reply/ThreadReply.js';
 import PollingSystem from '../modules/Thread/PollingSystem.js';
+import { motion } from 'framer-motion';
 
 export default function Thread() {
-    const { threadId } = useParams(); 
+    const { threadId } = useParams();
     const isInitialLoad = useRef(true);
+    const threadContentRef = useRef(null);
+    const [maxHeight, setMaxHeight] = useState(null);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []); 
+
+  useEffect(() => {
+    if (screenWidth <= 786) {
+      setMaxHeight('auto');
+    } else {
+      setMaxHeight(null);
+    }
+  }, [screenWidth]);
     useEffect(() => {
         if (isInitialLoad.current) {
-            window.scrollTo(0, 0); 
-            isInitialLoad.current = false; 
+            window.scrollTo(0, 0);
+            isInitialLoad.current = false;
         }
     }, []);
 
-    let data = JSON.parse(sessionStorage.getItem("data")) || [];
-    const thread = data.find(t => t.thread_id === parseInt(threadId));
+    useEffect(() => {
+        const updateMaxHeight = () => {
+            if (threadContentRef.current) {
+                const contentHeight = threadContentRef.current.offsetHeight;
+                setMaxHeight(`${contentHeight}px`);
+            }
+        };
 
-    if (!data) {
+        updateMaxHeight();
+        window.addEventListener('resize', updateMaxHeight);
+
+        return () => {
+            window.removeEventListener('resize', updateMaxHeight);
+        };
+    }, []);
+
+    let data = JSON.parse(sessionStorage.getItem('data')) || [];
+    const thread = data.find((t) => t.thread_id === parseInt(threadId));
+
+    if (!thread) {
         return <h2>Thread not found!</h2>;
-    } 
+    }
 
     const sanitizedTitle = DOMPurify.sanitize(thread.thread_name);
     const sanitizedDesc = DOMPurify.sanitize(thread.thread_contents);
 
     function getTags() {
         if (!thread.tags || thread.tags.length === 0) {
-          return <span className="tag" key="no-tags">#No Tags</span>; 
+            return (
+                <motion.span
+                    className="tag"
+                    key="no-tags"
+                    whileHover={{ scale: 1.05 }}
+                >
+                    #No Tags
+                </motion.span>
+            );
         } else {
-            const tagElements = thread.tags.map((tag) => (
-                <div className="tag" key={tag}>{tag}</div>
+            return thread.tags.map((tag) => (
+                <motion.div
+                    className="tag"
+                    key={tag}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    {tag}
+                </motion.div>
             ));
-
-          return tagElements;
-        }
-      }
-
-      const foundUser = JSON.parse(sessionStorage.getItem("foundUser"));
-
-      function userCheck(thread, foundUser) {
-        if (!thread || !foundUser) {
-            return "Unknown User";  
-        }
-
-        if (foundUser.email === thread.user.email) {
-            return "Your Post";  
-        } else {
-            
-            return "Anonymous " + (thread.user.account_type || "Unknown User");
         }
     }
 
+    const foundUser = JSON.parse(sessionStorage.getItem('foundUser'));
 
-    return(
-        <div className="offset">
-           <div className="thread-page">
-            <article className="thread-content">
-                <header className="thread-header">
-                    <h1 className="thread-title" dangerouslySetInnerHTML={{ __html: sanitizedTitle }} />
-                </header>
-                <div className="thread-meta">
-                        <p className="user-poster">{userCheck(thread, foundUser)}</p>
-                        <p>Created: <TimeCounter date={thread.created_at} /></p>
-                        <p>Views: 0</p>
-                    </div>
-                
+    function userCheck(thread, foundUser) {
+        if (!thread || !foundUser) return 'Unknown User';
+        return foundUser.email === thread.user.email
+            ? 'Your Post'
+            : 'Anonymous ' + (thread.user.account_type || 'Unknown User');
+    }
 
-                <div className="thread-main-content">
-                    
-                    <aside className="thread-vote-box">
-                        <ThreadVote />
-                    </aside>
+    return (
+        <motion.div
+            className="offset"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+        >
+            <motion.div
+                className="thread-page"
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ type: 'spring', stiffness: 60 }}
+                layout
+            >
+                <motion.article
+                    className="thread-content"
+                    ref={threadContentRef}
+                    layout
+                >
+                    <motion.header className="thread-header" layout>
+                        <motion.h1
+                            className="thread-title"
+                            dangerouslySetInnerHTML={{ __html: sanitizedTitle }}
+                            layout
+                        />
+                    </motion.header>
 
-                    <ReactQuill 
-                        value={DOMPurify.sanitize(thread.thread_contents)} 
-                        readOnly={true} 
-                        className="thread-description"
-                        theme="bubble" 
-                    />
-                    
-                    {/* <div className="thread-description" dangerouslySetInnerHTML={{ __html: sanitizedDesc }} /> */}
+                    <motion.div className="thread-meta" layout>
+                        <motion.p className="user-poster" whileHover={{ scale: 1.05 }}>
+                            {userCheck(thread, foundUser)}
+                        </motion.p>
+                        <motion.p><TimeCounter date={thread.created_at} /></motion.p>
+                        <motion.p>0 views</motion.p>
+                    </motion.div>
 
+                    <motion.div className="thread-main-content" layout>
+                        <aside className="thread-vote-box">
+                            <ThreadVote />
+                        </aside>
 
-                     
-                </div>
+                        <ReactQuill
+                            value={sanitizedDesc}
+                            readOnly={true}
+                            className="thread-description"
+                            theme="bubble"
+                        />
+                    </motion.div>
 
-                {thread.poll && Array.isArray(thread.poll.options) && thread.poll.options.length > 1 && (
-                    <PollingSystem
-                        question={thread.poll.question}
-                        options={thread.poll.options}
-                        pollId={thread.thread_id.toString()}
-                    />
-                )}
+                    {thread.poll &&
+                        Array.isArray(thread.poll.options) &&
+                        thread.poll.options.length > 1 && (
+                            <motion.div layout>
+                                <PollingSystem
+                                    question={thread.poll.question}
+                                    options={thread.poll.options}
+                                    pollId={thread.thread_id.toString()}
+                                />
+                            </motion.div>
+                        )}
 
-                <div className="tags-container">
+                    <motion.div className="tags-container" layout>
                         {getTags()}
-                    </div>    
+                    </motion.div>
 
-                <section className="thread-replies">
-                    <ThreadReply />
+                    <motion.section className="thread-replies" layout>
+                        <ThreadReply />
+                    </motion.section>
+                </motion.article>
 
+                {thread.replies && thread.replies.length > 3 && (
+                    <motion.div
+                        className="scroll-indicator"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1, y: [0, 5, 0] }}
+                        transition={{ repeat: Infinity, duration: 1.5 }}
+                    >
+                        ↓ Scroll to see more
+                    </motion.div>
+                    )}
+
+                <motion.div
+                    className="comment-list-container"
+                    style={{ maxHeight }}
+                    layout
+                >
                     <div className="reply-list">
                         <ReplyList thread={thread} />
                     </div>
-                </section>
-            </article>
-          </div>
-        </div>
+                </motion.div>
+            </motion.div>
+        </motion.div>
     );
 }

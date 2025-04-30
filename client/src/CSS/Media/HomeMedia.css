@@ -36,7 +36,6 @@
 
     .Home {
         max-width: 2560px !important;
-        border: 1px solid green;
     }
 
     .credit-scorepro-container {
@@ -230,6 +229,10 @@
     }
 }
 @media only screen and (max-width: 786px) {
+    .Home {
+        margin-left: 0px !important;
+    }
+    
     .top-grid,
     .bottom-grid {
         gap: 1.6em !important;

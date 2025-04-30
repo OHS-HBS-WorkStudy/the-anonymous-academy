@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
@@ -19,6 +21,7 @@
     "react-router-dom": "^7.5.3",
     "react-scripts": "5.0.1",
     "react-visibility-sensor": "^5.1.1",
+    "resolve-url-loader": "^5.0.0",
     "router-dom": "^3.0.3",
     "web-vitals": "^2.1.4"
   },
@@ -26,7 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "a11y": "pa11y http://localhost:3000"
   },
   "eslintConfig": {
     "extends": [
@@ -45,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "pa11y": "^8.0.0"
   }
 }

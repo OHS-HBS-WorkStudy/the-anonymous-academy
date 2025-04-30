@@ -1,21 +1,62 @@
 .thread-page {
   display: flex;
-  flex-direction: column; 
-  min-height: 100vh; 
-  max-width: 100vw; 
+  flex-direction: row;
+  min-height: 100vh;
+  max-width: 100vw;
   width: 100%;
   background-color: var(--clr-surface-a10);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: var(--color-text-white);
   line-height: 1.6;
-  box-sizing: border-box; 
+  box-sizing: border-box;
+  align-items: flex-start; 
 }
 
+@media (max-width: 768px) {
+  .thread-page {
+    flex-direction: column !important;
+  }
+  .thread-content{
+    width: 100% !important;
+  }
+  .comment-list-container {
+    width: 100% !important;
+    max-height: fit-content !important;
+    overflow: visible !important;
+  }
+}
+
+@media (max-width: 425px) {
+  .thread-content{
+   padding: 0.9rem !important;
+  }
+  .comment-list-container {
+    padding: 0.9rem !important;
+  }
+}
+
+.scroll-indicator {
+  text-align: center;
+  color: #888;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+
 .thread-content {
+  width: 50%;
+  margin-right: 0;
+  padding: 1rem;
+  padding-bottom: 0;
+  box-sizing: border-box;
+  display: flex; 
+  flex-direction: column;
+}
+
+.thread-container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  margin-right: auto; 
-  padding: 2rem;
-  box-sizing: border-box; 
 }
 
 .thread-header {
@@ -23,7 +64,7 @@
 }
 
 .thread-title {
-  font-size: var( --font-size-xxl);
+  font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
   margin-bottom: 0.5rem;
   color: var(--color-text-white);
@@ -39,28 +80,27 @@
   margin-bottom: 1.5rem;
   margin-top: 10px;
 }
+
 .thread-meta p,
 .thread-meta span {
-
   color: var(--color-text-white) !important;
-
 }
-.user-poster{
+
+.user-poster {
   background-color: var(--color-secondary);
   border-radius: 25px;
   color: var(--color-text-primary);
   padding-left: 10px;
   padding-right: 10px;
-
 }
 
 .thread-main-content {
   display: grid;
-  grid-template-columns: 40px 1fr;
+  grid-template-columns: 35px 1fr;
   align-items: start;
   margin-bottom: 2rem;
   padding-top: 20px;
-  gap: 20px;
+  gap: 15px;
 }
 
 .thread-description {
@@ -70,8 +110,9 @@
   word-break: break-word;
   color: var(--color-text-white) !important;
 }
+
 .thread-description p {
-  font-size: clamp(0.9rem, 1rem, 1.1rem); 
+  font-size: clamp(0.9rem, 1rem, 1.1rem);
   line-height: 1.6;
 }
 
@@ -118,7 +159,7 @@
 }
 
 .replies-title {
-  font-size: var( --font-size-xl);
+  font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-white);
   letter-spacing: -0.01em;
@@ -131,7 +172,7 @@
 }
 
 .replies-list h1,
-.replies-list h2, 
+.replies-list h2,
 .replies-list p {
   color: white !important;
 }
@@ -180,7 +221,7 @@
   color: var(--color-text-white);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
-  
+
 /* Tags container */
 .thread-page .tags-container {
   display: flex;
@@ -198,7 +239,6 @@
   border-radius: 25px;
   cursor: pointer;
   font-size: 0.95rem;
-
   font-weight: 500;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
@@ -209,211 +249,243 @@
   transform: scale(1.03);
   color: white;
 }
-  
-  .btn-send:active {
+
+.btn-send:active {
+  transform: translateY(0);
+}
+
+/* Animation for fadeIn effect */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
     transform: translateY(0);
   }
+}
 
-  
-  /* Animation for fadeIn effect */
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  /* Text alignment classes for Quill editor */
-  .submitted-content-desc .ql-align-center {
-    text-align: center;
-  }
-  
-  .submitted-content-desc .ql-align-right {
-    text-align: right;
-  }
-  
-  .submitted-content-desc .ql-align-justify {
-    text-align: justify;
-  }
-  
-  /* Indentation classes for Quill editor */
-  .submitted-content-desc .ql-indent-1 {
-    margin-left: 20px;
-  }
-  
-  .submitted-content-desc .ql-indent-2 {
-    margin-left: 40px;
-  }
-  
-  .submitted-content-desc .ql-indent-3 {
-    margin-left: 60px;
-  }
-  
-  .submitted-content-desc .ql-indent-4 {
-    margin-left: 80px;
-  }
-  
-  .submitted-content-desc .ql-indent-5 {
-    margin-left: 100px;
-  }
-  
-  .submitted-content-desc .ql-indent-6 {
-    margin-left: 120px;
-  }
-  
-  .submitted-content-desc .ql-indent-7 {
-    margin-left: 140px;
-  }
-  
-  .submitted-content-desc .ql-indent-8 {
-    margin-left: 160px;
-  }
-  
-  /* Border for submitted content title */
-  .submitted-content-title {
-    border-bottom: black;
-  }
-  
-  /* Animation for submitted content title and description when thread is in play state */
-  .thread.play .submitted-content-title,
-  .thread.play .submitted-content-desc {
-    animation: fadeIn 1.5s ease-out;
-  }
-  
-  /* Text wrapping for submitted content description */
-  .submitted-content-desc {
-    white-space: wrap;
-  }
-  
-  /* Styling for unordered lists within submitted content description */
-  .submitted-content-desc ul {
-    padding-left: 20px;
-    margin: 0;
-  }
-  
-  /* Styling for list items within submitted content description */
-  .submitted-content-desc li {
-    list-style-position: inside;
-    margin: 5px 0;
-  }
+/* Text alignment classes for Quill editor */
+.submitted-content-desc .ql-align-center {
+  text-align: center;
+}
 
-  .modern-poll-container {
-    max-width: 100%;
-    margin: 30px auto;
-    padding: 2rem;
-    background-color: var(--color-background); 
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    color: #f7fafc; 
-    animation: fadeInUp 0.4s ease-out forwards;
-    border: 1px solid var(--clr-primary-a30);
-  }
-  
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
-  .poll-question {
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    text-align: left;
-    color: #cbd5e0; 
-  }
-  
-  .poll-options-grid {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-  }
-  
-  .poll-option-button {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.2rem 1.5rem;
-    background-color: #2d3748; 
-    border-radius: 8px;
-    cursor: pointer;
-    border: none;
-    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  }
-  
-  .poll-option-button:hover {
-    background-color: #4a5568; 
-    transform: scale(1.01);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-  }
-  
-  .poll-option-button:active {
-    transform: scale(0.99);
-  }
-  
-  .poll-option-button.voted {
-    cursor: default;
-    background-color: #38a169; 
-    color: #f0fff4;
-  }
-  
-  .poll-option-button.voted:hover {
-    transform: none;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  }
-  
-  .poll-option-button.not-voted {
-    background-color: #4a5568; 
-    color: #a0aec0;
-    opacity: 0.7; 
-    cursor: default; 
-  }
+.submitted-content-desc .ql-align-right {
+  text-align: right;
+}
 
-  .poll-option-button.not-voted .vote-count-pill {
-    background-color: #4a5568;
+.submitted-content-desc .ql-align-justify {
+  text-align: justify;
+}
+
+/* Indentation classes for Quill editor */
+.submitted-content-desc .ql-indent-1 {
+  margin-left: 20px;
+}
+
+.submitted-content-desc .ql-indent-2 {
+  margin-left: 40px;
+}
+
+.submitted-content-desc .ql-indent-3 {
+  margin-left: 60px;
+}
+
+.submitted-content-desc .ql-indent-4 {
+  margin-left: 80px;
+}
+
+.submitted-content-desc .ql-indent-5 {
+  margin-left: 100px;
+}
+
+.submitted-content-desc .ql-indent-6 {
+  margin-left: 120px;
+}
+
+.submitted-content-desc .ql-indent-7 {
+  margin-left: 140px;
+}
+
+.submitted-content-desc .ql-indent-8 {
+  margin-left: 160px;
+}
+
+/* Border for submitted content title */
+.submitted-content-title {
+  border-bottom: black;
+}
+
+/* Animation for submitted content title and description when thread is in play state */
+.thread.play .submitted-content-title,
+.thread.play .submitted-content-desc {
+  animation: fadeIn 1.5s ease-out;
+}
+
+/* Text wrapping for submitted content description */
+.submitted-content-desc {
+  white-space: wrap;
+}
+
+/* Styling for unordered lists within submitted content description */
+.submitted-content-desc ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+/* Styling for list items within submitted content description */
+.submitted-content-desc li {
+  list-style-position: inside;
+  margin: 5px 0;
+}
+
+.modern-poll-container {
+  max-width: 100%;
+  margin: 30px auto;
+  padding: 2rem;
+  background-color: var(--color-background);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  color: #f7fafc;
+  animation: fadeInUp 0.4s ease-out forwards;
+  border: 1px solid var(--clr-primary-a30);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-  
-  .poll-option-button.not-voted:hover {
-    transform: none;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .option-label {
-    font-size: 1rem;
-    font-weight: 500;
-    color: #edf2f7;
-  }
-  
-  .vote-percentage {
-    font-size: 0.9rem;
-    color: #a0aec0;
-    margin-left: 1rem;
-  }
-  
-  .vote-count-pill {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #48bb78; 
-    color: #fff;
-    font-size: 0.8rem;
-    font-weight: 600;
-    padding: 0.4rem 0.7rem;
-    border-radius: 10px;
-    margin-left: 0.8rem;
-  }
-  
-  .voted-banner {
-    margin-top: 2rem;
-    padding: 1rem 1.2rem;
-    background-color: #38a169; 
-    color: #f0fff4;
-    border-radius: 8px;
-    text-align: center;
-    font-weight: 600;
-    font-size: 1rem;
-  }
+}
+
+.poll-question {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  color: #cbd5e0;
+}
+
+.poll-options-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.poll-option-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.5rem;
+  background-color: #2d3748;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.poll-option-button:hover {
+  background-color: #4a5568;
+  transform: scale(1.01);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.poll-option-button:active {
+  transform: scale(0.99);
+}
+
+.poll-option-button.voted {
+  cursor: default;
+  background-color: #38a169;
+  color: #f0fff4;
+}
+
+.poll-option-button.voted:hover {
+  transform: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.poll-option-button.not-voted {
+  background-color: #4a5568;
+  color: #a0aec0;
+  opacity: 0.7;
+  cursor: default;
+}
+
+.poll-option-button.not-voted .vote-count-pill {
+  background-color: #4a5568;
+}
+
+.poll-option-button.not-voted:hover {
+  transform: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.option-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #edf2f7;
+}
+
+.vote-percentage {
+  font-size: 0.9rem;
+  color: #a0aec0;
+  margin-left: 1rem;
+}
+
+.vote-count-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #48bb78;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.7rem;
+  border-radius: 10px;
+  margin-left: 0.8rem;
+}
+
+.voted-banner {
+  margin-top: 2rem;
+  padding: 1rem 1.2rem;
+  background-color: #38a169;
+  color: #f0fff4;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.comment-list-container {
+  width: 50%;
+  background-color: var(--clr-surface-a10);
+  box-sizing: border-box;
+  padding: 1rem;
+  padding-bottom: 0;
+  overflow-y: auto;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none; 
+}
+
+
+.comment-list-container{
+  white-space: nowrap;
+}
+
+.comment-list-container.active-drag {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.comment-list-container::-webkit-scrollbar {
+  display: none; 
+}
+
+
