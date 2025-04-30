@@ -1,9 +1,8 @@
-import { data, useParams } from "react-router-dom"; 
+import { useParams } from "react-router-dom"; 
 import ReactQuill from "react-quill";
 import TimeCounter from "../I-Candy/TimeCounter";
-import { useState, useRef, useEffect} from "react";
+import { useState } from "react";
 import DOMPurify from 'dompurify';
-
 
 import ReplyToReply from "./ReplyToReply";
 import ReplyVote from "./ReplyVote";
