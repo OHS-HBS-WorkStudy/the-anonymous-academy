@@ -18,7 +18,7 @@
     "react-countup": "^6.5.3",
     "react-dom": "^18.3.1",
     "react-quill": "^2.0.0",
-    "react-router-dom": "^7.5.0",
+    "react-router-dom": "^7.5.3",
     "react-scripts": "5.0.1",
     "react-visibility-sensor": "^5.1.1",
     "resolve-url-loader": "^5.0.0",
