@@ -23,6 +23,7 @@
   grid-template-areas:
   "center-content thread-rules";
   width: 100%;
+  max-width: 100vw;
   justify-content: center;
   align-items: start;
   margin-top: 0px;
@@ -71,6 +72,15 @@
   padding-bottom: 10px;
 }
 
+.flip {
+  transform: scaleX(-1);
+  margin-right: 2.5px;
+}
+
+.text-top .fa-icon.inline-icon {
+  width: 35px;
+  height: 35px;
+}
 .NewThread-header .text-subheading {
   font-family: 'Roboto', sans-serif;
   font-size: 1.1rem;
@@ -196,6 +206,9 @@
   transition: all 0.3s ease;
   border: 1px solid var(--clr-primary-a30);
   flex: 0 !important; 
+  text-wrap: normal;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .NewThread .center:focus-within {
@@ -386,7 +399,7 @@ label h1 {
   color: white !important;
 } 
 
-.NewThread .ql-container.ql-snow {
+/* .NewThread .ql-container.ql-snow {
   border: 0 !important;
   border-radius: 12px !important;
   color: white !important;
@@ -403,8 +416,49 @@ label h1 {
   height: auto !important; 
   min-height: 100px; 
   overflow-y: auto !important; 
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: initial !important;
+  box-sizing: border-box;
+  padding: 10px; 
+} */
+
+.NewThread .center {
+  max-width: 1200px;
+  min-width: 0;
+  width: 100%;
+}
+
+.NewThread .ql-container.ql-snow {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  border: 0 !important;
+  border-radius: 12px !important;
+  color: white !important;
+  height: auto !important;
+  min-height: 200px !important;
+  width: 100% !important;
+  background-color: var(--clr-surface-a50) !important;
+  flex-grow: 1;
+  overflow-y: auto !important; 
+}
+
+.NewThread .ql-editor {
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  max-width: 100%;
+  color: white !important;
+  height: auto !important; 
+  min-height: 100px; 
+  overflow-y: auto !important; 
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
   padding: 10px; 
 }
+
 
 .ql-container.ql-snow {
   height: auto !important;
@@ -641,6 +695,5 @@ label h1 {
   transform: translateY(0);
   box-shadow: 0 3px 6px rgba(var(--clr-primary-a50-rgb), 0.3);
 }
-
 
 @import url('./Media/CreateMedia.css');

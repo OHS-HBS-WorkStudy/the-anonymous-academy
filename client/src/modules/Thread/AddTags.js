@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faTag } from '@fortawesome/free-solid-svg-icons';
 
 export default function AddTags({ tags, setTags }) {
   const [inputValue, setInputValue] = useState("");
@@ -106,7 +108,7 @@ export default function AddTags({ tags, setTags }) {
       exit="exit"
     >
       <label htmlFor="tag-input" className="threadTag">
-        <h1>Tags</h1>
+        <h1><FontAwesomeIcon icon={faTag}  className="fa-icon" /> Tags</h1>
       </label>
       <p className="subtext">Add relevant tags to categorize your thread (e.g., 'Algebra 2', 'Euro History'). Separate tags with commas or press Enter for each tag.</p>
 
