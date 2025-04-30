@@ -180,27 +180,18 @@ export default function SignUp() {
                                 <motion.div className="button-group-container" variants={buttonGroupVariants}>
                                     <motion.div className="button-group">
                                         <motion.button
-                                            variants={buttonVariants}
-                                            whileHover="hover"
-                                            whileTap="tap"
                                             className={`button-group-btn ${activeButton === "Student" ? "active" : ""}`}
                                             onClick={() => handleButtonClick("Student")}
                                         >
                                             Student
                                         </motion.button>
                                         <motion.button
-                                            variants={buttonVariants}
-                                            whileHover="hover"
-                                            whileTap="tap"
                                             className={`button-group-btn ${activeButton === "Parent" ? "active" : ""}`}
                                             onClick={() => handleButtonClick("Parent")}
                                         >
                                             Parent
                                         </motion.button>
                                         <motion.button
-                                            variants={buttonVariants}
-                                            whileHover="hover"
-                                            whileTap="tap"
                                             className={`button-group-btn ${activeButton === "Teacher" ? "active" : ""}`}
                                             onClick={() => handleButtonClick("Teacher")}
                                         >

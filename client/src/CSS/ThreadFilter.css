@@ -698,9 +698,10 @@
     transition: background-color 0.2s ease-in-out;
   }
 
-  .compact-dropdown-option-button:hover {
-    background-color: #f0f0f0;
-  }
+  /* .compact-dropdown-option-button:hover {
+    background-color:gray;
+    color: var(--color-primary);
+  } */
 
 
   .vertical-dots-wrapper {

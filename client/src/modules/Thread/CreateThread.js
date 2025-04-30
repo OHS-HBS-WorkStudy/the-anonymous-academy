@@ -4,6 +4,8 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import DOMPurify from 'dompurify';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleCheck, faLightbulb, faCommentDots  , faPoll, faExclamationCircle, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 
 // Other modules components imports
@@ -152,6 +154,8 @@ useEffect(() => {
     }, 3000);
   };
 
+  const isDisabled = isLoading || canSubmit() !== null;
+
   if (!loggedInUser) {
     return (
      <>
@@ -204,7 +208,7 @@ useEffect(() => {
           initial="initial"
           animate="animate"
         >
-          <label htmlFor="questionTitle" className="threadDir"><h1>Question Title</h1></label>
+          <label htmlFor="questionTitle" className="threadDir"><h1><FontAwesomeIcon icon={faLightbulb} className="fa-icon"/> Question Title</h1></label>
           <p className="subtext">Be clear and concise. What is the core question you want to ask?</p>
 
      
@@ -226,7 +230,7 @@ useEffect(() => {
           initial="initial"
           animate="animate"
         >
-          <label htmlFor="questionDesc" className="threadDir"><h1>Question Description</h1></label>
+          <label htmlFor="questionDesc" className="threadDir"><h1><FontAwesomeIcon icon={faCommentDots  } className="fa-icon flip"/> Question Description</h1></label>
           <p className="subtext">Provide more details and context. Explain your question or idea thoroughly.</p>
           <ReactQuill
             id="questionDesc"
@@ -263,16 +267,21 @@ useEffect(() => {
               checked={includePoll}
               onChange={handleIncludePollChange}
             />
-            <span>Include a Poll?</span>
+              <span>
+                <FontAwesomeIcon icon={faPoll} className="fa-icon inline-icon mr-1" />
+                Include a Poll?
+            </span>
           </label>
 
           <label className="rule-checkbox">
             <input
               type="checkbox"
             />
-            <span>Mark as Urgent?</span>
+              <span>
+                <FontAwesomeIcon icon={faExclamationCircle} className="fa-icon inline-icon mr-1" />
+                Mark as Urgent?
+            </span>
           </label>
-
         </div>
 
         {includePoll && (
@@ -282,12 +291,18 @@ useEffect(() => {
           )}
 
         <div className="loadButton container">
-          <button
-             onClick={submitThread}
-             disabled={isLoading || canSubmit() !== null}
-          >
-            {isLoading ? "Submitting..." : "Submit"}
-          </button>
+        <button onClick={submitThread} disabled={isDisabled}>
+  {isLoading ? (
+    <>
+      <FontAwesomeIcon icon={faCircleCheck} spin className="inline-icon" /> Submitting...
+    </>
+  ) : (
+    <>
+      <FontAwesomeIcon icon={isDisabled ? faCircleXmark : faCircleCheck} className="inline-icon" /> Submit
+    </>
+  )}
+</button>
+
         </div>
       </div>
       <CreateThreadAside ruleAgreement={ruleAgreement} setRuleAgreement={setRuleAgreement} />
