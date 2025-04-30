@@ -132,8 +132,7 @@
   border: none;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  border: 1px solid var(--clr-surface-a30);
-  border-radius: 5px;
+
 }
 
 .nav-toggle-open,
@@ -150,6 +149,7 @@
   opacity: 0; 
   pointer-events: none; 
   border: 1px solid var(--clr-surface-a30);
+  border-radius: 12.5px;
 }
 
 
@@ -163,7 +163,7 @@
 .nav-toggle.menu-open .nav-toggle-open {
   opacity: 0;
   pointer-events: none; 
-  transform: scale(0.9); 
+  transform: scale(1.1); 
 }
 
 /* Shows Hamburger icon when menu is closed */
@@ -179,7 +179,6 @@
 }
 
 .nav-toggle:hover {
-  background-color: rgba(0, 0, 255, 0.1);
   border-color: var(--color-primary);
 }
 
@@ -232,6 +231,7 @@
   color: #5f6368;
   white-space: nowrap;
   overflow: hidden;
+  text-align: center;
   width: 100%;
   transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, padding-left 0.3s ease-in-out;
 }
@@ -269,20 +269,20 @@ height: 50%;
 transition: background-color 0.3s ease-in-out; 
 }
 
-.sidebar-link svg {
-flex-shrink: 0;
-width: 24px;
-height: 24px;
-fill: var(--clr-primary-a50);
-margin: 0 auto;
-transition: margin-right 0.3s ease-in-out, transform 0.3s ease-in-out;
-transform: scale(1);
+.sidebar-link .icon-container .fa-icon,
+.fa-icon {
+  color: var(--clr-primary-a50);
+  transition: color 0.3s ease, transform 0.3s ease;
+  transform: scale(1);
 
+  width: 20px;
+  height: 20px;
 }
 
-.sidebar-link .active-link svg {
-fill: white; 
-transform: scale(1.1);
+.sidebar-link .sidebar-btn.active-link .icon-container .fa-icon,
+.active-link {
+  color: white;
+  transform: scale(1.1);
 }
 
 
