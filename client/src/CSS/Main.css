@@ -101,14 +101,14 @@ html {
     background-color: var(--color-background) !important;
 }
 
+body {
+    background-color: var(--color-background);
+  }
+
 span .color-accent {
     color: var(--color-accent) !important;
 }
 
-
-html {
-    background-color: var(--color-background) !important;
-}
 .offset {
     margin-top: 60px;
     margin-left: 60px !important;

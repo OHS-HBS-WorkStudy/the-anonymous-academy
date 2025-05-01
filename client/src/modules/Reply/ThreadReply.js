@@ -4,6 +4,10 @@ import ReactQuill from "react-quill";
 import { motion } from "framer-motion";
 import "react-quill/dist/quill.snow.css";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+
+
 export default function ThreadReply() {
     const { threadId } = useParams(); 
     const [questionDesc, setQuestionDesc] = useState('');
@@ -69,6 +73,8 @@ export default function ThreadReply() {
     };
 
     if (!foundUser) return null;
+    const isDisabled = isSubmitting || getPlainText(questionDesc).length < 10;
+
 
     return (
         <motion.div
@@ -112,10 +118,10 @@ export default function ThreadReply() {
                 <motion.button
                     className="reply-send"
                     onClick={ReplyButton}
-                    disabled={isSubmitting || getPlainText(questionDesc).length < 10}
+                    disabled={isDisabled}
                     whileHover={
                         !isSubmitting && getPlainText(questionDesc).length >= 10
-                            ? { scale: 1.05 }
+                            ? { scale: 1.01 }
                             : {}
                     }
                     whileTap={
@@ -127,7 +133,15 @@ export default function ThreadReply() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
                 >
-                    {isSubmitting ? "Sending..." : "Send"}
+                    {isSubmitting ? (
+                                <>
+                                  <FontAwesomeIcon icon={faCircleCheck} bounce className="inline-icon" /> Submitting...
+                                </>
+                              ) : (
+                                <>
+                                  <FontAwesomeIcon icon={isDisabled ? faCircleXmark : faCircleCheck} className="inline-icon" /> Submit
+                                </>
+                              )}
                 </motion.button>
             </motion.div>
         </motion.div>

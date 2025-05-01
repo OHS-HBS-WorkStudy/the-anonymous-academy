@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { useParams } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 import ReactQuill from 'react-quill';
@@ -7,22 +8,25 @@ import ThreadVote from '../modules/Thread/ThreadVote.js';
 import ReplyList from '../modules/Reply/ReplyList.js';
 import ThreadReply from '../modules/Reply/ThreadReply.js';
 import PollingSystem from '../modules/Thread/PollingSystem.js';
-import { motion } from 'framer-motion';
 
 export default function Thread() {
   const { threadId } = useParams();
+  const [thread, setThread] = useState(null);
+  const [status, setStatus] = useState('');
+  const foundUser = JSON.parse(sessionStorage.getItem('foundUser'));
+  const [commentListHeight, setCommentListHeight] = useState('auto');
+  const [threadContentHeight, setThreadContentHeight] = useState('auto'); 
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const isInitialLoad = useRef(true);
   const threadContentRef = useRef(null);
-  const [maxHeight, setMaxHeight] = useState(null);
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const commentListContainerRef = useRef(null);
 
-  setTimeout(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth' 
-    });
-  }, 100); 
+  useEffect(() => {
+    if (isInitialLoad.current) {
+      window.scrollTo(0, 0);
+      isInitialLoad.current = false;
+    }
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -35,78 +39,83 @@ export default function Thread() {
   }, []);
 
   useEffect(() => {
-    if (screenWidth <= 786) {
-      setMaxHeight('auto');
-    } else {
-      setMaxHeight(null);
-    }
-  }, [screenWidth]);
-
-  useEffect(() => {
-    if (isInitialLoad.current) {
-      window.scrollTo(0, 0);
-      isInitialLoad.current = false;
-    }
-  }, []);
-
-  useEffect(() => {
-    const updateMaxHeight = () => {
-      if (threadContentRef.current) {
-        const contentHeight = threadContentRef.current.offsetHeight;
-        setMaxHeight(`${contentHeight}px`);
+    const updateHeights = () => {
+      if (threadContentRef.current && commentListContainerRef.current) {
+        if (screenWidth <= 786) {
+          setCommentListHeight('auto');
+          setThreadContentHeight('auto');
+        } else {
+          const contentHeight = threadContentRef.current.offsetHeight;
+          setThreadContentHeight(contentHeight + 'px');
+          setCommentListHeight(contentHeight + 'px');
+        }
       }
     };
 
-    updateMaxHeight();
-    window.addEventListener('resize', updateMaxHeight);
+    updateHeights();
+    window.addEventListener('resize', updateHeights);
 
     return () => {
-      window.removeEventListener('resize', updateMaxHeight);
+      window.removeEventListener('resize', updateHeights);
     };
-  }, []);
+  }, [screenWidth, thread]);
 
-  let data = JSON.parse(sessionStorage.getItem('data')) || [];
-  const thread = data.find((t) => t.thread_id === parseInt(threadId));
+  useEffect(() => {
+    if (threadContentRef.current && commentListContainerRef.current && screenWidth > 786) {
+      const contentHeight = threadContentRef.current.offsetHeight;
+      setThreadContentHeight(contentHeight + 'px');
+      setCommentListHeight(contentHeight + 'px');
+    }
+  }, [thread, screenWidth]);
+
+  // Logic to handle comment list overflow
+  useEffect(() => {
+    if (commentListContainerRef.current && screenWidth > 786) {
+      const commentList = commentListContainerRef.current.querySelector('.reply-list');
+      if (commentList) {
+        commentList.style.overflowY = commentList.offsetHeight > parseInt(commentListHeight) ? 'scroll' : 'auto';
+      }
+    } else if (commentListContainerRef.current) {
+      const commentList = commentListContainerRef.current.querySelector('.reply-list');
+      if (commentList) {
+        commentList.style.overflowY = 'auto'; // Reset overflow for smaller screens
+      }
+    }
+  }, [commentListHeight, screenWidth, thread]); // Re-check on these dependencies
+
+  useEffect(() => {
+    const data = JSON.parse(sessionStorage.getItem('data')) || [];
+    const currentThread = data.find((t) => t.thread_id === parseInt(threadId));
+    setThread(currentThread);
+    if (currentThread) setStatus(currentThread.status || 'Open');
+  }, [threadId]);
+
+  // Handle status change and save it to sessionStorage
+  const handleStatusChange = (e) => {
+    const newStatus = e.target.value;
+    setStatus(newStatus);
+
+    // Update the status in the thread object
+    const updatedThread = { ...thread, status: newStatus };
+
+    // Update the thread in the session storage
+    let data = JSON.parse(sessionStorage.getItem('data')) || [];
+    const threadIndex = data.findIndex((t) => t.thread_id === thread.thread_id);
+
+    if (threadIndex !== -1) {
+      data[threadIndex] = updatedThread;
+      sessionStorage.setItem('data', JSON.stringify(data)); // Save the updated data in sessionStorage
+    }
+  };
+
+  const sanitizedTitle = DOMPurify.sanitize(thread?.thread_name);
+  const sanitizedDesc = DOMPurify.sanitize(thread?.thread_contents);
+
+  // Check if the logged-in user is the thread owner
+  const isOwner = foundUser?.email === thread?.user.email;
 
   if (!thread) {
     return <h2>Thread not found!</h2>;
-  }
-
-  const sanitizedTitle = DOMPurify.sanitize(thread.thread_name);
-  const sanitizedDesc = DOMPurify.sanitize(thread.thread_contents);
-
-  function getTags() {
-    if (!thread.tags || thread.tags.length === 0) {
-      return (
-        <motion.span
-          className="tag"
-          key="no-tags"
-          whileHover={{ scale: 1.05 }}
-        >
-          #No Tags
-        </motion.span>
-      );
-    } else {
-      return thread.tags.map((tag) => (
-        <motion.div
-          className="tag"
-          key={tag}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          {tag}
-        </motion.div>
-      ));
-    }
-  }
-
-  const foundUser = JSON.parse(sessionStorage.getItem('foundUser'));
-
-  function userCheck(thread, foundUser) {
-    if (!thread || !foundUser) return 'Unknown User';
-    return foundUser.email === thread.user.email
-      ? 'Your Post'
-      : 'Anonymous ' + (thread.user.account_type || 'Unknown User');
   }
 
   return (
@@ -125,8 +134,9 @@ export default function Thread() {
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 60 }}
-          ref={threadContentRef}
           layout
+          ref={threadContentRef} // Attach ref to the thread content
+          style={{ height: threadContentHeight }}
         >
           <motion.header className="thread-header" layout>
             <motion.h1
@@ -138,10 +148,28 @@ export default function Thread() {
 
           <motion.div className="thread-meta" layout>
             <motion.p className="user-poster" whileHover={{ scale: 1.05 }}>
-              {userCheck(thread, foundUser)}
+              {foundUser?.email === thread.user.email ? 'Your Post' : `Anonymous ${thread.user.account_type}`}
             </motion.p>
             <motion.p><TimeCounter date={thread.created_at} /></motion.p>
             <motion.p>0 views</motion.p>
+
+            {isOwner ? (
+              <motion.div>
+                <label htmlFor="status-dropdown">Status:</label>
+                <select
+                  id="status-dropdown"
+                  value={status}
+                  onChange={handleStatusChange}
+                  className="status-dropdown"
+                >
+                  <option value="Open">Open</option>
+                  <option value="Closed">Closed</option>
+                  <option value="Archived">Archived</option>
+                </select>
+              </motion.div>
+            ) : (
+              <motion.p>Status: {status}</motion.p>
+            )}
           </motion.div>
 
           <motion.div className="thread-main-content" layout>
@@ -170,7 +198,15 @@ export default function Thread() {
             )}
 
           <motion.div className="tags-container" layout>
-            {getTags()}
+            {thread.tags?.map((tag, index) => (
+              <motion.div
+                className="tag"
+                key={index}
+                whileHover={{ scale: 1.05 }}
+              >
+                {tag}
+              </motion.div>
+            ))}
           </motion.div>
 
           <motion.section className="thread-replies" layout>
@@ -180,8 +216,9 @@ export default function Thread() {
 
         <motion.div
           className="comment-list-container"
-          style={{ maxHeight }}
+          style={{ height: commentListHeight }}
           layout
+          ref={commentListContainerRef} 
         >
           <div className="reply-list">
             <ReplyList thread={thread} />

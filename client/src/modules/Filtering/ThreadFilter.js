@@ -375,14 +375,15 @@ export default function ThreadFilter() {
               </div>
 
               <div className="motion-dropdown-section">
-                <h3 className="motion-dropdown-title">Advance Date Filter</h3>
-                    <AnimatedDatePicker
-                      name="startDate"
-                      label="Select date..."
-                       className="tag-input"
-                      onChange={(e) => setStartDate(e.target.value)}
-                    />
+                <h3 className="motion-dropdown-title">Advanced Date Filter</h3>
+                <AnimatedDatePicker
+                  name="startDate"
+                  label="Select date..."
+                  className="modern-datepicker"
+                  onChange={(e) => setStartDate(e.target.value)}
+                />
               </div>
+
 
               <div className="motion-dropdown-section">
                 <h3 className="motion-dropdown-title">Custom Tags</h3>

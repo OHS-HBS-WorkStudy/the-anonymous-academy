@@ -17,7 +17,6 @@
     - @media (max-width: 640px): Defines responsive styles for smaller screens, adjusting layout and scaling elements.
 */
 
-
 .split {
     flex: 1;  
     display: flex;
@@ -29,7 +28,7 @@
     height: 100vh; 
     min-height: 500px; 
     overflow-y: auto; 
-    overflow-x: auto; 
+    overflow-x: none; 
 }
   
   /* .Login, 
