@@ -5,7 +5,7 @@ export const containerVariants = {
 
 export const splitRightVariants = {
     initial: { opacity: 0, x: "50vw", rotate: 10, zIndex: -2, },
-    animate: { opacity: 1, x: 0, rotate: 0, transition: { duration: 0.8, ease: "easeOut" } },
+    animate: { opacity: 1, x: 0, rotate: 0, zIndex: 1, transition: { duration: 0.8, ease: "easeOut" } },
 };
 
 export const imageVariants = {

@@ -5,7 +5,6 @@ import BentoBox from '../modules/BentoBox.js';
 import Threads from '../modules/Thread/Threads.js';
 import ThreadFilter from '../modules/Filtering/ThreadFilter.js';
 
-
 export default function Home() {
     let data = JSON.parse(sessionStorage.getItem("data")) || {};
     let recieveThread = data || [];
@@ -20,7 +19,7 @@ export default function Home() {
                 <div className="container1">
                      <div className="welcomeSection">
                         <h1>
-                            <span className="questionsTitle">Welcome Back! <span className="color-accent">{foundUser?.first_name} {foundUser?.last_name}</span></span>
+                            <span className="questionsTitle">Welcome! <span className="color-accent">{foundUser?.first_name} {foundUser?.last_name}</span></span>
                         </h1>
                     </div>
 

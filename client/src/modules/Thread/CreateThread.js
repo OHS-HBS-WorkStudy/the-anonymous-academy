@@ -292,16 +292,16 @@ useEffect(() => {
 
         <div className="loadButton container">
         <button onClick={submitThread} disabled={isDisabled}>
-  {isLoading ? (
-    <>
-      <FontAwesomeIcon icon={faCircleCheck} spin className="inline-icon" /> Submitting...
-    </>
-  ) : (
-    <>
-      <FontAwesomeIcon icon={isDisabled ? faCircleXmark : faCircleCheck} className="inline-icon" /> Submit
-    </>
-  )}
-</button>
+          {isLoading ? (
+            <>
+              <FontAwesomeIcon icon={faCircleCheck} bounce className="inline-icon" /> Submitting...
+            </>
+          ) : (
+            <>
+              <FontAwesomeIcon icon={isDisabled ? faCircleXmark : faCircleCheck} className="inline-icon" /> Submit
+            </>
+          )}
+        </button>
 
         </div>
       </div>

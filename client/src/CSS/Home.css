@@ -161,9 +161,6 @@
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.thread-page  span {
-    color: var(--color-text-tertiary) !important;
-}
 
 .thread-page .listpage-btn:hover {
     background-color: var(--color-accent);
