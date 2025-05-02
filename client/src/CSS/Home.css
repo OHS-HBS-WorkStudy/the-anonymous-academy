@@ -147,12 +147,11 @@
     align-items: center;
     margin-left: auto;
     gap: 10px;
-    color: var(--color-text-tertiary) !important;
+    color: var(--color-text-tertiary);
 }
 
 .thread-page .listpage-btn {
     background-color: var(--color-secondary-accent);
-    color: var(--color-text-tertiary) !important;
     font-size: 1.2rem;
     padding: 10px 15px;
     border: 1px solid var(--color-primary-accent);
@@ -169,7 +168,7 @@
 
 .thread-page .listpage-btn:disabled {
     background-color: var(--color-secondary);
-    color: var(--color-text-tertiary) !important;
+    color: var(--color-text-tertiary);
     cursor: not-allowed;
     transform: none;
 }

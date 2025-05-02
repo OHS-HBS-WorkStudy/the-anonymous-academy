@@ -84,15 +84,21 @@ export default function Navigator() {
               </div>
             </button>
 
-            <h1 className="title" onClick={goToHome}>
-              Anonymous Academy
-            </h1>
+            {(screenWidth >= 347) ? (
+               <h1 className="title" onClick={goToHome}>
+               Anonymous Academy
+             </h1>
+            ): (
+              <h1 className="title" onClick={goToHome}>
+              A.A.
+             </h1>
+            )}
 
             {/* <SearchBar /> */}
           </div>
         </div>
 
-        {(isExpanded && screenWidth <= 786) && (
+        {(isExpanded && screenWidth <= 768) && (
           <div className="mobile-overlay" onClick={(e) => {
             e.stopPropagation();
             switchToggle();

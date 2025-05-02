@@ -90,7 +90,7 @@ const CompactDropdown = ({ name, options, onChange, selectedValue }) => {
                 <motion.button
                   className={`compact-dropdown-option-button ${option.isLabel ? 'dropdown-label' : ''}`}
                   onClick={() => handleOptionClick(option.value)}
-                  whileHover={{ backgroundColor: index !== 0 ? '#f0f0f0' : 'transparent' }}
+                  whileHover={{backgroundColor: 'var(--clr-primary-a50)'} }
                   whileTap={{ scale: index !== 0 ? 0.98 : 1 }}
                   style={{ cursor: 'pointer', fontWeight: option.isLabel ? 'bold' : 'normal' }}
                 >

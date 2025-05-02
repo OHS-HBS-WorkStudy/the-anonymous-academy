@@ -428,9 +428,9 @@
     cursor: pointer;
   }
   
-  .dropdown-options p:hover {
+  /* .dropdown-options p:hover {
     background: var(--color-primary);
-  }
+  } */
   
 
   .animated-date-picker {
@@ -622,22 +622,26 @@
   
   .compact-dropdown-option-button.dropdown-label,
   .compact-dropdown-option-button  {
-    color: var(--color-text-tertiary) !important;
+    color: var(--color-text-tertiary) ;
   }
   .compact-filter-button {
-    background-color: transparent;
-    color: #333;
+    background-color: var(--alt-background-color);
     border: none;
     border-radius: 6px;
     padding: 10px 16px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: fit-content;
     min-width: 120px;
+  }
+
+
+  .compact-dropdown-options li:hover {
+    transform: scale(1.01);
   }
 
 
@@ -690,12 +694,11 @@
     width: 100%;
     padding: 10px 16px;
     text-align: left;
-    background-color: transparent;
-    color: #334155;
+    background-color: var(--alt-background-color);
+    color: var(--color-text-tertiary);
     border: none;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.2s ease-in-out;
   }
 
   /* .compact-dropdown-option-button:hover {

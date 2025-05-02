@@ -68,7 +68,6 @@ export default function Thread() {
     }
   }, [thread, screenWidth]);
 
-  // Logic to handle comment list overflow
   useEffect(() => {
     if (commentListContainerRef.current && screenWidth > 786) {
       const commentList = commentListContainerRef.current.querySelector('.reply-list');
@@ -78,10 +77,10 @@ export default function Thread() {
     } else if (commentListContainerRef.current) {
       const commentList = commentListContainerRef.current.querySelector('.reply-list');
       if (commentList) {
-        commentList.style.overflowY = 'auto'; // Reset overflow for smaller screens
+        commentList.style.overflowY = 'auto'; 
       }
     }
-  }, [commentListHeight, screenWidth, thread]); // Re-check on these dependencies
+  }, [commentListHeight, screenWidth, thread]); 
 
   useEffect(() => {
     const data = JSON.parse(sessionStorage.getItem('data')) || [];
@@ -104,14 +103,13 @@ export default function Thread() {
 
     if (threadIndex !== -1) {
       data[threadIndex] = updatedThread;
-      sessionStorage.setItem('data', JSON.stringify(data)); // Save the updated data in sessionStorage
+      sessionStorage.setItem('data', JSON.stringify(data)); 
     }
   };
 
   const sanitizedTitle = DOMPurify.sanitize(thread?.thread_name);
   const sanitizedDesc = DOMPurify.sanitize(thread?.thread_contents);
 
-  // Check if the logged-in user is the thread owner
   const isOwner = foundUser?.email === thread?.user.email;
 
   if (!thread) {

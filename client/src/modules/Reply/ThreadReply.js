@@ -1,5 +1,5 @@
-import { useState, useRef } from "react";
-import { useParams } from "react-router-dom"; 
+import { useState, useRef, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import ReactQuill from "react-quill";
 import { motion } from "framer-motion";
 import "react-quill/dist/quill.snow.css";
@@ -7,36 +7,69 @@ import "react-quill/dist/quill.snow.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
+const CustomPlaceholder = () => (
+    <div style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        fontSize: '1.2em',
+        fontStyle: 'italic',
+        textAlign: 'center',
+        width: '100%',
+        pointerEvents: 'none',
+        zIndex: 10
+    }}>
+        <div className="white "style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backdropFilter: 'blur(4px)',
+            WebkitBackdropFilter: 'blur(4px)',
+            zIndex: -1
+        }} />
+        <p>Please log in to reply to this thread.</p>
+    </div>
+);
+
 
 export default function ThreadReply() {
-    const { threadId } = useParams(); 
+    const { threadId } = useParams();
     const [questionDesc, setQuestionDesc] = useState('');
-    const [isSubmitting, setIsSubmitting] = useState(false); 
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const quillRef = useRef(null);
     const maxReplyLength = 10000;
+    const foundUser = JSON.parse(sessionStorage.getItem("foundUser"));
+    const [isLoggedIn, setIsLoggedIn] = useState(!!foundUser);
+
+    useEffect(() => {
+        setIsLoggedIn(!!JSON.parse(sessionStorage.getItem("foundUser")));
+    }, []);
 
     const getPlainText = (html) =>
         new DOMParser().parseFromString(html, "text/html").body.textContent || "";
 
     const handleQuillChange = (value) => {
-        const plainText = getPlainText(value);
-        if (plainText.length <= maxReplyLength) {
-            setQuestionDesc(value);
-        } else {
-            const editor = quillRef.current.getEditor();
-            editor.setContents(editor.getContents().slice(0, maxReplyLength));
-            editor.setSelection(maxReplyLength);
+        if (isLoggedIn) {
+            const plainText = getPlainText(value);
+            if (plainText.length <= maxReplyLength) {
+                setQuestionDesc(value);
+            } else {
+                const editor = quillRef.current.getEditor();
+                editor.setContents(editor.getContents().slice(0, maxReplyLength));
+                editor.setSelection(maxReplyLength);
+            }
         }
     };
 
-    const foundUser = JSON.parse(sessionStorage.getItem("foundUser"));
-
     const ReplyButton = async () => {
-        setIsSubmitting(true); 
+        setIsSubmitting(true);
 
         if (!threadId) {
             console.error("Thread ID not found in the route parameters.");
-            setIsSubmitting(false); 
+            setIsSubmitting(false);
             return;
         }
 
@@ -58,23 +91,27 @@ export default function ThreadReply() {
         console.log(`Reply saved to thread ${threadId}:`, data);
 
         await new Promise((resolve) => setTimeout(resolve, 2000));
-        setIsSubmitting(false); 
+        setIsSubmitting(false);
+        setQuestionDesc(''); // Clear the input after successful reply
     };
 
     const modules = {
-        toolbar: [
+        toolbar: isLoggedIn ? [
             [{ header: "1" }, { header: "2" }],
             [{ size: [] }],
             ["bold", "italic", "underline", "strike"],
             [{ list: "ordered" }, { list: "bullet" }, { align: [] }],
             [{ indent: "-1" }, { indent: "+1" }, { background: [] }],
             ["clean"],
-        ],
+        ] : false, // Disable toolbar when not logged in
     };
 
-    if (!foundUser) return null;
-    const isDisabled = isSubmitting || getPlainText(questionDesc).length < 10;
+    const formats = [
+        'header', 'size', 'bold', 'italic', 'underline', 'strike',
+        'list', 'bullet', 'align', 'indent', 'background'
+    ];
 
+    const isDisabled = isSubmitting || getPlainText(questionDesc).length < 10 || !isLoggedIn;
 
     return (
         <motion.div
@@ -97,14 +134,20 @@ export default function ThreadReply() {
                 layout
                 transition={{ type: "spring", stiffness: 80 }}
             >
-                <ReactQuill
-                    id="questionDesc"
-                    ref={quillRef}
-                    value={questionDesc}
-                    style={{ borderRadius: '8px', minHeight: '100px' }}
-                    modules={modules}
-                    onChange={handleQuillChange}
-                />
+                <div style={{ position: 'relative' }}>
+                    <ReactQuill
+                        id="questionDesc"
+                        ref={quillRef}
+                        value={questionDesc}
+                        style={{ borderRadius: '8px', minHeight: '100px' }}
+                        modules={modules}
+                        formats={formats}
+                        onChange={handleQuillChange}
+                        readOnly={!isLoggedIn}
+                        placeholder={isLoggedIn ? "" : " "} 
+                    />
+                    {!isLoggedIn && <CustomPlaceholder />}
+                </div>
 
                 <motion.div
                     className="charCounter"
@@ -112,7 +155,7 @@ export default function ThreadReply() {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3 }}
                 >
-                    {getPlainText(questionDesc).length}/{maxReplyLength} characters
+                    {isLoggedIn ? `${getPlainText(questionDesc).length}/${maxReplyLength} characters` : `${getPlainText(questionDesc).length}/${maxReplyLength} characters`}
                 </motion.div>
 
                 <motion.button
@@ -120,12 +163,12 @@ export default function ThreadReply() {
                     onClick={ReplyButton}
                     disabled={isDisabled}
                     whileHover={
-                        !isSubmitting && getPlainText(questionDesc).length >= 10
+                        isLoggedIn && !isSubmitting && getPlainText(questionDesc).length >= 10
                             ? { scale: 1.01 }
                             : {}
                     }
                     whileTap={
-                        !isSubmitting && getPlainText(questionDesc).length >= 10
+                        isLoggedIn && !isSubmitting && getPlainText(questionDesc).length >= 10
                             ? { scale: 0.95 }
                             : {}
                     }
@@ -134,14 +177,14 @@ export default function ThreadReply() {
                     transition={{ delay: 0.4 }}
                 >
                     {isSubmitting ? (
-                                <>
-                                  <FontAwesomeIcon icon={faCircleCheck} bounce className="inline-icon" /> Submitting...
-                                </>
-                              ) : (
-                                <>
-                                  <FontAwesomeIcon icon={isDisabled ? faCircleXmark : faCircleCheck} className="inline-icon" /> Submit
-                                </>
-                              )}
+                        <>
+                            <FontAwesomeIcon icon={faCircleCheck} bounce className="inline-icon" /> Submitting...
+                        </>
+                    ) : (
+                        <>
+                            <FontAwesomeIcon icon={isDisabled ? faCircleXmark : faCircleCheck} className="inline-icon" /> Submit
+                        </>
+                    )}
                 </motion.button>
             </motion.div>
         </motion.div>

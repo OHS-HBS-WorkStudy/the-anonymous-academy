@@ -109,6 +109,10 @@ span .color-accent {
     color: var(--color-accent) !important;
 }
 
+.white {
+    color: var(--color-text-white) !important;
+}
+
 .offset {
     margin-top: 60px;
     margin-left: 60px !important;
