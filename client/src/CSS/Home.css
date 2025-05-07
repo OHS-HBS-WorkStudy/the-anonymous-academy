@@ -1,42 +1,92 @@
 .Home {
     background-color: var(--color-background);
     display: grid;
-    /* Define the grid with two rows: one for the bento box and one for the main content */
     grid-template-rows: auto 1fr;
-    /* Assign the grid areas */
     grid-template-areas:
       "bento-box"
       "main-content";
-    width: 100%; /* Ensure it takes full width of its container */
+    width: 100%; 
     min-height: 100vh;
     padding-bottom: 80px;
     position: relative;
-    justify-content: center; /* Center the content horizontally within the grid */
+    justify-content: center;
     box-sizing: border-box;
-    padding: 10px; /* Adjust padding as needed */
-    margin-left: auto !important; /* Ensure centering if within a wider container */
-    margin-right: auto !important;
+    padding: 10px; 
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .bento-box-area {
     grid-area: bento-box;
     width: 100%;
     box-sizing: border-box;
-    /* Add styles to control the bento box layout itself (e.g., grid or flex) */
-    /* This will depend on your BentoBox.css */
 }
 
-.Home .main-content-area {
-    grid-area: main-content; /* Place the main content in the designated grid area */
-    display: flex; /* Or grid, depending on how you want to layout the content within */
-    flex-direction: column; /* Stack items vertically by default */
-    width: 100%; /* Ensure it takes the full width of its grid area */
-    box-sizing: border-box;
-    padding: 20px; /* Add padding within the main content area */
-    /* You might want to add a background color or other styling here */
+.Home h2 {
+    color: var(--color-text-tertiary);
 }
 
-/* Keep your existing styles for welcomeSection, questionsSection, etc. as they are */
+.watched-tags-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-tertiary);
+    margin-bottom: 16px;
+  }
+  
+  .watched-tags-input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--color-border-light);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    color: var(--color-text-primary);
+    outline: none;
+    transition: border 0.3s ease, background 0.3s ease;
+    cursor: not-allowed;
+  }
+  
+  .watched-tags-input::placeholder {
+    color: var(--color-text-secondary);
+    font-style: italic;
+  }
+  
+  .tag-hint {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin-top: 8px;
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+  
+  .watched-tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  
+  .watched-tag {
+    background: var(--color-accent);
+    color: #ffffff;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    user-select: none;
+  }
+  
+  .watched-tag:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+  
 .welcomeSection {
     text-align: center;
     border-bottom: 0.3px dashed var(--color-accent);
@@ -71,17 +121,13 @@
     }
 }
 
-/* ... (rest of your CSS, including grid-header-area, grid-container-area, etc.) ... */
-.Home .main-content-area {
-    display: flex;
-    flex-direction: column;
-}
-
 .bento-box-area {
     grid-area: bento-box;
     width: 100%;
     box-sizing: border-box;
 }
+
+
 
 
 .grid-header-area {
@@ -91,13 +137,6 @@
     box-sizing: border-box;
 }
 
-.grid-container-area {
-    grid-area: grid-container;
-    width: 100%;
-    max-width: 100%; 
-    box-sizing: border-box;
-    overflow-x: hidden; 
-}
 
 .right-space-area {
     grid-area: right-space; 
@@ -111,18 +150,14 @@
 .Home {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
     grid-template-areas:
       "bento-box"
       "main-content";
     justify-content: center;
-   
     width: 100%;
     box-sizing: border-box;
     padding-left: 0;
     padding-right: 0;
-    margin-left: auto !important;
-    margin-right: auto !important;
 }
 
 .layout-wrapper {

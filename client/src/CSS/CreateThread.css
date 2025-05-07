@@ -13,7 +13,7 @@
   min-height: 100vh;
   padding: 20px;
   box-sizing: border-box;
-
+  margin: 0 auto;
 }
 
 .NewThread .main-content-area {
@@ -88,13 +88,6 @@
 
 }
 
-.dark .NewThread-header .text-subheading {
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.1rem;
-  color: var(--clr-surface-tonal-a50); 
-  margin-top: 15px;
-}
-
 .text-top svg {
   width: 45px !important;
   height: 45px !important;
@@ -118,88 +111,93 @@
   }
 }
 
-
-
-.rule-checkbox {
-  padding-top: 15px;
-}
-
-.agree-portion {
-  margin-top: 40px;
-}
-
 .threadRules {
   grid-area: thread-rules;
   background-color: var(--clr-surface-a10);
-  border: 1px solid var(--clr-primary-a30);
+  border: 1px solid var(--clr-primary-a50);
   border-radius: 12px;
-  padding: 25px;
-  margin-bottom: 25px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  flex: 1 1 300px;
-  margin-left: 20px;
-  height: fit-content;
-  width: 100%; 
-  margin-left: 0; 
+  padding: 20px;
   margin-bottom: 10px;
-  height: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  flex: 1 1 300px;
+  width: 100%;
+  height: 100%;
+}
 
+.threadRules h2 {
+  font-size: var(--font-size-lg);
+  color: var(--clr-primary-a40);
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.threadRules p,
+.threadRules b {
+  font-size: var(--font-size-md);
+  color: var(--color-text-tertiary);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.threadRules ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.threadRules li {
+  font-size: var(--font-size-md);
+  color: var(--color-text-tertiary);
+  line-height: 1.6;
+}
+
+.drowdown {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: auto;
+  padding: 12px 0;
+  margin-top: 0;
+  border-bottom: 1px solid var(--clr-surface-tonal-a50);
+}
+
+.threadRules > div:last-child.drowdown {
+  border-bottom: none;
+}
+
+.drowdown-arrow {
+  color: var(--color-text-tertiary);
+  transition: transform 0.2s ease-in-out;
+}
+.dropdown-options-wrapper {
+  height: 100%;
+  margin-top: 8px;
+  height: 0;
+}
+.dropdown-content {
+  padding: 15px 0; 
+}
+.rule-checkbox .required b {
+  font-weight: 500; 
+  color: var(--color-text-primary); 
 }
 
 .NewThread .text-box .ql-editor {
   max-width: inherit !important;
 }
 
-.threadRules h2 {
-  font-size: var(--font-size-xl);
-  color: var(--clr-primary-a30);
-  font-weight: 600;
-}
-
-.threadRules p, b {
-  font-size: var(--font-size-md) !important;
-  color: var(--color-text-tertiary);
-  margin-bottom: 15px;
-  line-height: 1.6;
-}
-
-.threadRules ul {
-  list-style-type: disc;
-  margin-left: 25px;
-  margin-bottom: 15px;
-}
-
-.threadRules li {
-  font-size: var(--font-size-md) !important;
-  color: var(--color-text-tertiary);
-  line-height: 1.7;
-}
-
-.drowdown-arrow {
-  color: var(--color-text-tertiary);
-}
-.drowdown {
-  cursor: pointer;
-  display: flex; 
-  align-items: center; 
-  justify-content: space-between; 
-  height: auto;
-  margin-top: 10px;
-  border-bottom: 1px solid var(--clr-surface-tonal-a50); 
-}
-
-
 .NewThread::-webkit-scrollbar {
-  width: 10px;
+  width: 8px; 
 }
 
 .NewThread::-webkit-scrollbar-thumb {
-  background-color: var(--clr-primary-a50);
-  border-radius: 5px;
+  background-color: var(--clr-primary-a40);
+  border-radius: 4px; 
 }
 
 .NewThread::-webkit-scrollbar-track {
-  background-color: transparent;
+  background-color: var(--clr-surface-a5);
 }
 
 /* Centered content within the new thread container */

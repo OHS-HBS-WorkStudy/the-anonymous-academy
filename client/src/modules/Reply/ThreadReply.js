@@ -92,7 +92,7 @@ export default function ThreadReply() {
 
         await new Promise((resolve) => setTimeout(resolve, 2000));
         setIsSubmitting(false);
-        setQuestionDesc(''); // Clear the input after successful reply
+        setQuestionDesc('');
     };
 
     const modules = {
@@ -103,7 +103,7 @@ export default function ThreadReply() {
             [{ list: "ordered" }, { list: "bullet" }, { align: [] }],
             [{ indent: "-1" }, { indent: "+1" }, { background: [] }],
             ["clean"],
-        ] : false, // Disable toolbar when not logged in
+        ] : false, 
     };
 
     const formats = [

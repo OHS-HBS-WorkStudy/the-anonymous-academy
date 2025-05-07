@@ -29,7 +29,7 @@ export default function ThreadList() {
             <h1 className="threadListTitle">Thread Directory</h1>
 
             <h3>
-              <span className="questionsTitle">Question</span>
+              <span className="questionsTitle">Questions</span>
               <span className="countUp">
                 <CountUpComponent endValue={allThreads.length} duration={3.8} />
               </span>

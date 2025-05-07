@@ -24,7 +24,7 @@ export default function CreateThreadAside({ ruleAgreement, setRuleAgreement }) {
 
   const contentVariants = {
     open: {
-      scaleY: 1,
+      height: "100%", // Animate to the natural height of the content
       opacity: 1,
       transition: {
         duration: 0.18,
@@ -32,11 +32,11 @@ export default function CreateThreadAside({ ruleAgreement, setRuleAgreement }) {
       },
     },
     closed: {
-      scaleY: 0,
+      height: 0, // Animate to a height of 0
       opacity: 0,
       transition: {
-        duration: 0.12, // Slightly shorter duration for closing
-        ease: "easeOut", // Quick fade out
+        duration: 0.12,
+        ease: "easeOut",
       },
     },
   };

@@ -90,14 +90,14 @@
         max-width: 700px !important;
     } */
 
-    .main-content-area {
+    /* .main-content-area {
         grid-area: main-content;
         display: grid;
         width: 100%;
         justify-content: center;
         align-items: start;
         margin-top: 30px;
-    }
+    } */
 
     .grid-header-area {
         max-width: 100% !important;
@@ -229,9 +229,9 @@
     }
 }
 @media only screen and (max-width: 786px) {
-    .Home {
+    /* .Home {
         margin-left: 0px !important;
-    }
+    } */
     
     .top-grid,
     .bottom-grid {

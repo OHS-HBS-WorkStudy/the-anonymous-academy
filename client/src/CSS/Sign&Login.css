@@ -28,7 +28,7 @@
     height: 100vh; 
     min-height: 500px; 
     overflow-y: auto; 
-    overflow-x: none; 
+    overflow-x: hidden !important; 
 }
   
   /* .Login, 
