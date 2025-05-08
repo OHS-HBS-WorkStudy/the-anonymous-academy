@@ -27,13 +27,9 @@ export default function SignUp() {
 
     useEffect(() => {
         const handleResize = () => {
-          setScreenWidth(window.innerWidth); // Update the state on window resize
+          setScreenWidth(window.innerWidth);
         };
-    
-        // Add the resize event listener
         window.addEventListener('resize', handleResize);
-    
-        // Cleanup the event listener on component unmount
         return () => {
           window.removeEventListener('resize', handleResize);
         };

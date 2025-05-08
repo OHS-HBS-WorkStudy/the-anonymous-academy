@@ -234,7 +234,7 @@
 
   .reply-card .reply-date,
   .date-display {
-    color: var(--color-text-primary) !important;
+    color: var(--color-text-white) !important;
     opacity: 1; 
    
    
@@ -242,6 +242,7 @@
 
     .reply-card .username {
       font-size: var(--font-size-md) !important; 
+      color: var(--color-text-white) !important;
     
     }
 
