@@ -4,7 +4,10 @@ import Threads from '../modules/Thread/Threads.js';
 import ThreadFilter from '../modules/Filtering/ThreadFilter.js';
 import PageNavigation from '../modules/Filtering/PageNav.js';
 
+import useNavigation from '../modules/useNavigation.js';
+
 export default function ThreadList() {
+  const { goToNewThread } = useNavigation();
   const allThreads = JSON.parse(sessionStorage.getItem("data")) || [];
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -26,7 +29,10 @@ export default function ThreadList() {
       <div className="ThreadList">
         <div className="container1">
           <div className="questionsSection">
-            <h1 className="threadListTitle">Thread Directory</h1>
+            <div className="titleSection">
+               <h1 className="threadListTitle">Thread Directory</h1>
+               <button className="createThreadButton" onClick={goToNewThread}>New Thread</button>
+            </div>
 
             <h3>
               <span className="questionsTitle">Questions</span>

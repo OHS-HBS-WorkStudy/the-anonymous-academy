@@ -41,9 +41,6 @@ export default function ThreadFilter() {
   const gridHeaderRef = useRef(null);
 
   const toggleOpen = () => setIsOpen(!isOpen);
-
-
-
   const [startDate, setStartDate] = useState(null);
 
   const [threadStatus, setThreadStatus] = useState("");

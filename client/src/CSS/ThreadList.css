@@ -12,7 +12,7 @@
 .questionsSection {
     grid-area: "question-section";
     width: 100%;
-    background: var(--color-background) !important;
+    background: var(--color-background);
     padding: 25px;
     text-align: left;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -22,16 +22,16 @@
     animation: fadeInSlideDown 0.8s ease-out forwards;
     box-sizing: border-box; 
     position: relative;
-    z-index: 3 !important;
+    z-index: 3;
     border-bottom: 0.3px dashed var(--color-accent);
 }
 
 .questionsTitle {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     color: var(--color-text-tertiary);
-    margin-right: 10px !important;
     font-weight: 500;
     letter-spacing: 0.02em;
+    padding-left: 10px;
 }
 
 .countUp {
@@ -41,8 +41,8 @@
 }
 
 .threadListTitle {
-    font-size: 2rem !important;
-    font-weight: 700 !important;
+    font-size: 2rem;
+    font-weight: 700;
     color: var(--color-text-primary);
     margin-bottom: 15px;
     letter-spacing: -0.01em;
@@ -62,13 +62,15 @@
 .main-content-area {
   grid-area: main-content;
   display: grid;
-  grid-template-columns: 75% 22%;
-  grid-template-areas:
-    "grid-container right-space";
+  grid-template-columns: 72% 25%;
+  grid-template-areas: "grid-container right-space";
   width: 100%;
+  max-width: 1440px; 
+  margin: 30px auto 0 auto; 
   justify-content: center;
   align-items: start;
-  margin-top: 30px;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .grid-header-area {
@@ -96,7 +98,7 @@
 
 .trending-threads-cont {
   background-color:  var(--clr-primary-a10);
-  color: var(--clr-surface-a10) !important;
+  color: var(--clr-surface-a10);
   border-radius: 12px;
   box-sizing: border-box;
   padding: 20px; 
@@ -118,7 +120,7 @@
 .trending-threads-cont h3 {
   font-size: var(--font-size-lg);
   font-weight: 600;
-  color: var(--color-text-white) !important;
+  color: var(--color-text-white);
   padding-bottom: 4px;
 }
 

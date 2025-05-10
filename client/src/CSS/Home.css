@@ -105,7 +105,6 @@
 }
 
 .questionsTitle {
-    font-size: 1em;
     color: var( --color-text-tertiary);
     margin-right: 15px;
 }

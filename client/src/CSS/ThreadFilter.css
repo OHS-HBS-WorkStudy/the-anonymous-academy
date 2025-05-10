@@ -8,14 +8,49 @@
     background-color: transparent;
     flex-wrap: nowrap;
     margin-left: 0px !important;
+    margin-left: -10px;
     padding: 0;
 }
+
+.titleSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; 
+  padding: 0; 
+  box-sizing: border-box;
+}
+
+.createThreadButton {
+  background-color: var(--color-primary); 
+  color: var(--color-text-white);
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.createThreadButton:hover {
+  background-color: var(--color-primary-accent); /* or lighten the base color */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.createThreadButton:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
 
 @media (max-width: 600px) {
   .grid-header {
     width: 100%;
-}
-
+  }
 }
 
 .grid-header-title {
