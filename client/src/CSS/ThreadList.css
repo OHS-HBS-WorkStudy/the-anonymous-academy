@@ -62,16 +62,23 @@
 .main-content-area {
   grid-area: main-content;
   display: grid;
-  grid-template-columns: 72% 25%;
+  grid-template-columns: 78% 21%; /* Smaller right section */
   grid-template-areas: "grid-container right-space";
   width: 100%;
-  max-width: 1440px; 
-  margin: 30px auto 0 auto; 
+  max-width: 1440px;
+  margin: 30px auto 0 auto;
   justify-content: center;
   align-items: start;
-  padding: 0 20px;
+  padding: 0;
   box-sizing: border-box;
 }
+
+.grid-container-area {
+  padding-left: 20px;
+  padding-right: 10px;
+}
+
+
 
 .grid-header-area {
     grid-area: grid-header;
@@ -80,83 +87,99 @@
     box-sizing: border-box;
 }
 
+/* Overall grid layout */
 .grid-container-area {
-    grid-area: grid-container;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    overflow-x: auto; 
+  grid-area: grid-container;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
 }
 
 .right-space-area {
-    grid-area: right-space;
-    height: 100%;
-    box-sizing: border-box;
-    max-width: 100%;
-    overflow-x: auto; 
+  grid-area: right-space;
+  height: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-x: auto;
 }
 
+/* Main container for trending threads */
 .trending-threads-cont {
-  background-color:  var(--clr-primary-a10);
+  background-color: var(--clr-primary-a10);
   color: var(--clr-surface-a10);
-  border-radius: 12px;
-  box-sizing: border-box;
-  padding: 20px; 
+  border-radius: 8px; /* Smaller rounded corners */
+  padding: 16px; /* Reduced padding */
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  width: inherit;
+  gap: 8px; /* Reduced gap between items */
+  width: 100%;
   height: fit-content;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px); 
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05); 
-  border: 1.2px solid var(--alt-background-color);
-  margin-top: 10px;
-
-  transform: translateY(-20px);
-  animation: fadeInSlideDown 0.8s ease-out forwards;     
+  backdrop-filter: blur(10px); /* Slightly lighter blur */
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Reduced shadow for a more subtle effect */
+  border: 1px solid var(--alt-background-color);
+  margin-top: 8px; /* Reduced margin */
+  transform: translateY(-10px); /* Slight translation */
+  animation: fadeInSlideDown 0.6s ease-out forwards; /* Faster animation */
+  transition: box-shadow 0.2s ease-in-out; /* Smooth transition on hover */
 }
 
+.trending-threads-cont:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow on hover */
+}
+
+/* Header styling */
 .trending-threads-cont h3 {
-  font-size: var(--font-size-lg);
+  font-size: 1.125rem; /* Slightly smaller font */
   font-weight: 600;
   color: var(--color-text-white);
-  padding-bottom: 4px;
+  padding-bottom: 4px; /* Reduced padding */
+  border-bottom: 2px solid var(--clr-primary-a20);
+  margin-bottom: 8px; /* Reduced margin */
 }
 
+/* List container for trending threads */
 .trending-threads-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  border-radius: 15px;
+  gap: 8px; /* Reduced gap for tighter list */
 }
 
-.grid-item {
-  border-radius: 10px;
-}
-
+/* Individual trending thread item */
 .trending-thread-item {
-  background-color: rgba(255, 255, 255, 0.05); 
-  color: var(--color-text-secondary);
-  padding: 8px 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-text-primary);
+  padding: 6px 10px; /* Reduced padding for compactness */
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: var(--font-size-xs);
+  font-size: 0.875rem; /* Smaller font size */
   border: 1px solid rgba(255, 255, 255, 0.1); 
 }
 
 .trending-thread-item:hover {
-  background-color: rgba(255, 255, 255, 0.2); 
-  color: var(--color-text-primary);
-  transform: scale(1.02);
+  background-color: rgba(255, 255, 255, 0.15); /* Lighter hover effect */
+  transform: translateX(2px); /* Reduced hover effect */
 }
+
+/* Add smooth animation on hover for threads */
+.trending-thread-item:active {
+  transform: scale(0.98); /* Slight scaling effect on click */
+}
+
+/* Specific styles for the first (left) trending thread item */
+.trending-thread-item:first-child {
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 
 .modern-pagination {
   display: flex;
@@ -223,111 +246,295 @@
 }
 
 
+/* Container for the right-side absolute filter panel */
 .motion-dropdown {
-  background-color: transparent;
-  border-radius: 8px;
-  z-index: 10;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  max-height: fit-content;
+  width: 360px;
+  background-color: var( --color-background); /* Pure white */
+  z-index: 1000;
   padding: 16px;
-  width: auto; 
-  max-width: 100%;
-  display: flex;
-  flex-direction: row;
-  gap: 24px; 
-  align-items: flex-start;
-  overflow-x: auto;
-
-}
-
-.motion-dropdown-section {
   display: flex;
   flex-direction: column;
-  min-width: 220px; /* Minimum width per section */
-  flex: 1 1 auto; /* Responsive width */
+  gap: 16px;
+  box-shadow: 0 2px 20px var(--color-shadow); /* Subtle shadow */
+  border-left: 1px solid var(--color-border); /* Very light gray border */
+  overflow-y: auto;
 }
 
+/* Each card-style section */
+.motion-dropdown-section {
+  background-color: var(--alt-background-color); /* Very light gray alternative */
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border); /* Very light gray border */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dark .motion-dropdown-section {
+  background-color: var(--color-secondary); /* Pure white */
+}
+
+/* Section titles */
 .motion-dropdown-title {
-  font-size: 1rem;
-  color: var(--color-text-tertiary);
-  font-weight: bold;
-  margin-bottom: 8px;
-  letter-spacing: 0.03em;
+  font-size: 0.95rem;
+  color: var(--color-text-tertiary); /* Dark gray for important headings */
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--color-border); /* Very light gray border */
+  padding-bottom: 4px;
 }
 
+/* Checkbox label styling */
 .motion-dropdown label {
-  font-size: 0.95rem;
-  color: var(--color-text-tertiary);
-  font-weight: normal;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary); /* Medium gray for less prominent text */
+  font-weight: var(--font-weight-normal);
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   cursor: pointer;
-  transition: color 0.3s ease;
 }
 
-.motion-dropdown label:hover {
-  text-decoration: underline;
+.dark .motion-dropdown label {
+  color: var(--color-text-tertiary); /* Dark gray for important headings */
 }
 
+/* Modern checkboxes */
+.motion-dropdown input[type="checkbox"] {
+  accent-color: var(--color-primary); /* Modern blue */
+  width: 16px;
+  height: 16px;
+}
 
+/* General input styles */
 .motion-dropdown .tag-input,
-.motion-dropdown input[type="number"] {
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  color: var(--color-text-tertiary);
-  background-color:  var(--clr-primary-a20);
-  outline: none;
+.motion-dropdown input[type="number"],
+.date-range input {
+  padding: 10px 12px;
+  border: 1px solid var(--color-border); /* Very light gray border */
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: var(--color-text-primary); /* Dark, readable gray */
+  background-color: var(--color-input-background); /* Very light gray for input fields */
+  transition: all 0.2s ease;
   width: 100%;
   box-sizing: border-box;
-  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
+.dark .motion-dropdown .tag-input,
+.dark .motion-dropdown input[type="number"],
+.dark .date-range input {
+  background-color: var(--color-secondary-accent); /* Pure white */
+}
+
+/* Focus input styling */
+.motion-dropdown .tag-input:focus,
+.motion-dropdown input[type="number"]:focus,
+.date-range input:focus {
+  border-color: var(--color-primary); /* Modern blue */
+  box-shadow: 0 0 0 2px var(--color-primary-accent); /* Lighter, brighter blue shadow */
+  outline: none;
+}
+
+/* Placeholder color */
 .motion-dropdown .tag-input::placeholder,
 .motion-dropdown input[type="number"]::placeholder {
-  color: var(--color-text-tertiary);
+  color: var(--color-text-fouthy); /* Slightly lighter medium gray */
 }
 
-.motion-dropdown .tag-input:focus,
-.motion-dropdown input[type="number"]:focus {
-  color: var(--clr-primary-a50);
-  box-shadow: 0 0 0 0.15rem rgba(37, 99, 235, 0.25);
-}
-
+/* Tag container */
 .motion-dropdown .tag-input-container {
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   gap: 8px;
   margin-top: 10px;
+  padding: 6px;
+  background-color: var(--alt-background-color); /* Very light gray alternative */
+  border: 1px solid var(--color-border); /* Very light gray border */
+  border-radius: 8px;
+  min-height: 44px;
 }
 
+/* Smart, flexible tag chips */
 .motion-dropdown .tag {
-  background-color: #e0e7ff;
-  color: #2563eb;
-  padding: 6px 12px;
-  border-radius: 12px;
-  font-size: 0.9rem;
   display: inline-flex;
   align-items: center;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  max-width: fit-content;
+  background-color: var(--clr-surface-a40); /* Extremely light muted blue */
+  color: var(--clr-surface-a0); /* Muted blue */
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  gap: 6px;
+  line-height: var(--line-height-normal);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+  box-shadow: var(--color-shadow); /* Subtle shadow */
+  border: 1px solid var(--clr-surface-a20); /* Even lighter muted blue */
+  flex-shrink: 0;
 }
 
+/* Hover state */
 .motion-dropdown .tag:hover {
-  background-color: #2563eb;
-  color: #ffffff;
+  background-color: var(--color-primary); /* Modern blue */
+  color: var(--color-text-white); /* Pure white */
+  border-color: var(--color-primary); /* Modern blue */
 }
 
+/* Close button inside chip */
 .motion-dropdown .tag button {
   background: none;
   border: none;
-  color: #6b7280;
+  color: var(--color-text-secondary); /* Medium gray */
   cursor: pointer;
-  margin-left: 8px;
   font-size: 0.75rem;
-  line-height: 1;
-  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  flex-shrink: 0;
 }
 
 .motion-dropdown .tag button:hover {
-  color: #f87171;
+  background-color: hsl(0, 70%, 60%); /* A shade of red for delete */
+  color: var(--color-text-white); /* Pure white */
+}
+
+
+/* Date range section */
+.date-range {
+  display: flex;
+  gap: 12px;
+}
+
+.date-range label {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary); /* Medium gray */
+  margin-bottom: 4px;
+}
+
+/* Quick range filter buttons */
+.quick-range {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.quick-range button {
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  background-color: var(--alt-background-color); /* Very light gray alternative */
+  border: 1px solid var(--color-border); /* Very light gray border */
+  border-radius: 6px;
+  color: var(--color-text-primary); /* Dark, readable gray */
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dark .quick-range button {
+  background-color: var(--color-secondary-accent); /* Pure white */
+}
+
+.quick-range button:hover {
+  background-color: var(--color-primary-accent); /* Lighter, brighter blue */
+  color: var(--color-primary-see); /* Slightly more vibrant, modern blue (see-through) */
+  border-color: var(--color-primary-see); /* Slightly more vibrant, modern blue (see-through) */
+}
+
+/* Trigger for opening dropdown (optional) */
+.date-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background-color: var(--color-surface); /* Pure white */
+  color: var(--color-text-primary); /* Dark, readable gray */
+  font-size: 0.95rem;
+  font-weight: var(--font-weight-semibold);
+  border: 1px solid var(--color-border); /* Very light gray border */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: inset 0 0 0 1px transparent;
+}
+
+.dark .date-trigger {
+   background-color: var(--color-secondary-accent);
+}
+
+.date-trigger:hover {
+  background-color: var(--alt-background-color); /* Very light gray alternative */
+  border-color: var(--color-text-secondary); /* Medium gray */
+}
+
+.date-trigger:focus,
+.date-trigger:active {
+  outline: none;
+  background-color: var(--color-primary-accent); /* Lighter, brighter blue */
+  border-color: var(--color-primary); /* Modern blue */
+  box-shadow: 0 0 0 3px var(--color-primary-accent); /* Lighter, brighter blue shadow */
+  color: var(--color-primary-see); /* Slightly more vibrant, modern blue (see-through) */
+}
+
+.date-trigger svg {
+  margin-left: 8px;
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.motion-dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.clear-button {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary); /* Medium gray */
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.clear-button:hover {
+  color: hsl(0, 70%, 50%); /* A brighter shade of red */
+  text-decoration: underline;
+}
+
+.motion-dropdown-footer {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border); /* Very light gray border */
+}
+
+.apply-button {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: var(--color-primary); /* Modern blue */
+  color: var(--color-text-white); /* Pure white */
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.apply-button:hover {
+  background-color: var(--color-primary-see); /* Slightly more vibrant, modern blue (see-through) */
 }

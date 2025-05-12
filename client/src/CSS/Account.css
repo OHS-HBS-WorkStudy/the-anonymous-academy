@@ -521,8 +521,8 @@
   padding: 30px;
   border-radius: 16px;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-  width: 80%;
-  max-width: 600px; 
+  width: 95%;
+  max-width: 800px; 
   max-height: 80vh;
   overflow-y: auto;
 }
@@ -763,6 +763,26 @@
 
 .activity .icon,
 .stats .icon {
-  color: var(--color-accent);
+  /* color: var(--color-accent); */
   margin-right: 0.5rem;
+}
+
+
+@media (max-width: 425px) {
+  .account-page-modern{
+    padding: 10px !important;
+  }
+
+  .account-content-area > div {
+    padding: 0px !important;
+  }
+  .my-notifications,
+  .stats .achievements  {
+    padding: 10px !important;
+  }
+
+  .activity {
+    gap: 0px !important;
+  }
+  
 }

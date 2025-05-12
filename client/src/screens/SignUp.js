@@ -4,8 +4,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faUser, faEnvelope, faLock, faExclamationCircle, faCheckCircle
+    faUser,             // First Name
+    faSignature,          // Last Name (new)
+    faEnvelope,         // Email
+    faKey,              // Password (new)
+    faRedoAlt,          // Re-enter Password (new)
+    faExclamationCircle,
+    faCheckCircle
 } from '@fortawesome/free-solid-svg-icons';
+
 
 import useNavigation from '../modules/useNavigation';
 import signuppic from '../img/signpic.png';
@@ -18,6 +25,7 @@ import {
     inputVariants,
     iconVariants,
     orLineVariants,
+    linkVariants,
     fadeVariants,
     buttonGroupVariants,
     submitButtonVariants,
@@ -49,7 +57,7 @@ export default function SignUp() {
         const lname = document.getElementById("lname")?.value.trim();
         const email = document.getElementById("email")?.value.trim();
         const password = document.getElementById("password")?.value;
-        const reenteredPassword = document.getElementById("reenteredpassword")?.value;
+        const reenteredPassword = document.getElementById("reenteredPassword")?.value;
 
         const newErrors = {};
         let users = JSON.parse(sessionStorage.getItem("user")) || [];
@@ -78,7 +86,7 @@ export default function SignUp() {
         }
 
         if (!reenteredPassword) {
-            newErrors.reenteredPassword = "Please re-enter your password.";
+            newErrors.reenteredPassword = "Re-enter is required.";
         } else if (password !== reenteredPassword) {
             newErrors.reenteredPassword = "Passwords do not match.";
         }
@@ -206,10 +214,10 @@ export default function SignUp() {
 
                                 <motion.div className="inputbox">
                                     {renderInput("fname", "text", "First Name", faUser)}
-                                    {renderInput("lname", "text", "Last Name", faUser)}
+                                    {renderInput("lname", "text", "Last Name", faSignature)}
                                     {renderInput("email", "text", "Email", faEnvelope)}
-                                    {renderInput("password", "password", "Password", faLock)}
-                                    {renderInput("reenteredpassword", "password", "Re-enter Password", faLock)}
+                                    {renderInput("password", "password", "Password", faKey)}
+                                    {renderInput("reenteredPassword", "password", "Re-enter Password", faRedoAlt)}
                                 </motion.div>
 
                                 <motion.div className="button-group-container" variants={buttonGroupVariants}>
@@ -243,7 +251,11 @@ export default function SignUp() {
 
                                 <motion.div className="login-container" variants={loginContainerVariants}>
                                     <p className="login-text">Have an account?</p>
-                                    <p className="smalltext" onClick={goToLogin}>Login here</p>
+                                    <motion.p className="smalltext" 
+                                        onClick={goToLogin}
+                                         variants={linkVariants}
+                                        whileHover="hover"
+                                        whileTap="tap">Login here</motion.p>
                                 </motion.div>
                             </motion.div>
                         </motion.div>

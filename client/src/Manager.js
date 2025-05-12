@@ -33,8 +33,8 @@ export default function Manager() {
         <Route path="/account/activity" element={<Account />} />
         <Route path="/account/settings" element={<Account />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/newthread" element={<NewThread />} />
+        <Route path="/join" element={<SignUp />} />
+        <Route path="/post" element={<NewThread />} />
         <Route path="/thread/:threadId" element={<Thread />} />
       </Routes>
     </>

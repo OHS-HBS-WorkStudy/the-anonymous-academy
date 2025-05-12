@@ -42,12 +42,14 @@
   @media (max-width: 425px) { 
     .NewThread {
       flex-direction: column; 
-      padding-left: 10px !important;
-      padding-right: 10px !important;
     }
-    .input-container {
+
+    .NewThread .center {
+      padding: 15px !important;
+    }
+    /* .input-container {
       padding: 10px !important;
-    }
+    } */
     .threadRules {
       width: 100%; 
       margin-left: 0; 

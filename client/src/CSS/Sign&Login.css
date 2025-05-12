@@ -364,7 +364,8 @@
         min-width: 100vw !important;
         animation: none !important;
         box-sizing: border-box; 
-        min-height: fit-content !important;
+        min-height: 100vh !important;
+        max-height: fit-content !important;
         padding-bottom: 20px;
     }
   }

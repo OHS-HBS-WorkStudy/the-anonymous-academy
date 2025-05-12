@@ -112,16 +112,16 @@ export default function Navigator() {
       >
         <nav className='sidebar'>
           <div className="menu-items">
-          <div className={`sidebar-link ${isActive('signup') ? 'active-link' : ''}`} 
+          <div className={`sidebar-link ${isActive('join') ? 'active-link' : ''}`} 
                     onClick={goToSignUp}>
                   <button 
-                    className={`sidebar-btn ${isActive('/signup') ? 'active-link' : ''}`}
-                    aria-label="Go to signup page"
+                    className={`sidebar-btn ${isActive('/join') ? 'active-link' : ''}`}
+                    aria-label="Go to join page"
                   >
                     <div className="icon-container">
                     <i><FontAwesomeIcon icon={faUserPlus}  className="fa-icon" /></i>
                       </div>
-                      {(isHovered || isExpanded) && (<h1>Signup</h1>)}
+                      {(isHovered || isExpanded) && (<h1>Join</h1>)}
                   </button>
             </div> 
             <div className={`sidebar-link ${isActive('login') ? 'active-link' : ''}`} 
@@ -158,19 +158,19 @@ export default function Navigator() {
                       <div className="icon-container">
                         <i><FontAwesomeIcon icon={faListUl}  className="fa-icon" /></i>
                       </div>
-                      {(isHovered || isExpanded) && (<h1>Thread List</h1>)}
+                      {(isHovered || isExpanded) && (<h1>Threads</h1>)}
                   </button>
               </div>
-                <div className={`sidebar-link ${isActive('/newthread') ? 'active-link' : ''}`} 
+                <div className={`sidebar-link ${isActive('/post') ? 'active-link' : ''}`} 
                     onClick={goToNewThread}>
                   <button 
-                    className={`sidebar-btn ${isActive(`/newthread`) ? 'active-link' : ''}`} 
-                    aria-label="Go to create a new thread"
+                    className={`sidebar-btn ${isActive(`/post`) ? 'active-link' : ''}`} 
+                    aria-label="Go to create a new thread post"
                   >
                     <div className="icon-container">
                         <i><FontAwesomeIcon icon={faPenToSquare} className="fa-icon" /></i>
                       </div>
-                      {(isHovered || isExpanded) && (<h1>New Thread</h1>)}
+                      {(isHovered || isExpanded) && (<h1>Post</h1>)}
                   </button>
                 </div>
                 <div className={`sidebar-link ${isActive('/account/overview') || isActive('/account/activity')  || isActive('/account/settings')  ? 'active-link' : ''}`} 

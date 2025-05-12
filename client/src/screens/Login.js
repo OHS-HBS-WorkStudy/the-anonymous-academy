@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faLock, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faKey, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 import useNavigation from '../modules/useNavigation';
 import loginpic from '../img/loginpic.png';
@@ -130,7 +130,7 @@ export default function Login() {
                                     {renderInput("email", "text", "Email", faEnvelope)}
 
                                     <motion.div className="input-with-icon">
-                                        <FontAwesomeIcon icon={faLock} className="input-icon" />
+                                        <FontAwesomeIcon icon={faKey} className="input-icon" />
                                         <motion.input
                                             variants={inputVariants}
                                             type={passwordVisible ? "text" : "password"}
@@ -204,7 +204,7 @@ export default function Login() {
                                         whileHover="hover"
                                         whileTap="tap"
                                     >
-                                        Sign Up here
+                                        Join here
                                     </motion.p>
                                 </motion.div>
                             </div>

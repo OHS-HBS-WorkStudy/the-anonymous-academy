@@ -10,8 +10,8 @@ const useNavigation = () => {
   const goToacctSettings= () => navigate('/account/settings');
   const goToLogin = () => navigate('/login');
   const goToThreadList = () => navigate('/');
-  const goToSignUp = () => navigate('/signup');
-  const goToNewThread = () => navigate('/newthread');
+  const goToSignUp = () => navigate('/join');
+  const goToNewThread = () => navigate('/post');
   const goToThread = (threadId) => navigate(`/thread/${threadId}`);
 
   const isActive = (path) => location.pathname === path;

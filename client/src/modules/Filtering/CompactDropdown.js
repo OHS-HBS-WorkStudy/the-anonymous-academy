@@ -64,7 +64,7 @@ const CompactDropdown = ({ name, options, onChange, selectedValue }) => {
         <span>{displayedLabel}</span>
         <motion.svg
           animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.1 }}
+          transition={{ duration: 0.01 }}
           xmlns="http://www.w3.org/2000/svg"
           height="16px"
           viewBox="0 0 20 20"
