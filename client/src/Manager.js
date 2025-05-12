@@ -9,6 +9,7 @@ import Thread from './screens/Thread.js';
 import ThreadList from './screens/ThreadList.js';
 import NewThread from './screens/NewThread.js';
 import Navigator from './modules/Navigator.js';
+import Leaderboard from './screens/Leaderboard.js';
 
 export default function Manager() {
   const foundUser = JSON.parse(sessionStorage.getItem("foundUser"));
@@ -26,16 +27,33 @@ export default function Manager() {
   return (
     <>
       <Navigator />
+      
       <Routes>
+        {/* Login */}
+        <Route path="/login" element={<Login />} />
+
+        {/* Join */}
+        <Route path="/join" element={<SignUp />} />
+
+        {/* Home */}
         <Route path="/home" element={<Home />} />
+
+        {/* Thread List */}
         <Route path="/" element={<ThreadList />} />
+
+        {/* Post */}
+        <Route path="/post" element={<NewThread />} />
+
+        {/* Thread */}
+        <Route path="/thread/:threadId" element={<Thread />} />
+
+        {/* Leaderboard */}
+        <Route path="/leaderboard" element={<Leaderboard />} />
+
+        {/* Account */}
         <Route path="/account/overview" element={<Account />} />
         <Route path="/account/activity" element={<Account />} />
         <Route path="/account/settings" element={<Account />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/join" element={<SignUp />} />
-        <Route path="/post" element={<NewThread />} />
-        <Route path="/thread/:threadId" element={<Thread />} />
       </Routes>
     </>
   );

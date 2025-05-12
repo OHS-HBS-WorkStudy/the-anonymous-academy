@@ -137,7 +137,7 @@ export default function AddTags({ tags, setTags }) {
           animate="animate"
         />
 
-         <div className="charCounter">{tags.length}/10 tags limit</div>
+         <div className="charCounter">{tags.length}/10 tag limit</div>
       </div>
 
       <div className="tags-container">

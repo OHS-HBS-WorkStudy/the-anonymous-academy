@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import { useState, useEffect, useRef } from 'react';
 import useNavigation from './useNavigation.js';
 import { useLocation } from "react-router-dom";
 
@@ -11,24 +11,35 @@ import {
   faPenToSquare,
   faUserGear,
   faBars,
-  faXmark, 
+  faXmark,
+  faRankingStar,
   faClockRotateLeft
 } from '@fortawesome/free-solid-svg-icons';
 
 export default function Navigator() {
-  const { goToHome, goToAcct, goToLogin, goToThreadList, goToSignUp, goToNewThread, goToThread, isActive } = useNavigation();
+  const { goToHome, goToAcct, goToLogin,  goToacctActivity, goToacctSettings, goToThreadList, goToSignUp, goToNewThread, goToThread, goToLeaderboard, isActive } = useNavigation();
   const timeoutRef = useRef(null); 
   const [isHovered, setIsHovered] = useState(false);
   const [isExpanded, setIsExpanded] = useState(() => {
     return localStorage.getItem('isExpanded') === 'true';
   });
+  const foundUser = JSON.parse(sessionStorage.getItem("foundUser"));
+  const [isLoggedIn, setIsLoggedIn] = useState(!!foundUser);
+  
+  const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
+
+  
+  useEffect(() => {
+          setIsLoggedIn(JSON.parse(sessionStorage.getItem("foundUser")));
+      }, []);
+  
 
   const location = useLocation();
 
 
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -112,6 +123,7 @@ export default function Navigator() {
       >
         <nav className='sidebar'>
           <div className="menu-items">
+            {!isLoggedIn && (
           <div className={`sidebar-link ${isActive('join') ? 'active-link' : ''}`} 
                     onClick={goToSignUp}>
                   <button 
@@ -124,6 +136,8 @@ export default function Navigator() {
                       {(isHovered || isExpanded) && (<h1>Join</h1>)}
                   </button>
             </div> 
+            )}
+            {!isLoggedIn && (
             <div className={`sidebar-link ${isActive('login') ? 'active-link' : ''}`} 
                     onClick={goToLogin}>
                   <button 
@@ -136,7 +150,7 @@ export default function Navigator() {
                       {(isHovered || isExpanded) && (<h1>Login</h1>)}
                   </button>
             </div> 
-              
+              )}
               <div className={`sidebar-link ${isActive('/home') ? 'active-link' : ''}`} 
                     onClick={goToHome}>
                   <button 
@@ -173,18 +187,41 @@ export default function Navigator() {
                       {(isHovered || isExpanded) && (<h1>Post</h1>)}
                   </button>
                 </div>
-                <div className={`sidebar-link ${isActive('/account/overview') || isActive('/account/activity')  || isActive('/account/settings')  ? 'active-link' : ''}`} 
-                    onClick={goToAcct}>
+                <div className={`sidebar-link ${isActive('/leaderboard') ? 'active-link' : ''}`} 
+                    onClick={goToLeaderboard}>
                   <button 
-                    className={`sidebar-btn ${isActive('/account/overview') || isActive('/account/activity')  || isActive('/account/settings')  ? 'active-link' : ''}`}
-                    aria-label="Go to account page"
+                    className={`sidebar-btn ${isActive(`/leaderboard`) ? 'active-link' : ''}`} 
+                    aria-label="Go to view leaderboard"
                   >
                     <div className="icon-container">
-                        <i><FontAwesomeIcon icon={faUserGear}  className="fa-icon"/></i>
+                        <i><FontAwesomeIcon icon={faRankingStar} className="fa-icon" /></i>
                       </div>
-                      {(isHovered || isExpanded) && (<h1>Account</h1>)}
+                      {(isHovered || isExpanded) && (<h1>Leaderboard</h1>)}
                   </button>
                 </div>
+                {isLoggedIn && (
+                  <div className={`sidebar-link ${isActive('/account/overview') || isActive('/account/activity') || isActive('/account/settings') ? 'active-link' : ''}`}>
+                    <button 
+                      className={`sidebar-btn ${isActive('/account/overview') || isActive('/account/activity') || isActive('/account/settings') ? 'active-link' : ''}`}
+                      onClick={() => setIsAccountMenuOpen(prev => !prev)}
+                      aria-label="Toggle account submenu"
+                    >
+                      <div className="icon-container">
+                        <i><FontAwesomeIcon icon={faUserGear} className="fa-icon"/></i>
+                      </div>
+                      {(isHovered || isExpanded) && (<h1>Account</h1>)}
+                    </button>
+
+                    {(isHovered || isExpanded) && isAccountMenuOpen && (
+                      <div className="submenu">
+                        <button onClick={goToAcct} className={`submenu-item ${isActive('/account/overview') ? 'active-link' : ''}`}>Overview</button>
+                        <button onClick={goToacctActivity} className={`submenu-item ${isActive('/account/activity') ? 'active-link' : ''}`}>Activity</button>
+                        <button onClick={goToacctSettings} className={`submenu-item ${isActive('/account/settings') ? 'active-link' : ''}`}>Settings</button>
+                      </div>
+                    )}
+                  </div>
+                )}
+
             </div>
 
             <div className="recentThreadsContainer">

@@ -384,8 +384,35 @@ transition: background-color 0.3s ease-in-out;
   padding: 1rem;
   background-color: inherit;
   border-radius: 0.5rem;
-  
 }
+
+.submenu {
+  display: flex;
+  flex-direction: column;
+  padding-left: 30px;
+  margin-top: 5px;
+}
+
+.submenu-item {
+  background: none;
+  border: none;
+  color: #ccc;
+  padding: 6px 0;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.submenu-item:hover {
+  color: white;
+}
+
+.submenu-item.active-link {
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
 
 .recentThreadsTitle {
   font-size: 1.2rem;

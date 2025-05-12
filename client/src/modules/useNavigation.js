@@ -11,6 +11,7 @@ const useNavigation = () => {
   const goToLogin = () => navigate('/login');
   const goToThreadList = () => navigate('/');
   const goToSignUp = () => navigate('/join');
+  const goToLeaderboard = () => navigate('/leaderboard');
   const goToNewThread = () => navigate('/post');
   const goToThread = (threadId) => navigate(`/thread/${threadId}`);
 
@@ -26,6 +27,7 @@ const useNavigation = () => {
     goToSignUp, 
     goToThread,
     goToNewThread,
+    goToLeaderboard,
     isActive
   };
 };
