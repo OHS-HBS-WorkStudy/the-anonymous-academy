@@ -10,6 +10,7 @@ import ThreadList from './screens/ThreadList.js';
 import NewThread from './screens/NewThread.js';
 import Navigator from './modules/Navigator.js';
 import Leaderboard from './screens/Leaderboard.js';
+import Achievements from './screens/Achievements.js';
 
 export default function Manager() {
   const foundUser = JSON.parse(sessionStorage.getItem("foundUser"));
@@ -49,6 +50,9 @@ export default function Manager() {
 
         {/* Leaderboard */}
         <Route path="/leaderboard" element={<Leaderboard />} />
+
+        {/* Achievements */}
+        <Route path="/achievements" element={<Achievements />} />
 
         {/* Account */}
         <Route path="/account/overview" element={<Account />} />

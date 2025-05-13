@@ -14,6 +14,7 @@ const useNavigation = () => {
   const goToLeaderboard = () => navigate('/leaderboard');
   const goToNewThread = () => navigate('/post');
   const goToThread = (threadId) => navigate(`/thread/${threadId}`);
+  const goToAchievements = () => navigate('/achievements');
 
   const isActive = (path) => location.pathname === path;
 
@@ -28,6 +29,7 @@ const useNavigation = () => {
     goToThread,
     goToNewThread,
     goToLeaderboard,
+    goToAchievements,
     isActive
   };
 };

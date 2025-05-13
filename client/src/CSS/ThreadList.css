@@ -62,7 +62,7 @@
 .main-content-area {
   grid-area: main-content;
   display: grid;
-  grid-template-columns: 78% 21%; /* Smaller right section */
+  grid-template-columns: 75% 21%; /* Smaller right section */
   grid-template-areas: "grid-container right-space";
   width: 100%;
   max-width: 1440px;
@@ -265,6 +265,9 @@
   overflow-y: auto;
 }
 
+.motion-dropdown-section.top {
+  margin-top: 25px;
+} 
 /* Each card-style section */
 .motion-dropdown-section {
   background-color: var(--alt-background-color); /* Very light gray alternative */

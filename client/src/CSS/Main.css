@@ -22,6 +22,8 @@
 
     --alt-background-color: hsl(0, 0%, 98%); /* Very light gray alternative */
 
+    --alt-card-color: hsl(0, 0%, 95%);
+
     --login-and-sign-color: linear-gradient(45deg, hsl(240, 30%, 95%), hsl(180, 30%, 95%)); /* Very light blue/cyan gradient */
 
    --clr-primary-a0: hsl(40, 50%, 60%); /* Slightly darker gold */

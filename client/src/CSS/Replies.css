@@ -235,7 +235,7 @@
 
   .reply-card .reply-date,
   .date-display {
-    color: var(--color-text-white) !important;
+    color: var(--color-text-tertiary) !important;
     opacity: 1; 
    
    

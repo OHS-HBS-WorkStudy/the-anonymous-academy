@@ -343,8 +343,17 @@ export default function ThreadFilter() {
                 animate="open"
                 exit="closed"
               >
+
+                <button 
+                  className="close-button" 
+                  onClick={() => setIsOpen(false)} 
+                  aria-label="Close Filter Panel"
+                >
+                  ✕
+                </button>
+
                     {/* Sort Section */}
-            <div className="motion-dropdown-section">
+            <div className="motion-dropdown-section top">
               <div className="motion-dropdown-header">
                 <h3 className="motion-dropdown-title">Sort Options</h3>
                 <button className="clear-button">Clear</button>

@@ -14,7 +14,8 @@ import {
   faBars,
   faXmark,
   faRankingStar,
-  faClockRotateLeft
+  faClockRotateLeft,
+  faTrophy
 } from '@fortawesome/free-solid-svg-icons';
 
 // Animation variants
@@ -38,7 +39,7 @@ const sidebarVariants = {
 const menuItemVariants = {
   open: {
     x: 0,
-    justifyContent: "",
+    
     transition: {
       duration: 0.2,
       delay: 0.1,
@@ -46,7 +47,7 @@ const menuItemVariants = {
   },
   closed: {
     x: 0,
-    justifyContent: "center",
+    justifyContent: "left",
     transition: {
       duration: 0.1,
     },
@@ -62,7 +63,8 @@ const iconContainerVariants = {
     },
   },
   closed: {
-    justifyContent: "center",
+    align: "start",
+    justifyContent: "start",
     width: "100%",
     transition: {
       duration: 0.3,
@@ -116,7 +118,7 @@ const recentThreadsVariants = {
 };
 
 const Navigator = () => {
-  const { goToHome, goToAcct, goToLogin, goToacctActivity, goToacctSettings, goToThreadList, goToSignUp, goToNewThread, goToThread, goToLeaderboard, isActive } = useNavigation();
+  const { goToHome, goToAcct, goToLogin, goToacctActivity, goToacctSettings, goToThreadList, goToSignUp, goToNewThread, goToThread, goToLeaderboard, goToAchievements, isActive } = useNavigation();
   const timeoutRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isExpanded, setIsExpanded] = useState(() => {
@@ -183,30 +185,52 @@ const Navigator = () => {
   return (
     <>
       <div className="top-nav">
-        <div className="top-nav-content">
-          <button
-            aria-label={isExpanded ? 'Close navigation menu' : 'Open navigation menu'}
-            className={`nav-toggle ${isExpanded ? 'menu-open' : ''}`}
-            onClick={switchToggle}
-          >
-            <div className="nav-toggle-open">
-              <FontAwesomeIcon icon={faBars} className="fa-icon" />
-            </div>
-            <div className="nav-toggle-close">
-              <FontAwesomeIcon icon={faXmark} className="fa-icon" />
-            </div>
-          </button>
+       <div className="top-nav-content">
+  <button
+    aria-label={isExpanded ? 'Close navigation menu' : 'Open navigation menu'}
+    className={`nav-toggle ${isExpanded ? 'menu-open' : ''}`}
+    onClick={switchToggle}
+  >
+    <div className="nav-toggle-open">
+      <FontAwesomeIcon icon={faBars} className="fa-icon" />
+    </div>
+    <div className="nav-toggle-close">
+      <FontAwesomeIcon icon={faXmark} className="fa-icon" />
+    </div>
+  </button>
 
-          {(screenWidth >= 347) ? (
-            <h1 className="title" onClick={goToHome}>
-              Anonymous Academy
-            </h1>
-          ) : (
-            <h1 className="title" onClick={goToHome}>
-              A.A.
-            </h1>
-          )}
-        </div>
+  <h1 className="title" onClick={goToHome}>
+    {screenWidth >= 347 ? 'Anonymous Academy' : 'A.A.'}
+  </h1>
+
+  <div className="nav-spacer" /> {/* This keeps space between title and auth */}
+
+  { !isLoggedIn && (
+    <div className="auth-buttons">
+      <motion.div 
+        className="auth-button-group"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <button 
+          className="auth-btn signup-side" 
+          onClick={goToSignUp}
+          aria-label="Sign up"
+        >
+          <FontAwesomeIcon icon={faUserPlus} /> Join
+        </button>
+        <button 
+          className="auth-btn login-side" 
+          onClick={goToLogin}
+          aria-label="Login"
+        >
+          <FontAwesomeIcon icon={faRightToBracket} /> Login
+        </button>
+      </motion.div>
+    </div>
+  )}
+</div>
       </div>
 
       {(isExpanded && screenWidth <= 768) && (
@@ -225,74 +249,6 @@ const Navigator = () => {
       >
         <nav className='sidebar'>
           <div className="menu-items">
-            {!isLoggedIn && (
-              <motion.div
-                className={`sidebar-link ${isActive('join') ? 'active-link' : ''}`}
-                onClick={goToSignUp}
-                variants={menuItemVariants}
-                initial="closed"
-                animate={isExpanded ? "open" : "closed"}
-              >              <button
-                className={`sidebar-btn ${isActive('/join') ? 'active-link' : ''}`}
-                aria-label="Go to join page"
-              >
-                <motion.div
-                  className={`icon-container ${isActive('/join') ? 'active-link' : ''}`}
-                  variants={iconContainerVariants}
-                  initial="closed"
-                  animate={isExpanded || isHovered ? "open" : "closed"}
-                >
-                  <i><FontAwesomeIcon icon={faUserPlus} className={`fa-icon ${isActive('/join') ? 'active-link' : ''}`} /></i>
-                </motion.div>
-                {(isHovered || isExpanded) && (<h1>Join</h1>)}
-                </button>
-              </motion.div>
-            )}
-            {!isLoggedIn && (
-              <motion.div
-                className={`sidebar-link ${isActive('login') ? 'active-link' : ''}`}
-                onClick={goToLogin}
-                variants={menuItemVariants}
-                initial="closed"
-                animate={isExpanded ? "open" : "closed"}
-              >              <button
-                className={`sidebar-btn ${isActive('/login') ? 'active-link' : ''}`}
-                aria-label="Go to login page"
-              >
-                <motion.div
-                  className={`icon-container ${isActive('/login') ? 'active-link' : ''}`}
-                  variants={iconContainerVariants}
-                  initial="closed"
-                  animate={isExpanded || isHovered ? "open" : "closed"}
-                >
-                  <i><FontAwesomeIcon icon={faRightToBracket} className={`fa-icon ${isActive('/login') ? 'active-link' : ''}`} /></i>
-                </motion.div>
-                {(isHovered || isExpanded) && (<h1>Login</h1>)}
-                </button>
-              </motion.div>
-            )}
-            <motion.div
-              className={`sidebar-link ${isActive('/home') ? 'active-link' : ''}`}
-              onClick={goToHome}
-              variants={menuItemVariants}
-              initial="closed"
-              animate={isExpanded ? "open" : "closed"}
-            >
-              <button
-                className={`sidebar-btn ${isActive('/home') ? 'active-link' : ''}`}
-                aria-label="Go to home page"
-              >
-                <motion.div
-                  className={`icon-container ${isActive('/home') ? 'active-link' : ''}`}
-                  variants={iconContainerVariants}
-                  initial="closed"
-                  animate={isExpanded || isHovered ? "open" : "closed"}
-                >
-                  <i><FontAwesomeIcon icon={faHouse} className={`fa-icon ${isActive('/home') ? 'active-link' : ''}`} /></i>
-                </motion.div>
-                {(isHovered || isExpanded) && (<h1>Home</h1>)}
-              </button>
-            </motion.div>
             <motion.div
               className={`sidebar-link ${isActive('/') ? 'active-link' : ''}`}
               onClick={goToThreadList}
@@ -313,6 +269,28 @@ const Navigator = () => {
                   <i><FontAwesomeIcon icon={faListUl} className={`fa-icon ${isActive('/') ? 'active-link' : ''}`} /></i>
                 </motion.div>
                 {(isHovered || isExpanded) && (<h1>Threads</h1>)}
+              </button>
+            </motion.div>
+            <motion.div
+              className={`sidebar-link ${isActive('/home') ? 'active-link' : ''}`}
+              onClick={goToHome}
+              variants={menuItemVariants}
+              initial="closed"
+              animate={isExpanded ? "open" : "closed"}
+            >
+              <button
+                className={`sidebar-btn ${isActive('/home') ? 'active-link' : ''}`}
+                aria-label="Go to home page"
+              >
+                <motion.div
+                  className={`icon-container ${isActive('/home') ? 'active-link' : ''}`}
+                  variants={iconContainerVariants}
+                  initial="closed"
+                  animate={isExpanded || isHovered ? "open" : "closed"}
+                >
+                  <i><FontAwesomeIcon icon={faHouse} className={`fa-icon ${isActive('/home') ? 'active-link' : ''}`} /></i>
+                </motion.div>
+                {(isHovered || isExpanded) && (<h1>Home</h1>)}
               </button>
             </motion.div>
             <motion.div
@@ -357,6 +335,28 @@ const Navigator = () => {
                   <i><FontAwesomeIcon icon={faRankingStar} className={`fa-icon ${isActive('/leaderboard') ? 'active-link' : ''}`} /></i>
                 </motion.div>
                 {(isHovered || isExpanded) && (<h1>Leaderboard</h1>)}
+              </button>
+            </motion.div>
+            <motion.div
+              className={`sidebar-link ${isActive('/achievements') ? 'active-link' : ''}`}
+              onClick={goToAchievements}
+              variants={menuItemVariants}
+              initial="closed"
+              animate={isExpanded ? "open" : "closed"}
+            >
+              <button
+                className={`sidebar-btn ${isActive(`/achievements`) ? 'active-link' : ''}`}
+                aria-label="Go to view achievements"
+              >
+                <motion.div
+                  className={`icon-container ${isActive('/achievements') ? 'active-link' : ''}`}
+                  variants={iconContainerVariants}
+                  initial="closed"
+                  animate={isExpanded || isHovered ? "open" : "closed"}
+                >
+                  <i><FontAwesomeIcon icon={faTrophy} className={`fa-icon ${isActive('/achievements') ? 'active-link' : ''}`} /></i>
+                </motion.div>
+                {(isHovered || isExpanded) && (<h1>Achievements</h1>)}
               </button>
             </motion.div>
             {isLoggedIn && (
@@ -424,27 +424,16 @@ const Navigator = () => {
             className="recentThreadsContainer"
             variants={recentThreadsVariants}
             initial="closed"
-            animate={isExpanded ? "open" : "closed"}
+            animate={isExpanded || isHovered ? "open" : "closed"}
           >
-            {!isHovered && !isExpanded && (
-              <div className='sidebar-link'>
-                <motion.div
-                  className={`icon-container ${isRecentActive ? 'active-link' : ''}`}
-                  variants={iconContainerVariants}
-                  initial="closed"
-                  animate={isExpanded || isHovered ? "open" : "closed"}
-                >
-                  <FontAwesomeIcon icon={faClockRotateLeft} className={`fa-icon ${isRecentActive ? 'active-link' : ''}`} />
-                </motion.div>
-              </div>
-            )}
-
-            {(isHovered || isExpanded) && (
-              <div className="recentThreadsExpanded">
-                <h2 className="recentThreadsTitle"><FontAwesomeIcon icon={faClockRotateLeft} className={`fa-icon ${isRecentActive ? 'active-link' : ''}`} /> Recently Viewed</h2>
+            <div className="recentThreadsExpanded">
+              <h2 className="recentThreadsTitle">
+                <FontAwesomeIcon icon={faClockRotateLeft} className={`fa-icon ${isRecentActive ? 'active-link' : ''}`} /> 
+                Recently Viewed
+              </h2>
                 <ul>
                   {recent.map(thread => (
-                    <li key={thread.id} className={`recentThreadItem ${isActive('/thread/${thread.id}`') ? 'active-link' : ''}`} onClick={() => handleRVClick(thread)}>
+                    <li key={thread.id} className={`recentThreadItem ${isActive(`/thread/${thread.id}`) ? 'active-link' : ''}`} onClick={() => handleRVClick(thread)}>
                       {thread.title}
                     </li>
                   ))}
@@ -453,7 +442,6 @@ const Navigator = () => {
                   )}
                 </ul>
               </div>
-            )}
           </motion.div>
         </nav>
       </motion.div>

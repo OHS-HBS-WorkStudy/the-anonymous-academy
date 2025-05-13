@@ -68,6 +68,7 @@ export default function Login() {
             sessionStorage.setItem("foundUser", JSON.stringify(foundUser));
             localStorage.setItem("userPreferences", JSON.stringify(foundUser.pref));
             goToHome();
+            window.location.reload();
         } else {
             setErrors({ login: "Login unsuccessful. Check your credentials." });
         }
