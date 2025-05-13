@@ -65,7 +65,7 @@
   grid-template-columns: 75% 21%; /* Smaller right section */
   grid-template-areas: "grid-container right-space";
   width: 100%;
-  max-width: 1440px;
+  max-width: 2000px;
   margin: 30px auto 0 auto;
   justify-content: center;
   align-items: start;

@@ -682,7 +682,6 @@
   cursor: pointer;
   background-color: transparent;
   border-style: none;
-  overflow-y: auto;
 }
 
 .sidebar:not(.menu-open) .sidebar-btn {
