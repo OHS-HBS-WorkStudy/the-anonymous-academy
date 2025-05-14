@@ -201,10 +201,6 @@ export default function Threads({ thread }) {
                             <motion.div 
                                 className="grid-item-title" 
                                 style={{
-                                    overflow: "hidden",
-                                    textOverflow: "ellipsis",
-                                    width: "100%",
-                                    maxWidth: "100%",
                                     display: "block"
                                 }}
                                 dangerouslySetInnerHTML={{ __html: sanitizedName }}

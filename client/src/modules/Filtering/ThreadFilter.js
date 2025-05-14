@@ -1,9 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedDatePicker from "./AnimatedCal";
-
 import CompactDropdown from "./CompactDropdown";
-
 
 const breakpoints = {
   large: 960, 
@@ -22,16 +20,37 @@ const dropdownVariants = {
   }
 };
 
-
-
-export default function ThreadFilter() {
+export default function ThreadFilter({ onFilterOpen }) {
   const [filterOpen, setFilterOpen] = useState(false);
   const filterButtonRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
   const gridHeaderRef = useRef(null);
 
-  const toggleOpen = () => setIsOpen(!isOpen);
+  const toggleOpen = () => {
+    const newIsOpen = !isOpen;
+    setIsOpen(newIsOpen);
+    
+    // Communicate state to parent component
+    if (onFilterOpen) {
+      onFilterOpen(newIsOpen);
+    }
+
+    // Toggle classes for mobile
+    if (window.innerWidth <= 768) {
+      document.body.classList.toggle('motion-dropdown-active', newIsOpen);
+      document.querySelector('.ThreadList')?.classList.toggle('motion-dropdown-active', newIsOpen);
+    }
+  };
+
+  // Clean up classes when component unmounts
+  useEffect(() => {
+    return () => {
+      document.body.classList.remove('motion-dropdown-active');
+      document.querySelector('.ThreadList')?.classList.remove('motion-dropdown-active');
+    };
+  }, []);
+
   const [startDate, setStartDate] = useState(null);
 
   const [threadStatus, setThreadStatus] = useState("");
@@ -419,7 +438,7 @@ export default function ThreadFilter() {
             </div>
 
             {/* Items Per Page */}
-            <div className="motion-dropdown-section">
+            <div className="motion-dropdown-section bottom">
               <div className="motion-dropdown-header">
                 <h3 className="motion-dropdown-title">Items Per Page</h3>
                 <button className="clear-button">Clear</button>
@@ -445,5 +464,5 @@ export default function ThreadFilter() {
       </div>
     </div>
   );
-}                
+}
 

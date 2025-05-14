@@ -280,12 +280,11 @@
           "grid-container"
           "right-space" !important;
         width: 100%;
-        max-height: max-content !important;
+        max-height: max-content;
         justify-content: center;
         align-items: start;
         margin-top: 30px;
-        transform: scale(0.97) !important;
-        z-index: 0 !important;
+        z-index: 0;
     }
 
     .grid-header-area, 

@@ -668,7 +668,7 @@ label h1 {
 .poll-creation input[type="text"].new-input-container1 {
   padding: 14px 18px;
   font-size: 1rem;
-  color: var(--color-text-white);
+  color: #333;
   background-color: var(--clr-surface-a50) !important;
   border: 1px solid var(--clr-surface-tonal-a50);
   border-radius: 10px;
@@ -677,6 +677,10 @@ label h1 {
   width: 100%;
   box-sizing: border-box;
   margin-bottom: 15px;
+}
+
+.dark .poll-creation input[type="text"].new-input-container1 {
+  color: white;
 }
 
 .poll-creation input[type="text"].new-input-container1:focus {
