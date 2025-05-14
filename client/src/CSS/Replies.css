@@ -83,6 +83,7 @@
     flex-direction: column;
     gap: 10px;
     padding-bottom: 20px;
+    height: fit-content
   }
  
   .reply-container .btn-send {
@@ -234,7 +235,7 @@
 
   .reply-card .reply-date,
   .date-display {
-    color: var(--color-text-primary) !important;
+    color: var(--color-text-tertiary) !important;
     opacity: 1; 
    
    
@@ -242,6 +243,7 @@
 
     .reply-card .username {
       font-size: var(--font-size-md) !important; 
+      color: var(--color-text-white) !important;
     
     }
 
@@ -249,7 +251,8 @@
     display: flex;
     align-items: flex-start;
     gap: 10px;
-    margin-left: -4px;
+    /* margin-left: -4px; */
+    transform: translateX(-5px);
     width: 100%;  
     height: 100%;
    

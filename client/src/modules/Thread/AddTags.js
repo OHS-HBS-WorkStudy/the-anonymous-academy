@@ -52,26 +52,36 @@ export default function AddTags({ tags, setTags }) {
 
   const enterCheck = (e) => {
     if (e.key === "Enter") {
-      processInputValue();
+      if (tags.length >= 10) {
+        alert("You can only add up to 10 tags.");
+        return;
+      } else {
+        processInputValue();
+      }
     }
   };
 
   const processInputValue = () => {
-    const rawValue = inputValue.trim();
-    if (rawValue.length > 1) {
-      const newTagsFromInput = rawValue
-        .split(',')
-        .map(tag => tag.trim())
-        .filter(tag => tag.startsWith('#') && tag.length > 1 && !tags.includes(tag));
+      if (tags.length >= 10) {
+        alert("You can only add up to 10 tags.");
+        return;
+      } else {
+      const rawValue = inputValue.trim();
+      if (rawValue.length > 1) {
+        const newTagsFromInput = rawValue
+          .split(',')
+          .map(tag => tag.trim())
+          .filter(tag => tag.startsWith('#') && tag.length > 1 && !tags.includes(tag));
 
-      if (newTagsFromInput.length > 0) {
-        const updatedTags = [...tags, ...newTagsFromInput];
-        setTags(updatedTags);
-        setInputValue("#");
-      } else if (rawValue.includes(',')) {
-        alert("One or more tags were either empty or already exist.");
-      } else if (!rawValue.startsWith('#') || rawValue.length <= 1 || tags.includes(rawValue)) {
-        alert("Tag must start with '#', be at least 2 characters long, and be unique.");
+        if (newTagsFromInput.length > 0) {
+          const updatedTags = [...tags, ...newTagsFromInput];
+          setTags(updatedTags);
+          setInputValue("#");
+        } else if (rawValue.includes(',')) {
+          alert("One or more tags were either empty or already exist.");
+        } else if (!rawValue.startsWith('#') || rawValue.length <= 1 || tags.includes(rawValue)) {
+          alert("Tag must start with '#', be at least 2 characters long, and be unique.");
+        }
       }
     }
   };
@@ -126,6 +136,8 @@ export default function AddTags({ tags, setTags }) {
           initial="initial"
           animate="animate"
         />
+
+         <div className="charCounter">{tags.length}/10 tag limit</div>
       </div>
 
       <div className="tags-container">

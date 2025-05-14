@@ -1,8 +1,16 @@
 import useNavigation from '../useNavigation.js';
 import { useState, useEffect } from 'react';
 import DOMPurify from 'dompurify';
-
+import { motion } from 'framer-motion';
 import TimeCounter from '../I-Candy/TimeCounter.js';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+
+const SkeletonWrapper = ({ children }) => (
+    <div style={{ opacity: 0.7 }}>
+        {children}
+    </div>
+);
 
 export default function Threads({ thread }) {
     const { goToThread } = useNavigation();
@@ -68,50 +76,163 @@ export default function Threads({ thread }) {
         }
     }
 
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 1500); 
+        return () => clearTimeout(timer);
+    }, []);
+
+    const threadVariants = {
+        hidden: { opacity: 0 },
+        visible: { 
+            opacity: 1,
+            transition: {
+                when: "beforeChildren",
+                staggerChildren: 0.1
+            }
+        },
+        hover: {
+            scale: 1.01,
+            boxShadow: "0px 5px 15px rgba(0,0,0,0.1)",
+            transition: { duration: 0.2 }
+        },
+        tap: { scale: 0.98 }
+    };
+
     return (
-        <div className="grid-item" onClick={handleThreadClick}>
-            <div className="user-header">
-                <div className="user-avatar"></div>
-                <p className="username">{userCheck(thread, foundUser)}</p>
-                <p className="date-display">
-                    {thread.created_at ? <TimeCounter date={thread.created_at} /> : "Unknown date"}
-                </p>
-            </div>
-
-            <div className="content-row">
-                <div className="left-info">
-                    <div className="vote-container">
-                        <div className="vote-counter">
-                            <p>0</p>
+        <motion.div 
+            className="grid-item"
+            onClick={!isLoading ? handleThreadClick : undefined}
+            variants={threadVariants}
+            initial="hidden"
+            animate="visible"
+            whileHover={!isLoading ? "hover" : undefined}
+            whileTap={!isLoading ? "tap" : undefined}
+            layout
+        >
+            <motion.div className="user-header">
+                {isLoading ? (
+                    <SkeletonWrapper>
+                        <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                            <Skeleton circle width={32} height={32} />
+                            <Skeleton width={`${Math.floor(Math.random() * (220 - 100) + 100)}px`} height={24} style={{ marginRight: "auto" }} />
+                            <Skeleton width={`${Math.floor(Math.random() * (140 - 60) + 60)}px`} height={20} />
                         </div>
-                        <p className="vote-text">votes</p>
-                    </div>
+                    </SkeletonWrapper>
+                ) : (
+                    <>
+                        <motion.div 
+                            className="user-avatar"
+                            whileHover={{ scale: 1.1 }}
+                            transition={{ type: "spring", stiffness: 200 }}
+                        />
+                        <motion.p className="username">{userCheck(thread, foundUser)}</motion.p>
+                        <motion.p className="date-display">
+                            {thread.created_at ? <TimeCounter date={thread.created_at} /> : "Unknown date"}
+                        </motion.p>
+                    </>
+                )}
+            </motion.div>
 
-                    <div className="replies-container">
-                        <div className="replies-counter">
-                            <p>0</p>
+            <motion.div className="content-row">
+                {isLoading ? (
+                    <SkeletonWrapper>
+                        <div style={{ display: "flex", gap: "1rem" }}>
+                            <div className="left-info" style={{gap: "0.5rem" }}>
+                                {[...Array(3)].map((_, i) => (
+                                    <div key={i} style={{ marginBottom: "1px" }}>
+                                        <Skeleton width={55} height={20} />
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="text-content" style={{ width: "100%" }}>
+                                <div style={{ 
+                                    width: "100%",
+                                    maxWidth: "100%",
+                                    overflow: "hidden"
+                                }}>
+                                    <Skeleton width={`${Math.floor(Math.random() * (500 - 60) + 60)}px`} height={22} style={{ marginBottom: "0.5rem" }} />
+                                    <Skeleton width={`${Math.floor(Math.random() * (600 - 75) + 75)}px`} height={20} style={{ marginBottom: "0.5rem" }} />
+                                </div>
+                                <div style={{ display: "flex", gap: "4px" }}>
+                                    <Skeleton width={`${Math.floor(Math.random() * (80 - 40) + 40)}px`} height={21} />
+                                    <Skeleton width={`${Math.floor(Math.random() * (75 - 35) + 35)}px`} height={21} />
+                                    <Skeleton width={`${Math.floor(Math.random() * (85 - 45) + 45)}px`} height={21} />
+                                </div>
+                            </div>
                         </div>
-                        <p className="replies-text">replies</p>
-                    </div>
+                    </SkeletonWrapper>
+                ) : (
+                    <>
+                        <motion.div className="left-info">
+                            <motion.div 
+                                className="vote-container"
+                                whileHover={{ scale: 1.05 }}
+                            >
+                                <motion.div className="vote-counter">
+                                    <motion.p animate={{ scale: [1, 1.2, 1] }}>0</motion.p>
+                                </motion.div>
+                                <motion.p className="vote-text">votes</motion.p>
+                            </motion.div>
 
-                    <div className="views-container">
-                        <div className="views-counter">
-                            <p>0</p>
-                        </div>
-                        <p className="views-text">views</p>
-                    </div>
-                </div>
+                            <motion.div 
+                                className="replies-container"
+                                whileHover={{ scale: 1.05 }}
+                            >
+                                <motion.div className="replies-counter">
+                                    <motion.p animate={{ scale: [1, 1.2, 1] }}>0</motion.p>
+                                </motion.div>
+                                <motion.p className="replies-text">replies</motion.p>
+                            </motion.div>
 
-                <div className="text-content">
-                    <div className="grid-item-title" dangerouslySetInnerHTML={{ __html: sanitizedName }} />
-                    <div className="grid-item-desc" dangerouslySetInnerHTML={{ __html: sanitizedContents }} />
-
-
-                    <div className="grid-item-tags-container">
-                        {getTags()}
-                    </div>
-                </div>
-            </div>
-        </div>
+                            <motion.div 
+                                className="views-container"
+                                whileHover={{ scale: 1.05 }}
+                            >
+                                <motion.div className="views-counter">
+                                    <motion.p animate={{ scale: [1, 1.2, 1] }}>0</motion.p>
+                                </motion.div>
+                                <motion.p className="views-text">views</motion.p>
+                            </motion.div>
+                        </motion.div>                            <motion.div className="text-content">
+                            <motion.div 
+                                className="grid-item-title" 
+                                style={{
+                                    display: "block"
+                                }}
+                                dangerouslySetInnerHTML={{ __html: sanitizedName }}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                            />
+                            <motion.div 
+                                className="grid-item-desc" 
+                                style={{
+                                    overflow: "hidden",
+                                    textOverflow: "ellipsis",
+                                    display: "-webkit-box",
+                                    WebkitLineClamp: "2",
+                                    WebkitBoxOrient: "vertical",
+                                    width: "100%",
+                                    maxWidth: "100%"
+                                }}
+                                dangerouslySetInnerHTML={{ __html: sanitizedContents }}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                            />
+                            <motion.div 
+                                className="grid-item-tags-container"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                            >
+                                {getTags()}
+                            </motion.div>
+                        </motion.div>
+                    </>
+                )}
+            </motion.div>
+        </motion.div>
     );
 }

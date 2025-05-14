@@ -10,9 +10,11 @@ const useNavigation = () => {
   const goToacctSettings= () => navigate('/account/settings');
   const goToLogin = () => navigate('/login');
   const goToThreadList = () => navigate('/');
-  const goToSignUp = () => navigate('/signup');
-  const goToNewThread = () => navigate('/newthread');
+  const goToSignUp = () => navigate('/join');
+  const goToLeaderboard = () => navigate('/leaderboard');
+  const goToNewThread = () => navigate('/post');
   const goToThread = (threadId) => navigate(`/thread/${threadId}`);
+  const goToAchievements = () => navigate('/achievements');
 
   const isActive = (path) => location.pathname === path;
 
@@ -26,6 +28,8 @@ const useNavigation = () => {
     goToSignUp, 
     goToThread,
     goToNewThread,
+    goToLeaderboard,
+    goToAchievements,
     isActive
   };
 };

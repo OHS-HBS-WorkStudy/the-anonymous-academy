@@ -1,23 +1,29 @@
 .dark {
-    --color-background: #1e1e1e; /* Deep muted gray */
-    --alt-background-color: #1e1e1e; /* Slightly lighter muted gray */
+    --color-background: #121212; /* Deep muted gray, matching surface a0 */
+    --alt-background-color: #1e1e1e; /* Slightly lighter muted gray, matching surface a10 */
     --color-text-primary: hsl(0, 0%, 92%); /* Soft white for readability */
     --color-text-secondary: hsl(0, 0%, 70%); /* Light gray for secondary text */
     --color-text-tertiary: hsl(0, 0%, 100%); /* White */
     --color-text-fouthy: hsl(0, 0%, 85%);
     --color-text-white: white; /* White for text on dark backgrounds */
     --color-text-black: #333;
-    --color-input-background: #3f3f3f;
+    --color-input-background: #282828; /* Slightly lighter than surface a20 */
+
+    --alt-card-color: hsl(0, 0%, 18%);
+
+    --alt-date-color: hsl(0, 0%, 25%);
+
+
 
     /** Dark theme surface colors */
     --clr-surface-a0: #121212;
-    --clr-surface-a10: #282828;
-    --clr-surface-a20: #3f3f3f;
-    --clr-surface-a30: #575757;
-    --clr-surface-a40: #717171;
-    --clr-surface-a50: #8b8b8b;
+    --clr-surface-a10: #1e1e1e;
+    --clr-surface-a20: #282828;
+    --clr-surface-a30: #3f3f3f;
+    --clr-surface-a40: #575757;
+    --clr-surface-a50: #717171;
 
-    /** Dark theme tonal surface colors */
+    /** Dark theme tonal surface colors (keeping as is for subtle variations) */
     --clr-surface-tonal-a0: #18161a;
     --clr-surface-tonal-a10: #2d2b2f;
     --clr-surface-tonal-a20: #444245;
@@ -25,15 +31,15 @@
     --clr-surface-tonal-a40: #747376;
     --clr-surface-tonal-a50: #8f8d90;
 
-    --newThread-button: #6C58CE;
-    --newThread-button-hover: #5438a5;
+    --newThread-button: #6C58CE; /* Keeping this modern purple */
+    --newThread-button-hover: #5438a5; /* Darker hover for contrast */
 
     /* Grid item colors */
-    --grid-item-background: #2a2a2a; /* Slightly lighter than background for contrast */
-    --grid-item-hover: #3a3a3a; /* A bit brighter for hover effect */
+    --grid-item-background: #282828; /* Matching surface a20 for subtle contrast */
+    --grid-item-hover: #3f3f3f; /* Matching surface a30 for hover effect */
     --grid-item-border: #444444; /* Subtle border for better separation */
 
-    --link-color: white;
+    --link-color: #a88df2; /* A slightly lighter and more vibrant purple for links */
 }
 
 .dark {
@@ -60,7 +66,7 @@
     --grid-item-hover: #50346e;
     --grid-item-border: #623e82;
 
-    --login-and-sign-color: linear-gradient(45deg, #7A4FBF, #5E3A8F, #9A7DBF);
+    --login-and-sign-color: linear-gradient(45deg, hsl(270, 20%, 30%), hsl(270, 20%, 30%));
 }
 
 .dark[data-accent-color="blue"] {

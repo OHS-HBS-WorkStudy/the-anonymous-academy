@@ -1,9 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedDatePicker from "./AnimatedCal";
-
 import CompactDropdown from "./CompactDropdown";
-
 
 const breakpoints = {
   large: 960, 
@@ -13,36 +11,45 @@ const breakpoints = {
 
 const dropdownVariants = {
   open: {
-    scaleY: 1,
-    opacity: 1,
-    transition: {
-      scaleY: { stiffness: 100, damping: 20 },
-      opacity: { duration: 0.1 },
-    },
-    originY: 0,
+    x: 0,
+    transition: { type: "spring", stiffness: 300, damping: 30 }
   },
   closed: {
-    scaleY: 0,
-    opacity: 0,
-    transition: {
-      scaleY: { stiffness: 100, damping: 20 },
-      opacity: { duration: 0.1 },
-    },
-    originY: 0,
-  },
+    x: '100%',
+    transition: { type: "spring", stiffness: 300, damping: 30 }
+  }
 };
 
-
-export default function ThreadFilter() {
+export default function ThreadFilter({ onFilterOpen }) {
   const [filterOpen, setFilterOpen] = useState(false);
   const filterButtonRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
   const gridHeaderRef = useRef(null);
 
-  const toggleOpen = () => setIsOpen(!isOpen);
+  const toggleOpen = () => {
+    const newIsOpen = !isOpen;
+    setIsOpen(newIsOpen);
+    
+    // Communicate state to parent component
+    if (onFilterOpen) {
+      onFilterOpen(newIsOpen);
+    }
 
+    // Toggle classes for mobile
+    if (window.innerWidth <= 768) {
+      document.body.classList.toggle('motion-dropdown-active', newIsOpen);
+      document.querySelector('.ThreadList')?.classList.toggle('motion-dropdown-active', newIsOpen);
+    }
+  };
 
+  // Clean up classes when component unmounts
+  useEffect(() => {
+    return () => {
+      document.body.classList.remove('motion-dropdown-active');
+      document.querySelector('.ThreadList')?.classList.remove('motion-dropdown-active');
+    };
+  }, []);
 
   const [startDate, setStartDate] = useState(null);
 
@@ -347,81 +354,115 @@ export default function ThreadFilter() {
 
         <AnimatePresence>
           {isOpen && (
-            <motion.div
-              className="motion-dropdown"
-              variants={dropdownVariants}
-              initial="closed"
-              animate="open"
-              exit="closed"
-            >
-              <div className="motion-dropdown-section">
-                <h3 className="motion-dropdown-title">Advance Sort By</h3>
-                <label htmlFor="sortAnswered">
-                  <input type="checkbox" id="sortAnswered" name="sortBy" value="answered" />
-                  Answered
-                </label>
-                <label htmlFor="sortViews">
-                  <input type="checkbox" id="sortViews" name="sortBy" value="views" />
-                  Most Views
-                </label>
-                <label htmlFor="sortComments">
-                  <input type="checkbox" id="sortComments" name="sortBy" value="comments" />
-                  Most Comments
-                </label>
-                <label htmlFor="sortLikes">
-                  <input type="checkbox" id="sortLikes" name="sortBy" value="likes" />
-                  Most Likes
-                </label>
+            <>
+              <motion.div
+                className="motion-dropdown"
+                variants={dropdownVariants}
+                initial="closed"
+                animate="open"
+                exit="closed"
+              >
+
+                <button 
+                  className="close-button" 
+                  onClick={() => setIsOpen(false)} 
+                  aria-label="Close Filter Panel"
+                >
+                  ✕
+                </button>
+
+                    {/* Sort Section */}
+            <div className="motion-dropdown-section top">
+              <div className="motion-dropdown-header">
+                <h3 className="motion-dropdown-title">Sort Options</h3>
+                <button className="clear-button">Clear</button>
               </div>
+              {[
+                { id: 'sortAnswered', label: 'Answered' },
+                { id: 'sortViews', label: 'Most Views' },
+                { id: 'sortComments', label: 'Most Comments' },
+                { id: 'sortLikes', label: 'Most Likes' },
+              ].map(({ id, label }) => (
+                <label htmlFor={id} key={id}>
+                  <input type="checkbox" id={id} name="sortBy" value={id.replace('sort', '').toLowerCase()} />
+                  {label}
+                </label>
+              ))}
+            </div>
 
-              <div className="motion-dropdown-section">
-                <h3 className="motion-dropdown-title">Advanced Date Filter</h3>
-                <AnimatedDatePicker
-                  name="startDate"
-                  label="Select date..."
-                  className="modern-datepicker"
-                  onChange={(e) => setStartDate(e.target.value)}
-                />
+            {/* Date Range Filter */}
+            <div className="motion-dropdown-section">
+              <div className="motion-dropdown-header">
+                <h3 className="motion-dropdown-title">Date Range</h3>
+                <button className="clear-button">Clear</button>
               </div>
-
-
-              <div className="motion-dropdown-section">
-                <h3 className="motion-dropdown-title">Custom Tags</h3>
-                <input
-                  ref={inputRef}
-                  id="customtag"
-                  className="tag-input"
-                  type="text"
-                  placeholder={tags.length === 0 ? "Enter Tags..." : "#"}
-                  value={inputValue}
-                  onChange={handleInputChange}
-                  onKeyDown={handleKeyDown}
-                />
-                <div className="tag-input-container">
-                  {tags.map((tag, index) => (
-                    <span onClick={() => removeTag(index)} key={index} className="tag">
-                      {tag}
-                      <button>x</button>
-                    </span>
-                  ))}
+              <div className="date-range">
+                <div className="left"> 
+                  <label htmlFor="fromDate">From</label>
+                  <AnimatedDatePicker name="fromDate" id="fromDate" placeholder="Start date" onChange={(e) => setStartDate(e.target.value)} />
+                </div>
+                <div className="right">
+                  <label htmlFor="toDate">To</label>
+                  <AnimatedDatePicker name="toDate" id="toDate" placeholder="End date" />
                 </div>
               </div>
-
-              <div className="motion-dropdown-section">
-                <h3 className="motion-dropdown-title">Custom Items Per Page</h3>
-                <input
-                  type="number"
-                  min="5"
-                  placeholder="10"
-                  id="customsize"
-                  name="listSize"
-                />
+              <div className="quick-range">
+                {['Today', 'Last 7 Days', 'This Month', 'Last Month'].map(option => (
+                  <button key={option}>{option}</button>
+                ))}
               </div>
-            </motion.div>
-          )}
+            </div>
+
+            {/* Tags */}
+            <div className="motion-dropdown-section">
+              <div className="motion-dropdown-header">
+                <h3 className="motion-dropdown-title">Tags</h3>
+                <button className="clear-button">Clear</button>
+              </div>
+              <input
+                ref={inputRef}
+                className="tag-input"
+                type="text"
+                placeholder={tags.length === 0 ? "Enter Tags..." : "#"}
+                value={inputValue}
+                onChange={handleInputChange}
+                onKeyDown={handleKeyDown}
+              />
+              <div className="tag-input-container">
+                {tags.map((tag, index) => (
+                  <span key={index} className="tag" onClick={() => removeTag(index)}>
+                    {tag} <button>x</button>
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Items Per Page */}
+            <div className="motion-dropdown-section bottom">
+              <div className="motion-dropdown-header">
+                <h3 className="motion-dropdown-title">Items Per Page</h3>
+                <button className="clear-button">Clear</button>
+              </div>
+              <input
+                type="number"
+                min="5"
+                placeholder="e.g., 10"
+                id="customsize"
+                name="listSize"
+              />
+            </div>
+
+            {/* Apply Button */}
+            <div className="motion-dropdown-footer">
+              <button className="apply-button">Apply Filters</button>
+            </div>
+
+                  </motion.div>
+                </>
+              )}
         </AnimatePresence>
-          </div>
       </div>
+    </div>
   );
-}                
+}
 

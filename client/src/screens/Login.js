@@ -1,10 +1,11 @@
-// Library declaration imports
 import { useState, useEffect, useRef } from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faKey, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
-// Other modules/components imports
 import useNavigation from '../modules/useNavigation';
 import loginpic from '../img/loginpic.png';
+
 import {
     containerVariants,
     splitRightVariants,
@@ -12,34 +13,27 @@ import {
     imageVariants,
     titleVariants,
     inputVariants,
-    buttonVariants,
     orLineVariants,
-    fadeVariants,
     submitButtonVariants,
     togglePasswordVariants,
     linkVariants
 } from '../modules/Animations/SignAnimations';
 
-
 export default function Login() {
     const { goToSignUp, goToHome } = useNavigation();
     const [loaded, setLoaded] = useState(false);
     const [passwordVisible, setPasswordVisible] = useState(false);
-    const leftSplitRef = useRef(null);
-    const rightSplitRef = useRef(null);
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-
-    const bgX = useTransform(mouseX, [-100, 100], ["-30%", "30%"]);
-    const bgY = useTransform(mouseY, [-100, 100], ["-15%", "15%"]);
+    const [errors, setErrors] = useState({});
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setLoaded(true);
-        }, 500); // Slight delay for animation
+        const handleResize = () => setScreenWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
+    useEffect(() => {
+        const timer = setTimeout(() => setLoaded(true), 500);
         return () => clearTimeout(timer);
     }, []);
 
@@ -47,156 +41,148 @@ export default function Login() {
         setPasswordVisible(!passwordVisible);
     };
 
-    const handleMouseMove = (e) => {
-        if (rightSplitRef.current) {
-            const rect = rightSplitRef.current.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const moveX = (x - centerX) / 15;
-            const moveY = (y - centerY) / 15;
-            const rotateX = (centerY - y) / 10;
-            const rotateY = (x - centerX) / 10;
-
-            setMousePosition({ moveX, moveY, rotateX, rotateY });
-            mouseX.set(x - centerX);
-            mouseY.set(y - centerY);
-        }
-    };
-
-    const handleMouseLeave = () => {
-        setMousePosition({ moveX: 0, moveY: 0, rotateX: 0, rotateY: 0 });
-        mouseX.set(0);
-        mouseY.set(0);
-    };
+    function validateInputs(email, password) {
+        const newErrors = {};
+        if (!email) newErrors.email = "Email is required";
+        if (!password) newErrors.password = "Password is required";
+        return newErrors;
+    }
 
     function loginUser() {
-        let usersGet = sessionStorage.getItem("user");
-        let users = usersGet ? JSON.parse(usersGet) : [];
-
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
 
-        let foundUser = null;
-        for (let i = 0; i < users.length; i++) {
-            if (email === users[i].email && password === users[i].password) {
-                foundUser = users[i];
-                users[i].login = true;
-                sessionStorage.setItem("user", JSON.stringify(users));
-                break;
-            }
-        }
+        const newErrors = validateInputs(email, password);
+        setErrors(newErrors);
+
+        if (Object.keys(newErrors).length > 0) return;
+
+        const usersGet = sessionStorage.getItem("user");
+        const users = usersGet ? JSON.parse(usersGet) : [];
+
+        const foundUser = users.find(u => u.email === email && u.password === password);
 
         if (foundUser) {
+            foundUser.login = true;
+            sessionStorage.setItem("user", JSON.stringify(users));
             sessionStorage.setItem("foundUser", JSON.stringify(foundUser));
             localStorage.setItem("userPreferences", JSON.stringify(foundUser.pref));
             goToHome();
+            window.location.reload();
         } else {
-            alert("Login Unsuccessful");
+            setErrors({ login: "Login unsuccessful. Check your credentials." });
         }
     }
 
+    const renderInput = (id, type, placeholder, icon) => (
+        <motion.div className="input-with-icon">
+            <FontAwesomeIcon icon={icon} className="input-icon" />
+            <motion.input
+                variants={inputVariants}
+                id={id}
+                type={type}
+                placeholder={placeholder}
+                className={errors[id] ? "input-error" : "input-default"}
+            />
+            <AnimatePresence>
+                {errors[id] && (
+                    <motion.div
+                        className="error-tooltip"
+                        initial={{ opacity: 0, y: -5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -5 }}
+                    >
+                        <FontAwesomeIcon icon={faExclamationCircle} className="error-icon" />
+                        <span>{errors[id]}</span>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </motion.div>
+    );
+
     return (
-        <motion.div
-            className="offset"
-            variants={containerVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-        >
+        <motion.div className="offset" variants={containerVariants} initial="initial" animate="animate" exit="exit">
             <div className="Login">
                 <div className="parent-container">
                     <motion.div className="split">
-                        {/* Right Split with Image */}
                         <motion.div
-                            ref={rightSplitRef}
                             className="split right Login-page"
                             variants={splitRightVariants}
-                            initial="initial"
                             animate={loaded ? "animate" : "initial"}
-                            exit="exit"
-                            onMouseMove={handleMouseMove}
-                            onMouseLeave={handleMouseLeave}
-                            style={{ perspective: 600 }}
                         >
-                            <motion.div
-                                className="content"
-                                variants={imageVariants}
-                                initial="initial"
-                                animate={loaded ? "animate" : "initial"}
-                                exit="exit"
-                                style={{
-                                    transform: `translate3d(${mousePosition.moveX}px, ${mousePosition.moveY}px, 0) perspective(600px) rotateX(${mousePosition.rotateX}deg) rotateY(${mousePosition.rotateY}deg)`,
-                                }}
-                                whileHover="hover"
-                            >
-                                <img src={loginpic} alt="Community" />
+                            <motion.div className="content" variants={imageVariants}>
+                                <img src={loginpic} alt="Login visual" className="loginpic" />
                             </motion.div>
                         </motion.div>
 
-                        {/* Left Split with Form */}
-                        <motion.div
-                            ref={leftSplitRef}
-                            className="split left Login-page"
-                            initial="initial"
-                            animate={loaded ? "animate" : "initial"}
-                            exit="exit"
-                        >
+                        <motion.div className="split left Login-page">
                             <div className="center">
-                                <motion.div
-                                    className="page-title"
-                                    variants={titleVariants}
-                                    initial="initial"
-                                    animate={loaded ? "animate" : "initial"}
-                                    exit="exit"
-                                >
+                                {screenWidth <= 825 && (
+                                    <motion.div className="content" variants={imageVariants}>
+                                        <img src={loginpic} alt="Login" className="loginpic" />
+                                    </motion.div>
+                                )}
+
+                                <motion.div className="page-title" variants={titleVariants}>
                                     <h2>Welcome Back!</h2>
                                 </motion.div>
 
                                 <div className="inputbox">
-                                    <motion.input
-                                        variants={inputVariants}
-                                        initial="initial"
-                                        animate={loaded ? "animate" : "initial"}
-                                        exit="exit"
-                                        type="text"
-                                        id="email"
-                                        name="email"
-                                        placeholder="Email"
-                                    />
-                                    <motion.div style={{ position: 'relative' }}>
+                                    {renderInput("email", "text", "Email", faEnvelope)}
+
+                                    <motion.div className="input-with-icon">
+                                        <FontAwesomeIcon icon={faKey} className="input-icon" />
                                         <motion.input
                                             variants={inputVariants}
-                                            initial="initial"
-                                            animate={loaded ? "animate" : "initial"}
-                                            exit="exit"
                                             type={passwordVisible ? "text" : "password"}
                                             id="password"
-                                            name="password"
                                             placeholder="Password"
+                                            className={errors.password ? "input-error" : "input-default"}
                                         />
                                         <motion.button
                                             variants={togglePasswordVariants}
-                                            initial="initial"
-                                            animate={loaded ? "animate" : "initial"}
-                                            exit="exit"
-                                            type="button"
                                             className="toggle-password"
                                             onClick={togglePasswordVisibility}
+                                            type="button"
                                             whileHover="hover"
                                             whileTap="tap"
                                         >
                                             {passwordVisible ? "Hide" : "Show"}
                                         </motion.button>
+
+                                        <AnimatePresence>
+                                            {errors.password && (
+                                                <motion.div
+                                                    className="error-tooltip"
+                                                    initial={{ opacity: 0, y: -5 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: -5 }}
+                                                >
+                                                    <FontAwesomeIcon icon={faExclamationCircle} className="error-icon" />
+                                                    <span>{errors.password}</span>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
                                     </motion.div>
+
+                                    <AnimatePresence>
+                                        {errors.login && (
+                                            <motion.div
+                                                className="error-tooltip"
+                                                initial={{ opacity: 0, y: -5 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: -5 }}
+                                                style={{ marginTop: "-10px", marginBottom: "10px", paddingLeft: "2px" }}
+                                            >
+                                                <FontAwesomeIcon icon={faExclamationCircle} className="error-icon" />
+                                                <span>{errors.login}</span>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
                                 </div>
 
                                 <motion.button
                                     variants={submitButtonVariants}
-                                    initial="initial"
-                                    animate={loaded ? "animate" : "initial"}
-                                    exit="exit"
                                     className="submit-button"
                                     type="submit"
                                     onClick={loginUser}
@@ -206,23 +192,11 @@ export default function Login() {
                                     Login
                                 </motion.button>
 
-                                <motion.div
-                                    className="border-line"
-                                    variants={orLineVariants}
-                                    initial="initial"
-                                    animate={loaded ? "animate" : "initial"}
-                                    exit="exit"
-                                >
+                                <motion.div className="border-line" variants={orLineVariants}>
                                     <span>Or</span>
                                 </motion.div>
 
-                                <motion.div
-                                    className="login-container"
-                                    variants={loginContainerVariants}
-                                    initial="initial"
-                                    animate={loaded ? "animate" : "initial"}
-                                    exit="exit"
-                                >
+                                <motion.div className="login-container" variants={loginContainerVariants}>
                                     <p className="login-text">Don't have an account?</p>
                                     <motion.p
                                         className="smalltext"
@@ -231,7 +205,7 @@ export default function Login() {
                                         whileHover="hover"
                                         whileTap="tap"
                                     >
-                                        Sign Up here
+                                        Join here
                                     </motion.p>
                                 </motion.div>
                             </div>

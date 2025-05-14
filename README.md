@@ -52,6 +52,10 @@
 ```
  npm install react-calendar
 ```
+### Install Loading skeleton for looks 
+```
+ npm install react-loading-skeleton
+```
 
 ### Install pa11y (if err)
 ```
