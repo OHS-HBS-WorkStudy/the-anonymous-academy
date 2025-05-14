@@ -9,6 +9,12 @@
     --color-text-black: #333;
     --color-input-background: #282828; /* Slightly lighter than surface a20 */
 
+    --alt-card-color: hsl(0, 0%, 18%);
+
+    --alt-date-color: hsl(0, 0%, 25%);
+
+
+
     /** Dark theme surface colors */
     --clr-surface-a0: #121212;
     --clr-surface-a10: #1e1e1e;

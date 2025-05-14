@@ -95,7 +95,7 @@ export default function Threads({ thread }) {
             }
         },
         hover: {
-            scale: 1.02,
+            scale: 1.01,
             boxShadow: "0px 5px 15px rgba(0,0,0,0.1)",
             transition: { duration: 0.2 }
         },

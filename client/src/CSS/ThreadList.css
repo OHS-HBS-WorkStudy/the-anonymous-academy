@@ -152,12 +152,6 @@
   }
 }
 
-@media (max-width: 480px) {
-  .grid-container-area {
-    padding: 0.5rem;
-  }
-}
-
 .thread-list-container {
   display: flex;
   flex-direction: column;
@@ -368,6 +362,10 @@
     margin-bottom: 40px;
   }
 
+  .left-info {
+    flex-direction: row !important;
+  }
+
   .ThreadList.motion-dropdown-active {
     height: 100vh;
   }
@@ -403,6 +401,9 @@
 .motion-dropdown-section.top {
   margin-top: 27px;
 } 
+.dark .motion-dropdown {
+  background: var(--alt-background-color); 
+}
 /* Each card-style section */
 .motion-dropdown-section {
   background-color: var(--alt-background-color); /* Very light gray alternative */
@@ -415,7 +416,7 @@
 }
 
 .dark .motion-dropdown-section {
-  background-color: var(--color-secondary); /* Pure white */
+  background-color: var(--alt-card-color); /* Pure white */
 }
 
 /* Section titles */
@@ -468,7 +469,7 @@
 .dark .motion-dropdown .tag-input,
 .dark .motion-dropdown input[type="number"],
 .dark .date-range input {
-  background-color: var(--color-secondary-accent); /* Pure white */
+  background-color: var(--alt-date-color); /* Pure white */
 }
 
 /* Focus input styling */
@@ -582,7 +583,7 @@
 }
 
 .dark .quick-range button {
-  background-color: var(--color-secondary-accent); /* Pure white */
+  background-color: var(--alt-date-color); /* Pure white */
 }
 
 .quick-range button:hover {
@@ -609,7 +610,7 @@
 }
 
 .dark .date-trigger {
-   background-color: var(--color-secondary-accent);
+   background-color: var(--alt-date-color);
 }
 
 .date-trigger:hover {
@@ -675,4 +676,79 @@
 
 .apply-button:hover {
   background-color: var(--color-primary-see); /* Slightly more vibrant, modern blue (see-through) */
+}
+
+/* No threads message section */
+.no-threads-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  background: var(--color-background);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.no-threads-message .no-threads-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: bounce 2s infinite;
+}
+
+.no-threads-message h2 {
+  color: var(--color-text-primary);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.no-threads-message p {
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 400px;
+  margin-bottom: 1.5rem;
+}
+
+.no-threads-message .start-thread-btn {
+  background: var(--color-accent);
+  color: var(--color-text-on-accent);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.no-threads-message .start-thread-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@media (max-width: 768px) {
+  .no-threads-message {
+    padding: 2rem 1rem;
+    margin: 1rem 0;
+  }
+  
+  .no-threads-message h2 {
+    font-size: 1.25rem;
+  }
+  
+  .no-threads-message p {
+    font-size: 0.9rem;
+  }
 }

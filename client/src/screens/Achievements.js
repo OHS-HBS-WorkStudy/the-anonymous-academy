@@ -206,12 +206,12 @@ const Achievements = () => {
 
   const getRarityColor = (rarity) => {
     switch (rarity) {
-      case 'common': return 'var(--color-primary)';
+      case 'common': return 'var(--clr-primary-a40)';
       case 'uncommon': return '#4CAF50';
       case 'rare': return '#2196F3';
       case 'epic': return '#9C27B0';
       case 'legendary': return '#FFD700';
-      default: return 'var(--color-primary)';
+      default: return 'var(--clr-primary-a40)';
     }
   };
 

@@ -249,28 +249,7 @@ const Navigator = () => {
       >
         <nav className='sidebar'>
           <div className="menu-items">
-            <motion.div
-              className={`sidebar-link ${isActive('/') ? 'active-link' : ''}`}
-              onClick={goToThreadList}
-              variants={menuItemVariants}
-              initial="closed"
-              animate={isExpanded ? "open" : "closed"}
-            >
-              <button
-                className={`sidebar-btn ${isActive('/') ? 'active-link' : ''}`}
-                aria-label="Go to thread list"
-              >
-                <motion.div
-                  className={`icon-container ${isActive('/') ? 'active-link' : ''}`}
-                  variants={iconContainerVariants}
-                  initial="closed"
-                  animate={isExpanded || isHovered ? "open" : "closed"}
-                >
-                  <i><FontAwesomeIcon icon={faListUl} className={`fa-icon ${isActive('/') ? 'active-link' : ''}`} /></i>
-                </motion.div>
-                {(isHovered || isExpanded) && (<h1>Threads</h1>)}
-              </button>
-            </motion.div>
+
             <motion.div
               className={`sidebar-link ${isActive('/home') ? 'active-link' : ''}`}
               onClick={goToHome}
@@ -293,6 +272,28 @@ const Navigator = () => {
                 {(isHovered || isExpanded) && (<h1>Home</h1>)}
               </button>
             </motion.div>
+             <motion.div
+              className={`sidebar-link ${isActive('/') ? 'active-link' : ''}`}
+              onClick={goToThreadList}
+              variants={menuItemVariants}
+              initial="closed"
+              animate={isExpanded ? "open" : "closed"}
+            >
+              <button
+                className={`sidebar-btn ${isActive('/') ? 'active-link' : ''}`}
+                aria-label="Go to thread list"
+              >
+                <motion.div
+                  className={`icon-container ${isActive('/') ? 'active-link' : ''}`}
+                  variants={iconContainerVariants}
+                  initial="closed"
+                  animate={isExpanded || isHovered ? "open" : "closed"}
+                >
+                  <i><FontAwesomeIcon icon={faListUl} className={`fa-icon ${isActive('/') ? 'active-link' : ''}`} /></i>
+                </motion.div>
+                {(isHovered || isExpanded) && (<h1>Threads</h1>)}
+              </button>
+            </motion.div>
             <motion.div
               className={`sidebar-link ${isActive('/post') ? 'active-link' : ''}`}
               onClick={goToNewThread}
@@ -313,50 +314,6 @@ const Navigator = () => {
                   <i><FontAwesomeIcon icon={faPenToSquare} className={`fa-icon ${isActive('/post') ? 'active-link' : ''}`} /></i>
                 </motion.div>
                 {(isHovered || isExpanded) && (<h1>Post</h1>)}
-              </button>
-            </motion.div>
-            <motion.div
-              className={`sidebar-link ${isActive('/leaderboard') ? 'active-link' : ''}`}
-              onClick={goToLeaderboard}
-              variants={menuItemVariants}
-              initial="closed"
-              animate={isExpanded ? "open" : "closed"}
-            >
-              <button
-                className={`sidebar-btn ${isActive(`/leaderboard`) ? 'active-link' : ''}`}
-                aria-label="Go to view leaderboard"
-              >
-                <motion.div
-                  className={`icon-container ${isActive('/leaderboard') ? 'active-link' : ''}`}
-                  variants={iconContainerVariants}
-                  initial="closed"
-                  animate={isExpanded || isHovered ? "open" : "closed"}
-                >
-                  <i><FontAwesomeIcon icon={faRankingStar} className={`fa-icon ${isActive('/leaderboard') ? 'active-link' : ''}`} /></i>
-                </motion.div>
-                {(isHovered || isExpanded) && (<h1>Leaderboard</h1>)}
-              </button>
-            </motion.div>
-            <motion.div
-              className={`sidebar-link ${isActive('/achievements') ? 'active-link' : ''}`}
-              onClick={goToAchievements}
-              variants={menuItemVariants}
-              initial="closed"
-              animate={isExpanded ? "open" : "closed"}
-            >
-              <button
-                className={`sidebar-btn ${isActive(`/achievements`) ? 'active-link' : ''}`}
-                aria-label="Go to view achievements"
-              >
-                <motion.div
-                  className={`icon-container ${isActive('/achievements') ? 'active-link' : ''}`}
-                  variants={iconContainerVariants}
-                  initial="closed"
-                  animate={isExpanded || isHovered ? "open" : "closed"}
-                >
-                  <i><FontAwesomeIcon icon={faTrophy} className={`fa-icon ${isActive('/achievements') ? 'active-link' : ''}`} /></i>
-                </motion.div>
-                {(isHovered || isExpanded) && (<h1>Achievements</h1>)}
               </button>
             </motion.div>
             {isLoggedIn && (
@@ -418,6 +375,50 @@ const Navigator = () => {
                 </AnimatePresence>
               </motion.div>
             )}
+            <motion.div
+              className={`sidebar-link ${isActive('/leaderboard') ? 'active-link' : ''}`}
+              onClick={goToLeaderboard}
+              variants={menuItemVariants}
+              initial="closed"
+              animate={isExpanded ? "open" : "closed"}
+            >
+              <button
+                className={`sidebar-btn ${isActive(`/leaderboard`) ? 'active-link' : ''}`}
+                aria-label="Go to view leaderboard"
+              >
+                <motion.div
+                  className={`icon-container ${isActive('/leaderboard') ? 'active-link' : ''}`}
+                  variants={iconContainerVariants}
+                  initial="closed"
+                  animate={isExpanded || isHovered ? "open" : "closed"}
+                >
+                  <i><FontAwesomeIcon icon={faRankingStar} className={`fa-icon ${isActive('/leaderboard') ? 'active-link' : ''}`} /></i>
+                </motion.div>
+                {(isHovered || isExpanded) && (<h1>Leaderboard</h1>)}
+              </button>
+            </motion.div>
+            <motion.div
+              className={`sidebar-link ${isActive('/achievements') ? 'active-link' : ''}`}
+              onClick={goToAchievements}
+              variants={menuItemVariants}
+              initial="closed"
+              animate={isExpanded ? "open" : "closed"}
+            >
+              <button
+                className={`sidebar-btn ${isActive(`/achievements`) ? 'active-link' : ''}`}
+                aria-label="Go to view achievements"
+              >
+                <motion.div
+                  className={`icon-container ${isActive('/achievements') ? 'active-link' : ''}`}
+                  variants={iconContainerVariants}
+                  initial="closed"
+                  animate={isExpanded || isHovered ? "open" : "closed"}
+                >
+                  <i><FontAwesomeIcon icon={faTrophy} className={`fa-icon ${isActive('/achievements') ? 'active-link' : ''}`} /></i>
+                </motion.div>
+                {(isHovered || isExpanded) && (<h1>Achievements</h1>)}
+              </button>
+            </motion.div>
           </div>
 
           <motion.div

@@ -1,6 +1,6 @@
 .achievements-page {
   min-height: 100vh;
-  background: var(--bg-primary);
+  background: var(--background-color);
 }
 
 .achievements-container {
@@ -22,7 +22,7 @@
 }
 
 .achievements-header p {
-  color: var(--clr-primary-a10);
+  color: var(--clr-primary-a50);
   font-size: 1.1rem;
 }
 
@@ -39,7 +39,7 @@
   align-items: center;
   gap: 1rem;
   font-size: 1.8rem;
-  color: var(--clr-primary-a0);
+  color: var(--clr-primary-a40);
   margin-bottom: 2rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -144,7 +144,7 @@
 }
 
 .achievement-description {
-  color: var(--clr-surface-a0);
+  color: var(--color-text-tertiary);
   font-size: 0.9rem;
   margin-bottom: 1rem;
   min-height: 2.7em;
@@ -183,9 +183,13 @@
   border-radius: 8px;
   font-size: 0.9rem;
   text-align: center;
-  color: var(--clr-primary-a0);
+  color: var(--clr-primary-a50);
+  fill: var(--clr-primary-a50) !important;
 }
 
+.achievement-reward svg {
+  fill: var(--clr-primary-a50) !important;
+}
 .nav-button {
   position: absolute;
   top: 50%;
@@ -198,7 +202,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-primary);
+  color: var(--clr-primary-a50);
   cursor: pointer;
   transition: all 0.3s ease;
   z-index: 2;
@@ -215,11 +219,11 @@
 }
 
 .nav-button.prev {
-  left: -20px;
+  left: -30px;
 }
 
 .nav-button.next {
-  right: -20px;
+  right: -30px;
 }
 
 .carousel-dots {
@@ -245,7 +249,7 @@
 }
 
 .dot.active {
-  color: var(--color-primary);
+  color: var(--clr-primary-a50);
   transform: scale(1.2);
 }
 

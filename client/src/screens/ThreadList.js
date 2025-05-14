@@ -44,7 +44,9 @@ export default function ThreadList() {
           <div className="questionsSection">
             <div className="titleSection">
                <h1 className="threadListTitle">Thread Directory</h1>
-               <button className="createThreadButton" onClick={goToNewThread}>New Thread</button>
+               {allThreads.length > 1 && (
+                <button className="createThreadButton" onClick={goToNewThread}>Create New Thread</button>
+               )}
             </div>
 
             <h3>
@@ -67,7 +69,12 @@ export default function ThreadList() {
                     </div>
                   ))
                 ) : (
-                  <div className="no-threads-message">No Threads</div>
+                  <div className="no-threads-message">
+                    <div className="no-threads-icon">📝</div>
+                    <h2>No Threads Found</h2>
+                    <p>There are currently no threads available in this category. Be the first to start a discussion!</p>
+                     <button className="createThreadButton" onClick={goToNewThread}>Create New Thread</button>
+                  </div>
                 )}
               </div>
 

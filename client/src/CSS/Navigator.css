@@ -761,7 +761,7 @@
 }
 
 .submenu-item.active-link {
-  color: var(--color-primary);
+  color: var(--clr-surface-a50);
   font-weight: 500;
   background-color: rgba(var(--color-primary-rgb), 0.1);
   opacity: 1;
