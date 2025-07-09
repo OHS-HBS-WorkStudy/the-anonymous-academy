@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import useNavigation from '../../modules/useNavigation';
+import useNavigation from '../Nav Bars/useNavigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faExclamationTriangle, faInfoCircle, faBell, faQuestionCircle, faComment, faHeart, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 

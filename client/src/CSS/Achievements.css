@@ -22,8 +22,11 @@
 }
 
 .achievements-header p {
-  color: var(--clr-primary-a50);
+  color: var(--clr-primary-a0);
   font-size: 1.1rem;
+}
+.dark .achievements-header p {
+  color: var(--clr-primary-a50);
 }
 
 .category-wrapper {
@@ -176,6 +179,9 @@
   margin-top: 0.5rem;
 }
 
+.dark .achievement-reward {
+  color: var(--clr-primary-a50);
+}
 .achievement-reward {
   margin-top: 1rem;
   padding: 0.75rem;
@@ -183,12 +189,14 @@
   border-radius: 8px;
   font-size: 0.9rem;
   text-align: center;
-  color: var(--clr-primary-a50);
-  fill: var(--clr-primary-a50) !important;
+  color: var(--clr-primary-a0);
 }
 
 .achievement-reward svg {
-  fill: var(--clr-primary-a50) !important;
+  fill: var(--clr-primary-a0);
+}
+.dark .achievement-reward svg {
+  fill: var(--clr-primary-a50);
 }
 .nav-button {
   position: absolute;
@@ -202,10 +210,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--clr-primary-a50);
+  color: var(--clr-primary-a0);
   cursor: pointer;
   transition: all 0.3s ease;
   z-index: 2;
+}
+
+.dark .nav-button{
+  color: var(--clr-primary-a50);
 }
 
 .nav-button:hover {

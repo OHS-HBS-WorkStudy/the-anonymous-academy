@@ -1,234 +1,312 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+// MUI Imports
+import {
+  Box,
+  Typography,
+  Paper,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  FormControlLabel,
+  Checkbox,
+  List, // For list items within guidelines
+  ListItem, // For list items within guidelines
+  ListItemIcon, // For icons next to list items
+  ListItemText, // For text in list items
+} from '@mui/material';
+import { styled, useTheme } from '@mui/material/styles'; // Removed 'alpha' from import
+import {
+  ExpandMore as ExpandMoreIcon, // MUI's expand/collapse icon
+  CheckCircleOutline as CheckCircleOutlineIcon, // Example icon for list items
+  InfoOutlined as InfoOutlinedIcon, // Example icon for list items
+  ForumOutlined as ForumOutlinedIcon, // Example icon for communication
+  DescriptionOutlined as DescriptionOutlinedIcon, // Example icon for content
+} from '@mui/icons-material';
+
+// --- Custom Styled Components ---
+
+// Styled Paper for the main rules container
+const StyledRulesPaper = styled(motion(Paper))(({ theme }) => ({
+  padding: theme.spacing(3),
+  borderRadius: theme.shape.borderRadius * 2,
+  boxShadow: theme.shadows[4], // Consistent shadow
+  backgroundColor: theme.palette.background.paper,
+}));
+
+// Styled AccordionSummary for the dropdown headers
+const StyledAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
+  // Replacing alpha-based backgrounds with specific theme colors or fallback light colors
+  backgroundColor: theme.palette.action.hover, // A very light tint, commonly used for subtle backgrounds
+  borderRadius: theme.shape.borderRadius, // Rounded corners for headers
+  marginBottom: theme.spacing(1),
+  '&:hover': {
+    backgroundColor: theme.palette.action.selected, // Slightly darker on hover
+  },
+  '&.Mui-expanded': {
+    backgroundColor: theme.palette.action.selected, // Stay darker when expanded
+    minHeight: '48px', // Ensure consistent height when expanded
+  },
+  '& .MuiAccordionSummary-content': {
+    margin: theme.spacing(1, 0), // Adjust content margin
+    alignItems: 'center',
+  },
+  '& .MuiAccordionSummary-expandIconWrapper': {
+    color: theme.palette.primary.main, // Primary color for the arrow icon
+  },
+}));
+
+// Styled AccordionDetails for the dropdown content
+const StyledAccordionDetails = styled(AccordionDetails)(({ theme }) => ({
+  padding: theme.spacing(0, 2, 2, 2), // Adjust padding for content
+  borderTop: `1px solid ${theme.palette.divider}`, // Subtle divider
+  '& ul': {
+    paddingLeft: theme.spacing(2),
+    listStyleType: 'none', // Remove default list style if using ListItems
+  },
+  '& li': {
+    marginBottom: theme.spacing(1),
+  },
+}));
+
+// Styled List item icons
+const StyledListItemIcon = styled(ListItemIcon)(({ theme }) => ({
+  minWidth: '32px', // Compact the icon area
+  color: theme.palette.secondary.main, // Gold color for icons
+}));
+
+// --- CreateThreadAside Component ---
+
 export default function CreateThreadAside({ ruleAgreement, setRuleAgreement }) {
-  const [openDropdown, setOpenDropdown] = useState(null);
+  const theme = useTheme();
+  const [expanded, setExpanded] = useState(false); // Manages expanded state for Accordions
 
-  const toggleGeneral = () => {
-    setOpenDropdown(openDropdown === 'general' ? null : 'general');
-  };
-
-  const toggleCommunication = () => {
-    setOpenDropdown(openDropdown === 'communication' ? null : 'communication');
-  };
-
-  const toggleContent = () => {
-    setOpenDropdown(openDropdown === 'content' ? null : 'content');
-  };
-
+  // Framer Motion Variants for the overall container
   const containerVariants = {
     initial: { opacity: 0, y: -15 },
     animate: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeInOut" } },
     exit: { opacity: 0, y: -15, transition: { duration: 0.3, ease: "easeInOut" } },
   };
 
-  const contentVariants = {
+  // Framer Motion Variants for Accordion content (replaces contentVariants)
+  const accordionContentVariants = {
     open: {
-      height: "auto", 
+      height: "auto",
       opacity: 1,
       transition: {
-        duration: 0.3,
-        ease: "easeInOut",
+        height: { duration: 0.3, ease: "easeInOut" },
+        opacity: { duration: 0.3, ease: "easeInOut" },
       },
     },
     closed: {
       height: 0,
       opacity: 0,
       transition: {
-        duration: 0.2,
-        ease: "easeOut",
+        height: { duration: 0.2, ease: "easeOut" },
+        opacity: { duration: 0.1, ease: "easeOut" }, // Shorter opacity transition on close
       },
     },
   };
 
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
+
   return (
-    <aside>
-      <motion.div
-        className="threadRules"
+    <Box sx={{ mt: { xs: 4, md: 0 } }}> {/* Add top margin for smaller screens to separate from main content */}
+      <StyledRulesPaper
         variants={containerVariants}
         initial="initial"
         animate="animate"
         exit="exit"
       >
+        <Typography variant="h5" component="h2" gutterBottom sx={{
+          fontWeight: 'bold',
+          textAlign: 'center',
+          mb: 3,
+          color: theme.palette.primary.dark, // Darker primary for heading
+        }}>
+          Thread Creation Guidelines
+        </Typography>
+
         {/* General Guidelines Section */}
-        <div onClick={toggleGeneral} className="dropdown">
-          <motion.h2
-            className="dropdown-title"
-            animate={{ color: openDropdown === 'general' ? 'var(--clr-primary-a50)' : 'var(--color-text-tertiary)' }}
-            transition={{ duration: 0.3 }}
-            style={{ flexGrow: 1 }}
+        <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} elevation={0} sx={{ mb: 1, borderRadius: theme.shape.borderRadius }}>
+          <StyledAccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1-content"
+            id="panel1-header"
           >
-            General Guidelines
-          </motion.h2>
-          <motion.svg
-            animate={{ rotate: openDropdown === 'general' ? 0 : 90 }}
-            transition={{ duration: 0.1 }}
-            xmlns="http://www.w3.org/2000/svg"
-            height="16px"
-            viewBox="0 0 20 20"
-            width="16px"
-            fill="currentColor"
-            className="dropdown-arrow"
-            style={{ marginLeft: 'auto' }}
-          >
-            <path
-              fillRule="evenodd"
-              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-              clipRule="evenodd"
-            />
-          </motion.svg>
-        </div>
-        <AnimatePresence>
-          {openDropdown === 'general' && (
-            <motion.div
-              className="dropdown-options-wrapper"
-              variants={contentVariants}
-              initial="closed"
-              animate="open"
-              exit="closed"
-              style={{ originY: "top", overflow: "hidden" }}
-            >
-              <div className="dropdown-content">
-                <p>
-                  These are the general rules to keep in mind when creating a thread.
-                </p>
-                <ul>
-                  <li>
-                    <strong>Strict Topic Adherence:</strong> Threads must remain strictly on topic. Off-topic posts will be removed.
-                  </li>
-                  <li>
-                    <strong>Constructive Contributions Only:</strong> Only helpful and constructive questions and information are permitted.
-                  </li>
-                </ul>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            <InfoOutlinedIcon sx={{ mr: 1, color: theme.palette.primary.main }} />
+            <Typography variant="subtitle1" sx={{ fontWeight: 'medium', color: theme.palette.text.primary }}>
+              General Guidelines
+            </Typography>
+          </StyledAccordionSummary>
+          <AnimatePresence>
+            {expanded === 'panel1' && (
+              <motion.div
+                key="panel1-content"
+                variants={accordionContentVariants}
+                initial="closed"
+                animate="open"
+                exit="closed"
+                style={{ overflow: "hidden" }}
+              >
+                <StyledAccordionDetails>
+                  <Typography variant="body2" sx={{ mb: 1, color: theme.palette.text.secondary }}>
+                    These are the general rules to keep in mind when creating a thread.
+                  </Typography>
+                  <List dense disablePadding>
+                    <ListItem disableGutters>
+                      <StyledListItemIcon>
+                        <CheckCircleOutlineIcon fontSize="small" />
+                      </StyledListItemIcon>
+                      <ListItemText primary={<Typography variant="body2" color="text.primary">
+                        <strong>Strict Topic Adherence:</strong> Threads must remain strictly on topic. Off-topic posts will be removed.
+                      </Typography>} />
+                    </ListItem>
+                    <ListItem disableGutters>
+                      <StyledListItemIcon>
+                        <CheckCircleOutlineIcon fontSize="small" />
+                      </StyledListItemIcon>
+                      <ListItemText primary={<Typography variant="body2" color="text.primary">
+                        <strong>Constructive Contributions Only:</strong> Only helpful and constructive questions and information are permitted.
+                      </Typography>} />
+                    </ListItem>
+                  </List>
+                </StyledAccordionDetails>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </Accordion>
 
         {/* Communication Guidelines Section */}
-        <div onClick={toggleCommunication} className="dropdown">
-          <motion.h2
-            className="dropdown-title"
-            animate={{ color: openDropdown === 'communication' ? 'var(--clr-primary-a50)' : 'var(--color-text-tertiary)' }}
-            transition={{ duration: 0.3 }}
-            style={{ flexGrow: 1 }}
+        <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')} elevation={0} sx={{ mb: 1, borderRadius: theme.shape.borderRadius }}>
+          <StyledAccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel2-content"
+            id="panel2-header"
           >
-            Communication Guidelines
-          </motion.h2>
-          <motion.svg
-            animate={{ rotate: openDropdown === 'communication' ? 0 : 90 }}
-            transition={{ duration: 0.1 }}
-            xmlns="http://www.w3.org/2000/svg"
-            height="16px"
-            viewBox="0 0 20 20"
-            width="16px"
-            fill="currentColor"
-            className="dropdown-arrow"
-            style={{ marginLeft: 'auto' }}
-          >
-            <path
-              fillRule="evenodd"
-              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-              clipRule="evenodd"
-            />
-          </motion.svg>
-        </div>
-        <AnimatePresence>
-          {openDropdown === 'communication' && (
-            <motion.div
-              className="dropdown-options-wrapper"
-              variants={contentVariants}
-              initial="closed"
-              animate="open"
-              exit="closed"
-              style={{ originY: "top", overflow: "hidden" }}
-            >
-              <div className="dropdown-content">
-                <p>These rules are for how you communicate with other users.</p>
-                <ul>
-                  <li>
-                    <strong>Respectful Communication:</strong> Absolutely no personal attacks, insults, or harassment. Treat all users with the utmost respect.
-                  </li>
-                  <li>
-                    <strong>No Swearing or Foul Language:</strong> Profanity or offensive language is strictly forbidden.
-                  </li>
-                  <li>
-                    <strong>Zero Tolerance for Bullying:</strong> Bullying, intimidation, or any harmful behavior will not be tolerated.
-                  </li>
-                </ul>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            <ForumOutlinedIcon sx={{ mr: 1, color: theme.palette.primary.main }} />
+            <Typography variant="subtitle1" sx={{ fontWeight: 'medium', color: theme.palette.text.primary }}>
+              Communication Guidelines
+            </Typography>
+          </StyledAccordionSummary>
+          <AnimatePresence>
+            {expanded === 'panel2' && (
+              <motion.div
+                key="panel2-content"
+                variants={accordionContentVariants}
+                initial="closed"
+                animate="open"
+                exit="closed"
+                style={{ overflow: "hidden" }}
+              >
+                <StyledAccordionDetails>
+                  <Typography variant="body2" sx={{ mb: 1, color: theme.palette.text.secondary }}>
+                    These rules are for how you communicate with other users.
+                  </Typography>
+                  <List dense disablePadding>
+                    <ListItem disableGutters>
+                      <StyledListItemIcon>
+                        <CheckCircleOutlineIcon fontSize="small" />
+                      </StyledListItemIcon>
+                      <ListItemText primary={<Typography variant="body2" color="text.primary">
+                        <strong>Respectful Communication:</strong> Absolutely no personal attacks, insults, or harassment. Treat all users with the utmost respect.
+                      </Typography>} />
+                    </ListItem>
+                    <ListItem disableGutters>
+                      <StyledListItemIcon>
+                        <CheckCircleOutlineIcon fontSize="small" />
+                      </StyledListItemIcon>
+                      <ListItemText primary={<Typography variant="body2" color="text.primary">
+                        <strong>No Swearing or Foul Language:</strong> Profanity or offensive language is strictly forbidden.
+                      </Typography>} />
+                    </ListItem>
+                    <ListItem disableGutters>
+                      <StyledListItemIcon>
+                        <CheckCircleOutlineIcon fontSize="small" />
+                      </StyledListItemIcon>
+                      <ListItemText primary={<Typography variant="body2" color="text.primary">
+                        <strong>Zero Tolerance for Bullying:</strong> Bullying, intimidation, or any harmful behavior will not be tolerated.
+                      </Typography>} />
+                    </ListItem>
+                  </List>
+                </StyledAccordionDetails>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </Accordion>
 
         {/* Content Guidelines Section */}
-        <div onClick={toggleContent} className="dropdown">
-          <motion.h2
-            className="dropdown-title"
-            animate={{ color: openDropdown === 'content' ? 'var(--clr-primary-a50)' : 'var(--color-text-tertiary)' }}
-            transition={{ duration: 0.3 }}
-            style={{ flexGrow: 1 }}
+        <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')} elevation={0} sx={{ mb: 1, borderRadius: theme.shape.borderRadius }}>
+          <StyledAccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel3-content"
+            id="panel3-header"
           >
-            Content Guidelines
-          </motion.h2>
-          <motion.svg
-            animate={{ rotate: openDropdown === 'content' ? 0 : 90 }}
-            transition={{ duration: 0.1 }}
-            xmlns="http://www.w3.org/2000/svg"
-            height="16px"
-            viewBox="0 0 20 20"
-            width="16px"
-            fill="currentColor"
-            className="dropdown-arrow"
-            style={{ marginLeft: 'auto' }}
-          >
-            <path
-              fillRule="evenodd"
-              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-              clipRule="evenodd"
-            />
-          </motion.svg>
-        </div>
-        <AnimatePresence>
-          {openDropdown === 'content' && (
-            <motion.div
-              className="dropdown-options-wrapper"
-              variants={contentVariants}
-              initial="closed"
-              animate="open"
-              exit="closed"
-              style={{ originY: "top", overflow: "hidden" }}
-            >
-              <div className="dropdown-content">
-                <p>These rules are for the type of content you post.</p>
-                <ul>
-                  <li>
-                    <strong>No Spam or Self-Promotion:</strong> Avoid posting irrelevant links or excessive self-promotional content.
-                  </li>
-                </ul>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            <DescriptionOutlinedIcon sx={{ mr: 1, color: theme.palette.primary.main }} />
+            <Typography variant="subtitle1" sx={{ fontWeight: 'medium', color: theme.palette.text.primary }}>
+              Content Guidelines
+            </Typography>
+          </StyledAccordionSummary>
+          <AnimatePresence>
+            {expanded === 'panel3' && (
+              <motion.div
+                key="panel3-content"
+                variants={accordionContentVariants}
+                initial="closed"
+                animate="open"
+                exit="closed"
+                style={{ overflow: "hidden" }}
+              >
+                <StyledAccordionDetails>
+                  <Typography variant="body2" sx={{ mb: 1, color: theme.palette.text.secondary }}>
+                    These rules are for the type of content you post.
+                  </Typography>
+                  <List dense disablePadding>
+                    <ListItem disableGutters>
+                      <StyledListItemIcon>
+                        <CheckCircleOutlineIcon fontSize="small" />
+                      </StyledListItemIcon>
+                      <ListItemText primary={<Typography variant="body2" color="text.primary">
+                        <strong>No Spam or Self-Promotion:</strong> Avoid posting irrelevant links or excessive self-promotional content.
+                      </Typography>} />
+                    </ListItem>
+                  </List>
+                </StyledAccordionDetails>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </Accordion>
 
         {/* Agreement Section */}
-        <div className="agree-portion">
-          <p style={{ marginTop: "15px" }}>
-            By creating a thread, you <b>explicitly agree</b> to these strict guidelines. Failure to comply will result in immediate moderation actions.
-          </p>
-          <label className="rule-checkbox" style={{ marginTop: "15px" }}>
-            <input
-              type="checkbox"
-              checked={ruleAgreement}
-              onChange={() => setRuleAgreement(!ruleAgreement)}
-              required
-            />
-            <span className="required">
-              <b> I have read and agreed to the thread creation guidelines.</b>
-            </span>
-          </label>
-        </div>
-      </motion.div>
-    </aside>
+        <Box sx={{ mt: 3, pt: 2, borderTop: `1px dashed ${theme.palette.divider}`, textAlign: 'center' }}>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+            By creating a thread, you <Typography component="span" sx={{ fontWeight: 'bold', color: theme.palette.warning.dark }}>explicitly agree</Typography> to these strict guidelines. Failure to comply will result in immediate moderation actions.
+          </Typography>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={ruleAgreement}
+                onChange={() => setRuleAgreement(!ruleAgreement)}
+                required
+                color="primary"
+              />
+            }
+            label={
+              <Typography variant="body2" color="text.primary" sx={{ fontWeight: 'bold' }}>
+                I have read and agreed to the thread creation guidelines.
+              </Typography>
+            }
+            sx={{
+                '& .MuiFormControlLabel-label.Mui-disabled': {
+                    color: theme.palette.text.secondary, // Ensure disabled label color is consistent
+                },
+            }}
+          />
+        </Box>
+      </StyledRulesPaper>
+    </Box>
   );
 }
