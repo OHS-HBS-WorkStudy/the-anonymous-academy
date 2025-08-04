@@ -37,7 +37,7 @@ export const buttonVariants = {
 export const submitButtonVariants = {
     initial: { opacity: 0, scale: 0.8, y: 10 },
     animate: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.5,ease: "easeOut", delay: 0.6 } },
-    hover: { scale: 1.05, backgroundColor: "#007bff", color: "white", boxShadow: "0px 7px 12px rgba(0, 0, 0, 0.25)" },
+    hover: { scale: 1.01, color: "white", boxShadow: "0px 7px 12px rgba(0, 0, 0, 0.25)" },
     tap: { scale: 0.98 },
 };
 
@@ -68,4 +68,24 @@ export const linkVariants = {
     animate: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut", delay: 1 } },
     hover: { color: "#00bfff", scale: 1.05, fontWeight: "bold" },
     tap: { scale: 0.95 },
+};
+
+export const iconVariants = {
+  hidden: {
+    opacity: 0,
+    y: -10,
+    scale: 0.8,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: [1, 1.2, 1],
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+      delay: 0.2,
+      type: "spring",
+      bounce: 0.4,
+    }
+  }
 };

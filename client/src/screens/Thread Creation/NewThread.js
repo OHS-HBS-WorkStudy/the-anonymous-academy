@@ -1,9 +1,9 @@
-import CreateThread from "../modules/Thread/CreateThread";
+import CreateThread from "./CreateThread";
 
 
 export default function NewThread() {
     return(
-        <div className="offset">
+        <div>
             <CreateThread />
         </div>
     );

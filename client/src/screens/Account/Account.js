@@ -3,11 +3,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartBar, faListAlt, faCog, faCaretDown, faUser } from '@fortawesome/free-solid-svg-icons';
 
-import Activity from "./sub-screens/Activity";
-import Stats from "./sub-screens/Stats";
-import Settings from './sub-screens/Settings'
-import DataList from "./sub-screens/DataList";
-import useNavigation from '../modules/useNavigation';
+import Activity from "../sub-screens/Activity";
+import Stats from "../sub-screens/Stats";
+import Settings from '../sub-screens/Settings'
+import DataList from "../sub-screens/DataList";
+import useNavigation from '../Nav Bars/useNavigation';
 
 const DropdownItem = ({ children, onClick }) => (
     <li onClick={onClick} className="dropdown-item">{children}</li>

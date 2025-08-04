@@ -1,4 +1,4 @@
-import useNavigation from '../../modules/useNavigation';
+import useNavigation from '../Nav Bars/useNavigation';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faMapMarkerAlt, faClock, faUserTag, faTrophy, faExclamationTriangle, faInfoCircle, faBell} from '@fortawesome/free-solid-svg-icons';
